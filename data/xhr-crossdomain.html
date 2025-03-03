@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/xhr-crossdomain by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">XMLHttpRequest: кросс-доменные запросы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="xhr-crossdomain.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="XMLHttpRequest: кросс-доменные запросы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="XMLHttpRequest: кросс-доменные запросы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="XMLHttpRequest: кросс-доменные запросы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">XMLHttpRequest: кросс-доменные запросы</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="fetch-crossorigin.html">https://learn.javascript.ru/fetch-crossorigin</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="XMLHttpRequest: кросс-доменные запросы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Обычно запрос <code>XMLHttpRequest</code> может делать запрос только в рамках текущего сайта. При попытке использовать другой домен/порт/протокол – браузер выдаёт ошибку.</p>
+<p>Существует современный стандарт <a href="https://www.w3.org/TR/XMLHttpRequest/">XMLHttpRequest</a>, он ещё в состоянии черновика, но предусматривает кросс-доменные запросы и многое другое.</p>
+<p>Большинство возможностей этого стандарта уже поддерживаются всеми браузерами, но увы, не в IE9-.</p>
+<p>Впрочем, частично кросс-доменные запросы поддерживаются, начиная с IE8, только вместо <code>XMLHttpRequest</code> нужно использовать объект <a href="http://msdn.microsoft.com/en-us/library/ie/cc288060.aspx">XDomainRequest</a>.</p>
+<h2><a class="main__anchor" name="cors" href="#cors">Кросс-доменные запросы</a></h2><p>Разберём кросс-доменные запросы на примере кода:</p>
+<div id="m8gv7ur1i3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// (1)
+var XHR = (&quot;onload&quot; in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+
+var xhr = new XHR();
+
+// (2) запрос на другой домен :)
+xhr.open('GET', 'http://anywhere.com/request', true);
+
+xhr.onload = function() {
+  alert( this.responseText );
+}
+
+xhr.onerror = function() {
+  alert( 'Ошибка ' + this.status );
+}
+
+xhr.send();</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>Мы создаём <code>XMLHttpRequest</code> и проверяем, поддерживает ли он событие <code>onload</code>. Если нет, то это старый <code>XMLHttpRequest</code>, значит это IE8,9, и используем <code>XDomainRequest</code>.</li>
+<li>Запрос на другой домен отсылается просто указанием соответствующего URL в <code>open</code>. Он обязательно должен быть асинхронным, в остальном – никаких особенностей.</li>
+</ol>
+<h2><a class="main__anchor" name="kontrol-bezopasnosti" href="#kontrol-bezopasnosti">Контроль безопасности</a></h2><p>Кросс-доменные запросы проходят специальный контроль безопасности, цель которого – не дать злым хакерам™ завоевать интернет.</p>
+<p>Серьёзно. Разработчики стандарта предусмотрели все заслоны, чтобы «злой хакер» не смог, воспользовавшись новым стандартом, сделать что-то принципиально отличное от того, что и так мог раньше и, таким образом, «сломать» какой-нибудь сервер, работающий по-старому стандарту и не ожидающий ничего принципиально нового.</p>
+<p>Давайте, на минуточку, вообразим, что появился стандарт, который даёт, без ограничений, возможность делать любой странице HTTP-запросы куда угодно, какие угодно.</p>
+<p>Как сможет этим воспользоваться злой хакер?</p>
+<p>Он сделает свой сайт, например <code>http://evilhacker.com</code> и заманит туда посетителя (а может посетитель попадёт на «злонамеренную» страницу и по ошибке – не так важно).</p>
+<p>Когда посетитель зайдёт на <code>http://evilhacker.com</code>, он автоматически запустит JS-скрипт на странице. Этот скрипт сделает HTTP-запрос на почтовый сервер, к примеру, <code>http://gmail.com</code>. А ведь обычно HTTP-запросы идут с куками посетителя и другими авторизующими заголовками.</p>
+<p>Поэтому хакер сможет написать на <code>http://evilhacker.com</code> код, который, сделав GET-запрос на <code>http://gmail.com</code>, получит информацию из почтового ящика посетителя. Проанализирует её, сделает ещё пачку POST-запросов для отправки писем от имени посетителя. Затем настанет очередь онлайн-банка и так далее.</p>
+<p>Спецификация <a href="http://www.w3.org/TR/cors/">CORS</a> налагает специальные ограничения на запросы, которые призваны не допустить подобного апокалипсиса.</p>
+<p>Запросы в ней делятся на два вида.</p>
+<p><a href="http://www.w3.org/TR/cors/#terminology">Простыми</a> считаются запросы, если они удовлетворяют следующим двум условиям:</p>
+<ol>
+<li><a href="http://www.w3.org/TR/cors/#simple-method">Простой метод</a>: GET, POST или HEAD</li>
+<li><a href="http://www.w3.org/TR/cors/#simple-header">Простые заголовки</a> – только из списка:</li>
+</ol>
+<ul>
+<li><code>Accept</code></li>
+<li><code>Accept-Language</code></li>
+<li><code>Content-Language</code></li>
+<li><code>Content-Type</code> со значением <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code> или <code>text/plain</code>.</li>
+</ul>
+<p>«Непростыми» считаются все остальные, например, запрос с методом <code>PUT</code> или с заголовком <code>Authorization</code> не подходит под ограничения выше.</p>
+<p>Принципиальная разница между ними заключается в том, что «простой» запрос можно сформировать и отправить на сервер и без XMLHttpRequest, например при помощи HTML-формы.</p>
+<p>То есть, злой хакер на странице <code>http://evilhacker.com</code> и до появления CORS мог отправить произвольный GET-запрос куда угодно. Например, если создать и добавить в документ элемент <code>&lt;script src=&quot;любой url&quot;&gt;</code>, то браузер сделает GET-запрос на этот URL.</p>
+<p>Аналогично, злой хакер и ранее мог на своей странице объявить и, при помощи JavaScript, отправить HTML-форму с методом GET/POST и кодировкой <code>multipart/form-data</code>. А значит, даже старый сервер наверняка предусматривает возможность таких атак и умеет от них защищаться.</p>
+<p>А вот запросы с нестандартными заголовками или с методом <code>DELETE</code> таким образом не создать. Поэтому старый сервер может быть к ним не готов. Или, к примеру, он может полагать, что такие запросы веб-страница в принципе не умеет присылать, значит они пришли из привилегированного приложения, и дать им слишком много прав.</p>
+<p>Поэтому при посылке «непростых» запросов нужно специальным образом спросить у сервера, согласен ли он в принципе на подобные кросс-доменные запросы или нет? И, если сервер не ответит, что согласен – значит, нет.</p>
+<div class="summary"><div class="summary__content"><p>В спецификации CORS, как мы увидим далее, есть много деталей, но все они объединены единым принципом: новые возможности доступны только с явного согласия сервера (по умолчанию – нет).</p>
+</div></div>
+<h2><a class="main__anchor" name="cors-dlya-prostyh-zaprosov" href="#cors-dlya-prostyh-zaprosov">CORS для простых запросов</a></h2><p>В кросс-доменный запрос браузер автоматически добавляет заголовок <code>Origin</code>, содержащий домен, с которого осуществлён запрос.</p>
+<p>В случае запроса на <code>http://anywhere.com/request</code> с <code>http://javascript.ru/page</code> заголовки будут примерно такие:</p>
+<div id="djcwligxnz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>GET /request
+Host:anywhere.com
+Origin:http://javascript.ru
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сервер должен, со своей стороны, ответить специальными заголовками, разрешает ли он такой запрос к себе.</p>
+<p>Если сервер разрешает кросс-доменный запрос с этого домена – он должен добавить к ответу заголовок <code>Access-Control-Allow-Origin</code>, содержащий домен запроса (в данном случае «javascript.ru») или  звёздочку <code>*</code>.</p>
+<p><strong>Только при наличии такого заголовка в ответе – браузер сочтёт запрос успешным, а иначе JavaScript получит ошибку.</strong></p>
+<figure><div class="image" style="width:610px">
+      <div class="image__ratio" style="padding-top:67.37704918032786%"></div>
+      <img src="https://learn.javascript.ru/article/xhr-crossdomain/xhr-another-domain.png" alt="" width="610" height="411" class="image__image">
+      </div></figure><p>То есть, ответ сервера может быть примерно таким:</p>
+<div id="8arauvoqej" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>HTTP/1.1 200 OK
+Content-Type:text/html; charset=UTF-8
+Access-Control-Allow-Origin: http://javascript.ru</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если <code>Access-Control-Allow-Origin</code> нет, то браузер считает, что разрешение не получено, и завершает запрос с ошибкой.</p>
+<p>При таких запросах не передаются куки и заголовки HTTP-авторизации. Параметры <code>user</code> и <code>password</code> в методе <code>open</code> игнорируются. Мы рассмотрим, как разрешить их передачу, чуть далее.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Что может сделать хакер, используя такие запросы?</span></div>
+            <div class="important__content"><p>Описанные выше ограничения приводят к тому, что запрос полностью безопасен.</p>
+<p>Действительно, злая страница может сформировать любой GET/POST-запрос и отправить его, но без разрешения сервера ответа она не получит.</p>
+<p>А без ответа такой запрос, по сути, эквивалентен отправке формы GET/POST, причём без авторизации.</p>
+</div></div>
+<h2><a class="main__anchor" name="ogranicheniya-ie9" href="#ogranicheniya-ie9">Ограничения IE9-</a></h2><p>В IE9- используется <code>XDomainRequest</code>, который представляет собой урезанный <code>XMLHttpRequest</code>.</p>
+<p>На него действуют ограничения:</p>
+<ul>
+<li>Протокол нужно сохранять: запросы допустимы с HTTP на HTTP, с HTTPS на HTTPS. Другие протоколы запрещены.</li>
+<li>Метод <code>open(method, url)</code> имеет только два параметра. Он всегда асинхронный.</li>
+<li>Ряд возможностей современного стандарта недоступны, в частности:
+<ul>
+<li>Недоступны методы, кроме GET или POST.</li>
+<li>Нельзя добавлять свои заголовки, даже нельзя указать свой <code>Content-Type</code> для запроса, он всегда <code>text/plain</code>.</li>
+<li>Нельзя включить передачу кук и данных HTTP-авторизации.</li>
+</ul>
+</li>
+<li>В IE8 в режиме просмотра InPrivate кросс-доменные запросы не работают.</li>
+</ul>
+<p>Современный стандарт <a href="https://www.w3.org/TR/XMLHttpRequest/">XMLHttpRequest</a> предусматривает средства для преодоления этих ограничений, но на момент выхода IE8 они ещё не были проработаны, поэтому их не реализовали. А IE9 исправил некоторые ошибки, но в общем не добавил ничего нового.</p>
+<p>Поэтому на сайтах, которые хотят поддерживать IE9-, то на практике кросс-доменные запросы редко используют, предпочитая другие способы кросс-доменной коммуникации. Например, динамически создаваемый тег <code>SCRIPT</code> или вспомогательный <code>IFRAME</code> с другого домена. Мы разберём эти подходы в последующих главах.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Как разрешить кросс-доменные запросы от доверенного сайта в IE9-?</span></div>
+            <div class="important__content"><p>Разрешить кросс-доменные запросы для «доверенных» сайтов можно в настройках IE, во вкладке «Безопасность», включив пункт «Доступ к источникам данных за пределами домена».</p>
+<p>Обычно это делается для зоны «Надёжные узлы», после чего в неё вносится доверенный сайт. Теперь он может делать кросс-доменные запросы <code>XMLHttpRequest</code>.</p>
+<p>Этот способ можно применить для корпоративных сайтов, а также в тех случаях, когда посетитель заведомо вам доверяет, но почему-то (компьютер на работе, админ запрещает ставить другой браузер?) хочет использовать именно IE. Например, он может предлагаться в качестве дополнительной инструкции «как заставить этот сервис работать под IE».</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">В IE разрешён другой порт</span></div>
+            <div class="important__content"><p>В кросс-доменные ограничения IE не включён порт.</p>
+<p>То есть, можно сделать запрос с <code>http://javascript.ru</code> на <code>http://javascript.ru:8080</code>, и в IE он не будет считаться кросс-доменным.</p>
+<p>Это позволяет решить некоторые задачи, связанные с взаимодействием различных сервисов в рамках одного сайта. Но только для IE.</p>
+</div></div>
+<p>Расширенные возможности, описанные далее, поддерживаются всеми современными браузерами, кроме IE9-.</p>
+<h2><a class="main__anchor" name="zagolovki-otveta" href="#zagolovki-otveta">Заголовки ответа</a></h2><p>Чтобы JavaScript мог прочитать HTTP-заголовок ответа, сервер должен указать его имя в <code>Access-Control-Expose-Headers</code>.</p>
+<p>Например:</p>
+<div id="bn99nbtdto" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>HTTP/1.1 200 OK
+Content-Type:text/html; charset=UTF-8
+Access-Control-Allow-Origin: http://javascript.ru
+X-Uid: 123
+X-Authorization: 2c9de507f2c54aa1
+Access-Control-Expose-Headers: X-Uid, X-Authentication</code></pre>
+        </div>
+      </div>
+      
+      </div><p>По умолчанию скрипт может прочитать из ответа только «простые» заголовки:</p>
+<div id="b5naxghlb3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Cache-Control
+Content-Language
+Content-Type
+Expires
+Last-Modified
+Pragma</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…То есть, <code>Content-Type</code> получить всегда можно, а доступ к специфическим заголовкам нужно открывать явно.</p>
+<h2><a class="main__anchor" name="zaprosy-ot-imeni-polzovatelya" href="#zaprosy-ot-imeni-polzovatelya">Запросы от имени пользователя</a></h2><p>По умолчанию браузер не передаёт с запросом куки и авторизующие заголовки.</p>
+<p>Чтобы браузер передал вместе с запросом куки и HTTP-авторизацию, нужно поставить запросу <code>xhr.withCredentials = true</code>:</p>
+<div id="eu66i5wux6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.open('POST', 'http://anywhere.com/request', true)
+  ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Далее – всё как обычно, дополнительных действий со стороны клиента не требуется.</p>
+<p>Такой <code>XMLHttpRequest</code> с куками, естественно, требует от сервера больше разрешений, чем «анонимный».</p>
+<p><strong>Поэтому для запросов с <code>withCredentials</code> предусмотрено дополнительное подтверждение со стороны сервера.</strong></p>
+<p>При запросе с <code>withCredentials</code> сервер должен вернуть уже не один, а два заголовка:</p>
+<ul>
+<li><code>Access-Control-Allow-Origin: домен</code></li>
+<li><code>Access-Control-Allow-Credentials: true</code></li>
+</ul>
+<p>Пример заголовков:</p>
+<div id="taks3j79e2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>HTTP/1.1 200 OK
+Content-Type:text/html; charset=UTF-8
+Access-Control-Allow-Origin: http://javascript.ru
+Access-Control-Allow-Credentials: true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Использование звёздочки <code>*</code> в <code>Access-Control-Allow-Origin</code> при этом запрещено.</p>
+<p>Если этих заголовков не будет, то браузер не даст JavaScript’у доступ к ответу сервера.</p>
+<h2><a class="main__anchor" name="neprostye-zaprosy" href="#neprostye-zaprosy">«Непростые» запросы</a></h2><p>В кросс-доменном <code>XMLHttpRequest</code> можно указать не только <code>GET/POST</code>, но и любой другой метод, например <code>PUT</code>, <code>DELETE</code>.</p>
+<p>Когда-то никто и не думал, что страница сможет сделать такие запросы. Поэтому ряд веб-сервисов написаны в предположении, что «если метод – нестандартный, то это не браузер». Некоторые веб-сервисы даже учитывают это при проверке прав доступа.</p>
+<p>Чтобы пресечь любые недопонимания, браузер использует предзапрос в случаях, когда:</p>
+<ul>
+<li>Если метод – не GET / POST / HEAD.</li>
+<li>Если заголовок <code>Content-Type</code> имеет значение отличное от <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code> или <code>text/plain</code>, например <code>application/xml</code>.</li>
+<li>Если устанавливаются другие HTTP-заголовки, кроме <code>Accept</code>, <code>Accept-Language</code>, <code>Content-Language</code>.</li>
+</ul>
+<p>…Любое из условий выше ведёт к тому, что браузер сделает два HTTP-запроса.</p>
+<p>Первый запрос называется «предзапрос» (английский термин «preflight»). Браузер делает его целиком по своей инициативе, из JavaScript мы о нём ничего не знаем, хотя можем увидеть в инструментах разработчика.</p>
+<p>Этот запрос использует метод <code>OPTIONS</code>. Он не содержит тела и содержит название желаемого метода в заголовке <code>Access-Control-Request-Method</code>, а если добавлены особые заголовки, то и их тоже – в <code>Access-Control-Request-Headers</code>.</p>
+<p>Его задача – спросить сервер, разрешает ли он использовать выбранный метод и заголовки.</p>
+<p>На этот запрос сервер должен ответить статусом 200, без тела ответа, указав заголовки <code>Access-Control-Allow-Method: метод</code> и, при необходимости, <code>Access-Control-Allow-Headers: разрешённые заголовки</code>.</p>
+<p>Дополнительно он может указать <code>Access-Control-Max-Age: sec</code>, где <code>sec</code> – количество секунд, на которые нужно закэшировать разрешение. Тогда при последующих вызовах метода браузер уже не будет делать предзапрос.</p>
+<figure><div class="image" style="width:610px">
+      <div class="image__ratio" style="padding-top:103.77049180327869%"></div>
+      <img src="https://learn.javascript.ru/article/xhr-crossdomain/xhr-preflight.png" alt="" width="610" height="633" class="image__image">
+      </div></figure><p>Давайте рассмотрим предзапрос на конкретном примере.</p>
+<h3><a class="main__anchor" name="primer-zaprosa-copy" href="#primer-zaprosa-copy">Пример запроса COPY</a></h3><p>Рассмотрим запрос <code>COPY</code>, который используется в протоколе <a href="http://www.webdav.org/specs/rfc2518.html">WebDAV</a> для управления файлами через HTTP:</p>
+<div id="i4myf92n1x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var xhr = new XMLHttpRequest();
+
+xhr.open('COPY', 'http://site.com/~ilya', true);
+xhr.setRequestHeader('Destination', 'http://site.com/~ilya.bak');
+
+xhr.onload = ...
+xhr.onerror = ...
+
+xhr.send();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Этот запрос «непростой» по двум причинам (достаточно было бы одной из них):</p>
+<ol>
+<li>Метод <code>COPY</code>.</li>
+<li>Заголовок <code>Destination</code>.</li>
+</ol>
+<p>Поэтому браузер, по своей инициативе, шлёт предварительный запрос <code>OPTIONS</code>:</p>
+<div id="kf88nmh2z1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>OPTIONS /~ilya HTTP/1.1
+Host: site.com
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Origin: http://javascript.ru
+Access-Control-Request-Method: COPY
+Access-Control-Request-Headers: Destination</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратим внимание на детали:</p>
+<ul>
+<li>Адрес – тот же, что и у основного запроса: <code>http://site.com/~ilya</code>.</li>
+<li>Стандартные заголовки запроса <code>Accept</code>, <code>Accept-Encoding</code>, <code>Connection</code> присутствуют.</li>
+<li>Кросс-доменные специальные заголовки запроса:
+<ul>
+<li><code>Origin</code> – домен, с которого сделан запрос.</li>
+<li><code>Access-Control-Request-Method</code> – желаемый метод.</li>
+<li><code>Access-Control-Request-Headers</code> – желаемый «непростой» заголовок.</li>
+</ul>
+</li>
+</ul>
+<p>На этот запрос сервер должен ответить статусом 200, указав заголовки <code>Access-Control-Allow-Method: COPY</code> и <code>Access-Control-Allow-Headers: Destination</code>.</p>
+<p>Но в протоколе WebDav разрешены многие методы и заголовки, которые имеет смысл сразу перечислить в ответе:</p>
+<div id="g2tm5qegcs" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:22}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:28}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>HTTP/1.1 200 OK
+Content-Type: text/plain
+Access-Control-Allow-Methods: PROPFIND, PROPPATCH, COPY, MOVE, DELETE, MKCOL, LOCK, UNLOCK, PUT, GETLIB, VERSION-CONTROL, CHECKIN, CHECKOUT, UNCHECKOUT, REPORT, UPDATE, CANCELUPLOAD, HEAD, OPTIONS, GET, POST
+Access-Control-Allow-Headers: Overwrite, Destination, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control
+Access-Control-Max-Age: 86400</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ответ должен быть без тела, то есть только заголовки.</p>
+<p>Браузер видит, что метод <code>COPY</code> – в числе разрешённых и заголовок <code>Destination</code> – тоже, и дальше он шлёт уже основной запрос.</p>
+<p>При этом ответ на предзапрос он закэширует на 86400 сек (сутки), так что последующие аналогичные вызовы сразу отправят основной запрос, без <code>OPTIONS</code>.</p>
+<p>Основной запрос браузер выполняет уже в «обычном» кросс-доменном режиме:</p>
+<div id="7b2jatgq1n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>COPY /~ilya HTTP/1.1
+Host: site.com
+Content-Type: text/html; charset=UTF-8
+Destination: http://site.com/~ilya.bak
+Origin: http://javascript.ru</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ответ сервера, согласно спецификации <a href="http://www.webdav.org/specs/rfc2518.html#rfc.section.8.8.8">WebDav COPY</a>, может быть примерно таким:</p>
+<div id="30xqavdwws" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>HTTP/1.1 207 Multi-Status
+Content-Type: text/xml; charset=&quot;utf-8&quot;
+Content-Length: ...
+Access-Control-Allow-Origin: http://javascript.ru
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;d:multistatus xmlns:d=&quot;DAV:&quot;&gt;
+  ...
+&lt;/d:multistatus&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Так как <code>Access-Control-Allow-Origin</code> содержит правильный домен, то браузер вызовет <code>xhr.onload</code> и запрос будет завершён.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>Все современные браузеры умеют делать кросс-доменные XMLHttpRequest.</li>
+<li>В IE8,9 для этого используется объект <code>XDomainRequest</code>, ограниченный по возможностям.</li>
+<li>Кросс-доменный запрос всегда содержит заголовок <code>Origin</code> с доменом запроса.</li>
+</ul>
+<p>Порядок выполнения:</p>
+<ol>
+<li>
+<p>Для запросов с «непростым» методом или особыми заголовками браузер делает предзапрос <code>OPTIONS</code>, указывая их в <code>Access-Control-Request-Method</code> и <code>Access-Control-Request-Headers</code>.</p>
+<p>Браузер ожидает ответ со статусом <code>200</code>, без тела, со списком разрешённых методов и заголовков в <code>Access-Control-Allow-Method</code> и <code>Access-Control-Allow-Headers</code>. Дополнительно можно указать <code>Access-Control-Max-Age</code> для кеширования  предзапроса.</p>
+</li>
+<li>
+<p>Браузер делает запрос и проверяет, есть ли в ответе <code>Access-Control-Allow-Origin</code>, равный <code>*</code> или <code>Origin</code>.</p>
+<p>Для запросов с <code>withCredentials</code> может быть только <code>Origin</code> и дополнительно <code>Access-Control-Allow-Credentials: true</code>.</p>
+</li>
+<li>
+<p>Если проверки пройдены, то вызывается <code>xhr.onload</code>, иначе <code>xhr.onerror</code>, без деталей ответа.</p>
+</li>
+<li>
+<p>Дополнительно: названия нестандартных заголовков ответа сервер должен указать в <code>Access-Control-Expose-Headers</code>, если хочет, чтобы клиент мог их прочитать.</p>
+</li>
+</ol>
+<p>Детали и примеры мы разобрали выше.</p>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fxhr-crossdomain" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/xhr-crossdomain","identifier":"\/xhr-crossdomain"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/xhr-crossdomain by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:08 GMT -->
+</html>

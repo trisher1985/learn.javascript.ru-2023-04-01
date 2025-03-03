@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/drag-and-drop-objects by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Мышь: Drag'n'Drop более глубоко</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="drag-and-drop-objects.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Мышь: Drag'n'Drop более глубоко"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Мышь: Drag'n'Drop более глубоко"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Мышь: Drag'n'Drop более глубоко"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 18 августа 2019 г."><div class="updated-at__content">18 августа 2019 г.</div></div></div><h1 class="main__header-title">Мышь: Drag'n'Drop более глубоко</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Мышь: Drag'n'Drop более глубоко"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В <a href="drag-and-drop.html">предыдущей статье</a> мы рассмотрели основы Drag’n’Drop. Здесь мы разберём дополнительные «тонкие места» и приёмы реализации, которые возникают на практике.</p>
+<p>Почти все javascript-библиотеки реализуют Drag’n’Drop так, как написано (хотя бывает что и менее эффективно).</p>
+<p>Зная, что и как, вы сможете легко написать свой код переноса или поправить, адаптировать существующую библиотеку под себя.</p>
+<p>Этот материал не строго обязателен для изучения, он специфичен именно для Drag’n’Drop.</p>
+<h2><a class="main__anchor" name="dokument" href="#dokument">Документ</a></h2><p>Как пример задачи – возьмём документ с иконками браузера («объекты переноса»), которые можно переносить в компьютер («цель переноса»):</p>
+<ul>
+<li>Элементы, которые можно переносить (иконки браузеров), помечены классом <code>draggable</code>.</li>
+<li>Элементы, на которые можно положить (компьютер), имеют класс <code>droppable</code>.</li>
+</ul>
+<div id="o1k5b3ni9y" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;cols&quot;:[{&quot;start&quot;:31,&quot;end&quot;:40}]},{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:29,&quot;end&quot;:38}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:28,&quot;end&quot;:37}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:25,&quot;end&quot;:34}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:30,&quot;end&quot;:39}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:29,&quot;end&quot;:38}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;img src=&quot;chrome.png&quot; class=&quot;draggable&quot;&gt;
+&lt;img src=&quot;firefox.png&quot; class=&quot;draggable&quot;&gt;
+&lt;img src=&quot;ie.png&quot; class=&quot;draggable&quot;&gt;
+&lt;img src=&quot;opera.png&quot; class=&quot;draggable&quot;&gt;
+&lt;img src=&quot;safari.png&quot; class=&quot;draggable&quot;&gt;
+
+&lt;p&gt;Браузер переносить сюда:&lt;/p&gt;
+
+&lt;img src=&quot;computer.gif&quot; class=&quot;droppable&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Работающий пример с переносом:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/drag-and-drop-objects/dragDemo/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/e5KajSW68fwNteuQ?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="e5KajSW68fwNteuQ" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:280px" src="https://ru.js.cx/article/drag-and-drop-objects/dragDemo/"></iframe>
+  </div><p>Далее мы рассмотрим, как делается фреймворк для таких переносов, а в перспективе – и для более сложных.</p>
+<p>Требования:</p>
+<ul>
+<li>Поддержка большого количества элементов без «тормозов».</li>
+<li>Продвинутые возможности по анимации переноса.</li>
+<li>Удобная обработка успешного и неудачного переноса.</li>
+</ul>
+<h2><a class="main__anchor" name="nachalo-perenosa" href="#nachalo-perenosa">Начало переноса</a></h2><p>Чтобы начать перенос элемента, мы должны отловить нажатие левой кнопки мыши на нём. Для этого используем событие <code>mousedown</code>… И, конечно, делегирование.</p>
+<p>Переносимых элементов может быть много. В нашем документе-примере это всего лишь несколько иконок, но если мы хотим переносить элементы списка или дерева, то их может быть 100 штук и более.</p>
+<p>Поэтому повесим обработчик <code>mousedown</code> на контейнер, который содержит переносимые элементы, и будем определять нужный элемент поиском ближайшего <code>draggable</code> вверх по иерархии от <code>event.target</code>.</p>
+<p>В качестве контейнера здесь будем брать <code>document</code>, хотя это может быть и любой элемент.</p>
+<p>Найденный <code>draggable</code>-элемент сохраним в свойстве <code>dragObject.elem</code> и начнём двигать.</p>
+<p>Код обработчика <code>mousedown</code>:</p>
+<div id="tcqawnkoyw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var dragObject = {};
+
+document.onmousedown = function(e) {
+
+  if (e.which != 1) { // если клик правой кнопкой мыши
+    return; // то он не запускает перенос
+  }
+
+  var elem = e.target.closest('.draggable');
+
+  if (!elem) return; // не нашли, клик вне draggable-объекта
+
+  // запомнить переносимый объект
+  dragObject.elem = elem;
+
+  // запомнить координаты, с которых начат перенос объекта
+  dragObject.downX = e.pageX;
+  dragObject.downY = e.pageY;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Не начинаем перенос по <code>mousedown</code></span></div>
+            <div class="important__content"><p>Ранее мы по <code>mousedown</code> начинали перенос.</p>
+<p>Но на самом деле нажатие на элемент вовсе не означает, что его собираются куда-то двигать. Возможно, на нём просто кликают.</p>
+<p>Это важное различие. Снимать элемент со своего места и куда-то двигать нужно только при переносе.</p>
+<p>Чтобы отличить перенос от клика, в том числе – от клика, который сопровождается нечаянным перемещением на пару пикселей (рука дрогнула), мы будем запоминать в <code>dragObject</code>, какой элемент (<code>elem</code>) и где (<code>downX/downY</code>) был зажат, а начало переноса будем инициировать из <code>mousemove</code>, если он передвинут хотя бы на несколько пикселей.</p>
+</div></div>
+<h2><a class="main__anchor" name="perenos-elementa" href="#perenos-elementa">Перенос элемента</a></h2><p>Первой задачей обработчика <code>mousemove</code> является инициировать начало переноса, если элемент передвинули в зажатом состоянии.</p>
+<p>Ну а второй задачей – отображать его перенос при каждом передвижении мыши.</p>
+<p>Схематично, обработчик будет иметь такой вид:</p>
+<div id="e4al7m4zc9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.onmousemove = function(e) {
+  if (!dragObject.elem) return; // элемент не зажат
+
+  if (!dragObject.avatar) { // элемент нажат, но пока не начали его двигать
+    ...начать перенос, присвоить dragObject.avatar = переносимый элемент
+  }
+
+  ...отобразить перенос элемента...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь мы видим новое свойство <code>dragObject.avatar</code>. При начале переноса «аватар» делается из элемента и сохраняется в свойство <code>dragObject.avatar</code>.</p>
+<p><strong>&quot;Аватар&quot; – это DOM-элемент, который перемещается по экрану.</strong></p>
+<p>Почему бы не перемещать по экрану сам <code>draggable</code>-элемент? Зачем, вообще, нужен аватар?</p>
+<p>Дело в том, что иногда сам элемент передвигать неудобно, например потому, что он слишком большой. А удобно создать некоторое визуальное представление элемента, и его уже переносить. Аватар даёт такую возможность.</p>
+<p>А в простейшем случае аватаром можно будет сделать сам элемент, и это не повлечёт дополнительных расходов.</p>
+<h3><a class="main__anchor" name="vizualnoe-peremeschenie-avatara" href="#vizualnoe-peremeschenie-avatara">Визуальное перемещение аватара</a></h3><p>Для того, чтобы отобразить перенос аватара, достаточно поставить ему <code>position: absolute</code> и менять координаты <code>left/top</code>.</p>
+<p>Для использования абсолютных координат относительно документа, аватар должен быть прямым потомком <code>BODY</code>.</p>
+<p>Следующий код готовит аватар к переносу:</p>
+<div id="yt4ulfdnyg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// в начале переноса:
+if (avatar.parentNode != document.body) {
+  document.body.appendChild(avatar); // переместить в BODY, если надо
+}
+avatar.style.zIndex = 9999; // сделать, чтобы элемент был над другими
+avatar.style.position = 'absolute';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>… А затем его можно двигать:</p>
+<div id="zwcrk0yps7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// при каждом движении мыши
+
+avatar.style.left = новая координата + 'px';
+avatar.style.top = новая координата + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как вычислять новые координаты <code>left/top</code> при переносе?</p>
+<p>Чтобы элемент сохранял свою позицию под курсором, необходимо при нажатии запомнить его изначальный сдвиг относительно курсора, и сохранять его при переносе.</p>
+<figure><div class="image" style="width:135px">
+      <div class="image__ratio" style="padding-top:100%"></div>
+      <img src="https://learn.javascript.ru/article/drag-and-drop-objects/shiftx.png" alt="" width="135" height="135" class="image__image">
+      </div></figure><p>Этот сдвиг по горизонтали обозначен <code>shiftX</code> на рисунке выше. Аналогично, есть <code>shiftY</code>. Они вычисляются как расстояние между курсором и левой/верхней границей элемента при <code>mousedown</code>. Детали вычислений описаны в главе <a href="drag-and-drop.html">Мышь: Drag'n'Drop</a>.</p>
+<p>Таким образом, при <code>mousemove</code> мы будем назначать элементу координаты курсора с учётом сдвига <code>shiftX/shiftY</code>:</p>
+<div id="jdy7iito01" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>avatar.style.left = e.pageX - shiftX + 'px';
+avatar.style.top = e.pageY - shiftY + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="polnyy-kod-mousemove" href="#polnyy-kod-mousemove">Полный код mousemove</a></h2><p>Код <code>mousemove</code>, решающий задачу начала переноса и позиционирования аватара:</p>
+<div id="xg4o8cp83q" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:24,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:16}]},{&quot;start&quot;:12,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:39}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.onmousemove = function(e) {
+  if (!dragObject.elem) return; // элемент не зажат
+
+  if ( !dragObject.avatar ) { // если перенос не начат...
+
+    // посчитать дистанцию, на которую переместился курсор мыши
+    var moveX = e.pageX - dragObject.downX;
+    var moveY = e.pageY - dragObject.downY;
+    if ( Math.abs(moveX) &lt; 3 &amp;&amp; Math.abs(moveY) &lt; 3 ) {
+      return; // ничего не делать, мышь не передвинулась достаточно далеко
+    }
+
+    dragObject.avatar = createAvatar(e); // захватить элемент
+    if (!dragObject.avatar) {
+      dragObject = {}; // аватар создать не удалось, отмена переноса
+      return; // возможно, нельзя захватить за эту часть элемента
+    }
+
+    // аватар создан успешно
+    // создать вспомогательные свойства shiftX/shiftY
+    var coords = getCoords(dragObject.avatar);
+    dragObject.shiftX = dragObject.downX - coords.left;
+    dragObject.shiftY = dragObject.downY - coords.top;
+
+    startDrag(e); // отобразить начало переноса
+  }
+
+  // отобразить перенос объекта при каждом движении мыши
+  dragObject.avatar.style.left = e.pageX - dragObject.shiftX + 'px';
+  dragObject.avatar.style.top = e.pageY - dragObject.shiftY + 'px';
+
+  return false;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь используются две функции для начала переноса: <code>createAvatar(e)</code> и <code>startDrag(e)</code>.</p>
+<p>Функция <code>createAvatar(e)</code> создаёт аватар. В нашем случае в качестве аватара берётся сам <code>draggable</code> элемент. После создания аватара в него записывается функция <code>avatar.rollback</code>, которая задаёт поведение при отмене переноса.</p>
+<p>Как правило, отмена переноса влечёт за собой разрушение аватара, если это был клон, или возвращение его на прежнее место, если это сам элемент.</p>
+<p>В нашем случае для отмены переноса нужно запомнить старую позицию элемента и его родителя.</p>
+<div id="ouncp6oh7s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function createAvatar(e) {
+
+  // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
+  var avatar = dragObject.elem;
+  var old = {
+    parent: avatar.parentNode,
+    nextSibling: avatar.nextSibling,
+    position: avatar.position || '',
+    left: avatar.left || '',
+    top: avatar.top || '',
+    zIndex: avatar.zIndex || ''
+  };
+
+  // функция для отмены переноса
+  avatar.rollback = function() {
+    old.parent.insertBefore(avatar, old.nextSibling);
+    avatar.style.position = old.position;
+    avatar.style.left = old.left;
+    avatar.style.top = old.top;
+    avatar.style.zIndex = old.zIndex
+  };
+
+  return avatar;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция <code>startDrag(e)</code>, которую вызывает <code>mousemove</code>, если видит, что элемент в «зажатом» состоянии перенесли достаточно далеко, инициирует начало переноса и позиционирует аватар на странице:</p>
+<div id="039v24cmw3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function startDrag(e) {
+  var avatar = dragObject.avatar;
+
+  document.body.appendChild(avatar);
+  avatar.style.zIndex = 9999;
+  avatar.style.position = 'absolute';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="okonchanie-perenosa" href="#okonchanie-perenosa">Окончание переноса</a></h2><p>Окончание переноса происходит по событию <code>mouseup</code>.</p>
+<p>Его обработчик можно поставить на аватаре, т.к. аватар всегда под курсором и <code>mouseup</code> происходит на нем. Но для универсальности и большей гибкости (вдруг мы захотим перемещать аватар <em>рядом</em> с курсором?) поставим его, как и остальные, на <code>document</code>.</p>
+<p>Задача обработчика <code>mouseup</code>:</p>
+<ol>
+<li>Обработать успешный перенос, если он идёт (существует аватар)</li>
+<li>Очистить данные <code>dragObject</code>.</li>
+</ol>
+<p>Это даёт нам следующий код:</p>
+<div id="u3aiyipj41" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:17}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.onmouseup = function(e) {
+  // (1) обработать перенос, если он идёт
+  if (dragObject.avatar) {
+    finishDrag(e);
+  }
+
+  // в конце mouseup перенос либо завершился, либо даже не начинался
+  // (2) в любом случае очистим &quot;состояние переноса&quot; dragObject
+  dragObject = {};
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Для завершения переноса в функции <code>finishDrag(e)</code> нам нужно понять, на каком элементе мы находимся, и если над <code>droppable</code> – обработать перенос, а нет – откатиться:</p>
+<div id="hx85vnh7zk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:17,&quot;end&quot;:33}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function finishDrag(e) {
+  var dropElem = findDroppable(e);
+
+  if (dropElem) {
+    ... успешный перенос ...
+  } else {
+    ... отмена переноса ...
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="opredelyaem-element-pod-kursorom" href="#opredelyaem-element-pod-kursorom">Определяем элемент под курсором</a></h3><p>Чтобы понять, над каким элементом мы остановились – используем метод <a href="https://developer.mozilla.org/en/DOM/document.elementFromPoint">document.elementFromPoint(clientX, clientY)</a>, который мы обсуждали в разделе <a href="coordinates.html#elementFromPoint">координаты</a>. Этот метод получает координаты <em>относительно окна</em> и возвращает самый глубокий элемент, который там находится.</p>
+<p>Функция <code>findDroppable(event)</code>, описанная ниже, использует его и находит самый глубокий элемент с атрибутом <code>droppable</code> под курсором мыши:</p>
+<div id="9kpd91bspx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// возвратит ближайший droppable или null
+// это предварительный вариант findDroppable, исправлен ниже!
+function findDroppable(event) {
+
+  // взять элемент на данных координатах
+  var elem = document.elementFromPoint(event.clientX, event.clientY);
+
+  // найти ближайший сверху droppable
+  return elem.closest('.droppable');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание – для <code>elementFromPoint</code> нужны координаты относительно окна <code>clientX/clientY</code>, а не <code>pageX/pageY</code>.</p>
+<p>Вариант выше – предварительный. Он не будет работать. Если попробовать применить эту функцию, будет все время возвращать один и тот же элемент! А именно – <em>текущий переносимый</em>. Почему так?</p>
+<p>…Дело в том, что в процессе переноса под мышкой находится именно аватар. При начале переноса ему даже <code>z-index</code> ставится большой, чтобы он был поверх всех остальных.</p>
+<p><strong>Аватар перекрывает остальные элементы. Поэтому функция <code>document.elementFromPoint()</code> увидит на текущих координатах именно его.</strong></p>
+<p>Чтобы это изменить, нужно либо поправить код переноса, чтобы аватар двигался <em>рядом</em> с курсором мыши, либо дать аватару стиль <code>pointer-events:none</code> (кроме IE10-), либо:</p>
+<ol>
+<li>Спрятать аватар.</li>
+<li>Вызывать <code>elementFromPoint</code>.</li>
+<li>Показать аватар.</li>
+</ol>
+<p>Напишем функцию <code>findDroppable(event)</code>, которая это делает:</p>
+<div id="hq59umzj0v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function findDroppable(event) {
+  // спрячем переносимый элемент
+  dragObject.avatar.hidden = true;
+
+  // получить самый вложенный элемент под курсором мыши
+  var elem = document.elementFromPoint(event.clientX, event.clientY);
+
+  // показать переносимый элемент обратно
+  dragObject.avatar.hidden = false;
+
+  if (elem == null) {
+    // такое возможно, если курсор мыши &quot;вылетел&quot; за границу окна
+    return null;
+  }
+
+  return elem.closest('.droppable');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="dragmanager" href="#dragmanager">DragManager</a></h2><p>Из фрагментов кода, разобранных выше, можно собрать мини-фреймворк.</p>
+<p>Объект <code>DragManager</code> будет запоминать текущий переносимый объект и отслеживать его перенос.</p>
+<p>Для его создания используем не обычный синтаксис <code>{...}</code>, а вызов <code>new function</code>. Это позволит прямо при создании объявить дополнительные переменные и функции в замыкании, которыми могут пользоваться методы объекта, а также назначить обработчики:</p>
+<div id="bwoli6grip" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var DragManager = new function() {
+
+  var dragObject = {};
+
+  var self = this; // для доступа к себе из обработчиков
+
+  function onMouseDown(e) { ... }
+  function onMouseMove(e) { ... }
+  function onMouseUp(e) { ... }
+
+  document.onmousedown = onMouseDown;
+  document.onmousemove = onMouseMove;
+  document.onmouseup = onMouseUp;
+
+  this.onDragEnd = function(dragObject, dropElem) { };
+  this.onDragCancel = function(dragObject) { };
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Всю работу будут выполнять обработчики <code>onMouse*</code>, которые оформлены как локальные функции. В данном случае они ставятся на <code>document</code> через <code>on...</code>, но это легко поменять на <code>addEventListener</code>.</p>
+<p>Код функции <code>onMouse*</code> мы подробно рассмотрели ранее, но вы сможете увидеть их в полном примере ниже.</p>
+<p>Внутренний объект <code>dragObject</code> будет содержать информацию об объекте переноса.</p>
+<p>У него будут следующие свойства, которые также разобраны выше:</p>
+<dl>
+<dt><code>elem</code></dt>
+<dd>Текущий зажатый мышью объект, если есть (ставится в <code>mousedown</code>).</dd>
+<dt><code>avatar</code></dt>
+<dd>Элемент-аватар, который передвигается по странице.</dd>
+<dt><code>downX/downY</code></dt>
+<dd>Координаты, на которых был клик <code>mousedown</code></dd>
+<dt><code>shiftX/shiftY</code></dt>
+<dd>Относительный сдвиг курсора от угла элемента, вспомогательное свойство вычисляется в начале переноса.</dd>
+</dl>
+<p>Задачей <code>DragManager</code> является общее управление переносом. Что же касается действий при его окончании – их должен назначить внешний код, который использует <code>DragManager</code>.</p>
+<p>Можно сделать это через вспомогательные методы <code>onDrag*</code>, которые устанавливаются внешним кодом и затем вызываются фреймворком. Разработчик, подключив <code>DragManager</code>, описывает в этих методах, что делать при завершении или отмене переноса. Конечно же, можно заменить методы <code>onDrag*</code> на генерацию «своих» событий.</p>
+<p>С использованием <code>DragManager</code> пример, с которого начиналась эта глава – перенос иконок браузеров в компьютер, реализуется совсем просто:</p>
+<div id="n0xwsmi27f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>DragManager.onDragEnd = function(dragObject, dropElem) {
+
+  // скрыть/удалить переносимый объект
+  dragObject.elem.hidden = true;
+
+  // успешный перенос, показать улыбку классом computer-smile
+  dropElem.className = 'computer computer-smile';
+
+  // убрать улыбку через 0.2 сек
+  setTimeout(function() {
+    dropElem.classList.remove('computer-smile');
+  }, 200);
+};
+
+DragManager.onDragCancel = function(dragObject) {
+  // откат переноса
+  dragObject.avatar.rollback();
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример с кодом:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">DragManager.js</div><div class="code-tabs__switch">dragDemo.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/drag-and-drop-objects/dragDemo/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/e5KajSW68fwNteuQ?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:280px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/drag-and-drop-objects/dragDemo/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var DragManager = new function() {
+
+  /**
+   * составной объект для хранения информации о переносе:
+   * {
+   *   elem - элемент, на котором была зажата мышь
+   *   avatar - аватар
+   *   downX/downY - координаты, на которых был mousedown
+   *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
+   * }
+   */
+  var dragObject = {};
+
+  var self = this;
+
+  function onMouseDown(e) {
+
+    if (e.which != 1) return;
+
+    var elem = e.target.closest('.draggable');
+    if (!elem) return;
+
+    dragObject.elem = elem;
+
+    // запомним, что элемент нажат на текущих координатах pageX/pageY
+    dragObject.downX = e.pageX;
+    dragObject.downY = e.pageY;
+
+    return false;
+  }
+
+  function onMouseMove(e) {
+    if (!dragObject.elem) return; // элемент не зажат
+
+    if (!dragObject.avatar) { // если перенос не начат...
+      var moveX = e.pageX - dragObject.downX;
+      var moveY = e.pageY - dragObject.downY;
+
+      // если мышь передвинулась в нажатом состоянии недостаточно далеко
+      if (Math.abs(moveX) &lt; 3 &amp;&amp; Math.abs(moveY) &lt; 3) {
+        return;
+      }
+
+      // начинаем перенос
+      dragObject.avatar = createAvatar(e); // создать аватар
+      if (!dragObject.avatar) { // отмена переноса, нельзя &quot;захватить&quot; за эту часть элемента
+        dragObject = {};
+        return;
+      }
+
+      // аватар создан успешно
+      // создать вспомогательные свойства shiftX/shiftY
+      var coords = getCoords(dragObject.avatar);
+      dragObject.shiftX = dragObject.downX - coords.left;
+      dragObject.shiftY = dragObject.downY - coords.top;
+
+      startDrag(e); // отобразить начало переноса
+    }
+
+    // отобразить перенос объекта при каждом движении мыши
+    dragObject.avatar.style.left = e.pageX - dragObject.shiftX + 'px';
+    dragObject.avatar.style.top = e.pageY - dragObject.shiftY + 'px';
+
+    return false;
+  }
+
+  function onMouseUp(e) {
+    if (dragObject.avatar) { // если перенос идет
+      finishDrag(e);
+    }
+
+    // перенос либо не начинался, либо завершился
+    // в любом случае очистим &quot;состояние переноса&quot; dragObject
+    dragObject = {};
+  }
+
+  function finishDrag(e) {
+    var dropElem = findDroppable(e);
+
+    if (!dropElem) {
+      self.onDragCancel(dragObject);
+    } else {
+      self.onDragEnd(dragObject, dropElem);
+    }
+  }
+
+  function createAvatar(e) {
+
+    // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
+    var avatar = dragObject.elem;
+    var old = {
+      parent: avatar.parentNode,
+      nextSibling: avatar.nextSibling,
+      position: avatar.position || '',
+      left: avatar.left || '',
+      top: avatar.top || '',
+      zIndex: avatar.zIndex || ''
+    };
+
+    // функция для отмены переноса
+    avatar.rollback = function() {
+      old.parent.insertBefore(avatar, old.nextSibling);
+      avatar.style.position = old.position;
+      avatar.style.left = old.left;
+      avatar.style.top = old.top;
+      avatar.style.zIndex = old.zIndex
+    };
+
+    return avatar;
+  }
+
+  function startDrag(e) {
+    var avatar = dragObject.avatar;
+
+    // инициировать начало переноса
+    document.body.appendChild(avatar);
+    avatar.style.zIndex = 9999;
+    avatar.style.position = 'absolute';
+  }
+
+  function findDroppable(event) {
+    // спрячем переносимый элемент
+    dragObject.avatar.hidden = true;
+
+    // получить самый вложенный элемент под курсором мыши
+    var elem = document.elementFromPoint(event.clientX, event.clientY);
+
+    // показать переносимый элемент обратно
+    dragObject.avatar.hidden = false;
+
+    if (elem == null) {
+      // такое возможно, если курсор мыши &quot;вылетел&quot; за границу окна
+      return null;
+    }
+
+    return elem.closest('.droppable');
+  }
+
+  document.onmousemove = onMouseMove;
+  document.onmouseup = onMouseUp;
+  document.onmousedown = onMouseDown;
+
+  this.onDragEnd = function(dragObject, dropElem) {};
+  this.onDragCancel = function(dragObject) {};
+
+};
+
+
+function getCoords(elem) { // кроме IE8-
+  var box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  };
+
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.computer {
+  width: 93px;
+  height: 98px;
+  background: url(https://js.cx/clipart/computer.gif) no-repeat;
+  padding: 5px;
+  font-style: italic;
+}
+
+.computer-smile {
+  background: url(https://js.cx/clipart/computer-smile.gif) no-repeat;
+}
+
+.draggable {
+  cursor: pointer;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;script src=&quot;https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;DragManager.js&quot;&gt;&lt;/script&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;dragDemo.css&quot;&gt;
+  &lt;script&gt;
+    DragManager.onDragCancel = function(dragObject) {
+      dragObject.avatar.rollback();
+    };
+
+    DragManager.onDragEnd = function(dragObject, dropElem) {
+      dragObject.elem.style.display = 'none';
+      dropElem.classList.add('computer-smile');
+      setTimeout(function() {
+        dropElem.classList.remove('computer-smile');
+      }, 200);
+    };
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div style=&quot;height:64px&quot;&gt;
+    &lt;img src=&quot;https://js.cx/browsers/chrome.svg&quot; class=&quot;draggable&quot;&gt;
+    &lt;img src=&quot;https://js.cx/browsers/firefox.svg&quot; class=&quot;draggable&quot;&gt;
+    &lt;img src=&quot;https://js.cx/browsers/ie.svg&quot; class=&quot;draggable&quot;&gt;
+    &lt;img src=&quot;https://js.cx/browsers/opera.svg&quot; class=&quot;draggable&quot;&gt;
+    &lt;img src=&quot;https://js.cx/browsers/safari.svg&quot; class=&quot;draggable&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;p&gt;Браузер переносить сюда:&lt;/p&gt;
+
+  &lt;div class=&quot;computer droppable&quot;&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="rasshireniya" href="#rasshireniya">Расширения</a></h2><p>Существует масса возможных применений Drag’n’Drop. Здесь мы не будем реализовывать их все, поскольку не стоит цель создать фреймворк-монстр.</p>
+<p>Однако, мы рассмотрим их, чтобы, при необходимости, легко было написать то, что нужно.</p>
+<h3><a class="main__anchor" name="zahvatyvat-element-mozhno-tolko-za-ruchku" href="#zahvatyvat-element-mozhno-tolko-za-ruchku">Захватывать элемент можно только за «ручку»</a></h3><p>Часто бывает, что перенос должен быть инициирован только при захвате за определённую зону элемента. К примеру, модальное окно можно «взять», только захватив его за заголовок.</p>
+<p>Для этого достаточно добавить необходимую проверку, к примеру, в функцию <code>createAvatar</code> или перед её запуском.</p>
+<p>Если <code>mousedown</code> был внутри элемента, помеченного, к примеру, классом <code>draghandle</code>, то начинаем перенос, иначе – нет.</p>
+<h3><a class="main__anchor" name="proverka-prav-na-droppable" href="#proverka-prav-na-droppable">Проверка прав на droppable</a></h3><p>Бывает и так, что не на любое место в <code>droppable</code> можно положить элемент.</p>
+<p>Например: в админке есть дерево всех объектов сайта: статей, разделов, посетителей и т.п.</p>
+<ul>
+<li>В этом дереве есть узлы различных типов: «статьи», «разделы» и «пользователи».</li>
+<li>Все узлы являются переносимыми объектами.</li>
+<li>Узел «статья» (draggable) можно переносить в «раздел» (droppable), а узел «пользователи» – нельзя. Но и то и другое можно поместить в «корзину».</li>
+</ul>
+<p>Здесь решение: можно переносить или нельзя зависит от «типа» переносимого объекта.</p>
+<p>Есть и более сложные варианты, когда решение зависит от конкретного места в <code>droppable</code>, над которым посетитель отпустил кнопку мыши. К примеру, переносить в верхнюю часть можно, а в нижнюю – нет.</p>
+<p>Эта задача решается добавлением проверки в <code>findDroppable(e)</code>. Эта функция знает и об аватаре и о событии, включая координаты. При попытке положить в «неправильное» место функция <code>findDroppable(e)</code> должна возвращать <code>null</code>.</p>
+<p>Однако, на практике бывают ситуации, когда решение «прямо сейчас» принять невозможно. Например, нужно сделать запрос на сервер: «А разрешено ли текущему посетителю производить такую операцию?»</p>
+<p>Как при этом должен вести себя интерфейс? Можно, конечно сделать, чтобы элемент после отпускания кнопки мыши «завис» над <code>droppable</code>, ожидая ответа. Однако, такое решение неудобно в реализации и странновато выглядит для посетителя.</p>
+<p>Как правило, применяют «оптимистичный» алгоритм, по которому мы считаем, что перенос обычно успешен, но при необходимости можем отменить его.</p>
+<p>При нём посетитель кладёт объект туда, куда он хочет, а затем, в коде <code>onDragEnd</code>:</p>
+<ol>
+<li>Визуально обрабатывается завершение переноса, как будто все ок.</li>
+<li>Производится асинхронный запрос к серверу, содержащий информацию о переносе.</li>
+<li>Сервер обрабатывает перенос и возвращает ответ, все ли в порядке.</li>
+<li>Если нет – выводится ошибка и возвращается <code>avatar.rollback()</code>. Аватар в этом случае должен предусматривать возможность отката после успешного завершения.</li>
+</ol>
+<p>Процесс общения с сервером сопровождается индикацией загрузки и, при необходимости, блокировкой новых операций переноса до получения подтверждения.</p>
+<h3><a class="main__anchor" name="podsvetka-tekuschego-droppable" href="#podsvetka-tekuschego-droppable">Подсветка текущего droppable</a></h3><p>Удобно, когда пользователь во время переноса наглядно видит, куда он сейчас положит draggable. Например, текущий droppable (или его часть) подсвечиваются.</p>
+<p>Для этого в <code>DragManager</code> можно добавить дополнительные методы интеграции с внешним кодом:</p>
+<ul>
+<li><code>onDragEnter</code> – будет вызываться при заходе на <code>droppable</code>, из <code>onMouseMove</code>.</li>
+<li><code>onDragMove</code> – при каждом передвижении внутри <code>droppable</code>, из <code>onMouseMove</code>.</li>
+<li><code>onDragLeave</code> – при выходе с <code>droppable</code>, из <code>onMouseMove</code> и <code>onMouseUp</code>.</li>
+</ul>
+<p>Возможен более сложный вариант, когда нужно поддерживать не только перенос <em>в элемент</em>, но и перенос <em>между элементами</em>, например вставку одной статьи между двумя другими.</p>
+<p>Для этого код, который обрабатывает перенос, может «делить на части» droppable, к примеру, в соотношении 25% – 50% – 25%, и смотреть:</p>
+<ul>
+<li>Если перенос в верхнюю четверть, то это – «над».</li>
+<li>Если перенос в середину, то это «внутрь».</li>
+<li>Если перенос в нижнюю четверть, то это – «под».</li>
+</ul>
+<p>Текущий <code>droppable</code> и позиция относительно него при этом могут помечаться подсветкой и жирной чертой над/под, если требуется.</p>
+<p>Пример индикации из Firefox:
+<img src="https://learn.javascript.ru/article/drag-and-drop-objects/between.png" alt="" width="196" height="178"></p>
+<h3><a class="main__anchor" name="animatsiya-otmeny-perenosa" href="#animatsiya-otmeny-perenosa">Анимация отмены переноса</a></h3><p>Отмену переноса и возврат аватара на место можно красиво анимировать.</p>
+<p>Один из частых вариантов – скольжение объекта обратно к исходному месту, откуда его взяли. Для этого достаточно поправить <code>avatar.rollback()</code>.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Уточнённый алгоритм Drag’n’Drop:</p>
+<ol>
+<li>При <code>mousedown</code> запомнить координаты нажатия.</li>
+<li>При <code>mousemove</code> инициировать перенос, как только зажатый элемент передвинули на 3 пикселя или больше. Сообщить во внешний код вызовом <code>onDragStart</code>. При этом:</li>
+</ol>
+<ul>
+<li>Создать аватар, если можно начать перенос элемента <code>draggable</code> с данной позиции курсора.</li>
+<li>Переместить аватар по экрану, установив его новую позицию из <code>e.pageX/pageY</code> с учётом изначального сдвига элемента относительно курсора.</li>
+<li>Сообщить во внешний код о текущем <code>droppable</code> под курсором и позиции над ним вызовами <code>onDragEnter</code>, <code>onDragMove</code>, <code>onDragLeave</code>.</li>
+<li>При <code>mouseup</code> обработать завершение переноса. Элемент под аватаром получить по координатам, предварительно спрятав аватар. Сообщить во внешний код вызовом <code>onDragEnd</code>.</li>
+</ul>
+<p>Получившаяся реализация Drag’n’Drop проста, эффективна, изящна.</p>
+<p>Её очень легко поменять или адаптировать под «особые» потребности.</p>
+<p>ООП-вариант фреймворка находится в статье <a href="drag-and-drop-plus.html">Применяем ООП: Drag'n'Drop++</a>.</p>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-objects" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/drag-and-drop-objects","identifier":"\/drag-and-drop-objects"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/drag-and-drop-objects by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:10 GMT -->
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/memory-leaks by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Утечки памяти</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="memory-leaks.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Утечки памяти"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Утечки памяти"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Утечки памяти"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Утечки памяти</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Утечки памяти"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><em>Утечки памяти</em> происходят, когда браузер по какой-то причине не может освободить память от недостижимых объектов.</p>
+<p>Обычно это происходит автоматически (<a href="memory-management.html">Управление памятью в JavaScript</a>). Кроме того, браузер освобождает память при переходе на другую страницу. Поэтому утечки в реальной жизни проявляют себя в двух ситуациях:</p>
+<ol>
+<li>Приложение, в котором посетитель все время на одной странице и работает со сложным JavaScript-интерфейсом. В этом случае утечки могут постепенно съедать доступную память.</li>
+<li>Страница регулярно делает что-то, вызывающее утечку памяти. Посетитель (например, менеджер) оставляет компьютер на ночь включённым, чтобы не закрывать браузер с кучей вкладок. Приходит утром – а браузер съел всю память <strike>и рухнул</strike> и сильно тормозит.</li>
+</ol>
+<p>Утечки бывают из-за ошибок браузера, ошибок в расширениях браузера и, гораздо реже, по причине ошибок в архитектуре JavaScript-кода. Мы разберём несколько наиболее частых и важных примеров.</p>
+<h2><a class="main__anchor" name="kollektsiya-utechek-v-ie" href="#kollektsiya-utechek-v-ie">Коллекция утечек в IE</a></h2><h3><a class="main__anchor" name="utechka-dom--js-v-ie8" href="#utechka-dom--js-v-ie8">Утечка DOM ↔ JS в IE8-</a></h3><p>IE до версии 8 не умел очищать циклические ссылки, появляющиеся между DOM-объектами и объектами JavaScript. В результате и DOM и JS оставались в памяти навсегда.</p>
+<p>В браузере IE8 была проведена серьёзная работа над ошибками, но утечка в IE8- появляется, если круговая ссылка возникает «через объект».</p>
+<p>Чтобы было понятнее, о чём речь, посмотрите на следующий код. Он вызывает утечку памяти в IE8-:</p>
+<div id="jgqqm74swn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>function leak() {
+  // Создаём новый DIV, добавляем к BODY
+  var elem = document.createElement('div');
+  document.body.appendChild(elem);
+
+  // Записываем в свойство жирный объект
+  elem.__expando = {
+    bigAss: new Array(1000000).join('lalala')
+  };
+
+  // Создаём круговую ссылку. Без этой строки утечки не будет.
+  elem.__expando.__elem = elem;
+
+  // Удалить элемент из DOM. Браузер должен очистить память.
+  elem.parentElement.removeChild(elem);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример (только для IE8-, а также IE9 в режиме совместимости с IE8):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/memory-leaks/leak-ie8/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/owgSue9F70R6YNaE?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/memory-leaks/leak-ie8/"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;script&gt;
+    // Утечка в IE8 standards mode, а также в IE9 в режиме IE8
+    // См. http://blog.j15r.com/2009/07/memory-leaks-in-ie8.html
+    function leak() {
+      // Создаём новый DIV, добавляем к BODY
+      var elem = document.createElement('div');
+      document.body.appendChild(elem);
+
+      // Записываем в свойство жирный объект
+      elem.__expando = {
+        bigAss: new Array(1000000).join('lalala')
+      };
+
+      // Создаём круговую ссылку. Без этой строки утечки не будет.
+      elem.__expando.__elem = elem;
+
+      // Удалить элемент из DOM. Браузер должен очистить память.
+      elem.parentElement.removeChild(elem);
+    }
+  &lt;/script&gt;
+
+  &lt;p&gt;Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.&lt;/p&gt;
+  &lt;button onclick=&quot;leak()&quot;&gt;Создать утечку!&lt;/button&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Круговая ссылка и, как следствие, утечка может возникать и неявным образом, через замыкание:</p>
+<div id="6gjximkofr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function leak() {
+  var elem = document.createElement('div');
+  document.body.appendChild(elem);
+
+  elem.__expando = {
+    bigAss: new Array(1000000).join('lalala'),
+    method: function() {} // создаётся круговая ссылка через замыкание
+  };
+
+  // Удалить элемент из DOM. Браузер должен очистить память.
+  elem.parentElement.removeChild(elem);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример (IE8-, IE9 в режиме совместимости с IE8):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/memory-leaks/leak-ie8-2/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/CYHNwFWqdtmvcKwY?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/memory-leaks/leak-ie8-2/"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;script&gt;
+    // Утечка в IE8 standards mode, а также в IE9 в режиме IE8
+    // См. http://blog.j15r.com/2009/07/memory-leaks-in-ie8.html
+    function leak() {
+      // Создаём новый DIV, добавляем к BODY
+      var elem = document.createElement('div');
+      document.body.appendChild(elem);
+
+      elem.__expando = {
+        bigAss: new Array(1000000).join('lalala'),
+        method: function() {} // создаётся круговая ссылка через замыкание
+      };
+
+      // Удалить элемент из DOM. Браузер должен очистить память.
+      elem.parentElement.removeChild(elem);
+    }
+  &lt;/script&gt;
+
+  &lt;p&gt;Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.&lt;/p&gt;
+  &lt;button onclick=&quot;leak()&quot;&gt;Создать утечку!&lt;/button&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Без привязки метода <code>method</code> к элементу здесь утечки не возникнет.</p>
+<p>Бывает ли такая ситуация в реальной жизни? Или это – целиком синтетический пример, для заумных программистов?</p>
+<p>Да, конечно бывает. Например, при разработке графических компонент – бывает удобно присвоить DOM-элементу ссылку на JavaScript-объект, который представляет собой компонент. Это упрощает делегирование и, в общем-то, логично, что DOM-элемент знает о компоненте на себе. Но в IE8- прямая привязка ведёт к утечке памяти!</p>
+<p>Примерно так:</p>
+<div id="f2pfndpfnt" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(elem) {
+  elem.onclick = function() {};
+}
+
+var menu = new Menu(elem); // Menu содержит ссылку на elem
+elem.menu = menu; // такая привязка или что-то подобное ведёт к утечке в IE8</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример (IE8-, IE9 в режиме совместимости с IE8):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/memory-leaks/leak-ie8-widget/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/DefPl3GXBxFn1fXo?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/memory-leaks/leak-ie8-widget/"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;script&gt;
+    // Утечка в IE8 standards mode, а также в IE9 в режиме IE8
+    // См. http://blog.j15r.com/2009/07/memory-leaks-in-ie8.html
+    function leak() {
+      // Создаём новый DIV, добавляем к BODY
+      var elem = document.createElement('div');
+      document.body.appendChild(elem);
+
+      // Записываем в свойство ссылку на объект
+      var menu = new Menu(elem);
+      elem.menu = menu;
+
+      // Удалить элемент из DOM. Браузер должен очистить память.
+      elem.parentElement.removeChild(elem);
+    }
+
+    function Menu(elem) {
+      elem.onclick = function() {};
+      this.bigAss = new Array(1000000).join('lalala');
+    }
+  &lt;/script&gt;
+
+  &lt;p&gt;Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.&lt;/p&gt;
+  &lt;button onclick=&quot;leak()&quot;&gt;Создать утечку!&lt;/button&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h3><a class="main__anchor" name="utechka-ie8-pri-obraschenii-k-kollektsiyam-tablitsy" href="#utechka-ie8-pri-obraschenii-k-kollektsiyam-tablitsy">Утечка IE8 при обращении к коллекциям таблицы</a></h3><p>Эта утечка происходит только в IE8 в стандартном режиме. В нём при обращении к табличным псевдо-массивам (напр. <code>rows</code>) создаются и не очищаются внутренние ссылки, что приводит к утечкам.</p>
+<p>Также воспроизводится в новых IE в режиме совместимости с IE8.</p>
+<p>Код:</p>
+<div id="jofdvzsv94" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elem = document.createElement('div'); // любой элемент
+
+function leak() {
+
+  elem.innerHTML = '&lt;table&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;';
+
+  elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
+  // при том, что мы даже не сохраняем значение в переменную
+
+  elem.removeChild(elem.firstChild); // удалить таблицу (*)
+  // alert(elem.childNodes.length) // выдал бы 0, elem очищен, всё честно
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример (IE8):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/memory-leaks/leak-ie8-table/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/MOB1lzARpK9B9sCy?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/memory-leaks/leak-ie8-table/"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+
+  &lt;script&gt;
+    var elem = document.createElement('div'); // любой элемент
+
+    // Течёт в настоящем IE8, Standards Mode
+    // Не течёт в других IE. Не течёт в IE9 в режиме совместимости с IE8
+    function leak() {
+
+      for (var i = 0; i &lt; 2000; i++) {
+
+        elem.innerHTML = '&lt;table&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;';
+
+        elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
+        // при том, что мы даже без сохраненяем значение в переменную
+
+        elem.removeChild(elem.firstChild); // удалить таблицу
+        // elem.innerHTML = '' очистил бы память, он работает по-другому, см. главу &quot;управление памятью&quot;
+      }
+
+    }
+  &lt;/script&gt;
+
+
+  &lt;p&gt;Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.&lt;/p&gt;
+  &lt;button onclick=&quot;leak()&quot;&gt;Создать утечку!&lt;/button&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Особенности:</p>
+<ul>
+<li>Если убрать отмеченную строку, то утечки не будет.</li>
+<li>Если заменить строку <code>(*)</code> на <code>elem.innerHTML = ''</code>, то память будет очищена, т.к. этот способ работает по-другому, нежели просто <code>removeChild</code> (см. главу <a href="memory-management.html">Управление памятью в JavaScript</a>).</li>
+<li>Утечка произойдёт не только при доступе к <code>rows</code>, но и к другим свойствам, например <code>elem.firstChild.tBodies[0]</code>.</li>
+</ul>
+<p>Эта утечка проявляется, в частности, при удалении детей элемента следующей функцией:</p>
+<div id="sqsh7v2yii" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function empty(elem) {
+  while (elem.firstChild) elem.removeChild(elem.firstChild);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если идёт доступ к табличным коллекциям и регулярное обновление таблиц при помощи DOM-методов  – утечка в IE8 будет расти.</p>
+<p>Более подробно вы можете почитать об этой утечке в статье <a href="https://habr.com/ru/post/141451/">Утечки памяти в IE8, или страшная сказка со счастливым концом</a>.</p>
+<h3><a class="main__anchor" name="utechka-cherez-xmlhttprequest-v-ie8" href="#utechka-cherez-xmlhttprequest-v-ie8">Утечка через XmlHttpRequest в IE8-</a></h3><p>Следующий код вызывает утечки памяти в IE8-:</p>
+<div id="xfh5w0b3yi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function leak() {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET', '/server.do', true);
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+      // ...
+    }
+  }
+
+  xhr.send(null);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как вы думаете, почему? Если вы внимательно читали то, что написано выше, то имеете информацию для ответа на этот вопрос…</p>
+<p>Посмотрим, какая структура памяти создаётся при каждом запуске:</p>
+<figure><div class="image" style="width:488px">
+      <div class="image__ratio" style="padding-top:63.114754098360656%"></div>
+      <img src="https://learn.javascript.ru/article/memory-leaks/leak-xhr.png" alt="" width="488" height="308" class="image__image">
+      </div></figure><p>Когда запускается асинхронный запрос <code>xhr</code>, браузер создаёт специальную внутреннюю ссылку (internal reference) на этот объект и будет поддерживать её, пока он находится в процессе коммуникации. Именно поэтому объект <code>xhr</code> будет жив после окончания работы функции.</p>
+<p>Когда запрос завершён, браузер удаляет внутреннюю ссылку, <code>xhr</code> становится недостижимым и память очищается… Везде, кроме IE8-.</p>
+<p>Полный пример (IE8):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/memory-leaks/leak-ie8-xhr/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/p3L8TaY11DF5cOPy?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/memory-leaks/leak-ie8-xhr/"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;p&gt;Страница создаёт объект &lt;code&gt;XMLHttpRequest&lt;/code&gt; каждые 50 мс.&lt;/p&gt;
+
+  &lt;p&gt;Нажмите на кнопку и смотрите на память, она течёт в IE&amp;lt;9.&lt;/p&gt;
+
+  &lt;button onclick=&quot;setInterval(leak, 50);&quot;&gt;Запустить&lt;/button&gt;
+
+  &lt;script&gt;
+    function leak() {
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', '?' + Math.random(), true);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+          document.getElementById('test').innerHTML++;
+        }
+      }
+
+      xhr.send(null);
+    }
+
+  &lt;/script&gt;
+
+  &lt;div&gt;Количество запросов: &lt;span id=&quot;test&quot;&gt;0&lt;/span&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Чтобы это исправить, нам нужно разорвать круговую ссылку <code>XMLHttpRequest ↔ JS</code>. Например, можно удалить <code>xhr</code> из замыкания:</p>
+<div id="x0gdr9bszf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function leak() {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'something.js?' + Math.random(), true);
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4) return;
+
+    if (xhr.status == 200) {
+      document.getElementById('test').innerHTML++;
+    }
+
+    xhr = null; // по завершении запроса удаляем ссылку из замыкания
+  }
+
+  xhr.send(null);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:488px">
+      <div class="image__ratio" style="padding-top:50.409836065573764%"></div>
+      <img src="https://learn.javascript.ru/article/memory-leaks/leak-xhr-2.png" alt="" width="488" height="246" class="image__image">
+      </div></figure><p>Теперь циклической ссылки нет – и не будет утечки.</p>
+<h2><a class="main__anchor" name="obyomy-utechek-pamyati" href="#obyomy-utechek-pamyati">Объёмы утечек памяти</a></h2><p>Объем «утекающей» памяти может быть небольшим. Тогда это почти не ощущается. Но так как замыкания ведут к сохранению переменных внешних функций, то одна функция может тянуть за собой много чего ещё.</p>
+<p>Представьте, вы создали функцию, и одна из её переменных содержит очень большую по объёму строку (например, получает с сервера).</p>
+<div id="gw78bnvezf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  var data = &quot;Большой объем данных, например, переданных сервером&quot;
+
+  /* делаем что-то хорошее (ну или плохое) с полученными данными */
+
+  function inner() {
+    // ...
+  }
+
+  return inner;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Пока функция <code>inner</code> остаётся в памяти, <code>LexicalEnvironment</code> с переменной большого объёма внутри висит в памяти.</p>
+<p>Висит до тех пор, пока функция <code>inner</code> жива.</p>
+<p>Как правило, JavaScript не знает, какие из переменных функции <code>inner</code> будут использованы, поэтому оставляет их все. Исключение – виртуальная машина V8 (Chrome, Opera, Node.JS), она часто (не всегда) видит, что переменная не используется во внутренних функциях, и очистит память.</p>
+<p>В других же интерпретаторах, даже если код спроектирован так, что никакой утечки нет, по вполне разумной причине может создаваться множество функций, а память будет расти потому, что функция тянет за собой своё замыкание.</p>
+<p>Сэкономить память здесь вполне можно. Мы же знаем, что переменная <code>data</code> не используется в <code>inner</code>. Поэтому просто обнулим её:</p>
+<div id="m34ev5xzr1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  var data = &quot;Большое количество данных, например, переданных сервером&quot;
+
+  /* действия с data */
+
+  function inner() {
+    // ...
+  }
+
+  data = null; // когда data станет не нужна -
+
+  return inner;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="poisk-i-ustranenie-utechek-pamyati" href="#poisk-i-ustranenie-utechek-pamyati">Поиск и устранение утечек памяти</a></h2><h3><a class="main__anchor" name="proverka-na-utechki" href="#proverka-na-utechki">Проверка на утечки</a></h3><p>Существует множество шаблонов утечек и ошибок в браузерах, которые могут приводить к утечкам. Для их устранения сперва надо постараться изолировать и воспроизвести утечку.</p>
+<ul>
+<li><strong>Необходимо помнить, что браузер может очистить память не сразу когда объект стал недостижим, а чуть позже.</strong> Например, сборщик мусора может ждать, пока не будет достигнут определённый лимит использования памяти, или запускаться время от времени.</li>
+</ul>
+<p>Поэтому если вы думаете, что нашли проблему и тестовый код, запущенный в цикле, течёт – подождите примерно минуту, добейтесь, чтобы памяти ело стабильно и много. Тогда будет понятно, что это не особенность сборщика мусора.</li></p>
+<ul>
+<li><strong>Если речь об IE, то надо смотреть «Виртуальную память» в списке процессов, а не только обычную «Память».</strong> Обычная может очищаться за счёт того, что перемещается в виртуальную (на диск).</li>
+<li>Для простоты отладки, если есть подозрение на утечку конкретных объектов, в них добавляют большие свойства-маркеры. Например, подойдёт фрагмент текста: <code>new Array(999999).join('leak')</code>.</li>
+</ul>
+<h3><a class="main__anchor" name="nastroyka-brauzera" href="#nastroyka-brauzera">Настройка браузера</a></h3><p>Утечки могут возникать из-за расширений браузера, взаимодействующих со страницей. Ещё более важно, что <strong>утечки могут быть следствием конфликта двух браузерных расширений</strong> Например, было такое: память текла когда включены расширения Skype и плагин антивируса одновременно.</p>
+<p>Чтобы понять, в расширениях дело или нет, нужно отключить их:</p>
+<ol>
+<li>Отключить Flash.</li>
+<li>Отключить антивирусную защиту, проверку ссылок и другие модули, и дополнения.</li>
+<li>Отключить плагины. Отключить ВСЕ плагины.</li>
+</ol>
+<ul>
+<li>Для IE есть параметр коммандной строки:</li>
+</ul>
+<div id="y5lhjzmr9q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>&quot;C:\Program Files\Internet Explorer\iexplore.exe&quot; -extoff</code></pre>
+        </div>
+      </div>
+      
+      </div><pre><code>Кроме того необходимо отключить сторонние расширения в свойствах IE.
+
+![](ie9_disable1.png)
+</code></pre>
+<figure><div class="image" style="width:451px">
+      <div class="image__ratio" style="padding-top:126.16407982261642%"></div>
+      <img src="https://learn.javascript.ru/article/memory-leaks/ie9_disable2.png" alt="" width="451" height="569" class="image__image">
+      </div></figure><ul>
+<li>Firefox необходимо запускать с чистым профилем. Используйте следующую команду для запуска менеджера профилей и создания чистого пустого профиля:</li>
+</ul>
+<div id="s35qkl6a8n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>firefox --profilemanager</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="instrumenty" href="#instrumenty">Инструменты</a></h2><p>Пожалуй, единственный браузер с поддержкой отладки памяти – это Chrome. В инструментах разработчика вкладка Timeline – Memory показывает график использования памяти.</p>
+<figure><div class="image" style="width:646px">
+      <div class="image__ratio" style="padding-top:54.4891640866873%"></div>
+      <img src="https://learn.javascript.ru/article/memory-leaks/chrome.png" alt="" width="646" height="352" class="image__image">
+      </div></figure><p>Можем посмотреть, сколько памяти используется и на что.</p>
+<p>Также в Profiles есть кнопка Take Heap Snapshot, здесь можно сделать и исследовать снимок текущего состояния страницы. Снимки можно сравнивать друг с другом, выяснять количество новых объектов. Можно смотреть, почему объект не очищен и кто на него ссылается.</p>
+<p>Замечательная статья на эту тему есть в документации: <a href="http://code.google.com/chrome/devtools/docs/heap-profiling.html">Chrome Developer Tools: Heap Profiling</a>.</p>
+<p>Утечки памяти штука довольно сложная. В борьбе с ними вам определённо понадобится одна вещь: <em>Удача!</em></p>
+<figure><div class="image" style="width:232px">
+      <div class="image__ratio" style="padding-top:129.31034482758622%"></div>
+      <img src="https://learn.javascript.ru/article/memory-leaks/goodluck.png" alt="" width="232" height="300" class="image__image">
+      </div></figure></div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fmemory-leaks" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/memory-leaks","identifier":"\/memory-leaks"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/memory-leaks by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

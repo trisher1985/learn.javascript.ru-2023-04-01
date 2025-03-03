@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/size-and-scroll by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Размеры и прокрутка элементов</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="size-and-scroll.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Размеры и прокрутка элементов"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Размеры и прокрутка элементов"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="styles-and-classes.html"><link rel="next" href="size-and-scroll-window.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Размеры и прокрутка элементов"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/size-and-scroll"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/size-and-scroll"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/size-and-scroll"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/size-and-scroll"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/size-and-scroll"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/size-and-scroll"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/size-and-scroll"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="size-and-scroll.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/size-and-scroll"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/size-and-scroll"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/size-and-scroll"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/size-and-scroll">عربي</option><option value="https://javascript.info/size-and-scroll">English</option><option value="https://es.javascript.info/size-and-scroll">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/size-and-scroll">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/size-and-scroll">Italiano</option><option value="https://ja.javascript.info/size-and-scroll">日本語</option><option value="https://ko.javascript.info/size-and-scroll">한국어</option><option value="https://learn.javascript.ru/size-and-scroll" selected>Русский</option><option value="https://tr.javascript.info/size-and-scroll">Türkçe</option><option value="https://uk.javascript.info/size-and-scroll">Українська</option><option value="https://zh.javascript.info/size-and-scroll">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="9" max="32" data-tooltip="Урок 9 из 32"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="ui.html"><span>Браузер: документ, события, интерфейсы</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="document.html"><span>Документ</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Браузер: документ, события, интерфейсы","item":"https://learn.javascript.ru/ui"},{"@type":"ListItem","position":3,"name":"Документ","item":"https://learn.javascript.ru/document"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 29 декабря 2022 г."><div class="updated-at__content">29 декабря 2022 г.</div></div></div><h1 class="main__header-title">Размеры и прокрутка элементов</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Размеры и прокрутка элементов"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Существует множество JavaScript-свойств, которые позволяют считывать информацию об элементе: ширину, высоту и другие геометрические характеристики. В этой главе мы будем называть их «метрики».</p>
+<p>Они часто требуются, когда нам нужно передвигать или позиционировать элементы с помощью JavaScript.</p>
+<h2><a class="main__anchor" name="prostoy-primer" href="#prostoy-primer">Простой пример</a></h2><p>В качестве простого примера демонстрации свойств мы будем использовать следующий элемент:</p>
+<div id="23d0giq8o9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;example&quot;&gt;
+  ...Текст...
+&lt;/div&gt;
+&lt;style&gt;
+  #example {
+    width: 300px;
+    height: 200px;
+    border: 25px solid #E8C48F;
+    padding: 20px;
+    overflow: auto;
+  }
+&lt;/style&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>У элемента есть рамка (border), внутренний отступ (padding) и прокрутка. Полный набор характеристик. Обратите внимание, тут нет внешних отступов (margin), потому что они не являются частью элемента, для них нет особых JavaScript-свойств.</p>
+<p>Результат выглядит так:</p>
+<figure><div class="image" style="width:566px">
+      <div class="image__ratio" style="padding-top:82.86219081272085%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-css.svg" width="566" height="469" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-css.svg" alt="" width="566" height="469">
+      </object>
+      </div></figure><p>Вы можете <a href="https://plnkr.co/edit/lwqI7MLg2kuZQu8M?p=preview">открыть этот пример в песочнице</a>.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Внимание, полоса прокрутки</span></div>
+            <div class="important__content"><p>В иллюстрации выше намеренно продемонстрирован самый сложный и полный случай, когда у элемента есть ещё и полоса прокрутки. Некоторые браузеры (не все) отбирают место для неё, забирая его у области, отведённой для содержимого (помечена как «content width» выше).</p>
+<p>Таким образом, без учёта полосы прокрутки ширина области содержимого (content width) будет <code>300px</code>, но если предположить, что ширина полосы прокрутки равна <code>16px</code> (её точное значение зависит от устройства и браузера), тогда остаётся только <code>300 - 16 = 284px</code>, и мы должны это учитывать. Вот почему примеры в этой главе даны с полосой прокрутки. Без неё некоторые вычисления будут проще.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Область <code>padding-bottom</code> (нижний внутренний отступ) может быть заполнена текстом</span></div>
+            <div class="important__content"><p>Нижние внутренние отступы <code>padding-bottom</code> изображены пустыми на наших иллюстрациях, но если элемент содержит много текста, то он будет перекрывать <code>padding-bottom</code>, это нормально.</p>
+</div></div>
+<h2><a class="main__anchor" name="metriki" href="#metriki">Метрики</a></h2><p>Вот общая картина с геометрическими свойствами:</p>
+<figure><div class="image" style="width:670px">
+      <div class="image__ratio" style="padding-top:89.8507462686567%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-all.svg" width="670" height="602" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-all.svg" alt="" width="670" height="602">
+      </object>
+      </div></figure><p>Значениями свойств являются числа, подразумевается, что они в пикселях.</p>
+<p>Давайте начнём исследовать, начиная снаружи элемента.</p>
+<h2><a class="main__anchor" name="offsetparent-offsetleft-top" href="#offsetparent-offsetleft-top">offsetParent, offsetLeft/Top</a></h2><p>Эти свойства редко используются, но так как они являются «самыми внешними» метриками, мы начнём с них.</p>
+<p>В свойстве <code>offsetParent</code> находится предок элемента, который используется внутри браузера для вычисления координат при рендеринге.</p>
+<p>То есть, ближайший предок, который удовлетворяет следующим условиям:</p>
+<ol>
+<li>Является CSS-позиционированным (CSS-свойство <code>position</code> равно <code>absolute</code>, <code>relative</code>, <code>fixed</code> или <code>sticky</code>),</li>
+<li>или <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;table&gt;</code>,</li>
+<li>или <code>&lt;body&gt;</code>.</li>
+</ol>
+<p>Свойства <code>offsetLeft/offsetTop</code> содержат координаты x/y относительно верхнего левого угла <code>offsetParent</code>.</p>
+<p>В примере ниже внутренний <code>&lt;div&gt;</code> имеет элемент <code>&lt;main&gt;</code> в качестве <code>offsetParent</code>, а свойства <code>offsetLeft/offsetTop</code> являются сдвигами относительно верхнего левого угла (<code>180</code>):</p>
+<div id="mmoncu79o9" data-trusted="1" class="code-example" data-demo-height="10">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;main style=&quot;position: relative&quot; id=&quot;main&quot;&gt;
+  &lt;article&gt;
+    &lt;div id=&quot;example&quot; style=&quot;position: absolute; left: 180px; top: 180px&quot;&gt;...&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;script&gt;
+  alert(example.offsetParent.id); // main
+  alert(example.offsetLeft); // 180 (обратите внимание: число, а не строка &quot;180px&quot;)
+  alert(example.offsetTop); // 180
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:597px">
+      <div class="image__ratio" style="padding-top:87.10217755443887%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-offset-parent.svg" width="597" height="520" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-offset-parent.svg" alt="" width="597" height="520">
+      </object>
+      </div></figure><p>Существует несколько ситуаций, когда <code>offsetParent</code> равно <code>null</code>:</p>
+<ol>
+<li>Для скрытых элементов (с CSS-свойством <code>display:none</code> или когда его нет в документе).</li>
+<li>Для элементов <code>&lt;body&gt;</code> и <code>&lt;html&gt;</code>.</li>
+<li>Для элементов с <code>position:fixed</code>.</li>
+</ol>
+<h2><a class="main__anchor" name="offsetwidth-height" href="#offsetwidth-height">offsetWidth/Height</a></h2><p>Теперь переходим к самому элементу.</p>
+<p>Эти два свойства – самые простые. Они содержат «внешнюю» ширину/высоту элемента, то есть его полный размер, включая рамки.</p>
+<figure><div class="image" style="width:508px">
+      <div class="image__ratio" style="padding-top:100.19685039370079%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-offset-width-height.svg" width="508" height="509" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-offset-width-height.svg" alt="" width="508" height="509">
+      </object>
+      </div></figure><p>Для нашего элемента:</p>
+<ul>
+<li><code>offsetWidth = 390</code> – внешняя ширина блока, её можно получить сложением CSS-ширины (<code>300px</code>), внутренних отступов (<code>2 * 20px</code>) и рамок (<code>2 * 25px</code>).</li>
+<li><code>offsetHeight = 290</code> – внешняя высота блока.</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Метрики для не показываемых элементов равны нулю.</span></div>
+            <div class="important__content"><p>Координаты и размеры в JavaScript устанавливаются только для видимых элементов.</p>
+<p>Если элемент (или любой его родитель) имеет <code>display:none</code> или отсутствует в документе, то все его метрики равны нулю (или <code>null</code>, если это <code>offsetParent</code>).</p>
+<p>Например, свойство <code>offsetParent</code> равно <code>null</code>, а <code>offsetWidth</code> и <code>offsetHeight</code> равны <code>0</code>, когда мы создали элемент, но ещё не вставили его в документ, или если у элемента (или у его родителя) <code>display:none</code>.</p>
+<p>Мы можем использовать это, чтобы делать проверку на видимость:</p>
+<div id="iauo3ht4aj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function isHidden(elem) {
+  return !elem.offsetWidth &amp;&amp; !elem.offsetHeight;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что функция <code>isHidden</code> также вернёт <code>true</code> для элементов, которые в принципе показываются, но их размеры равны нулю (например, пустые <code>&lt;div&gt;</code>).</p>
+</div></div>
+<h2><a class="main__anchor" name="clienttop-left" href="#clienttop-left">clientTop/Left</a></h2><p>Пойдём дальше. Внутри элемента у нас рамки (border).</p>
+<p>Для них есть свойства-метрики <code>clientTop</code> и <code>clientLeft</code>.</p>
+<p>В нашем примере:</p>
+<ul>
+<li><code>clientLeft = 25</code> – ширина левой рамки</li>
+<li><code>clientTop = 25</code> – ширина верхней рамки</li>
+</ul>
+<figure><div class="image" style="width:353px">
+      <div class="image__ratio" style="padding-top:89.51841359773371%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-client-left-top.svg" width="353" height="316" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-client-left-top.svg" alt="" width="353" height="316">
+      </object>
+      </div></figure><p>…Но на самом деле эти свойства – вовсе не ширины рамок, а отступы внутренней части элемента от внешней.</p>
+<p>В чём же разница?</p>
+<p>Она возникает, когда документ располагается справа налево (операционная система на арабском языке или иврите). Полоса прокрутки в этом случае находится слева, и тогда свойство <code>clientLeft</code> включает в себя ещё и ширину полосы прокрутки.</p>
+<p>В этом случае <code>clientLeft</code> будет равно <code>25</code>, но с прокруткой – <code>25 + 16 = 41</code>.</p>
+<p>Вот соответствующий пример на иврите:</p>
+<figure><div class="image" style="width:359px">
+      <div class="image__ratio" style="padding-top:88.02228412256268%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-client-left-top-rtl.svg" width="359" height="316" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-client-left-top-rtl.svg" alt="" width="359" height="316">
+      </object>
+      </div></figure><h2><a class="main__anchor" name="clientwidth-height" href="#clientwidth-height">clientWidth/Height</a></h2><p>Эти свойства – размер области внутри рамок элемента.</p>
+<p>Они включают в себя ширину области содержимого вместе с внутренними отступами <code>padding</code>, но без прокрутки:</p>
+<figure><div class="image" style="width:500px">
+      <div class="image__ratio" style="padding-top:98.6%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-client-width-height.svg" width="500" height="493" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-client-width-height.svg" alt="" width="500" height="493">
+      </object>
+      </div></figure><p>На рисунке выше посмотрим вначале на высоту <code>clientHeight</code>.</p>
+<p>Горизонтальной прокрутки нет, так что это в точности то, что внутри рамок: CSS-высота <code>200px</code> плюс верхние и нижние внутренние отступы (<code>2 * 20px</code>), итого <code>240px</code>.</p>
+<p>Теперь <code>clientWidth</code> – ширина содержимого здесь равна не <code>300px</code>, а <code>284px</code>, т.к. <code>16px</code> отведено для полосы прокрутки. Таким образом: <code>284px</code> плюс левый и правый отступы – всего <code>324px</code>.</p>
+<p><strong>Если нет внутренних отступов <code>padding</code>, то <code>clientWidth/Height</code> в точности равны размеру области содержимого внутри рамок за вычетом полосы прокрутки (если она есть).</strong></p>
+<figure><div class="image" style="width:409px">
+      <div class="image__ratio" style="padding-top:114.18092909535453%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-client-width-nopadding.svg" width="409" height="467" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-client-width-nopadding.svg" alt="" width="409" height="467">
+      </object>
+      </div></figure><p>Поэтому в тех случаях, когда мы точно знаем, что отступов нет, можно использовать <code>clientWidth/clientHeight</code> для получения размеров внутренней области содержимого.</p>
+<h2><a class="main__anchor" name="scrollwidth-height" href="#scrollwidth-height">scrollWidth/Height</a></h2><p>Эти свойства – как <code>clientWidth/clientHeight</code>, но также включают в себя прокрученную (которую не видно) часть элемента.</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:113.17494600431965%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-scroll-width-height.svg" width="463" height="524" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-scroll-width-height.svg" alt="" width="463" height="524">
+      </object>
+      </div></figure><p>На рисунке выше:</p>
+<ul>
+<li><code>scrollHeight = 723</code> – полная внутренняя высота, включая прокрученную область.</li>
+<li><code>scrollWidth = 324</code> – полная внутренняя ширина, в данном случае прокрутки нет, поэтому она равна <code>clientWidth</code>.</li>
+</ul>
+<p>Эти свойства можно использовать, чтобы «распахнуть» элемент на всю ширину/высоту.</p>
+<p>Таким кодом:</p>
+<div id="p5astcne5l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// распахнуть элемент на всю высоту
+element.style.height = `${element.scrollHeight}px`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Нажмите на кнопку, чтобы распахнуть элемент:</p>
+<div id="element" style="width:300px;height:200px; padding: 0;overflow: auto; border:1px solid black;">текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст</div>
+<p><button style="padding:0" onclick="element.style.height = `${element.scrollHeight}px`">element.style.height = <code>${element.scrollHeight}px</code></button></p>
+<h2><a class="main__anchor" name="scrollleft-scrolltop" href="#scrollleft-scrolltop">scrollLeft/scrollTop</a></h2><p>Свойства <code>scrollLeft/scrollTop</code> – ширина/высота невидимой, прокрученной в данный момент, части элемента слева и сверху.</p>
+<p>Следующая иллюстрация показывает значения <code>scrollHeight</code> и <code>scrollTop</code> для блока с вертикальной прокруткой.</p>
+<figure><div class="image" style="width:489px">
+      <div class="image__ratio" style="padding-top:110.83844580777095%"></div>
+      <object type="image/svg+xml" data="article/size-and-scroll/metric-scroll-top.svg" width="489" height="542" class="image__image" data-use-theme>
+        <img src="article/size-and-scroll/metric-scroll-top.svg" alt="" width="489" height="542">
+      </object>
+      </div></figure><p>Другими словами, свойство <code>scrollTop</code> – это «сколько уже прокручено вверх».</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Свойства scrollLeft/scrollTop</code> можно изменять</span></div>
+            <div class="important__content"><p>В отличие от большинства свойств, которые доступны только для чтения, значения <code>scrollLeft/scrollTop</code> можно изменять, и браузер выполнит прокрутку элемента.</p>
+<p>При клике на следующий элемент будет выполняться код  <code>elem.scrollTop += 10</code>. Поэтому он будет прокручиваться на <code>10px</code> вниз.</p>
+<div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Кликни<br>Меня<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
+<p>Установка значения <code>scrollTop</code> на <code>0</code> или на большое значение, такое как <code>1e9</code>, прокрутит элемент в самый верх/низ соответственно.</p>
+</div></div>
+<h2><a class="main__anchor" name="ne-stoit-brat-width-height-iz-css" href="#ne-stoit-brat-width-height-iz-css">Не стоит брать width/height из CSS</a></h2><p>Мы рассмотрели метрики, которые есть у DOM-элементов, и которые можно использовать для получения различных высот, ширин и прочих расстояний.</p>
+<p>Но как мы знаем из главы <a href="styles-and-classes.html">Стили и классы</a>, CSS-высоту и ширину можно извлечь, используя <code>getComputedStyle</code>.</p>
+<p>Так почему бы не получать, к примеру, ширину элемента при помощи <code>getComputedStyle</code>, вот так?</p>
+<div id="l9iuio27kq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let elem = document.body;
+
+alert( getComputedStyle(elem).width ); // показывает CSS-ширину elem</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Почему мы должны использовать свойства-метрики вместо этого? На то есть две причины:</p>
+<ol>
+<li>
+<p>Во-первых, CSS-свойства <code>width/height</code> зависят от другого свойства – <code>box-sizing</code>, которое определяет, «что такое», собственно, эти CSS-ширина и высота. Получается, что изменение <code>box-sizing</code>, к примеру, для более удобной вёрстки, сломает такой JavaScript.</p>
+</li>
+<li>
+<p>Во-вторых, CSS свойства <code>width/height</code> могут быть равны <code>auto</code>, например, для инлайнового элемента:</p>
+<div id="h1wpn1kwcv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;span id=&quot;elem&quot;&gt;Привет!&lt;/span&gt;
+
+&lt;script&gt;
+  alert( getComputedStyle(elem).width ); // auto
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Конечно, с точки зрения CSS <code>width:auto</code> – совершенно нормально, но нам-то в JavaScript нужен конкретный размер в <code>px</code>, который мы могли бы использовать для вычислений. Получается, что в данном случае ширина из CSS вообще бесполезна.</p>
+</li>
+</ol>
+<p>Есть и ещё одна причина: полоса прокрутки. Бывает, без полосы прокрутки код работает прекрасно, но стоит ей появиться, как начинают проявляться баги. Так происходит потому, что полоса прокрутки «отъедает» место от области внутреннего содержимого в некоторых браузерах. Таким образом, реальная ширина содержимого <em>меньше</em> CSS-ширины. Как раз это и учитывают свойства <code>clientWidth/clientHeight</code>.</p>
+<p>…Но с <code>getComputedStyle(elem).width</code> ситуация иная. Некоторые браузеры (например, Chrome) возвращают реальную внутреннюю ширину с вычетом ширины полосы прокрутки, а некоторые (например, Firefox) – именно CSS-свойство (игнорируя полосу прокрутки). Эти кроссбраузерные отличия – ещё один повод не использовать <code>getComputedStyle</code>, а использовать свойства-метрики.</p>
+<p>Если ваш браузер показывает полосу прокрутки (например, под Windows почти все браузеры так делают), то вы можете протестировать это сами, нажав на кнопку в ифрейме ниже.</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/size-and-scroll/cssWidthScroll/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/size-and-scroll/cssWidthScroll/"></iframe>
+  </div><p>У элемента с текстом в стилях указано CSS-свойство <code>width:300px</code>.</p>
+<p>На ОС Windows браузеры Firefox, Chrome и Edge резервируют место для полосы прокрутки. Но Firefox отображает <code>300px</code>, в то время как Chrome и Edge – меньше. Это из-за того, что Firefox возвращает именно CSS-ширину, а остальные браузеры – «реальную» ширину за вычетом прокрутки.</p>
+<p>Обратите внимание: описанные различия касаются только чтения свойства <code>getComputedStyle(...).width</code> из JavaScript, визуальное отображение корректно в обоих случаях.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>У элементов есть следующие геометрические свойства (метрики):</p>
+<ul>
+<li><code>offsetParent</code> – ближайший CSS-позиционированный родитель или ближайший <code>td</code>, <code>th</code>, <code>table</code>, <code>body</code>.</li>
+<li><code>offsetLeft/offsetTop</code> – позиция в пикселях верхнего левого угла относительно <code>offsetParent</code>.</li>
+<li><code>offsetWidth/offsetHeight</code> – «внешняя» ширина/высота элемента, включая рамки.</li>
+<li><code>clientLeft/clientTop</code> – расстояние от верхнего левого внешнего угла до внутренного. Для операционных систем с ориентацией слева-направо эти свойства равны ширинам левой/верхней рамки. Если язык ОС таков, что ориентация справа налево, так что вертикальная полоса прокрутки находится не справа, а слева, то <code>clientLeft</code> включает в своё значение её ширину.</li>
+<li><code>clientWidth/clientHeight</code> – ширина/высота содержимого вместе с внутренними отступами <code>padding</code>, но без полосы прокрутки.</li>
+<li><code>scrollWidth/scrollHeight</code> – ширины/высота содержимого, аналогично <code>clientWidth/Height</code>, но учитывают прокрученную, невидимую область элемента.</li>
+<li><code>scrollLeft/scrollTop</code> – ширина/высота прокрученной сверху части элемента, считается от верхнего левого угла.</li>
+</ul>
+<p>Все свойства доступны только для чтения, кроме <code>scrollLeft/scrollTop</code>, изменение которых заставляет браузер прокручивать элемент.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#nayti-razmer-prokrutki-snizu" name="nayti-razmer-prokrutki-snizu">Найти размер прокрутки снизу</a></h3><a class="task__open-link" href="task/get-scroll-height-bottom.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Свойство <code>elem.scrollTop</code> содержит размер прокрученной области при отсчёте сверху. А как подсчитать размер прокрутки снизу (назовём его <code>scrollBottom</code>)?</p>
+<p>Напишите соответствующее выражение для произвольного элемента <code>elem</code>.</p>
+<p>P.S. Проверьте: если прокрутки нет вообще или элемент полностью прокручен – оно должно давать <code>0</code>.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Решение:</p>
+<div id="nivzs0xq55" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другими словами: (вся высота) минус (часть, прокрученная сверху) минус (видимая часть) – результат в точности соответствует размеру прокрутки снизу.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#uznat-shirinu-polosy-prokrutki" name="uznat-shirinu-polosy-prokrutki">Узнать ширину полосы прокрутки</a></h3><a class="task__open-link" href="task/scrollbar-width.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 3</span></div><div class="task__content"><div class="task__formatted"><p>Напишите код, который возвращает ширину стандартной полосы прокрутки.</p>
+<p>Для Windows она обычно колеблется от <code>12px</code> до <code>20px</code>. Если браузер не выделяет место под полосу прокрутки (так тоже бывает, она может быть прозрачной над текстом), тогда значение может быть <code>0px</code>.</p>
+<p>P.S. Ваш код должен работать в любом HTML-документе, независимо от его содержимого.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Чтобы получить ширину полосы прокрутки, создадим элемент с прокруткой, но без рамок и внутренних отступов.</p>
+<p>Тогда разница между его полной шириной <code>offsetWidth</code> и шириной внутреннего содержимого <code>clientWidth</code> будет равна как раз прокрутке:</p>
+<div id="uj0x2yqzga" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// создадим элемент с прокруткой
+let div = document.createElement('div');
+
+div.style.overflowY = 'scroll';
+div.style.width = '50px';
+div.style.height = '50px';
+
+// мы должны вставить элемент в документ, иначе размеры будут равны 0
+document.body.append(div);
+let scrollWidth = div.offsetWidth - div.clientWidth;
+
+div.remove();
+
+alert(scrollWidth);</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#pomestite-myach-v-tsentr-polya" name="pomestite-myach-v-tsentr-polya">Поместите мяч в центр поля</a></h3><a class="task__open-link" href="task/put-ball-in-center.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Исходный документ выглядит так:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/task/put-ball-in-center/source/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/udpQnFGCJWs8XXgI?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="udpQnFGCJWs8XXgI" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://ru.js.cx/task/put-ball-in-center/source/"></iframe>
+  </div><p>Каковы координаты центра поля?</p>
+<p>Вычислите их и используйте, чтобы поместить мяч в центр поля:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://ru.js.cx/task/put-ball-in-center/solution/"></iframe>
+  </div><ul>
+<li>Элемент должен позиционироваться за счёт JavaScript, а не CSS.</li>
+<li>Код должен работать с любым размером мяча (<code>10</code>, <code>20</code>, <code>30</code> пикселей) и любым размером поля без привязки к исходным значениям.</li>
+</ul>
+<p>P.S. Да, центрирование можно сделать при помощи чистого CSS, но задача именно на JavaScript. Далее будут другие темы и более сложные ситуации, когда JavaScript будет уже точно необходим, это – своего рода «разминка».</p>
+<p><a href="https://plnkr.co/edit/udpQnFGCJWs8XXgI?p=preview" target="_blank" data-plunk-id="udpQnFGCJWs8XXgI">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Мяч имеет CSS-свойство <code>position:absolute</code>. Это означает, что координаты <code>left/top</code> измеряются относительно ближайшего спозиционированного элемента, которым является <code>#field</code> (т.к. у него есть CSS-свойство <code>position:relative</code>).</p>
+<p>Координаты отсчитываются от внутреннего верхнего левого угла поля:</p>
+<figure><div class="image" style="width:233px">
+      <div class="image__ratio" style="padding-top:66.95278969957081%"></div>
+      <object type="image/svg+xml" data="task/put-ball-in-center/field.svg" width="233" height="156" class="image__image" data-use-theme>
+        <img src="task/put-ball-in-center/field.svg" alt="" width="233" height="156">
+      </object>
+      </div></figure><p>Ширина и высота внутреннего поля – это <code>clientWidth/clientHeight</code>. Таким образом, его центр имеет координаты <code>(clientWidth/2, clientHeight/2)</code>.</p>
+<p>…Но если мы установим мячу такие значения <code>ball.style.left/top</code>, то в центре будет не сам мяч, а его левый верхний угол:</p>
+<div id="3uqvw0gu0g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.style.left = Math.round(field.clientWidth / 2) + 'px';
+ball.style.top = Math.round(field.clientHeight / 2) + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вот как это выглядит:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://ru.js.cx/task/put-ball-in-center/ball-half/"></iframe>
+  </div><p>Для того, чтобы центр мяча находился в центре поля, нам нужно сместить мяч на половину его ширины влево и на половину его высоты вверх:</p>
+<div id="k91kbt20l4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px';
+ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>Внимание, подводный камень!</strong></p>
+<p>Код выше стабильно работать не будет, потому что <code>&lt;img&gt;</code> идёт без ширины/высоты:</p>
+<div id="mt8tgwalu1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;img src=&quot;ball.png&quot; id=&quot;ball&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если браузеру неизвестны ширина и высота изображения (из атрибута HTML-тега или CSS-свойств), он считает их равными <code>0</code> до тех пор, пока изображение не загрузится.</p>
+<p>При первой загрузке браузер обычно кеширует изображения, так что при последующей загрузке оно будет доступно тут же, вместе с размерами. Но при первой загрузке значение ширины мяча <code>ball.offsetWidth</code> равно <code>0</code>. Это приводит к вычислению неверных координат.</p>
+<p>Мы можем исправить это, добавив атрибуты <code>width/height</code> тегу <code>&lt;img&gt;</code>:</p>
+<div id="zpxa8cnt3g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:42}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;img src=&quot;ball.png&quot; width=&quot;40&quot; height=&quot;40&quot; id=&quot;ball&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Или задав размеры в CSS:</p>
+<div id="935sn56nxb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>#ball {
+  width: 40px;
+  height: 40px;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/iRqueU5j9lqZ1U0H?p=preview" target="_blank" data-plunk-id="iRqueU5j9lqZ1U0H">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#v-chyom-otlichie-css-svoystv-width-i-clientwidth" name="v-chyom-otlichie-css-svoystv-width-i-clientwidth">В чём отличие CSS-свойств width и clientWidth</a></h3><a class="task__open-link" href="task/width-vs-clientwidth.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>В чём отличие между <code>getComputedStyle(elem).width</code> и <code>elem.clientWidth</code>?</p>
+<p>Укажите хотя бы 3 отличия, лучше – больше.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Отличия:</p>
+<ol>
+<li><code>clientWidth</code> возвращает число, а <code>getComputedStyle(elem).width</code> – строку с <code>px</code> на конце.</li>
+<li><code>getComputedStyle</code> не всегда даст ширину, он может вернуть, к примеру, <code>&quot;auto&quot;</code> для строчного элемента.</li>
+<li><code>clientWidth</code> соответствует внутренней области элемента, включая внутренние отступы <code>padding</code>, а CSS-ширина (при стандартном значении <code>box-sizing</code>) соответствует внутренней области <em>без внутренних отступов</em> <code>padding</code>.</li>
+<li>Если есть полоса прокрутки, и для неё зарезервировано место, то некоторые браузеры вычитают его из CSS-ширины (т.к. оно больше недоступно для содержимого), а некоторые – нет. Свойство <code>clientWidth</code> всегда ведёт себя одинаково: оно всегда обозначает размер за вычетом прокрутки, т.е. реально доступный для содержимого.</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="styles-and-classes.html" data-tooltip="Стили и классы"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="size-and-scroll-window.html" data-tooltip="Размеры и прокрутка окна"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/size-and-scroll","identifier":"\/size-and-scroll"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="document.html">Документ</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#prostoy-primer">Простой пример</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#metriki">Метрики</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#offsetparent-offsetleft-top">offsetParent, offsetLeft/Top</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#offsetwidth-height">offsetWidth/Height</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#clienttop-left">clientTop/Left</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#clientwidth-height">clientWidth/Height</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#scrollwidth-height">scrollWidth/Height</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#scrollleft-scrolltop">scrollLeft/scrollTop</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ne-stoit-brat-width-height-iz-css">Не стоит брать width/height из CSS</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fsize-and-scroll" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/2-ui/1-document/09-size-and-scroll" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/size-and-scroll by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:05 GMT -->
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/date by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Дата и время</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="date.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Дата и время"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Дата и время"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="destructuring-assignment.html"><link rel="next" href="json.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Дата и время"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/date"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/date"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/date"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/date"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/date"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/date"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/date"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/date"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/date"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="date.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/date"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/date"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/date"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/date">عربي</option><option value="https://javascript.info/date">English</option><option value="https://es.javascript.info/date">Español</option><option value="https://fa.javascript.info/date">فارسی</option><option value="https://fr.javascript.info/date">Français</option><option value="https://id.javascript.info/date">Indonesia</option><option value="https://it.javascript.info/date">Italiano</option><option value="https://ja.javascript.info/date">日本語</option><option value="https://ko.javascript.info/date">한국어</option><option value="https://learn.javascript.ru/date" selected>Русский</option><option value="https://tr.javascript.info/date">Türkçe</option><option value="https://uk.javascript.info/date">Українська</option><option value="https://zh.javascript.info/date">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="47" max="95" data-tooltip="Урок 47 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="data-types.html"><span>Типы данных</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Типы данных","item":"https://learn.javascript.ru/data-types"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Дата и время</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Дата и время"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Встречайте новый встроенный объект: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. Он содержит дату и время, а также предоставляет методы управления ими.</p>
+<p>Например, его можно использовать для хранения времени создания/изменения, для измерения времени или просто для вывода текущей даты.</p>
+<h2><a class="main__anchor" name="sozdanie" href="#sozdanie">Создание</a></h2><p>Для создания нового объекта <code>Date</code> нужно вызвать конструктор <code>new Date()</code> с одним из следующих аргументов:</p>
+<dl>
+<dt><code>new Date()</code></dt>
+<dd>
+<p>Без аргументов – создать объект <code>Date</code> с текущими датой и временем:</p>
+<div id="faihr1w0ln" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let now = new Date();
+alert( now ); // показывает текущие дату и время</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(milliseconds)</code></dt>
+<dd>
+<p>Создать объект <code>Date</code> с временем, равным количеству миллисекунд (тысячная доля секунды), прошедших с 1 января 1970 года UTC+0.</p>
+<div id="xxsnq6o9yi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 0 соответствует 01.01.1970 UTC+0
+let Jan01_1970 = new Date(0);
+alert( Jan01_1970 );
+
+// теперь добавим 24 часа и получим 02.01.1970 UTC+0
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+alert( Jan02_1970 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Целое число, представляющее собой количество миллисекунд, прошедших с начала 1970 года, называется <em>таймстамп</em> (англ. timestamp).</p>
+<p>Это – легковесное численное представление даты. Из таймстампа всегда можно получить дату с помощью <code>new Date(timestamp)</code> и преобразовать существующий объект <code>Date</code> в таймстамп, используя метод <code>date.getTime()</code> (см. ниже).</p>
+<p>Датам до 1 января 1970 будут соответствовать отрицательные таймстампы, например:</p>
+<div id="qeg4br3my2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 31 декабря 1969 года
+let Dec31_1969 = new Date(-24 * 3600 * 1000);
+alert( Dec31_1969 );</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(datestring)</code></dt>
+<dd>
+<p>Если аргумент всего один, и это строка, то из неё «прочитывается» дата. Алгоритм разбора – такой же, как в <code>Date.parse</code>, который мы рассмотрим позже.</p>
+<div id="t9yqj4pzrz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(&quot;2017-01-26&quot;);
+alert(date);
+// Время не указано, поэтому оно ставится в полночь по Гринвичу и
+// меняется в соответствии с часовым поясом места выполнения кода
+// Так что в результате можно получить
+// Thu Jan 26 2017 11:00:00 GMT+1100 (восточно-австралийское время)
+// или
+// Wed Jan 25 2017 16:00:00 GMT-0800 (тихоокеанское время)</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(year, month, date, hours, minutes, seconds, ms)</code></dt>
+<dd>
+<p>Создать объект <code>Date</code> с заданными компонентами в местном часовом поясе. Обязательны только первые два аргумента.</p>
+<ul>
+<li><code>year</code> должен состоять из четырёх цифр. Для совместимости также принимаются 2 цифры и рассматриваются как <code>19xx</code>, к примеру, <code>98</code> здесь это тоже самое, что и <code>1998</code>, но настоятельно рекомендуется всегда использовать 4 цифры.</li>
+<li><code>month</code> начинается с <code>0</code> (январь) по <code>11</code> (декабрь).</li>
+<li>Параметр <code>date</code> здесь представляет собой день месяца. Если параметр не задан, то принимается значение <code>1</code>.</li>
+<li>Если параметры <code>hours/minutes/seconds/ms</code> отсутствуют, их значением становится <code>0</code>.</li>
+</ul>
+<p>Например:</p>
+<div id="qqqp17hgwe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Date(2011, 0, 1, 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00
+new Date(2011, 0, 1); // то же самое, так как часы и проч. равны 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Максимальная точность – 1 мс (до 1/1000 секунды):</p>
+<div id="910cpmwyx7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2011, 0, 1, 2, 3, 4, 567);
+alert( date ); // 1.01.2011, 02:03:04.567</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<h2><a class="main__anchor" name="poluchenie-komponentov-daty" href="#poluchenie-komponentov-daty">Получение компонентов даты</a></h2><p>Существуют методы получения года, месяца и т.д. из объекта <code>Date</code>:</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear">getFullYear()</a></dt>
+<dd>Получить год (4 цифры)</dd>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth">getMonth()</a></dt>
+<dd>Получить месяц, <strong>от 0 до 11</strong>.</dd>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate">getDate()</a></dt>
+<dd>Получить день месяца, от 1 до 31, что несколько противоречит названию метода.</dd>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours">getHours()</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes">getMinutes()</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds">getSeconds()</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds">getMilliseconds()</a></dt>
+<dd>Получить, соответственно, часы, минуты, секунды или миллисекунды.</dd>
+</dl>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Никакого <code>getYear()</code>. Только <code>getFullYear()</code></span></div>
+            <div class="important__content"><p>Многие интерпретаторы JavaScript реализуют нестандартный и устаревший метод <code>getYear()</code>, который порой возвращает год в виде двух цифр. Пожалуйста, обходите его стороной. Если нужно значение года, используйте <code>getFullYear()</code>.</p>
+</div></div>
+<p>Кроме того, можно получить определённый день недели:</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay">getDay()</a></dt>
+<dd>Вернуть день недели от <code>0</code> (воскресенье) до <code>6</code> (суббота). Несмотря на то, что в ряде стран за первый день недели принят понедельник, в JavaScript начало недели приходится на воскресенье.</dd>
+</dl>
+<p><strong>Все вышеперечисленные методы возвращают значения в соответствии с местным часовым поясом.</strong></p>
+<p>Однако существуют и их UTC-варианты, возвращающие день, месяц, год для временной зоны UTC+0: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear">getUTCFullYear()</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMonth">getUTCMonth()</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDay">getUTCDay()</a>. Для их использования требуется после <code>&quot;get&quot;</code> подставить <code>&quot;UTC&quot;</code>.</p>
+<p>Если ваш местный часовой пояс смещён относительно UTC, то следующий код покажет разные часы:</p>
+<div id="j21li76nd2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// текущая дата
+let date = new Date();
+
+// час в вашем текущем часовом поясе
+alert( date.getHours() );
+
+// час в часовом поясе UTC+0 (лондонское время без перехода на летнее время)
+alert( date.getUTCHours() );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Помимо вышеприведённых методов, существуют два особых метода без UTC-варианта:</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime">getTime()</a></dt>
+<dd>
+<p>Для заданной даты возвращает таймстамп – количество миллисекунд, прошедших с 1 января 1970 года UTC+0.</p>
+</dd>
+<dt><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset">getTimezoneOffset()</a></dt>
+<dd>
+<p>Возвращает разницу в минутах между UTC и местным часовым поясом:</p>
+<div id="e8y8x7x325" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// если вы в часовом поясе UTC-1, то выводится 60
+// если вы в часовом поясе UTC+3, выводится -180
+alert( new Date().getTimezoneOffset() );</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<h2><a class="main__anchor" name="ustanovka-komponentov-daty" href="#ustanovka-komponentov-daty">Установка компонентов даты</a></h2><p>Следующие методы позволяют установить компоненты даты и времени:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear"><code>setFullYear(year, [month], [date])</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth"><code>setMonth(month, [date])</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate"><code>setDate(date)</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours"><code>setHours(hour, [min], [sec], [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes"><code>setMinutes(min, [sec], [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds"><code>setSeconds(sec, [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds"><code>setMilliseconds(ms)</code></a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime"><code>setTime(milliseconds)</code></a> (устанавливает дату в виде целого количества миллисекунд, прошедших с 01.01.1970 UTC)</li>
+</ul>
+<p>У всех этих методов, кроме <code>setTime()</code>, есть UTC-вариант, например: <code>setUTCHours()</code>.</p>
+<p>Как мы видим, некоторые методы могут устанавливать сразу несколько компонентов даты, например: <code>setHours</code>. Если какая-то компонента не указана, она не меняется.</p>
+<p>Пример:</p>
+<div id="krjlzuv49u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let today = new Date();
+
+today.setHours(0);
+alert(today); // выводится сегодняшняя дата, но значение часа будет 0
+
+today.setHours(0, 0, 0, 0);
+alert(today); // всё ещё выводится сегодняшняя дата, но время будет ровно 00:00:00.</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="avtoispravlenie-daty" href="#avtoispravlenie-daty">Автоисправление даты</a></h2><p><em>Автоисправление</em> – это очень полезная особенность объектов <code>Date</code>. Можно устанавливать компоненты даты вне обычного диапазона значений, а объект сам себя исправит.</p>
+<p>Пример:</p>
+<div id="2g8nkbi0i1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:29,&quot;end&quot;:31}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2013, 0, 32); // 32 Jan 2013 ?!?
+alert(date); // ...1st Feb 2013!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Неправильные компоненты даты автоматически распределяются по остальным.</p>
+<p>Предположим, нам требуется увеличить дату «28 февраля 2016» на два дня. В зависимости от того, високосный это год или нет, результатом будет «2 марта» или «1 марта». Нам об этом думать не нужно. Просто прибавляем два дня. Объект <code>Date</code> позаботится об остальном:</p>
+<div id="hapun18ls6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2016, 1, 28);
+date.setDate(date.getDate() + 2);
+
+alert( date ); // 1 Mar 2016</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эту возможность часто используют, чтобы получить дату по прошествии заданного отрезка времени. Например, получим дату «спустя 70 секунд с текущего момента»:</p>
+<div id="olh7ojzpy8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date();
+date.setSeconds(date.getSeconds() + 70);
+
+alert( date ); // выводит правильную дату</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Также можно установить нулевые или даже отрицательные значения. Например:</p>
+<div id="ywsjiwzojb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2016, 0, 2); // 2 Jan 2016
+
+date.setDate(1); // задать первое число месяца
+alert( date );
+
+date.setDate(0); // первый день месяца -- это 1, так что выводится последнее число предыдущего месяца
+alert( date ); // 31 Dec 2015</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="preobrazovanie-k-chislu-raznost-dat" href="#preobrazovanie-k-chislu-raznost-dat">Преобразование к числу, разность дат</a></h2><p>Если объект <code>Date</code> преобразовать в число, то получим таймстамп по аналогии с <code>date.getTime()</code>:</p>
+<div id="6nk026fea4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date();
+alert(+date); // количество миллисекунд, то же самое, что date.getTime()</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Важный побочный эффект: даты можно вычитать, в результате получаем разность в миллисекундах.</p>
+<p>Этот приём можно использовать для измерения времени:</p>
+<div id="bvmqs8ahsg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = new Date(); // начинаем отсчёт времени
+
+// выполняем некоторые действия
+for (let i = 0; i &lt; 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = new Date(); // заканчиваем отсчёт времени
+
+alert( `Цикл отработал за ${end - start} миллисекунд` );</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="date-now" href="#date-now">Date.now()</a></h2><p>Если нужно просто измерить время, объект <code>Date</code> нам не нужен.</p>
+<p>Существует особый метод <code>Date.now()</code>, возвращающий текущую метку времени.</p>
+<p>Семантически он эквивалентен <code>new Date().getTime()</code>, однако метод не создаёт промежуточный объект <code>Date</code>. Так что этот способ работает быстрее и не нагружает сборщик мусора.</p>
+<p>Данный метод используется из соображений удобства или когда важно быстродействие, например, при разработке игр на JavaScript или других специализированных приложений.</p>
+<p>Вероятно, предыдущий пример лучше переписать так:</p>
+<div id="zi85bps8ni" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = Date.now(); // количество миллисекунд с 1 января 1970 года
+
+// выполняем некоторые действия
+for (let i = 0; i &lt; 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = Date.now(); // заканчиваем отсчёт времени
+
+alert( `Цикл отработал за ${end - start} миллисекунд` ); // вычитаются числа, а не даты</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="benchmarking" href="#benchmarking">Бенчмаркинг</a></h2><p>Будьте внимательны, если хотите точно протестировать производительность функции, которая зависит от процессора.</p>
+<p>Например, сравним две функции, вычисляющие разницу между двумя датами: какая сработает быстрее?</p>
+<p>Подобные вычисления, замеряющие производительность, также называют «бенчмарками» (benchmark).</p>
+<div id="7g7bd2bpdu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// есть date1 и date2, какая функция быстрее вернёт разницу между ними в миллисекундах?
+function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+// или
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обе функции делают буквально одно и то же, только одна использует явный метод <code>date.getTime()</code> для получения даты в миллисекундах, а другая полагается на преобразование даты в число. Результат их работы всегда один и тот же.</p>
+<p>Но какая функция быстрее?</p>
+<p>Для начала можно запустить их много раз подряд и засечь разницу. В нашем случае функции очень простые, так что потребуется хотя бы 100000 повторений.</p>
+<p>Проведём измерения:</p>
+<div id="e0hfr3oa2g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i &lt; 100000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+alert( 'Время diffSubtract: ' + bench(diffSubtract) + 'мс' );
+alert( 'Время diffGetTime: ' + bench(diffGetTime) + 'мс' );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вот это да! Метод <code>getTime()</code> работает ощутимо быстрее! Всё потому, что не производится преобразование типов, и интерпретаторам такое намного легче оптимизировать.</p>
+<p>Замечательно, это уже что-то. Но до хорошего бенчмарка нам ещё далеко.</p>
+<p>Представьте, что при выполнении <code>bench(diffSubtract)</code> процессор параллельно делал что-то ещё, также потребляющее ресурсы. А к началу выполнения <code>bench(diffGetTime)</code> он это уже завершил.</p>
+<p>Достаточно реалистичный сценарий в современных многопроцессорных операционных системах.</p>
+<p>В итоге у первого бенчмарка окажется меньше ресурсов процессора, чем у второго. Это может исказить результаты.</p>
+<p><strong>Для получения наиболее достоверных результатов тестирования производительности весь набор бенчмарков нужно запускать по нескольку раз.</strong></p>
+<p>Например, так:</p>
+<div id="ze1qnbhrdm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:20,&quot;end&quot;:24}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i &lt; 100000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+let time1 = 0;
+let time2 = 0;
+
+// bench(diffSubtract) и bench(diffGetTime) поочерёдно запускаются 10 раз
+for (let i = 0; i &lt; 10; i++) {
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
+}
+
+alert( 'Итоговое время diffSubtract: ' + time1 );
+alert( 'Итоговое время diffGetTime: ' + time2 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Современные интерпретаторы JavaScript начинают применять продвинутые оптимизации только к «горячему коду», выполняющемуся несколько раз (незачем оптимизировать то, что редко выполняется). Так что в примере выше первые запуски не оптимизированы должным образом. Нелишним будет добавить предварительный запуск для «разогрева»:</p>
+<div id="q3uf830cal" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// добавляем для &quot;разогрева&quot; перед основным циклом
+bench(diffSubtract);
+bench(diffGetTime);
+
+// а теперь тестируем производительность
+for (let i = 0; i &lt; 10; i++) {
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Будьте осторожны с микробенчмарками</span></div>
+            <div class="important__content"><p>Современные интерпретаторы JavaScript выполняют множество оптимизаций. Они могут повлиять на результаты «искусственных тестов» по сравнению с «нормальным использованием», особенно если мы тестируем что-то очень маленькое, например, работу оператора или встроенной функции. Поэтому если хотите серьёзно понять производительность, пожалуйста, изучите, как работают интерпретаторы JavaScript. И тогда вам, вероятно, уже не понадобятся микробенчмарки.</p>
+<p>Отличный набор статей о V8 можно найти на <a href="https://mrale.ph/">https://mrale.ph</a>.</p>
+</div></div>
+<h2><a class="main__anchor" name="razbor-stroki-s-datoy" href="#razbor-stroki-s-datoy">Разбор строки с датой</a></h2><p>Метод <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Date.parse(str)</a> считывает дату из строки.</p>
+<p>Формат строки должен быть следующим: <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>, где:</p>
+<ul>
+<li><code>YYYY-MM-DD</code> – это дата: год-месяц-день.</li>
+<li>Символ <code>&quot;T&quot;</code> используется в качестве разделителя.</li>
+<li><code>HH:mm:ss.sss</code> – время: часы, минуты, секунды и миллисекунды.</li>
+<li>Необязательная часть <code>'Z'</code> обозначает часовой пояс в формате <code>+-hh:mm</code>. Если указать просто букву <code>Z</code>, то получим UTC+0.</li>
+</ul>
+<p>Возможны и более короткие варианты, например, <code>YYYY-MM-DD</code> или <code>YYYY-MM</code>, или даже <code>YYYY</code>.</p>
+<p>Вызов <code>Date.parse(str)</code> обрабатывает строку в заданном формате и возвращает таймстамп (количество миллисекунд с 1 января 1970 года UTC+0). Если формат неправильный, возвращается <code>NaN</code>.</p>
+<p>Например:</p>
+<div id="m7auqiol23" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
+
+alert(ms); // 1327611110417 (таймстамп)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Можно тут же создать объект <code>new Date</code> из таймстампа:</p>
+<div id="tdfw2zxy16" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+
+alert(date);</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>Дата и время в JavaScript представлены объектом <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. Нельзя создать «только дату» или «только время»: объекты <code>Date</code> всегда содержат и то, и другое.</li>
+<li>Счёт месяцев начинается с нуля (да, январь – это нулевой месяц).</li>
+<li>Дни недели в <code>getDay()</code> также отсчитываются с нуля, что соответствует воскресенью.</li>
+<li>Объект <code>Date</code> самостоятельно корректируется при введении значений, выходящих за рамки допустимых. Это полезно для сложения/вычитания дней/месяцев/недель.</li>
+<li>Даты можно вычитать, и разность возвращается в миллисекундах. Так происходит, потому что при преобразовании в число объект <code>Date</code> становится таймстампом.</li>
+<li>Используйте <code>Date.now()</code> для быстрого получения текущего времени в формате таймстампа.</li>
+</ul>
+<p>Учтите, что, в отличие от некоторых других систем, в JavaScript таймстамп в миллисекундах, а не в секундах.</p>
+<p>Порой нам нужно измерить время с большей точностью. Собственными средствами JavaScript измерять время в микросекундах (одна миллионная секунды) нельзя, но в большинстве сред такая возможность есть. К примеру, в браузерах есть метод <a href="https://developer.mozilla.org/ru/docs/Web/API/Performance/now">performance.now()</a>, возвращающий количество миллисекунд с начала загрузки страницы с точностью до микросекунд (3 цифры после точки):</p>
+<div id="zprq6nuyvo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(`Загрузка началась ${performance.now()}мс назад`);
+// Получаем что-то вроде: &quot;Загрузка началась 34731.26000000001мс назад&quot;
+// .26 –- это микросекунды (260 микросекунд)
+// корректными являются только первые три цифры после точки, а остальные -- это ошибка точности</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В Node.js для этого предусмотрен модуль <code>microtime</code> и ряд других способов. Технически почти любое устройство или среда позволяет добиться большей точности, просто её нет в объекте <code>Date</code>.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sozdayte-datu" name="sozdayte-datu">Создайте дату</a></h3><a class="task__open-link" href="task/new-date.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Создайте объект <code>Date</code> для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.</p>
+<p>Для вывода используйте <code>alert</code>.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Конструктор <code>new Date</code> стандартно использует местную временную зону. Единственная важная вещь, которую нужно запомнить – это то, что месяцы начинаются с нуля.</p>
+<p>Поэтому февраль обозначается числом 1.</p>
+<div id="kxrwk5iid3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let d = new Date(2012, 1, 20, 3, 12);
+alert( d );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#pokazhite-den-nedeli" name="pokazhite-den-nedeli">Покажите день недели</a></h3><a class="task__open-link" href="task/get-week-day.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>getWeekDay(date)</code>, показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».</p>
+<p>Например:</p>
+<div id="e4bdtwovoo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2012, 0, 3);  // 3 января 2012 года
+alert( getWeekDay(date) );        // нужно вывести &quot;ВТ&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/GGhgAD5SDUwCq3wk?p=preview" target="_blank" data-plunk-id="GGhgAD5SDUwCq3wk">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Метод <code>date.getDay()</code> возвращает номер дня недели, начиная с воскресенья.</p>
+<p>Создадим массив дней недели, чтобы получить имя нужного дня по его номеру:</p>
+<div id="kt5iqierc8" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getWeekDay(date) {
+  let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+
+  return days[date.getDay()];
+}
+
+let date = new Date(2014, 0, 3); // 3 января 2014 года
+alert( getWeekDay(date) ); // ПТ</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/0QX1FRrlKlzoHqzx?p=preview" target="_blank" data-plunk-id="0QX1FRrlKlzoHqzx">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#den-nedeli-v-evropeyskoy-numeratsii" name="den-nedeli-v-evropeyskoy-numeratsii">День недели в европейской нумерации</a></h3><a class="task__open-link" href="task/weekday.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>В Европейских странах неделя начинается с понедельника (день номер 1), затем идёт вторник (номер 2) и так до воскресенья (номер 7). Напишите функцию <code>getLocalDay(date)</code>, которая возвращает «европейский» день недели для даты <code>date</code>.</p>
+<div id="54bmzv3baj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2012, 0, 3);  // 3 января 2012 года
+alert( getLocalDay(date) );       // вторник, нужно показать 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/dZ9D5MW6IgHjStki?p=preview" target="_blank" data-plunk-id="dZ9D5MW6IgHjStki">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="39py796o2y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getLocalDay(date) {
+
+  let day = date.getDay();
+
+  if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
+    day = 7;
+  }
+
+  return day;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/XhHcYXaI5MUQ68Hw?p=preview" target="_blank" data-plunk-id="XhHcYXaI5MUQ68Hw">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#kakoy-den-mesyatsa-byl-mnogo-dney-nazad" name="kakoy-den-mesyatsa-byl-mnogo-dney-nazad">Какой день месяца был много дней назад?</a></h3><a class="task__open-link" href="task/get-date-ago.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Создайте функцию <code>getDateAgo(date, days)</code>, возвращающую число, которое было <code>days</code> дней назад от даты <code>date</code>.</p>
+<p>К примеру, если сегодня двадцатое число, то <code>getDateAgo(new Date(), 1)</code> вернёт девятнадцатое и <code>getDateAgo(new Date(), 2)</code> – восемнадцатое.</p>
+<p>Функция должна надёжно работать при значении <code>days=365</code> и больших значениях:</p>
+<div id="kypd3pf57s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2015, 0, 2);
+
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. Функция не должна изменять переданный ей объект <code>date</code>.</p>
+<p><a href="https://plnkr.co/edit/ahceu7RrP48HkV64?p=preview" target="_blank" data-plunk-id="ahceu7RrP48HkV64">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Идея проста: нужно вычесть заданное количество дней из <code>date</code>:</p>
+<div id="zq1wr9m1ru" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getDateAgo(date, days) {
+  date.setDate(date.getDate() - days);
+  return date.getDate();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Но функция не должна изменять объект <code>date</code>. Это очень важно, поскольку внешний код, передающий нам объект, не ожидает его изменения.</p>
+<p>Это можно осуществить путём клонирования даты:</p>
+<div id="9523fep65f" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getDateAgo(date, days) {
+  let dateCopy = new Date(date);
+
+  dateCopy.setDate(date.getDate() - days);
+  return dateCopy.getDate();
+}
+
+let date = new Date(2015, 0, 2);
+
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/bQUkHEy1eHcRPO9V?p=preview" target="_blank" data-plunk-id="bQUkHEy1eHcRPO9V">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#poslednee-chislo-mesyatsa" name="poslednee-chislo-mesyatsa">Последнее число месяца?</a></h3><a class="task__open-link" href="task/last-day-of-month.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>getLastDayOfMonth(year, month)</code>, возвращающую последнее число месяца. Иногда это 30, 31 или даже февральские 28/29.</p>
+<p>Параметры:</p>
+<ul>
+<li><code>year</code> – год из четырёх цифр, например, 2012.</li>
+<li><code>month</code> – месяц от 0 до 11.</li>
+</ul>
+<p>К примеру, <code>getLastDayOfMonth(2012, 1) = 29</code> (високосный год, февраль).</p>
+<p><a href="https://plnkr.co/edit/jP8WDYKkODniW0e0?p=preview" target="_blank" data-plunk-id="jP8WDYKkODniW0e0">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Создадим дату из следующего месяца, но в день передадим 0:</p>
+<div id="jtds7lnxqr" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month + 1, 0);
+  return date.getDate();
+}
+
+alert( getLastDayOfMonth(2012, 0) ); // 31
+alert( getLastDayOfMonth(2012, 1) ); // 29
+alert( getLastDayOfMonth(2013, 1) ); // 28</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обычно даты начинаются с 1, но технически возможно передать любое число, и дата сама себя поправит. Так что если передать 0, то это значение будет соответствовать «один день перед первым числом месяца», другими словами: «последнее число прошлого месяца».</p>
+<p><a href="https://plnkr.co/edit/1gGbmibp2x9HOMGD?p=preview" target="_blank" data-plunk-id="1gGbmibp2x9HOMGD">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#skolko-segodnya-proshlo-sekund" name="skolko-segodnya-proshlo-sekund">Сколько сегодня прошло секунд?</a></h3><a class="task__open-link" href="task/get-seconds-today.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>getSecondsToday()</code>, возвращающую количество секунд с начала сегодняшнего дня.</p>
+<p>Например, если сейчас <code>10:00</code>, и не было перехода на зимнее/летнее время, то:</p>
+<div id="3dis73y730" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getSecondsToday() == 36000 // (3600 * 10)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция должна работать в любой день, т.е. в ней не должно быть конкретного значения сегодняшней даты.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Чтобы получить количество секунд, нужно сгенерировать объект <code>date</code> на самое начало текущего дня – 00:00:00, а затем вычесть полученное значение из «сейчас».</p>
+<p>Разность даст нам количество миллисекунд с начала дня, делим его на 1000 и получаем секунды:</p>
+<div id="66cx6e6g8h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToday() {
+  let now = new Date();
+
+  // создаём объект с текущими днём/месяцем/годом
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  let diff = now - today; // разница в миллисекундах
+  return Math.round(diff / 1000); // получаем секунды
+}
+
+alert( getSecondsToday() );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В качестве альтернативного решения можно получить часы/минуты и преобразовать их в секунды:</p>
+<div id="r4miy91p9h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToday() {
+  let d = new Date();
+  return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#skolko-sekund-ostalos-do-zavtra" name="skolko-sekund-ostalos-do-zavtra">Сколько секунд осталось до завтра?</a></h3><a class="task__open-link" href="task/get-seconds-to-tomorrow.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Создайте функцию <code>getSecondsToTomorrow()</code>, возвращающую количество секунд до завтрашней даты.</p>
+<p>Например, если сейчас <code>23:00</code>, то:</p>
+<div id="qbarr8pb12" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getSecondsToTomorrow() == 3600</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. Функция должна работать в любой день, т.е. в ней не должно быть конкретного значения сегодняшней даты.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Чтобы получить количество миллисекунд до завтра, можно из «завтра 00:00:00» вычесть текущую дату.</p>
+<p>Сперва сгенерируем дату на «завтра» и сделаем следующее:</p>
+<div id="3c1dy50nyb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:61,&quot;end&quot;:76}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToTomorrow() {
+  let now = new Date();
+
+  // завтрашняя дата
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+  let diff = tomorrow - now; // разница в миллисекундах
+  return Math.round(diff / 1000); // преобразуем в секунды
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Альтернативное решение:</p>
+<div id="ybmj0o4pt5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToTomorrow() {
+  let now = new Date();
+  let hour = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+  let totalSecondsToday = (hour * 60 + minutes) * 60 + seconds;
+  let totalSecondsInADay = 86400;
+
+  return totalSecondsInADay - totalSecondsToday;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Учтите, что многие страны переходят с зимнего времени на летнее и обратно, так что могут быть дни длительностью в 23 или 25 часов. Такие дни, если это важно, можно обрабатывать отдельно.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#formatirovanie-otnositelnoy-daty" name="formatirovanie-otnositelnoy-daty">Форматирование относительной даты</a></h3><a class="task__open-link" href="task/format-date-relative.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>formatDate(date)</code>, форматирующую <code>date</code> по следующему принципу:</p>
+<ul>
+<li>Если спустя <code>date</code> прошло менее 1 секунды, вывести <code>&quot;прямо сейчас&quot;</code>.</li>
+<li>В противном случае, если с <code>date</code> прошло меньше 1 минуты, вывести <code>&quot;n сек. назад&quot;</code>.</li>
+<li>В противном случае, если меньше часа, вывести <code>&quot;m мин. назад&quot;</code>.</li>
+<li>В противном случае, полная дата в формате <code>&quot;DD.MM.YY HH:mm&quot;</code>. А именно: <code>&quot;день.месяц.год часы:минуты&quot;</code>, всё в виде двух цифр, т.е. <code>31.12.16 10:00</code>.</li>
+</ul>
+<p>Например:</p>
+<div id="jjmdl3eyd4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( formatDate(new Date(new Date - 1)) ); // &quot;прямо сейчас&quot;
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // &quot;30 сек. назад&quot;
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // &quot;5 мин. назад&quot;
+
+// вчерашняя дата вроде 31.12.2016, 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/gFWytIgeou3LQmLO?p=preview" target="_blank" data-plunk-id="gFWytIgeou3LQmLO">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Чтобы получить время с <code>date</code> по текущий момент, нужно вычесть даты.</p>
+<div id="h0dm4vf3qu" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function formatDate(date) {
+  let diff = new Date() - date; // разница в миллисекундах
+
+  if (diff &lt; 1000) { // меньше 1 секунды
+    return 'прямо сейчас';
+  }
+
+  let sec = Math.floor(diff / 1000); // преобразовать разницу в секунды
+
+  if (sec &lt; 60) {
+    return sec + ' сек. назад';
+  }
+
+  let min = Math.floor(diff / 60000); // преобразовать разницу в минуты
+  if (min &lt; 60) {
+    return min + ' мин. назад';
+  }
+
+  // отформатировать дату
+  // добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
+  let d = date;
+  d = [
+    '0' + d.getDate(),
+    '0' + (d.getMonth() + 1),
+    '' + d.getFullYear(),
+    '0' + d.getHours(),
+    '0' + d.getMinutes()
+  ].map(component =&gt; component.slice(-2)); // взять последние 2 цифры из каждой компоненты
+
+  // соединить компоненты в дату
+  return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+}
+
+alert( formatDate(new Date(new Date - 1)) ); // &quot;прямо сейчас&quot;
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // &quot;30 сек. назад&quot;
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // &quot;5 мин. назад&quot;
+
+// вчерашняя дата вроде 31.12.2016, 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Альтернативное решение:</p>
+<div id="gsga1rqya8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function formatDate(date) {
+  let dayOfMonth = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let hour = date.getHours();
+  let minutes = date.getMinutes();
+  let diffMs = new Date() - date;
+  let diffSec = Math.round(diffMs / 1000);
+  let diffMin = diffSec / 60;
+  let diffHour = diffMin / 60;
+
+  // форматирование
+  year = year.toString().slice(-2);
+  month = month &lt; 10 ? '0' + month : month;
+  dayOfMonth = dayOfMonth &lt; 10 ? '0' + dayOfMonth : dayOfMonth;
+  hour = hour &lt; 10 ? '0' + hour : hour;
+  minutes = minutes &lt; 10 ? '0' + minutes : minutes;
+
+  if (diffSec &lt; 1) {
+    return 'прямо сейчас';
+  } else if (diffMin &lt; 1) {
+    return `${diffSec} сек. назад`
+  } else if (diffHour &lt; 1) {
+    return `${diffMin} мин. назад`
+  } else {
+    return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/OB8vEOTDFoGW6aZL?p=preview" target="_blank" data-plunk-id="OB8vEOTDFoGW6aZL">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="destructuring-assignment.html" data-tooltip="Деструктурирующее присваивание"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="json.html" data-tooltip="Формат JSON, метод toJSON"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/date","identifier":"\/date"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="data-types.html">Типы данных</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sozdanie">Создание</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#poluchenie-komponentov-daty">Получение компонентов даты</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ustanovka-komponentov-daty">Установка компонентов даты</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#avtoispravlenie-daty">Автоисправление даты</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#preobrazovanie-k-chislu-raznost-dat">Преобразование к числу, разность дат</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#date-now">Date.now()</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#benchmarking">Бенчмаркинг</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#razbor-stroki-s-datoy">Разбор строки с датой</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (8)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fdate" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/05-data-types/11-date" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/date by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:58 GMT -->
+</html>

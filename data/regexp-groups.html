@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/regexp-groups by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Скобочные группы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="regexp-groups.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Скобочные группы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Скобочные группы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="regexp-greedy-and-lazy.html"><link rel="next" href="regexp-backreferences.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Скобочные группы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/regexp-groups"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-groups"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-groups"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/regexp-groups"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-groups"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-groups"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="regexp-groups.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/regexp-groups"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/regexp-groups">عربي</option><option value="https://javascript.info/regexp-groups">English</option><option value="https://es.javascript.info/regexp-groups">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/regexp-groups">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-groups">Italiano</option><option value="https://ja.javascript.info/regexp-groups">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/regexp-groups" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/regexp-groups">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="11" max="17" data-tooltip="Урок 11 из 17"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="regular-expressions.html"><span>Регулярные выражения</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Регулярные выражения","item":"https://learn.javascript.ru/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 4 марта 2023 г."><div class="updated-at__content">4 марта 2023 г.</div></div></div><h1 class="main__header-title">Скобочные группы</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Скобочные группы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Часть шаблона можно заключить в скобки <code class="pattern">(...)</code>. Это называется «скобочная группа».</p>
+<p>У такого выделения есть два эффекта:</p>
+<ol>
+<li>Позволяет поместить часть совпадения в отдельный массив.</li>
+<li>Если установить квантификатор после скобок, то он будет применяться ко всему содержимому скобки, а не к одному символу.</li>
+</ol>
+<h2><a class="main__anchor" name="primery" href="#primery">Примеры</a></h2><p>Разберём скобки на примерах.</p>
+<h3><a class="main__anchor" name="primer-gogogo" href="#primer-gogogo">Пример: gogogo</a></h3><p>Без скобок шаблон <code class="pattern">go+</code> означает символ <code class="subject">g</code> и идущий после него символ <code class="subject">o</code>, который повторяется один или более раз. Например, <code class="match">goooo</code> или <code class="match">gooooooooo</code>.</p>
+<p>Скобки группируют символы вместе. Так что <code class="pattern">(go)+</code> означает <code class="match">go</code>, <code class="match">gogo</code>, <code class="match">gogogo</code> и т.п.</p>
+<div id="gbmqtl75by" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Gogogo now!'.match(/(go)+/ig) ); // &quot;Gogogo&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="primer-domen" href="#primer-domen">Пример: домен</a></h3><p>Сделаем что-то более сложное – регулярное выражение, которое соответствует домену сайта.</p>
+<p>Например:</p>
+<div id="ed2ktb5y24" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>mail.com
+users.mail.com
+smith.users.mail.com</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, домен состоит из повторяющихся слов, причём после каждого, кроме последнего, стоит точка.</p>
+<p>На языке регулярных выражений <code class="pattern">(\w+\.)+\w+</code>:</p>
+<div id="6nb3ngt3oi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(\w+\.)+\w+/g;
+
+alert( &quot;site.com my.site.com&quot;.match(regexp) ); // site.com,my.site.com</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Поиск работает, но такому шаблону не соответствует домен с дефисом, например, <code>my-site.com</code>, так как дефис не входит в класс <code class="pattern">\w</code>.</p>
+<p>Можно исправить это, заменим <code class="pattern">\w</code> на <code class="pattern">[\w-]</code> везде, кроме как в конце: <code class="pattern">([\w-]+\.)+\w+</code>.</p>
+<h3><a class="main__anchor" name="primer-email" href="#primer-email">Пример: email</a></h3><p>Предыдущий пример можно расширить, создав регулярное выражение для поиска email.</p>
+<p>Формат email: <code>имя@домен</code>. В качестве имени может быть любое слово, разрешены дефисы и точки. На языке регулярных выражений это <code class="pattern">[-.\w]+</code>.</p>
+<p>Итоговый шаблон:</p>
+<div id="8wbpx5xreb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+
+alert(&quot;my@mail.com @ his@site.com.uk&quot;.match(regexp)); // my@mail.com, his@site.com.uk</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это регулярное выражение не идеальное, но, как правило, работает и помогает исправлять опечатки. Окончательную проверку правильности email, в любом случае, можно осуществить, лишь послав на него письмо.</p>
+<h2><a class="main__anchor" name="soderzhimoe-skobok-v-match" href="#soderzhimoe-skobok-v-match">Содержимое скобок в match</a></h2><p>Скобочные группы нумеруются слева направо. Поисковый движок запоминает содержимое, которое соответствует каждой скобочной группе, и позволяет получить его в результате.</p>
+<p>Метод <code>str.match(regexp)</code>, если у регулярного выражения <code>regexp</code> нет флага <code>g</code>, ищет первое совпадение и возвращает его в виде массива:</p>
+<ol>
+<li>На позиции <code>0</code> будет всё совпадение целиком.</li>
+<li>На позиции <code>1</code> – содержимое первой скобочной группы.</li>
+<li>На позиции <code>2</code> – содержимое второй скобочной группы.</li>
+<li>…и так далее…</li>
+</ol>
+<p>Например, мы хотим найти HTML теги <code class="pattern">&lt;.*?&gt;</code> и обработать их. Было бы удобно иметь содержимое тега (то, что внутри уголков) в отдельной переменной.</p>
+<p>Давайте заключим внутреннее содержимое в круглые скобки: <code class="pattern">&lt;(.*?)&gt;</code>.</p>
+<p>Теперь получим как тег целиком <code class="match">&lt;h1&gt;</code>, так и его содержимое <code class="match">h1</code> в виде массива:</p>
+<div id="osbl99rz2g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;h1&gt;Hello, world!&lt;/h1&gt;';
+
+let tag = str.match(/&lt;(.*?)&gt;/);
+
+alert( tag[0] ); // &lt;h1&gt;
+alert( tag[1] ); // h1</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="vlozhennye-gruppy" href="#vlozhennye-gruppy">Вложенные группы</a></h3><p>Скобки могут быть и вложенными.</p>
+<p>Например, при поиске тега в <code class="subject">&lt;span class=&quot;my&quot;&gt;</code> нас может интересовать:</p>
+<ol>
+<li>Содержимое тега целиком: <code class="match">span class=&quot;my&quot;</code>.</li>
+<li>Название тега: <code class="match">span</code>.</li>
+<li>Атрибуты тега: <code class="match">class=&quot;my&quot;</code>.</li>
+</ol>
+<p>Заключим их в скобки в шаблоне: <code class="pattern">&lt;(([a-z]+)\s*([^&gt;]*))&gt;</code>.</p>
+<p>Вот их номера (слева направо, по открывающей скобке):</p>
+<figure><div class="image" style="width:320px">
+      <div class="image__ratio" style="padding-top:40.625%"></div>
+      <object type="image/svg+xml" data="article/regexp-groups/regexp-nested-groups-pattern.svg" width="320" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-groups/regexp-nested-groups-pattern.svg" alt="" width="320" height="130">
+      </object>
+      </div></figure><p>В действии:</p>
+<div id="ajpmdzjxis" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;span class=&quot;my&quot;&gt;';
+
+let regexp = /&lt;(([a-z]+)\s*([^&gt;]*))&gt;/;
+
+let result = str.match(regexp);
+alert(result[0]); // &lt;span class=&quot;my&quot;&gt;
+alert(result[1]); // span class=&quot;my&quot;
+alert(result[2]); // span
+alert(result[3]); // class=&quot;my&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>По нулевому индексу в <code>result</code> всегда идёт полное совпадение.</p>
+<p>Затем следуют группы, нумеруемые слева направо, по открывающим скобкам. Группа, открывающая скобка которой идёт первой, получает первый индекс в результате – <code>result[1]</code>. Там находится всё содержимое тега.</p>
+<p>Затем в <code>result[2]</code> идёт группа, образованная второй открывающей скобкой <code class="pattern">([a-z]+)</code> – имя тега, далее в <code>result[3]</code> будет остальное содержимое тега: <code class="pattern">([^&gt;]*)</code>.</p>
+<p>Соответствие для каждой группы в строке:</p>
+<figure><div class="image" style="width:320px">
+      <div class="image__ratio" style="padding-top:40.625%"></div>
+      <object type="image/svg+xml" data="article/regexp-groups/regexp-nested-groups-matches.svg" width="320" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-groups/regexp-nested-groups-matches.svg" alt="" width="320" height="130">
+      </object>
+      </div></figure><h3><a class="main__anchor" name="neobyazatelnye-gruppy" href="#neobyazatelnye-gruppy">Необязательные группы</a></h3><p>Даже если скобочная группа необязательна (например, стоит квантификатор <code class="pattern">(...)?</code>), соответствующий элемент массива <code>result</code> существует и равен <code>undefined</code>.</p>
+<p>Например, рассмотрим регулярное выражение <code class="pattern">a(z)?(c)?</code>. Оно ищет букву <code>&quot;a&quot;</code>, за которой идёт необязательная буква <code>&quot;z&quot;</code>, за которой, в свою очередь, идёт необязательная буква <code>&quot;c&quot;</code>.</p>
+<p>Если применить его к строке из одной буквы <code class="subject">a</code>, то результат будет такой:</p>
+<div id="j31bk41ex2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let match = 'a'.match(/a(z)?(c)?/);
+
+alert( match.length ); // 3
+alert( match[0] ); // a (всё совпадение)
+alert( match[1] ); // undefined
+alert( match[2] ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Массив имеет длину <code>3</code>, но все скобочные группы пустые.</p>
+<p>А теперь более сложная ситуация для строки <code class="subject">ac</code>:</p>
+<div id="7pefvpjjuh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let match = 'ac'.match(/a(z)?(c)?/)
+
+alert( match.length ); // 3
+alert( match[0] ); // ac (всё совпадение)
+alert( match[1] ); // undefined, потому что для (z)? ничего нет
+alert( match[2] ); // c</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Длина массива всегда равна <code>3</code>. Для группы <code class="pattern">(z)?</code> ничего нет, поэтому результат: <code>[&quot;ac&quot;, undefined, &quot;c&quot;]</code>.</p>
+<h2><a class="main__anchor" name="poisk-vseh-sovpadeniy-s-gruppami-matchall" href="#poisk-vseh-sovpadeniy-s-gruppami-matchall">Поиск всех совпадений с группами: matchAll</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>matchAll</code> является новым, может потребоваться полифил</span></div>
+            <div class="important__content"><p>Метод не поддерживается в старых браузерах.</p>
+<p>Может потребоваться полифил, например <a href="https://github.com/ljharb/String.prototype.matchAll">https://github.com/ljharb/String.prototype.matchAll</a>.</p>
+</div></div>
+<p>При поиске всех совпадений (флаг <code class="pattern">g</code>) метод <code>match</code> не возвращает скобочные группы.</p>
+<p>Например, попробуем найти все теги в строке:</p>
+<div id="ejtk1ug704" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;h1&gt; &lt;h2&gt;';
+
+let tags = str.match(/&lt;(.*?)&gt;/g);
+
+alert( tags ); // &lt;h1&gt;,&lt;h2&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат – массив совпадений, но без деталей о каждом. Но на практике скобочные группы тоже часто нужны.</p>
+<p>Для того, чтобы их получать, мы можем использовать метод <code>str.matchAll(regexp)</code>.</p>
+<p>Он был добавлен в язык JavaScript гораздо позже чем <code>str.match</code>, как его «новая и улучшенная» версия.</p>
+<p>Он, как и <code>str.match(regexp)</code>, ищет совпадения, но у него есть три отличия:</p>
+<ol>
+<li>Он возвращает не массив, а перебираемый объект.</li>
+<li>При поиске с флагом <code class="pattern">g</code>, он возвращает каждое совпадение в виде массива со скобочными группами.</li>
+<li>Если совпадений нет, он возвращает не <code>null</code>, а просто пустой перебираемый объект.</li>
+</ol>
+<p>Например:</p>
+<div id="128pd6zb0q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+// results - не массив, а перебираемый объект
+alert(results); // [object RegExp String Iterator]
+
+alert(results[0]); // undefined (*)
+
+results = Array.from(results); // превращаем в массив
+
+alert(results[0]); // &lt;h1&gt;,h1 (первый тег)
+alert(results[1]); // &lt;h2&gt;,h2 (второй тег)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видите, первое отличие – очень важное, это демонстрирует строка <code>(*)</code>. Мы не можем получить совпадение как  <code>results[0]</code>, так как этот объект не является псевдомассивом. Его можно превратить в настоящий массив при помощи <code>Array.from</code>. Более подробно о псевдомассивах и перебираемых объектов мы говорили в главе <a href="iterable.html">Перебираемые объекты</a>.</p>
+<p>В явном преобразовании через <code>Array.from</code> нет необходимости, если мы перебираем результаты в цикле, вот так:</p>
+<div id="99tdko4a17" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+for(let result of results) {
+  alert(result);
+  // первый вывод: &lt;h1&gt;,h1
+  // второй: &lt;h2&gt;,h2
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Или используем деструктуризацию:</p>
+<div id="8mvjwvf4pi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let [tag1, tag2] = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Каждое совпадение, возвращаемое <code>matchAll</code>, имеет тот же вид, что и при <code>match</code> без флага <code class="pattern">g</code>: это массив с дополнительными свойствами <code>index</code> (позиция совпадения) и <code>input</code> (исходный текст):</p>
+<div id="04bjm24j6j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+let [tag1, tag2] = results;
+
+alert( tag1[0] ); // &lt;h1&gt;
+alert( tag1[1] ); // h1
+alert( tag1.index ); // 0
+alert( tag1.input ); // &lt;h1&gt; &lt;h2&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Почему результат <code>matchAll</code> – перебираемый объект, а не обычный массив?</span></div>
+            <div class="important__content"><p>Зачем так сделано? Причина проста – для оптимизации.</p>
+<p>При вызове <code>matchAll</code> движок JavaScript возвращает перебираемый объект, в котором ещё нет результатов. Поиск осуществляется по мере того, как мы запрашиваем результаты, например, в цикле.</p>
+<p>Таким образом, будет найдено ровно столько результатов, сколько нам нужно.</p>
+<p>Например, всего в тексте может быть 100 совпадений, а в цикле после 5-го результата мы поняли, что нам их достаточно и сделали <code>break</code>. Тогда движок не будет тратить время на поиск остальных 95.</p>
+</div></div>
+<h2><a class="main__anchor" name="imenovannye-gruppy" href="#imenovannye-gruppy">Именованные группы</a></h2><p>Запоминать группы по номерам не очень удобно. Для простых шаблонов это допустимо, но в сложных регулярных выражениях считать скобки затруднительно. Гораздо лучше – давать скобкам имена.</p>
+<p>Это делается добавлением <code class="pattern">?&lt;name&gt;</code> непосредственно после открытия скобки.</p>
+<p>Например, поищем дату в формате «год-месяц-день»:</p>
+<div id="yiuhnss3ht" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dateRegexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/;
+let str = &quot;2019-04-30&quot;;
+
+let groups = str.match(dateRegexp).groups;
+
+alert(groups.year); // 2019
+alert(groups.month); // 04
+alert(groups.day); // 30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как вы можете видеть, группы располагаются в свойстве <code>groups</code> результата <code>match</code>.</p>
+<p>Чтобы найти не только первую дату, используем флаг <code class="pattern">g</code>.</p>
+<p>Также нам понадобится <code>matchAll</code>, чтобы получить скобочные группы:</p>
+<div id="5hdsaa4sen" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dateRegexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/g;
+
+let str = &quot;2019-10-30 2020-01-01&quot;;
+
+let results = str.matchAll(dateRegexp);
+
+for(let result of results) {
+  let {year, month, day} = result.groups;
+
+  alert(`${day}.${month}.${year}`);
+  // первый вывод: 30.10.2019
+  // второй: 01.01.2020
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="skobochnye-gruppy-pri-zamene" href="#skobochnye-gruppy-pri-zamene">Скобочные группы при замене</a></h2><p>Метод <code>str.replace(regexp, replacement)</code>, осуществляющий замену совпадений с <code>regexp</code> в строке <code>str</code>, позволяет использовать в строке замены содержимое скобок. Это делается при помощи обозначений вида <code class="pattern">$n</code>, где <code class="pattern">n</code> – номер скобочной группы.</p>
+<p>Например:</p>
+<div id="928m6rwabb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;John Bull&quot;;
+let regexp = /(\w+) (\w+)/;
+
+alert( str.replace(regexp, '$2, $1') ); // Bull, John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Для именованных скобок ссылка будет выглядеть как <code class="pattern">$&lt;имя&gt;</code>.</p>
+<p>Например, заменим даты в формате «год-месяц-день» на «день.месяц.год»:</p>
+<div id="sdp6l14v8f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/g;
+
+let str = &quot;2019-10-30, 2020-01-01&quot;;
+
+alert( str.replace(regexp, '$&lt;day&gt;.$&lt;month&gt;.$&lt;year&gt;') );
+// 30.10.2019, 01.01.2020</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="isklyuchenie-iz-zapominaniya-cherez" href="#isklyuchenie-iz-zapominaniya-cherez">Исключение из запоминания через ?:</a></h2><p>Бывает так, что скобки нужны, чтобы квантификатор правильно применился, но мы не хотим, чтобы их содержимое было выделено в результате.</p>
+<p>Скобочную группу можно исключить из запоминаемых и нумеруемых, добавив в её начало <code class="pattern">?:</code>.</p>
+<p>Например, если мы хотим найти <code class="pattern">(go)+</code>, но не хотим иметь в массиве-результате отдельным элементом содержимое скобок (<code>go</code>), то можем написать <code class="pattern">(?:go)+</code>.</p>
+<p>В примере ниже мы получим только имя <code class="match">John</code> как отдельный элемент совпадения:</p>
+<div id="pyym3j4o7t" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Gogogo John!&quot;;
+
+// ?: исключает go из запоминания
+let regexp = /(?:go)+ (\w+)/i;
+
+let result = str.match(regexp);
+
+alert( result[0] ); // Gogogo John (полное совпадение)
+alert( result[1] ); // John
+alert( result.length ); // 2 (больше в массиве элементов нет)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, содержимое скобок <code class="pattern">(?:go)</code> не стало отдельным элементом массива <code>result</code>.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Круглые скобки группируют вместе часть регулярного выражения, так что квантификатор применяется к ним в целом.</p>
+<p>Скобочные группы нумеруются слева направо. Также им можно дать имя с помощью <code class="pattern">(?&lt;name&gt;...)</code>.</p>
+<p>Часть совпадения, соответствующую скобочной группе, мы можем получить в результатах поиска.</p>
+<ul>
+<li>Метод <code>str.match</code> возвращает скобочные группы только без флага <code class="pattern">g</code>.</li>
+<li>Метод <code>str.matchAll</code> возвращает скобочные группы всегда.</li>
+</ul>
+<p>Если скобка не имеет имени, то содержимое группы будет по своему номеру в массиве-результате, если имеет, то также в свойстве <code>groups</code>.</p>
+<p>Содержимое скобочной группы можно также использовать при замене <code>str.replace(regexp, replacement)</code>: по номеру <code>$n</code> или по имени <code>$&lt;имя&gt;</code>.</p>
+<p>Можно исключить скобочную группу из запоминания, добавив в её начало <code class="pattern">?:</code>. Это используется, если необходимо применить квантификатор ко всей группе, но не запоминать их содержимое в отдельном элементе массива-результата. Также мы не можем ссылаться на такие скобки в строке замены.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#proverte-mac-adres" name="proverte-mac-adres">Проверьте MAC-адрес</a></h3><a class="task__open-link" href="task/test-mac.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p><a href="https://ru.wikipedia.org/wiki/MAC_address">MAC-адрес</a> сетевого интерфейса состоит из 6-ти двузначных шестнадцатеричных чисел, разделённых двоеточиями.</p>
+<p>Например: <code class="subject">'01:32:54:67:89:AB'</code>.</p>
+<p>Напишите регулярное выражение, которое проверит, является ли строка MAC-адресом.</p>
+<p>Использование:</p>
+<div id="j93jx0hka7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваш regexp/;
+
+alert( regexp.test('01:32:54:67:89:AB') ); // true
+
+alert( regexp.test('0132546789AB') ); // false (нет двоеточий)
+
+alert( regexp.test('01:32:54:67:89') ); // false (5 чисел, должно быть 6)
+
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ в конце строки)</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Двузначное шестнадцатеричное число – это <code class="pattern">[0-9a-f]{2}</code> (предполагается, что флаг <code class="pattern">i</code> стоит).</p>
+<p>Нам нужно число <code>NN</code>, после которого <code>:NN</code> повторяется ещё 5 раз.</p>
+<p>Регулярное выражение: <code class="pattern">[0-9a-f]{2}(:[0-9a-f]{2}){5}</code></p>
+<p>Теперь давайте покажем, что шаблон должен захватить весь текст (всю строку): от начала и до конца. Для этого обернём шаблон в <code class="pattern">^...$</code>.</p>
+<p>Итог:</p>
+<div id="1rwu2i9ra4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /^[0-9a-f]{2}(:[0-9a-f]{2}){5}$/i;
+
+alert( regexp.test('01:32:54:67:89:AB') ); // true
+
+alert( regexp.test('0132546789AB') ); // false (нет двоеточий)
+
+alert( regexp.test('01:32:54:67:89') ); // false (5 чисел, должно быть 6)
+
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ в конце строки)</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#nayti-tsvet-v-formate-abc-ili-abcdef" name="nayti-tsvet-v-formate-abc-ili-abcdef">Найти цвет в формате #abc или #abcdef</a></h3><a class="task__open-link" href="task/find-webcolor-3-or-6.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Напишите регулярное выражение, которое соответствует цветам в формате <code>#abc</code> или <code>#abcdef</code>. То есть: <code>#</code> и за ним 3 или 6 шестнадцатеричных цифр.</p>
+<p>Пример использования:</p>
+<div id="n5kmola7gb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваш шаблон/g;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. Это должно быть ровно 3 или 6 шестнадцатеричных цифр. При этом значения с 4-мя цифрами типа <code>#abcd</code> не должны совпадать в результат.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Регулярное выражение для поиска номера цвета из трёх символов <code>#abc</code>: <code class="pattern">/#[a-f0-9]{3}/i</code>.</p>
+<p>Нам нужно найти ещё ровно 3 дополнительных шестнадцатеричных цифры. Ни больше ни меньше – в цвете либо 3, либо 6 цифр.</p>
+<p>Используем для этого квантификатор <code class="pattern">{1,2}</code>, получится <code class="pattern">/#([a-f0-9]{3}){1,2}/i</code>.</p>
+<p>Здесь шаблон <code class="pattern">[a-f0-9]{3}</code> заключён в скобки для корректного применения к нему квантификатора <code class="pattern">{1,2}</code>.</p>
+<p>В действии:</p>
+<div id="ctqr4sacnh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /#([a-f0-9]{3}){1,2}/gi;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef #abc</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь есть небольшая проблема: шаблон находит <code class="match">#abc</code> в <code class="subject">#abcd</code>. Чтобы предотвратить это, мы можем добавить <code class="pattern">\b</code> в конец:</p>
+<div id="6hnp3wyoxc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /#([a-f0-9]{3}){1,2}\b/gi;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#nayti-vse-chisla" name="nayti-vse-chisla">Найти все числа</a></h3><a class="task__open-link" href="task/find-decimal-numbers.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Напишите регулярное выражение, которое ищет любые десятичные числа, включая целочисленные, с плавающей точкой и отрицательные.</p>
+<p>Пример использования:</p>
+<div id="a4b45rnkdz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваш шаблон/g;
+
+let str = &quot;-1.5 0 2 -123.4.&quot;;
+
+alert( str.match(regexp) ); // -1.5, 0, 2, -123.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Положительное число с необязательным присутствием десятичной части (из прошлой задачи): <code class="pattern">\d+(\.\d+)?</code>.</p>
+<p>Добавим необязательный минус <code class="pattern">-?</code> в начало:</p>
+<div id="yz53fprk8z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /-?\d+(\.\d+)?/g;
+
+let str = &quot;-1.5 0 2 -123.4.&quot;;
+
+alert( str.match(regexp) );   // -1.5, 0, 2, -123.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#razobrat-vyrazhenie" name="razobrat-vyrazhenie">Разобрать выражение</a></h3><a class="task__open-link" href="task/parse-expression.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Арифметическое выражение включает два числа и оператор между ними. Например:</p>
+<ul>
+<li><code>1 + 2</code></li>
+<li><code>1.2 * 3.4</code></li>
+<li><code>-3 / -6</code></li>
+<li><code>-2 - 2</code></li>
+</ul>
+<p>Оператором может быть: <code>&quot;+&quot;</code>, <code>&quot;-&quot;</code>, <code>&quot;*&quot;</code> или <code>&quot;/&quot;</code>.</p>
+<p>В выражении могут быть пробелы в начале, в конце или между частями выражения.</p>
+<p>Создайте функцию <code>parse(expr)</code>, которая принимает выражение и возвращает массив из трёх элементов:</p>
+<ol>
+<li>Первое число.</li>
+<li>Оператор.</li>
+<li>Второе число.</li>
+</ol>
+<p>Например:</p>
+<div id="410pr0niq6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let [a, op, b] = parse(&quot;1.2 * 3.4&quot;);
+
+alert(a); // 1.2
+alert(op); // *
+alert(b); // 3.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Регулярное выражение для числа: <code class="pattern">-?\d+(\.\d+)?</code>. Мы создали его в предыдущих задачах.</p>
+<p>Регулярное выражение для оператора <code class="pattern">[-+*/]</code>. Дефис <code class="pattern">-</code> стоит в начале квадратных скобок, потому что в середине этот символ будет означать диапазон, а нам нужен просто символ <code>-</code>.</p>
+<p>Отметим, что косая черта должна быть экранирована внутри регулярного выражения JavaScript <code class="pattern">/.../</code>.</p>
+<p>Нам необходимо число, оператор и, затем, другие числа. Между ними могут быть необязательные пробелы.</p>
+<p>Полное выражение: <code class="pattern">-?\d+(\.\d+)?\s*[-+*/]\s*-?\d+(\.\d+)?</code>.</p>
+<p>Оно состоит из трёх частей, между которыми стоит <code class="pattern">\s*</code>:</p>
+<ol>
+<li><code class="pattern">-?\d+(\.\d+)?</code> – первое число,</li>
+<li><code class="pattern">[-+*/]</code> – оператор,</li>
+<li><code class="pattern">-?\d+(\.\d+)?</code> – второе число.</li>
+</ol>
+<p>Для получения этих частей в виде отдельных элементов массива-результата давайте вставим скобки вокруг каждой из них, получится <code class="pattern">(-?\d+(\.\d+)?)\s*([-+*/])\s*(-?\d+(\.\d+)?)</code>.</p>
+<p>В действии:</p>
+<div id="79211bpklv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(-?\d+(\.\d+)?)\s*([-+*\/])\s*(-?\d+(\.\d+)?)/;
+
+alert( &quot;1.2 + 12&quot;.match(regexp) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат <code>result</code> включает в себя:</p>
+<ul>
+<li><code>result[0] == &quot;1.2 + 12&quot;</code> (полное совпадение)</li>
+<li><code>result[1] == &quot;1.2&quot;</code> (первая группа <code>(-?\d+(\.\d+)?)</code> – первое число, включая десятичную часть)</li>
+<li><code>result[2] == &quot;.2&quot;</code> (вторая группа <code>(\.\d+)?</code> – первая десятичная часть)</li>
+<li><code>result[3] == &quot;+&quot;</code> (третья группа <code>([-+*\/])</code> – оператор)</li>
+<li><code>result[4] == &quot;12&quot;</code> (четвёртая группа <code>(-?\d+(\.\d+)?)</code> – второе число)</li>
+<li><code>result[5] == undefined</code> (пятая группа <code>(\.\d+)?</code> – вторая десятичная часть отсутствует, поэтому значение <code>undefined</code>)</li>
+</ul>
+<p>Нам необходимы только числа и оператор без полного совпадения или десятичной части, поэтому давайте «почистим» этот результат.</p>
+<p>Первый элемент массива (полное совпадение) можно удалить при помощи сдвига массива <code>result.shift()</code>.</p>
+<p>Группы, которые содержат десятичную часть (номер 2 и 4) <code class="pattern">(.\d+)</code> можно убрать из массива, добавив <code class="pattern">?:</code> в начало: <code class="pattern">(?:\.\d+)?</code>.</p>
+<p>Итоговое решение:</p>
+<div id="dliesm550o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function parse(expr) {
+  let regexp = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
+
+  let result = expr.match(regexp);
+
+  if (!result) return [];
+  result.shift();
+
+  return result;
+}
+
+alert( parse(&quot;-1.23 * 3.45&quot;) );  // -1.23, *, 3.45</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="regexp-greedy-and-lazy.html" data-tooltip="Жадные и ленивые квантификаторы"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="regexp-backreferences.html" data-tooltip="Обратные ссылки в шаблоне: \N и \k&lt;имя&gt;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/regexp-groups","identifier":"\/regexp-groups"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="regular-expressions.html">Регулярные выражения</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#primery">Примеры</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#soderzhimoe-skobok-v-match">Содержимое скобок в match</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#poisk-vseh-sovpadeniy-s-gruppami-matchall">Поиск всех совпадений с группами: matchAll</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#imenovannye-gruppy">Именованные группы</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#skobochnye-gruppy-pri-zamene">Скобочные группы при замене</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#isklyuchenie-iz-zapominaniya-cherez">Исключение из запоминания через ?:</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fregexp-groups" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/9-regular-expressions/11-regexp-groups" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/regexp-groups by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:40 GMT -->
+</html>

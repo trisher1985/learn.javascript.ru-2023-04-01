@@ -1,0 +1,654 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/template-lodash by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Шаблонизатор LoDash</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="template-lodash.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Шаблонизатор LoDash"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Шаблонизатор LoDash"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><script src="../cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.0/lodash.min.js"></script><meta property="og:title" content="Шаблонизатор LoDash"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Шаблонизатор LoDash</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Шаблонизатор LoDash"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В этой главе мы рассмотрим <em>шаблонизацию</em> – удобный способ генерации HTML по «шаблону» и данным.</p>
+<p>Большинство виджетов, которые мы видели ранее, получают готовый HTML/DOM и «оживляют» его. Это типичный случай в сайтах, где JavaScript – на ролях «второго помощника». Разметка, CSS уже есть, от JavaScript, условно говоря, требуются лишь обработчики, чтобы менюшки заработали.</p>
+<p>Но в сложных интерфейсах разметка изначально отсутствует на странице. Компоненты генерируют свой DOM сами, динамически, на основе данных, полученных с сервера или из других источников.</p>
+<h2><a class="main__anchor" name="zachem-nuzhny-shablony" href="#zachem-nuzhny-shablony">Зачем нужны шаблоны?</a></h2><p>Ранее мы уже видели код <code>Menu</code>, который сам создаёт свой элемент:</p>
+<div id="793rtnap46" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(options) {
+  // ... приведены только методы для генерации DOM ...
+
+  function render() {
+    elem = document.createElement('div');
+    elem.className = &quot;menu&quot;;
+
+    var titleElem = document.createElement('span');
+    elem.appendChild(titleElem);
+    titleElem.className = &quot;title&quot;;
+    titleElem.textContent = options.title;
+
+    elem.onmousedown = function() {
+      return false;
+    };
+
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+    }
+
+  }
+
+  function renderItems() {
+    var items = options.items || [];
+    var list = document.createElement('ul');
+    items.forEach(function(item) {
+      var li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    elem.appendChild(list);
+  }
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Понятен ли этот код? Очевидно ли, какой HTML генерируют методы <code>render</code>, <code>renderItems</code>?</p>
+<p>С первого взгляда – вряд ли. Нужно как минимум внимательно посмотреть и продумать код, чтобы разобраться, какая именно DOM-структура создаётся.</p>
+<p>…А что, если нужно изменить создаваемый HTML? …А что, если эта задача досталась не программисту, который написал этот код, а верстальщику, который с HTML/CSS проекта знаком отлично, но этот JS-код видит впервые? Вероятность ошибок при этом зашкаливает за все разумные пределы.</p>
+<p>К счастью, генерацию HTML можно упростить. Для этого воспользуемся библиотекой шаблонизации.</p>
+<h2><a class="main__anchor" name="primer-shablona" href="#primer-shablona">Пример шаблона</a></h2><p><em>Шаблон</em> – это строка в специальном формате, которая путём подстановки значений (текст сообщения, цена и т.п.) и выполнения встроенных фрагментов кода превращается в DOM/HTML.</p>
+<p>Пример шаблона для меню:</p>
+<div id="hgqcumxfay" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div class=&quot;menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;&lt;%-title%&gt;&lt;/span&gt;
+  &lt;ul&gt;
+    &lt;% items.forEach(function(item) { %&gt;
+    &lt;li&gt;&lt;%-item%&gt;&lt;/li&gt;
+    &lt;% }); %&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, это обычный HTML, с вставками вида <code>&lt;% ... %&gt;</code>.</p>
+<p>Для работы с таким шаблоном используется специальная функция <code>_.template</code>, которая предоставляется фреймворком <a href="https://lodash.com/docs#template">Lodash</a>, её синтаксис мы подробно посмотрим далее.</p>
+<p>Пример использования <code>_.template</code> для генерации HTML с шаблоном выше:</p>
+<div id="3xyldgaw3z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// сгенерировать HTML, используя шаблон tmpl (см. выше)
+// с данными title и items
+var html = _.template(tmpl)({
+  title: &quot;Сладости&quot;,
+  items: [
+    &quot;Торт&quot;,
+    &quot;Печенье&quot;,
+    &quot;Пирожное&quot;
+  ]
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Значение <code>html</code> в результате:</p>
+<div id="sr81cldm72" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div class=&quot;menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;Сладости&lt;/span&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Торт&lt;/li&gt;
+    &lt;li&gt;Печенье&lt;/li&gt;
+    &lt;li&gt;Сладости&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Этот код гораздо проще, чем JS-код, не правда ли? Шаблон очень наглядно показывает, что в итоге должно получиться. В отличие от кода, в шаблоне первичен текст, а вставок кода обычно мало.</p>
+<p>Давайте подробнее познакомимся с <code>_.template</code> и синтаксисом шаблонов.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Holy war detected!</span></div>
+            <div class="important__content"><p>Способов шаблонизации и, в особенности, синтаксисов шаблонов, примерно столько же, сколько способов <a href="http://lurkmore.to/Как_поймать_льва_в_пустыне">поймать льва в пустыне</a>. Иначе говоря… много.</p>
+<p>Эта глава – совершенно не место для священных войн на эту тему.</p>
+<p>Далее будет более полный обзор типов шаблонных систем, применяемых в JavaScript, но начнём мы с <code>_.template</code>, поскольку эта функция проста, быстра и демонстрирует приёмы, используемые в целом классе шаблонных систем, активно используемых в самых разных JS-проектах.</p>
+</div></div>
+<h2><a class="main__anchor" name="sintaksis-shablona" href="#sintaksis-shablona">Синтаксис шаблона</a></h2><p>Шаблон представляет собой строку со специальными разделителями, которых всего три:</p>
+<dl>
+<dt><code>&lt;% code %&gt;</code> – код</dt>
+<dd>
+<p>Код между разделителями <code>&lt;% ... %&gt;</code> будет выполнен «как есть»</p>
+</dd>
+<dt><code>&lt;%= expr %&gt;</code> – для вставки <code>expr</code> как HTML</dt>
+<dd>
+<p>Переменная или выражение внутри <code>&lt;%= ... %&gt;</code> будет вставлено  «как есть». Например: <code>&lt;%=title %&gt;</code> вставит значение переменной <code>title</code>, а <code>&lt;%=2+2%&gt;</code> вставит <code>4</code>.</p>
+</dd>
+<dt><code>&lt;%- expr %&gt;</code> – для вставки <code>expr</code> как текста</dt>
+<dd>
+<p>Переменная или выражение внутри <code>&lt;%- ... %&gt;</code> будет вставлено «как текст», то есть с заменой символов <code>&lt; &gt; &amp; &quot; '</code> на соответствующие HTML-entities.</p>
+<p>Например, если <code>expr</code> содержит текст <code>&lt;br&gt;</code>, то при <code>&lt;%-expr%&gt;</code> в результат попадёт, в отличие от <code>&lt;%=expr%&gt;</code>, не HTML-тег <code>&lt;br&gt;</code>, а  текст <code>&amp;lt;br&amp;gt;</code>.</p>
+</dd>
+</dl>
+<h2><a class="main__anchor" name="funktsiya-template" href="#funktsiya-template">Функция _.template</a></h2><p>Для работы с шаблоном в библиотеке <a href="https://github.com/bestiejs/lodash">LoDash</a> есть функция <code>_.template(tmpl, data, options)</code>.</p>
+<p>Её аргументы:</p>
+<dl>
+<dt><code>tmpl</code></dt>
+<dd>Шаблон.</dd>
+<dt><code>options</code></dt>
+<dd>Необязательные настройки, например можно поменять разделители.</dd>
+</dl>
+<p>Эта функция запускает «компиляцию» шаблона <code>tmpl</code> и возвращает результат в виде функции, которую далее можно запустить с данными и получить строку-результат.</p>
+<p>Вот так:</p>
+<div id="c7r1whj3nt" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:3,&quot;end&quot;:3},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Шаблон
+var tmpl = _.template('&lt;span class=&quot;title&quot;&gt;&lt;%=title%&gt;&lt;/span&gt;');
+
+// Данные
+var data = {
+  title: &quot;Заголовок&quot;
+};
+
+// Результат подстановки
+alert( tmpl(data) ); // &lt;span class=&quot;title&quot;&gt;Заголовок&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Пример выше похож на операцию «поиск-и-замена»: шаблон просто заменил <code>&lt;%=title%&gt;</code> на значение свойства <code>data.title</code>.</p>
+<p>Но возможность вставки JS-кода делает шаблоны сильно мощнее.</p>
+<p>Например, вот шаблон для генерации списка от <code>1</code> до <code>count</code>:</p>
+<div id="g43apu8w3g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// используется \, чтобы объявить многострочную переменную-текст шаблона
+var tmpl = '&lt;ul&gt;\
+  &lt;% for (var i=1; i&lt;=count; i++) { %&gt; \
+    &lt;li&gt;&lt;%=i%&gt;&lt;/li&gt; \
+  &lt;% } %&gt;\
+&lt;/ul&gt;';
+alert( _.template(tmpl)({count: 5}) ); // &lt;ul&gt;&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;...&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь в результат попал сначала текст <code>&lt;ul&gt;</code>, потом выполнился код <code>for</code>, который последовательно сгенерировал элементы списка, и затем список был закрыт <code>&lt;/ul&gt;</code>.</p>
+<h2><a class="main__anchor" name="hranenie-shablona-v-dokumente" href="#hranenie-shablona-v-dokumente">Хранение шаблона в документе</a></h2><p>Шаблон – это многострочный HTML-текст. Записывать его прямо в скрипте – неудобно.</p>
+<p>Один из альтернативных способов объявления шаблона – записать его в HTML, в тег <code>&lt;script&gt;</code> с нестандартным <code>type</code>, например <code>&quot;text/template&quot;</code>:</p>
+<div id="xre04ub568" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:14,&quot;end&quot;:27}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script type=&quot;text/template&quot; id=&quot;menu-template&quot;&gt;
+&lt;div class=&quot;menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;&lt;%-title%&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если <code>type</code> не знаком браузеру, то содержимое такого скрипта игнорируется, однако оно доступно при помощи <code>innerHTML</code>:</p>
+<div id="q03odf1t89" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var template = document.getElementById('menu-template').innerHTML;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В данном случае выбран <code>type=&quot;text/template&quot;</code>, однако подошёл бы и любой другой нестандартный, например <code>text/html</code>. Главное, что браузер такой скрипт никак не обработает. То есть, это всего лишь способ передать строку шаблона в HTML.</p>
+<p>Полный пример цикла с подключением библиотеки и шаблоном в HTML:</p>
+<div id="m8v0lte6rp" data-trusted="1" class="code-example" data-demo-height="150" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:17},{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- библиотека LoDash --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- шаблон для списка от 1 до count --&gt;
+&lt;script type=&quot;text/template&quot; id=&quot;list-template&quot;&gt;
+&lt;ul&gt;
+  &lt;% for (var i=1; i&lt;=count; i++) { %&gt;
+  &lt;li&gt;&lt;%=i%&gt;&lt;/li&gt;
+  &lt;% } %&gt;
+&lt;/ul&gt;
+&lt;/script&gt;
+
+&lt;script&gt;
+  var tmpl = _.template(document.getElementById('list-template').innerHTML);
+
+  // ..а вот и результат
+  var result = tmpl({count: 5});
+  document.write( result );
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="kak-rabotaet-funktsiya-template" href="#kak-rabotaet-funktsiya-template">Как работает функция _.template?</a></h2><p>Понимание того, как работает <code>_.template</code>, очень важно для отладки ошибок в шаблонах.</p>
+<p>Как обработка шаблонов устроена внутри? За счёт чего организована возможность перемежать с текстом произвольный JS-код?</p>
+<p>Оказывается, очень просто.</p>
+<p>Вызов <code>_.template(str)</code> разбивает строку <code>str</code> по разделителям и, при помощи <code>new Function</code> создаёт на её основе JavaScript-функцию. Тело этой функции создаётся таким образом, что код, который в шаблоне оформлен как <code>&lt;% ... %&gt;</code> – попадает в неё «как есть», а переменные и текст прибавляются к специальному временному «буферу», который в итоге возвращается.</p>
+<p>Взглянем на пример:</p>
+<div id="n1lpdkye83" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var compiled = _.template(&quot;&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;&quot;);
+
+alert( compiled );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция <code>compiled</code>, которую вернул вызов <code>_template</code> из этого примера, выглядит примерно так:</p>
+<div id="xo46y6kwoc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function(obj) {
+  obj || (obj = {});
+  var __t, __p = '', __e = _.escape;
+  with(obj) { \
+    __p += '&lt;h1&gt;' +
+      ((__t = (title)) == null ? '' : __t) +
+      '&lt;/h1&gt;';
+  }
+  return __p
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Она является результатом вызова <code>new Function(&quot;obj&quot;, &quot;код&quot;)</code>, где <code>код</code> динамическим образом генерируется на основе шаблона:</p>
+<ol>
+<li>Вначале в коде идёт «шапка» – стандартное начало функции, в котором объявляется переменная <code>__p</code>. В неё будет записываться результат.</li>
+<li>Затем добавляется блок <code>with(obj) { ... }</code>, внутри которого в <code>__p</code> добавляются фрагменты HTML из шаблона, а также переменные из выражений <code>&lt;%=...%&gt;</code>. Код из <code>&lt;%...%&gt;</code> копируется в функцию «как есть».</li>
+<li>Затем функция завершается, и <code>return __p</code> возвращает результат.</li>
+</ol>
+<p>При вызове этой функции, например <code>compiled({title: &quot;Заголовок&quot;})</code>, она получает объект данных как <code>obj</code>, здесь это <code>{title: &quot;Заголовок&quot;}</code>, и если внутри <code>with(obj) { .. }</code> обратиться к <code>title</code>, то по правилам <a href="with.html">конструкции with</a> это свойство будет получено из объекта.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Можно и без <code>with</code></span></div>
+            <div class="important__content"><p>Конструкция <code>with</code> является устаревшей, но в данном случае она полезна.</p>
+<p>Так как функция создаётся через <code>new Function(&quot;obj&quot;, &quot;код&quot;)</code> то:</p>
+<ul>
+<li>Она работает в глобальной области видимости, не имеет доступа к внешним локальным переменным.</li>
+<li>Внешний <code>use strict</code> на такую функцию не влияет, то есть даже в строгом режиме шаблон продолжит работать.</li>
+</ul>
+<p>Если мы всё же не хотим использовать <code>with</code> – нужно поставить второй параметр – <code>options</code>, указав параметр <code>variable</code> (название переменной с данными).</p>
+<p>Например:</p>
+<div id="3z02hqt010" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( _.template(&quot;&lt;h1&gt;&lt;%=menu.title%&gt;&lt;/h1&gt;&quot;, {variable: &quot;menu&quot;}) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат:</p>
+<div id="vk9wqo13fj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:9,&quot;end&quot;:13}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function(menu) {
+  var __t, __p = '';
+  __p += '&lt;h1&gt;' +
+    ((__t = (menu.title)) == null ? '' : __t) +
+    '&lt;/h1&gt;';
+  return __p
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При таком подходе переменная <code>title</code> уже не будет искаться в объекте данных автоматически, поэтому нужно будет обращаться к ней как <code>&lt;%=menu.title%&gt;</code>.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Кеширование скомпилированных шаблонов</span></div>
+            <div class="important__content"><p>Чтобы не компилировать один и тот же шаблон много раз, результаты обычно кешируют.</p>
+<p>Например, глобальная функция <code>getTemplate(&quot;menu-template&quot;)</code> может доставать шаблон из HTML, компилировать, результат запоминать и сразу отдавать при последующих обращениях к тому же шаблону.</p>
+</div></div>
+<h3><a class="main__anchor" name="menyu-na-shablonah" href="#menyu-na-shablonah">Меню на шаблонах</a></h3><p>Рассмотрим для наглядности полный пример меню на шаблонах.</p>
+<p>HTML (шаблоны):</p>
+<div id="2f3834jzw0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script type=&quot;text/template&quot; id=&quot;menu-template&quot;&gt;
+&lt;div class=&quot;menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;&lt;%-title%&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/script&gt;
+
+&lt;script type=&quot;text/template&quot; id=&quot;menu-list-template&quot;&gt;
+&lt;ul&gt;
+  &lt;% items.forEach(function(item) { %&gt;
+  &lt;li&gt;&lt;%-item%&gt;&lt;/li&gt;
+  &lt;% }); %&gt;
+&lt;/ul&gt;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>JS для создания меню:</p>
+<div id="bdvt9jeetb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var menu = new Menu({
+  title: &quot;Сладости&quot;,
+  // передаём также шаблоны
+  template: _.template(document.getElementById('menu-template').innerHTML),
+  listTemplate: _.template(document.getElementById('menu-list-template').innerHTML),
+  items: [
+    &quot;Торт&quot;,
+    &quot;Пончик&quot;,
+    &quot;Пирожное&quot;,
+    &quot;Шоколадка&quot;,
+    &quot;Мороженое&quot;
+  ]
+});
+
+document.body.appendChild(menu.getElem());</code></pre>
+        </div>
+      </div>
+      
+      </div><p>JS код <code>Menu</code>:</p>
+<div id="eneecjbf68" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(options) {
+  var elem;
+
+  function getElem() {
+    if (!elem) render();
+    return elem;
+  }
+
+  function render() {
+    var html = options.template({
+      title: options.title
+    });
+
+    elem = document.createElement('div');
+    elem.innerHTML = html;
+    elem = elem.firstElementChild;
+
+    elem.onmousedown = function() {
+      return false;
+    }
+
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+    }
+  }
+
+  function renderItems() {
+    if (elem.querySelector('ul')) return;
+
+    var listHtml = options.listTemplate({
+      items: options.items
+    });
+    elem.insertAdjacentHTML(&quot;beforeEnd&quot;, listHtml);
+  }
+
+  function open() {
+    renderItems();
+    elem.classList.add('open');
+  };
+
+  function close() {
+    elem.classList.remove('open');
+  };
+
+  function toggle() {
+    if (elem.classList.contains('open')) close();
+    else open();
+  };
+
+  this.getElem = getElem;
+  this.toggle = toggle;
+  this.close = close;
+  this.open = open;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:160px" src="https://ru.js.cx/article/template-lodash/menu-template/"></iframe>
+  </div><p>Здесь два шаблона. Первый мы уже разобрали, посмотрим теперь на список <code>ul/li</code>:</p>
+<div id="d5pfibz7iw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul&gt;
+  &lt;% items.forEach(function(item) { %&gt;
+  &lt;li&gt;&lt;%-item%&gt;&lt;/li&gt;
+  &lt;% }); %&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если разбить шаблон для списка элементов по разделителям, то он будет таким:</p>
+<ul>
+<li><code>&lt;ul&gt;</code> – текст</li>
+<li><code>&lt;% items.forEach(function(item) { %&gt;</code> – код</li>
+<li><code>&lt;li&gt;</code> – текст</li>
+<li><code>&lt;%-item%&gt;</code> – вставить значение <code>item</code> с экранированием</li>
+<li><code>&lt;/li&gt;</code> – текст</li>
+<li><code>&lt;% }); %&gt;</code> – код</li>
+<li><code>&lt;/ul&gt;</code> – текст</li>
+</ul>
+<p>Вот функция, которую возвратит <code>_.template(tmpl)</code> для этого шаблона:</p>
+<div id="i6u0xidzd9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function(obj) {
+  obj || (obj = {});
+  var __t, __p = '', __e = _.escape;
+  with(obj) {
+    __p += '\n&lt;ul&gt;\n  ';
+    items.forEach(function(item) {
+      __p += '\n  &lt;li&gt;' +
+        __e(item) + // &lt;%-item%&gt; экранирование функцией _.escape
+        '&lt;/li&gt;\n  ';
+    });
+    __p += '\n&lt;/ul&gt;\n';
+  }
+  return __p
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, она один-в-один повторяет код и вставляет текст в переменную <code>__p</code>. При этом выражение в <code>&lt;%-...%&gt;</code> обёрнуто в вызов <a href="https://lodash.com/docs#escape">_.escape</a>, который заменяет спецсимволы HTML на их текстовые варианты.</p>
+<h2><a class="main__anchor" name="otladka-shablonov" href="#otladka-shablonov">Отладка шаблонов</a></h2><p>Что, если в шаблоне ошибка? Например, синтаксическая. Конечно, ошибки будут возникать, куда же без них.</p>
+<p>Шаблон компилируется в функцию, ошибка будет либо при компиляции, либо позже, в процессе её выполнения. В различных шаблонных системах есть свои средства отладки, <code>_.template</code> тут не блистает.</p>
+<p>Но и здесь можно кое-что отладить. При ошибке, если она не синтаксическая, отладчик при этом останавливается где-то посередине «страшной» функции.</p>
+<p>Попробуйте сами запустить пример с открытыми инструментами разработчика и <em>включённой</em> опцией «остановка при ошибке»:</p>
+<div id="wnps7w1084" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/template&quot; id=&quot;menu-template&quot;&gt;
+&lt;div class=&quot;menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;&lt;%-title%&gt;&lt;/span&gt;
+  &lt;ul&gt;
+  &lt;% items.forEach(function(item) { %&gt;
+    &lt;li&gt;&lt;%-item%&gt;&lt;/li&gt;
+  &lt;% }); %&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/script&gt;
+
+&lt;script&gt;
+  var tmpl = _.template(document.getElementById('menu-template').innerHTML);
+
+  var result = tmpl({ title: &quot;Заголовок&quot; });
+
+  document.write(result);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В шаблоне допущена ошибка, поэтому отладчик остановит выполнение.</p>
+<p>В Chrome картина будет примерно такой:</p>
+<figure><div class="image" style="width:672px">
+      <div class="image__ratio" style="padding-top:48.36309523809524%"></div>
+      <img src="https://learn.javascript.ru/article/template-lodash/template-debugger.png" alt="" width="672" height="325" class="image__image">
+      </div></figure><p>Библиотека LoDash пытается нам помочь, подсказать, в каком именно шаблоне произошла ошибка. Ведь из функции это может быть неочевидно.</p>
+<p>Для этого она добавляет к шаблонам специальный идентификатор <a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl">sourceURL</a>, который служит аналогом «имени файла».  На картинке он отмечен красным.</p>
+<p>По умолчанию <code>sourceURL</code> имеет вид <code>/lodash/template/source[N]</code>, где <code>N</code> – постоянно увеличивающийся номер шаблона. В данном случае мы можем понять, что эта функция получена при самой первой компиляции.</p>
+<p>Это, конечно, лучше чем ничего, но, как правило, его имеет смысл заменить <code>sourceURL</code> на свой, указав при компиляции дополнительный параметр <code>sourceURL</code>:</p>
+<div id="ytcldq2nhh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>...
+var compiled = _.template(tmpl, {sourceURL: '/template/menu-template'});
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Попробуйте запустить <a href="https://learn.javascript.ru/article/template-lodash/template-error-sourceurl/">исправленный пример</a> и вы увидите в качестве имени файла <code>/template/menu-template</code>.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Не определена переменная – ошибка</span></div>
+            <div class="important__content"><p>Кстати говоря, а в чём же здесь ошибка?</p>
+<p>…А в том, что переменная <code>items</code> не передана в шаблон. При доступе к неизвестной переменной JavaScript генерирует ошибку.</p>
+<p>Самый простой способ это обойти – обращаться к необязательным переменным через <code>obj</code>, например <code>&lt;%=obj.items%&gt;</code>. Тогда в случае <code>undefined</code> просто ничего не будет выведено. Но в данном случае реакция совершенно адекватна, так как для меню список опций <code>items</code> является обязательным.</p>
+</div></div>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Шаблоны полезны для того, чтобы отделить HTML от кода. Это упрощает разработку и поддержку.</p>
+<p>В этой главе подробно разобрана система шаблонизации из библиотеки <a href="https://lodash.com/">LoDash</a>:</p>
+<ul>
+<li>Шаблон – это строка со специальными вставками кода <code>&lt;% ... %&gt;</code> или переменных <code>&lt;%- expr -&gt;</code>, <code>&lt;%= expr -&gt;</code>.</li>
+<li>Вызов <code>_.template(tmpl)</code> превращает шаблон <code>tmpl</code> в функцию, которой в дальнейшем передаются данные –
+и она генерирует HTML с ними.</li>
+</ul>
+<p>В этой главе мы рассмотрели хранение шаблонов в документе, при помощи <code>&lt;script&gt;</code> с нестандартным <code>type</code>. Конечно, есть и другие способы, можно хранить шаблоны и в отдельном файле, если шаблонная система или система сборки проектов это позволяют.</p>
+<p>Шаблонных систем много. Многие основаны на схожем принципе – генерации функции из строки, например:</p>
+<ul>
+<li><a href="http://www.embeddedjs.com/">EJS</a></li>
+<li><a href="https://jade-lang.com/">Jade</a></li>
+<li><a href="https://handlebarsjs.com/">Handlebars</a></li>
+</ul>
+<p>Есть и альтернативный подход – шаблонная система получает «образец» DOM-узла и клонирует его вызовом <code>cloneNode(true)</code>, каждый раз изменяя что-то внутри. В отличие от подхода, описанного выше, это будет работать не с произвольной строкой текста, а только и именно с DOM-узлами. Но в некоторых ситуациях у него есть преимущество.</p>
+<p>Такой подход используется во фреймворках:</p>
+<ul>
+<li><a href="https://angular.io/">AngularJS</a></li>
+<li><a href="https://knockoutjs.com/">Knockout.JS</a></li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shablon-dlya-tablitsy-s-polzovatelyami" name="shablon-dlya-tablitsy-s-polzovatelyami">Шаблон для таблицы с пользователями</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/table-template" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Есть данные:</p>
+<div id="d8kyonwxws" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var users = [
+  {name: &quot;Вася&quot;, age: 10},
+  {name: &quot;Петя&quot;, age: 15},
+  {name: &quot;Женя&quot;, age: 20},
+  {name: &quot;Маша&quot;, age: 25},
+  {name: &quot;Даша&quot;, age: 30},
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Выведите их в виде таблицы <code>TABLE/TR/TD</code> при помощи шаблона.</p>
+<p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://ru.js.cx/task/table-template/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/LaTL3JgMZpikuguL?p=preview" target="_blank" data-plunk-id="LaTL3JgMZpikuguL">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/eRitXhJleBf8jRhR?p=preview" target="_blank" data-plunk-id="eRitXhJleBf8jRhR">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shablon-v-div-s-display-none" name="shablon-v-div-s-display-none">Шаблон в div с display:none?</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/template-display-none" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Что лучше для размещения шаблона – <code>&lt;script&gt;</code> с нестандартным <code>type</code> или <code>&lt;div&gt;</code> с <code>display:none</code>?</p>
+<p>Почему? Есть ли какие-то другие хорошие варианты?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Основная причина – шаблон может быть любым, даже некорректным HTML. В <code>DIV</code> доставить незакрытым тег – и могут быть проблемы. А в скрипте может быть почти что угодно, его содержимое полностью игнорируется.</p>
+<p>Кроме того, содержимое <code>DIV</code> браузер обрабатывает, создаёт DOM-узлы, добавляет их в документ, но там они совсем не нужны, это же шаблон.</p>
+<p>Альтернативный вариант – поместить шаблон в комментарий <code>&lt;!-- ... --&gt;</code>, его содержимое можно получить при помощи <code>node.data</code>. Но у узла-комментария не может быть <code>id</code>, так что это менее удобно.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sdelayte-menyu-ssylkami" name="sdelayte-menyu-ssylkami">Сделайте меню ссылками</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/menu-template" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Возьмите в качестве исходного кода меню на шаблонах и модифицируйте его, чтобы оно выводило не просто список, а список ссылок.</p>
+<ul>
+<li>
+<p>Вместо массива <code>items</code> меню должно принимать <em>объект</em> <code>items</code>, вот так:</p>
+<div id="8zyh1zv60q" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var menu = new Menu({
+  title: &quot;Сладости&quot;,
+  template: _.template(document.getElementById('menu-template').innerHTML),
+  listTemplate: _.template(document.getElementById('menu-list-template').innerHTML),
+  items: {
+    &quot;donut&quot;: &quot;Пончик&quot;,
+    &quot;cake&quot;: &quot;Пирожное&quot;,
+    &quot;chocolate&quot;: &quot;Шоколадка&quot;
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Вывод в шаблоне пусть будет не просто <code>&lt;li&gt;Пончик&lt;/li&gt;</code>, а через ссылку: <code>&lt;a href=&quot;#donut&quot;&gt;Пончик&lt;/a&gt;</code>. При клике на ссылку должно выводиться название из её <code>href</code>.</p>
+</li>
+</ul>
+<p>Демо:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:130px" src="https://ru.js.cx/task/menu-template/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/vlzDEtPPvjWpS2Nz?p=preview" target="_blank" data-plunk-id="vlzDEtPPvjWpS2Nz">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>В решении обратим внимание:</p>
+<ul>
+<li>Чтобы ссылка <code>href</code> была корректной, даже если в ключах <code>items</code> попались русские символы и пробелы – используется функция <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>.</li>
+<li>Для вывода <code>href</code> при клике на ссылку используется делегирование. Причём обработчик не сам выводит <code>href</code>, а лишь разбирается в произошедшем и вызывает функцию <code>select</code>, которая представляет действие «выбора» элемента меню. В последующих примерах эта функция станет сложнее.</li>
+</ul>
+<p><a href="https://plnkr.co/edit/WlX0ddlcB6hDjR9U?p=preview" target="_blank" data-plunk-id="WlX0ddlcB6hDjR9U">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftemplate-lodash" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/template-lodash","identifier":"\/template-lodash"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/template-lodash by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/range-textrange-selection/fix-ie/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <script src="https://learn.javascript.ru/article/range-textrange-selection/fix-ie/fixIERangeObject.js"></script>
+
+  <script>
+    function test() {
+
+      var range = getRangeObject();
+      if (range) {
+        alert(range);
+        alert(range.startContainer.nodeValue);
+        alert(range.startOffset);
+        alert(range.endOffset);
+      } else {
+        alert('Сначала выделите текст');
+      }
+    }
+  </script>
+</head>
+
+<body>
+  Выделите текст:
+  <pre>The quick brown fox jumped over the lazy dog</pre>
+  <input type="button" value="Вывести выделение и свойства startContainer, startOffset, endOffset" onclick="test();" />
+</body>
+
+
+<!-- Mirrored from learn.javascript.ru/article/range-textrange-selection/fix-ie/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+</html>

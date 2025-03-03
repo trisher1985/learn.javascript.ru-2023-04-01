@@ -1,0 +1,818 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/js-animation by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">JavaScript-анимации</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="js-animation.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="JavaScript-анимации"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JavaScript-анимации"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="css-animations.html"><link rel="next" href="web-components.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="JavaScript-анимации"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/js-animation"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/js-animation"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/js-animation"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/js-animation"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/js-animation"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="js-animation.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/js-animation"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/js-animation">English</option><option value="https://es.javascript.info/js-animation">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/js-animation">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/js-animation">Italiano</option><option value="https://ja.javascript.info/js-animation">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/js-animation" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/js-animation">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="3" data-tooltip="Урок 3 из 3"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="animation.html"><span>Анимация</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Анимация","item":"https://learn.javascript.ru/animation"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 17 сентября 2022 г."><div class="updated-at__content">17 сентября 2022 г.</div></div></div><h1 class="main__header-title">JavaScript-анимации</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="JavaScript-анимации"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>С помощью JavaScript-анимаций можно делать вещи, которые нельзя реализовать на CSS.</p>
+<p>Например, движение по сложному пути с временной функцией, отличной от кривой Безье, или canvas-анимации.</p>
+<h2><a class="main__anchor" name="ispolzovanie-setinterval" href="#ispolzovanie-setinterval">Использование setInterval</a></h2><p>Анимация реализуется через последовательность кадров, каждый из которых немного меняет HTML/CSS-свойства.</p>
+<p>Например, изменение <code>style.left</code> от <code>0px</code> до <code>100px</code> – двигает элемент. И если мы будем делать это с помощью <code>setInterval</code>, изменяя на <code>2px</code> с небольшими интервалами времени, например 50 раз в секунду, тогда изменения будут выглядеть плавными. Принцип такой же, как в кино: 24 кадров в секунду достаточно, чтобы создать эффект плавности.</p>
+<p>Псевдокод мог бы выглядеть так:</p>
+<div id="0nufp8nfai" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let timer = setInterval(function() {
+  if (animation complete) clearInterval(timer);
+  else increase style.left by 2px
+}, 20); // изменять на 2px каждые 20ms, это около 50 кадров в секунду</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Более детальная реализация этой анимации:</p>
+<div id="9adluengjr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = Date.now(); // запомнить время начала
+
+let timer = setInterval(function() {
+  // сколько времени прошло с начала анимации?
+  let timePassed = Date.now() - start;
+
+  if (timePassed &gt;= 2000) {
+    clearInterval(timer); // закончить анимацию через 2 секунды
+    return;
+  }
+
+  // отрисовать анимацию на момент timePassed, прошедший с начала анимации
+  draw(timePassed);
+
+}, 20);
+
+// в то время как timePassed идёт от 0 до 2000
+// left изменяет значение от 0px до 400px
+function draw(timePassed) {
+  train.style.left = timePassed / 5 + 'px';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Для просмотра примера, кликните на него:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/js-animation/move/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/REz63d0q2nbkFa00?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/js-animation/move/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;style&gt;
+    #train {
+      position: relative;
+      cursor: pointer;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;img id=&quot;train&quot; src=&quot;https://js.cx/clipart/train.gif&quot;&gt;
+
+
+  &lt;script&gt;
+    train.onclick = function() {
+      let start = Date.now();
+
+      let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+
+        train.style.left = timePassed / 5 + 'px';
+
+        if (timePassed &gt; 2000) clearInterval(timer);
+
+      }, 20);
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="ispolzovanie-requestanimationframe" href="#ispolzovanie-requestanimationframe">Использование requestAnimationFrame</a></h2><p>Теперь давайте представим, что у нас есть несколько анимаций, работающих одновременно.</p>
+<p>Если мы запустим их независимо с помощью <code>setInterval(..., 20)</code>, тогда браузеру будет необходимо выполнять отрисовку гораздо чаще, чем раз в <code>20ms</code>.</p>
+<p>Это происходит из-за того, что каждая анимация имеет своё собственное время старта и «каждые 20 миллисекунд» для разных анимаций – разные. Интервалы не выравнены и у нас будет несколько независимых срабатываний в течение <code>20ms</code>.</p>
+<p>Другими словами:</p>
+<div id="1c3ek9rmwx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setInterval(function() {
+  animate1();
+  animate2();
+  animate3();
+}, 20)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Меньше нагружают систему, чем три независимых функции:</p>
+<div id="xiinbx92pu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setInterval(animate1, 20); // независимые анимации
+setInterval(animate2, 20); // в разных местах кода
+setInterval(animate3, 20);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эти независимые перерисовки лучше сгруппировать вместе, тогда они будут легче для браузера, а значит – не грузить процессор и более плавно выглядеть.</p>
+<p>Существует ещё одна вещь, про которую надо помнить: когда CPU перегружен или есть другие причины делать перерисовку реже (например, когда вкладка браузера скрыта), нам не следует делать её каждые <code>20ms</code>.</p>
+<p>Но как нам узнать об этом в JavaScript? Спецификация <a href="https://www.w3.org/TR/animation-timing/">Animation timing</a> описывает функцию <code>requestAnimationFrame</code>, которая решает все описанные проблемы и делает даже больше.</p>
+<p>Синтаксис:</p>
+<div id="l7vhv6erec" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let requestId = requestAnimationFrame(callback)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такой вызов планирует запуск функции <code>callback</code> на ближайшее время, когда браузер сочтёт возможным осуществить анимацию.</p>
+<p>Если в <code>callback</code> происходит изменение элемента, тогда оно будет сгруппировано с другими <code>requestAnimationFrame</code> и CSS-анимациями. Таким образом браузер выполнит один геометрический пересчёт и отрисовку, вместо нескольких.</p>
+<p>Значение <code>requestId</code> может быть использовано для отмены анимации:</p>
+<div id="zzrld46r55" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// отмена запланированного запуска callback
+cancelAnimationFrame(requestId);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция <code>callback</code> имеет один аргумент – время прошедшее с момента начала загрузки страницы в миллисекундах. Это значение может быть получено с помощью вызова <a href="https://developer.mozilla.org/ru/docs/Web/API/Performance/now">performance.now()</a>.</p>
+<p>Как правило, <code>callback</code> запускается очень скоро, если только не перегружен CPU или не разряжена батарея ноутбука, или у браузера нет какой-то ещё причины замедлиться.</p>
+<p>Код ниже показывает время между первыми 10 запусками <code>requestAnimationFrame</code>. Обычно оно 10-20 мс:</p>
+<div id="t9s2hfrcf4" data-trusted="1" class="code-example" data-demo-height="40" data-refresh="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  let prev = performance.now();
+  let times = 0;
+
+  requestAnimationFrame(function measure(time) {
+    document.body.insertAdjacentHTML(&quot;beforeEnd&quot;, Math.floor(time - prev) + &quot; &quot;);
+    prev = time;
+
+    if (times++ &lt; 10) requestAnimationFrame(measure);
+  })
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="struktura-animatsii" href="#struktura-animatsii">Структура анимации</a></h2><p>Теперь мы можем создать более сложную функцию анимации с помощью <code>requestAnimationFrame</code>:</p>
+<div id="gzjrdwv8jd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function animate({timing, draw, duration}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction изменяется от 0 до 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    // вычисление текущего состояния анимации
+    let progress = timing(timeFraction);
+
+    draw(progress); // отрисовать её
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция <code>animate</code> имеет три аргумента, которые описывают анимацию:</p>
+<dl>
+<dt><code>duration</code></dt>
+<dd>
+<p>Продолжительность анимации. Например, <code>1000</code>.</p>
+</dd>
+<dt><code>timing(timeFraction)</code></dt>
+<dd>
+<p>Функция расчёта времени, как CSS-свойство <code>transition-timing-function</code>, которая будет вычислять прогресс анимации (как ось <code>y</code> у кривой Безье) в зависимости от прошедшего времени (<code>0</code> в начале, <code>1</code> в конце).</p>
+<p>Например, линейная функция значит, что анимация идёт с одной и той же скоростью:</p>
+<div id="zub3ci23o7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function linear(timeFraction) {
+  return timeFraction;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>График функции:
+<img src="article/js-animation/linear.svg" alt="" width="234" height="240"></p>
+<p>Это как если бы в <code>transition-timing-function</code> передать значение <code>linear</code>. Ниже будут представлены более интересные примеры.</p>
+</dd>
+<dt><code>draw(progress)</code></dt>
+<dd>
+<p>Функция отрисовки, которая получает аргументом значение прогресса анимации и отрисовывает его. Значение <code>progress=0</code> означает, что анимация находится в начале, и значение <code>progress=1</code> – в конце.</p>
+<p>Эта та функция, которая на самом деле и рисует анимацию.</p>
+<p>Вот как она могла бы двигать элемент:</p>
+<div id="o91xstpcca" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function draw(progress) {
+  train.style.left = progress + 'px';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Или делать что-нибудь ещё. Мы можем анимировать что угодно, как захотим.</p>
+</dd>
+</dl>
+<p>Теперь давайте используем нашу функцию, чтобы анимировать свойство <code>width</code> от <code>0</code> до <code>100%</code>.</p>
+<p>Нажмите на элемент для того, чтобы посмотреть пример:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">animate.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/js-animation/width/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/UG654ijtrcMuYNpJ?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:60px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/js-animation/width/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function animate({duration, draw, timing}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    let progress = timing(timeFraction)
+
+    draw(progress);
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;style&gt;
+    progress {
+      width: 5%;
+    }
+  &lt;/style&gt;
+  &lt;script src=&quot;animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;progress id=&quot;elem&quot;&gt;&lt;/progress&gt;
+
+  &lt;script&gt;
+    elem.onclick = function() {
+      animate({
+        duration: 1000,
+        timing: function(timeFraction) {
+          return timeFraction;
+        },
+        draw: function(progress) {
+          elem.style.width = progress * 100 + '%';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Код:</p>
+<div id="l546aqydab" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>animate({
+  duration: 1000,
+  timing(timeFraction) {
+    return timeFraction;
+  },
+  draw(progress) {
+    elem.style.width = progress * 100 + '%';
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В отличие от CSS-анимаций, можно создать любую функцию расчёта времени и любую функцию отрисовки. Функция расчёта времени не будет ограничена только кривой Безье, а функция <code>draw</code> может менять не только свойства, но и создавать новые элементы (например, для создания анимации фейерверка).</p>
+<h2><a class="main__anchor" name="funktsii-raschyota-vremeni" href="#funktsii-raschyota-vremeni">Функции расчёта времени</a></h2><p>Мы уже рассмотрели самый простой пример линейной функции расчёта времени выше.</p>
+<p>Давайте посмотрим другие. Мы попробуем выполнить анимации с разными функциями расчёта времени, чтобы посмотреть как они работают.</p>
+<h3><a class="main__anchor" name="stepen-n" href="#stepen-n">Степень n</a></h3><p>Если мы хотим ускорить анимацию, мы можем возвести <code>progress</code> в степень <code>n</code>.</p>
+<p>Например, параболическая кривая:</p>
+<div id="qk8kgrdtz3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function quad(timeFraction) {
+  return Math.pow(timeFraction, 2)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>График:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/quad.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/quad.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><p>Посмотрим в действии (нажмите для активации):</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/quad/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/quad/"></iframe>
+  </div><p>…Или кубическая кривая, или любой другой множитель <code>n</code>. Повышение степени увеличивает скорость анимации.</p>
+<p>Вот график для функции <code>progress</code> в степени <code>5</code>:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/quint.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/quint.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><p>В действии:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/quint/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/quint/"></iframe>
+  </div><h3><a class="main__anchor" name="duga" href="#duga">Дуга</a></h3><p>Функция:</p>
+<div id="tgx1yxpw9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function circ(timeFraction) {
+  return 1 - Math.sin(Math.acos(timeFraction));
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>График:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/circ.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/circ.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/circ/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/circ/"></iframe>
+  </div><h3><a class="main__anchor" name="obratno-vystrel-iz-luka" href="#obratno-vystrel-iz-luka">Обратно: выстрел из лука</a></h3><p>Эта функция совершает «выстрел из лука». В начале «натягивается тетива», а затем «выстрел».</p>
+<p>В отличие от предыдущей функции, теперь всё зависит от дополнительного параметра <code>x</code> – «коэффициента эластичности». Он определяет силу «натяжения тетивы».</p>
+<p>Код:</p>
+<div id="10ytpw6b0c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function back(x, timeFraction) {
+  return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>График для <code>x = 1.5</code>:</strong></p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/back.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/back.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><p>Для анимации мы используем <code>x</code> с определённым значением. Пример для <code>x</code> со значением <code>1.5</code>:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/back/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/back/"></iframe>
+  </div><h3><a class="main__anchor" name="otskoki" href="#otskoki">Отскоки</a></h3><p>Представьте, что мы бросили мяч вниз. Он падает, ударяется о землю, подскакивает несколько раз и останавливается.</p>
+<p>Функции <code>bounce</code> делает то же самое, но в обратном порядке: «отскоки» начинаются сразу. Для этого заданы специальные коэффициенты:</p>
+<div id="rvy6iinpdc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function bounce(timeFraction) {
+  for (let a = 0, b = 1; 1; a += b, b /= 2) {
+    if (timeFraction &gt;= (7 - 4 * a) / 11) {
+      return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/bounce/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/bounce/"></iframe>
+  </div><h3><a class="main__anchor" name="elastichnaya-animatsiya" href="#elastichnaya-animatsiya">Эластичная анимация</a></h3><p>Ещё одна «эластичная» функция, которая принимает дополнительный параметр <code>x</code> для «начального отрезка».</p>
+<div id="u1v67kilz7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function elastic(x, timeFraction) {
+  return Math.pow(2, 10 * (timeFraction - 1)) * Math.cos(20 * Math.PI * x / 3 * timeFraction)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>График для <code>x=1.5</code>:</strong>
+<img src="article/js-animation/elastic.svg" alt="" width="233" height="388"></p>
+<p>В действии со значением <code>x=1.5</code>:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/js-animation/elastic/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://ru.js.cx/article/js-animation/elastic/"></iframe>
+  </div><h2><a class="main__anchor" name="reversivnye-funktsii-ease" href="#reversivnye-funktsii-ease">Реверсивные функции: ease*</a></h2><p>Итак, у нас получилась коллекция функций расчёта времени. Их прямое использование называется «easeIn».</p>
+<p>Иногда нужно показать анимацию в обратном режиме. Преобразование функции, которое даёт такой эффект, называется «easeOut».</p>
+<h3><a class="main__anchor" name="easeout" href="#easeout">easeOut</a></h3><p>В режиме «easeOut» <code>timing</code> функции оборачиваются функцией <code>timingEaseOut</code>:</p>
+<div id="lbr5y9wusg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>timingEaseOut(timeFraction) = 1 - timing(1 - timeFraction)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другими словами, мы имеем функцию «преобразования» – <code>makeEaseOut</code>, которая берет «обычную» функцию расчёта времени и возвращает обёртку над ней:</p>
+<div id="0he69xsbtz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// принимает функцию расчёта времени и возвращает преобразованный вариант
+function makeEaseOut(timing) {
+  return function(timeFraction) {
+    return 1 - timing(1 - timeFraction);
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Например, мы можем взять функцию <code>bounce</code> описанную выше:</p>
+<div id="m35wpzbbzs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let bounceEaseOut = makeEaseOut(bounce);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Таким образом, отскоки будут не в начале функции, а в конце. Смотрится гораздо лучше:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/js-animation/bounce-easeout/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/FYCgCDsybwQXq3qe?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/js-animation/bounce-easeout/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#brick {
+  width: 40px;
+  height: 20px;
+  background: #EE6B47;
+  position: relative;
+  cursor: pointer;
+}
+
+#path {
+  outline: 1px solid #E8C48E;
+  width: 540px;
+  height: 20px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;div id=&quot;path&quot;&gt;
+    &lt;div id=&quot;brick&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    function makeEaseOut(timing) {
+      return function(timeFraction) {
+        return 1 - timing(1 - timeFraction);
+      }
+    }
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+
+    let bounceEaseOut = makeEaseOut(bounce);
+
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: bounceEaseOut,
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Ниже мы можем увидеть, как трансформации изменяют поведение функции:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/bounce-inout.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/bounce-inout.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><p>Если раньше анимационный эффект, такой как отскоки, был в начале, то после трансформации он будет показан в конце.</p>
+<p>На графике выше красным цветом обозначена <span style="color:#EE6B47">обычная функция</span> и синим – <span style="color:#62C0DC">после easeOut</span>.</p>
+<ul>
+<li>Обычный скачок – объект сначала медленно скачет внизу, а затем резко подпрыгивает вверх.</li>
+<li>Обратный <code>easeOut</code> – объект вначале прыгает вверх, и затем скачет там.</li>
+</ul>
+<h3><a class="main__anchor" name="easeinout" href="#easeinout">easeInOut</a></h3><p>Мы можем применить эффект дважды – в начале и конце анимации. Такая трансформация называется «easeInOut».</p>
+<p>Для функции расчёта времени, анимация будет вычисляться следующим образом:</p>
+<div id="9bqlxj68zy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (timeFraction &lt;= 0.5) { // первая половина анимации
+  return timing(2 * timeFraction) / 2;
+} else { // вторая половина анимации
+  return (2 - timing(2 * (1 - timeFraction))) / 2;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Код функции-обёртки:</p>
+<div id="n1e5g0eo3v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeEaseInOut(timing) {
+  return function(timeFraction) {
+    if (timeFraction &lt; .5)
+      return timing(2 * timeFraction) / 2;
+    else
+      return (2 - timing(2 * (1 - timeFraction))) / 2;
+  }
+}
+
+bounceEaseInOut = makeEaseInOut(bounce);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии, <code>bounceEaseInOut</code>:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/js-animation/bounce-easeinout/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/ZIapTxDZ2bdlPH7u?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/js-animation/bounce-easeinout/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#brick {
+  width: 40px;
+  height: 20px;
+  background: #EE6B47;
+  position: relative;
+  cursor: pointer;
+}
+
+#path {
+  outline: 1px solid #E8C48E;
+  width: 540px;
+  height: 20px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;div id=&quot;path&quot;&gt;
+    &lt;div id=&quot;brick&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    function makeEaseInOut(timing) {
+      return function(timeFraction) {
+        if (timeFraction &lt; .5)
+          return timing(2 * timeFraction) / 2;
+        else
+          return (2 - timing(2 * (1 - timeFraction))) / 2;
+      }
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+
+    let bounceEaseInOut = makeEaseInOut(bounce);
+
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: bounceEaseInOut,
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Функция «easeInOut» объединяет два графика в один: <code>easeIn</code> (обычный) для первой половины анимации и <code>easeOut</code> (обратный) – для второй половины.</p>
+<p>Разница хорошо заметна, если сравнивать графики <code>easeIn</code>, <code>easeOut</code> и <code>easeInOut</code> для функции <code>circ</code>:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="article/js-animation/circ-ease.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="article/js-animation/circ-ease.svg" alt="" width="234" height="240">
+      </object>
+      </div></figure><ul>
+<li><span style="color:#EE6B47">Красный</span> обычный вариант <code>circ</code> (<code>easeIn</code>).</li>
+<li><span style="color:#8DB173">Зелёный</span> – <code>easeOut</code>.</li>
+<li><span style="color:#62C0DC">Синий</span> – <code>easeInOut</code>.</li>
+</ul>
+<p>Как видно, график первой половины анимации представляет собой уменьшенный <code>easeIn</code>, а второй – уменьшенный <code>easeOut</code>. В результате, анимация начинается и заканчивается одинаковым эффектом.</p>
+<h2><a class="main__anchor" name="bolee-interesnaya-funktsiya-draw" href="#bolee-interesnaya-funktsiya-draw">Более интересная функция «draw»</a></h2><p>Вместо передвижения элемента мы можем делать что-нибудь ещё. Всё, что нам нужно – это правильно написать функцию <code>draw</code>.</p>
+<p>Вот пример «скачущей» анимации набирающегося текста:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/js-animation/text/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/xBR3Xm56LYpWCP0x?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/js-animation/text/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>textarea {
+  display: block;
+  border: 1px solid #BBB;
+  color: #444;
+  font-size: 110%;
+}
+
+button {
+  margin-top: 10px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;textarea id=&quot;textExample&quot; rows=&quot;5&quot; cols=&quot;60&quot;&gt;Но взял он меч, и взял он щит,
+Высоких полон дyм.
+В глущобу путь его лежит
+Под дерево Тумтум.
+  &lt;/textarea&gt;
+
+  &lt;button onclick=&quot;animateText(textExample)&quot;&gt;Запустить анимацию набора текста!&lt;/button&gt;
+
+  &lt;script&gt;
+    function animateText(textArea) {
+      let text = textArea.value;
+      let to = text.length,
+        from = 0;
+
+      animate({
+        duration: 5000,
+        timing: bounce,
+        draw: function(progress) {
+          let result = (to - from) * progress + from;
+          textArea.value = text.slice(0, Math.ceil(result))
+        }
+      });
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>JavaScript может помочь в тех случаях, когда CSS не справляется или нужен жёсткий контроль над анимацией. JavaScript-анимации должны быть сделаны с помощью <code>requestAnimationFrame</code>. Это встроенный метод браузера, который вызывает переданную в него функцию в тот момент, когда браузер готовится совершить перерисовку (обычно это происходит быстро, но конкретные задержки зависят от браузера).</p>
+<p>Когда вкладка скрыта, на ней совсем не происходит перерисовок, и функция не будет вызвана: анимация будет приостановлена и не потратит ресурсы. Это хорошо.</p>
+<p>Вспомогательная функция <code>animate</code> для создания анимации:</p>
+<div id="l4djk1w2ez" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function animate({timing, draw, duration}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction изменяется от 0 до 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    // вычисление текущего состояния анимации
+    let progress = timing(timeFraction);
+
+    draw(progress); // отрисовать её
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Опции:</p>
+<ul>
+<li><code>duration</code> – общая продолжительность анимации в миллисекундах.</li>
+<li><code>timing</code> – функция вычисления прогресса анимации. Получается момент времени от 0 до 1, возвращает прогресс анимации, обычно тоже от 0 до 1.</li>
+<li><code>draw</code> – функция отрисовки анимации.</li>
+</ul>
+<p>Конечно, мы могли бы улучшить вспомогательную функцию и добавить в неё больше наворотов. Но JavaScript-анимации не каждый день используются, а только когда хотят сделать что-то интересное и необычное. Не стоит усложнять функцию до тех пор пока это вам не понадобились.</p>
+<p>JavaScript-анимации могут использовать любые функции расчёта времени. Мы рассмотрели множество примеров и их вариаций, чтобы сделать их ещё более универсальными. В отличие от CSS, мы здесь не ограничены только кривой Безье.</p>
+<p>То же самое и с <code>draw</code>: мы можем анимировать всё что угодно, не только CSS-свойства.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#animiruyte-prygayuschiy-myachik" name="animiruyte-prygayuschiy-myachik">Анимируйте прыгающий мячик</a></h3><a class="task__open-link" href="task/animate-ball.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Создайте прыгающий мячик. Кликните, чтобы посмотреть, как это должно выглядеть:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/task/animate-ball/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/hWG5hvkX1qcfkZ0d?p=preview" target="_blank" data-plunk-id="hWG5hvkX1qcfkZ0d">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Чтобы заставить мячик прыгать, можно использовать CSS-свойство <code>top</code> и задать мячику <code>position:absolute</code> внутри поля с <code>position:relative</code>.</p>
+<p>Нижняя координата поля – <code>field.clientHeight</code>. CSS-свойство <code>top</code> относится к верхней границе мяча, которая должна идти от 0 до <code>field.clientHeight - ball.clientHeight</code>.</p>
+<p>А чтобы получить эффект «скачущего» мяча, мы можем использовать функцию расчёта времени <code>bounce</code> в режиме <code>easeOut</code>.</p>
+<p>Вот конечный код для анимации:</p>
+<div id="ka1duicx2j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let to = field.clientHeight - ball.clientHeight;
+
+animate({
+  duration: 2000,
+  timing: makeEaseOut(bounce),
+  draw(progress) {
+    ball.style.top = to * progress + 'px'
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/5l7n4AysSxfg6AO0?p=preview" target="_blank" data-plunk-id="5l7n4AysSxfg6AO0">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#animiruyte-myachik-prygayuschiy-vpravo" name="animiruyte-myachik-prygayuschiy-vpravo">Анимируйте мячик, прыгающий вправо</a></h3><a class="task__open-link" href="task/animate-ball-hops.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Сделайте отскок мяча вправо. Как в примере:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/task/animate-ball-hops/solution/"></iframe>
+  </div><p>Напишите код для анимации. Расстояние слева <code>100px</code>.</p>
+<p>Возьмите решение предыдущей задачи <a href="task/animate-ball.html">Анимируйте прыгающий мячик</a> за основу.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>В задаче <a href="task/animate-ball.html">Анимируйте прыгающий мячик</a> нам надо было анимировать только одно свойство. Теперь необходимо добавить ещё одно: <code>elem.style.left</code>.</p>
+<p>Горизонтальная координата меняется по другому закону: она не «подпрыгивает», а постепенно увеличивается, сдвигая шар вправо.</p>
+<p>Для этого мы можем написать ещё одну функцию <code>animate</code>.</p>
+<p>В качестве временной функции можно использовать <code>linear</code>, но <code>makeEaseOut(quad)</code> будет выглядеть гораздо лучше.</p>
+<p>Код:</p>
+<div id="fhvk58n6kq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let height = field.clientHeight - ball.clientHeight;
+let width = 100;
+
+// анимация top (прыжки)
+animate({
+  duration: 2000,
+  timing: makeEaseOut(bounce),
+  draw: function(progress) {
+    ball.style.top = height * progress + 'px'
+  }
+});
+
+// анимация left (движение вправо)
+animate({
+  duration: 2000,
+  timing: makeEaseOut(quad),
+  draw: function(progress) {
+    ball.style.left = width * progress + &quot;px&quot;
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/k1XB00vHN87DQfKl?p=preview" target="_blank" data-plunk-id="k1XB00vHN87DQfKl">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="css-animations.html" data-tooltip="CSS-анимации"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="web-components.html" data-tooltip="Веб-компоненты"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/js-animation","identifier":"\/js-animation"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="animation.html">Анимация</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ispolzovanie-setinterval">Использование setInterval</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ispolzovanie-requestanimationframe">Использование requestAnimationFrame</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#struktura-animatsii">Структура анимации</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#funktsii-raschyota-vremeni">Функции расчёта времени</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#reversivnye-funktsii-ease">Реверсивные функции: ease*</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bolee-interesnaya-funktsiya-draw">Более интересная функция «draw»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fjs-animation" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/7-animation/3-js-animation" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/js-animation by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:34 GMT -->
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/gcc-advanced-optimization by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">GCC: продвинутые оптимизации</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="gcc-advanced-optimization.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="GCC: продвинутые оптимизации"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="GCC: продвинутые оптимизации"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="GCC: продвинутые оптимизации"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">GCC: продвинутые оптимизации</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="GCC: продвинутые оптимизации"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Продвинутый режим оптимизации google closure compiler включается опцией <code>–compilation_level ADVANCED_OPTIMIZATIONS.</code></p>
+<p>Слово «продвинутый» (advanced) здесь, пожалуй, не совсем подходит. Было бы более правильно назвать его «супер-агрессивный-ломающий-ваш-неподготовленный-код-режим». Кардинальное отличие применяемых оптимизаций от обычных (simple) – в том, что они небезопасны.</p>
+<p>Чтобы им пользоваться – надо уметь это делать.</p>
+<h2><a class="main__anchor" name="osnovnoy-printsip-prodvinutogo-rezhima" href="#osnovnoy-printsip-prodvinutogo-rezhima">Основной принцип продвинутого режима</a></h2><ul>
+<li>Если в обычном режиме переименовываются только локальные переменные внутри функций, то в «продвинутом» – на более короткие имена заменяется все.</li>
+<li>Если в обычном режиме удаляется недостижимый код после <code>return</code>, то в продвинутом – вообще весь код, который не вызывается в явном виде.</li>
+</ul>
+<p>Например, если запустить продвинутую оптимизацию на таком коде:</p>
+<div id="z7j70vusbk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// my.js
+function test(node) {
+  node.innerHTML = &quot;newValue&quot;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Строка запуска компилятора:</p>
+<div id="m7n3mhoh06" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>java -jar compiler.jar --compilation_level ADVANCED_OPTIMIZATIONS --js my.js</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…То результат будет – пустой файл. Google Closure Compiler увидит, что функция <code>test</code> не используется, и с чистой совестью вырежет её.</p>
+<p>А в следующем скрипте функция сохранится:</p>
+<div id="zm4w6fyf8g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function test(n) {
+  alert( &quot;this is my test number &quot; + n );
+}
+test(1);
+test(2);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После сжатия:</p>
+<div id="g6grf6t3ch" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function a(b) {
+  alert(&quot;this is my test number &quot; + b)
+}
+a(1);
+a(2);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь в скрипте присутствует явный вызов функции, поэтому она сохранилась.</p>
+<p>Конечно, есть способы, чтобы сохранить функции, вызов которых происходит вне скрипта, и мы их обязательно рассмотрим.</p>
+<p><strong>Продвинутый режим сжатия не предусматривает сохранения глобальных переменных. Он  переименовывает, инлайнит, удаляет вообще все символы, кроме зарезервированных.</strong></p>
+<p>Иначе говоря, продвинутый режим (ADVANCED_OPTIMIZATIONS), в отличие от простого (SIMPLE_OPTIMIZATIONS – по умолчанию), вообще не заботится о доступности кода извне и сохранении ссылочной целостности относительно внешних скриптов.</p>
+<p>Единственное, что он гарантирует – это внутреннюю ссылочную целостность, и то – при соблюдении ряда условий и практик программирования.</p>
+<p>Собственно, за счёт такого агрессивного подхода и достигается дополнительный эффект оптимизации и сжатия скриптов.</p>
+<div class="summary"><div class="summary__content"><p>То есть, продвинутый режим – это не просто «улучшенный обычный», а принципиально другой, небезопасный и обфусцирующий подход к сжатию.</p>
+<p>Этот режим является «фирменной фишкой» Google Closure Compiler, недоступной при использовании других компиляторов.</p>
+</div></div>
+<p>Для того, чтобы эффективно сжимать Google Closure Compiler в продвинутом режиме, нужно понимать, что и как он делает. Это мы сейчас обсудим.</p>
+<h3><a class="main__anchor" name="sohranenie-ssylochnoy-tselostnosti" href="#sohranenie-ssylochnoy-tselostnosti">Сохранение ссылочной целостности</a></h3><p>Чтобы использовать сжатый скрипт, мы должны иметь возможность вызывать функции под теми именами, которые им дали.</p>
+<p>То есть, перед нами стоит задача <em>сохранения ссылочной целостности</em>, которая заключается в том, чтобы обеспечить доступность нужных функций для обращений по исходному имени извне скрипта.</p>
+<p>Существует два способа сохранения внешней ссылочной целостности: экстерны и экспорты. Мы в подробностях рассмотрим оба, но перед этим необходимо упомянуть о модулях – другой важнейшей возможности GCC.</p>
+<h3><a class="main__anchor" name="moduli" href="#moduli">Модули</a></h3><p>При сжатии GCC можно указать одновременно много JavaScript-файлов. &quot;Эка невидаль, &quot; – скажете вы, и будете правы. Да, пока что ничего особого.</p>
+<p>Но в дополнение к этому можно явно указать, какие исходные файлы сжать в какие файлы результата. То есть, разбить итоговую сборку на модули.</p>
+<p>Так что страницы могут грузить модули по мере надобности. Например, по умолчанию – главный, а дополнительная функциональность – загружаться лишь там, где она нужна.</p>
+<p>Для такой сборки используется флаг компилятора <code>--module имя:количество файлов</code>.</p>
+<p>Например:</p>
+<div id="05lqpbmuog" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>java -jar compiler.jar --js base.js --js main.js  --js admin.js --module
+first:2 --module second:1:first</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эта команда создаст модули: first.js и second.js.</p>
+<p>Первый модуль, который назван «first», создан из объединённого и оптимизированного кода первых двух файлов (<code>base.js</code> и <code>main.js</code>).</p>
+<p>Второй модуль, который назван «second», создан из <code>admin.js</code> – это следующий аргумент <code>--js</code> после включённых в первый модуль.</p>
+<p>Второй модуль в нашем случае зависит от первого. Флаг <code>--module second:1:first</code> как раз означает, что модуль <code>second</code> будет создан из одного файла после вошедших в предыдущий модуль (<code>first</code>) и зависит от модуля <code>first</code>.</p>
+<p>А теперь – самое вкусное.</p>
+<p><strong>Ссылочная целостность между всеми получившимися файлами гарантируется.</strong></p>
+<p>Если в одном функция <code>doFoo</code> заменена на <code>b</code>, то и в другом тоже будет использоваться <code>b</code>.</p>
+<p>Это означает, что проблем между JS-файлами не будет. Они могут свободно вызывать друг друга без экспорта, пока находятся в единой модульной сборке.</p>
+<h3><a class="main__anchor" name="eksterny" href="#eksterny">Экстерны</a></h3><p>Экстерн (extern) – имя, которое числится в специальном списке компилятора. Он должен быть определён вне скрипта, в файле экстернов.</p>
+<p><strong>Компилятор никогда не переименовывает экстерны.</strong></p>
+<p>Например:</p>
+<div id="wvlp0zg1lu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.onkeyup = function(event) {
+  alert(event.type)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После продвинутого сжатия:</p>
+<div id="n55vin788s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.onkeyup = function(a) {
+  alert(a.type)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видите, переименованной оказалась только переменная <code>event</code>. Такое переименование заведомо безопасно, т.к. <code>event</code> – локальная переменная.</p>
+<p>Почему компилятор не тронул остального? Попробуем другой вариант:</p>
+<div id="2jqt6ho97l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.blabla = function(event) {
+  alert(event.megaProperty)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После компиляции:</p>
+<div id="939urztufa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.a = function(a) {
+  alert(a.b)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь компилятор переименовал и <code>blabla</code> и <code>megaProperty</code>.</p>
+<p>Дело в том, что названия, использованные до этого, были во внутреннем списке экстернов компилятора. Этот список охватывает основные объекты браузеров и находится (под именем <code>externs.zip</code>) в корне архива <code>compiler.jar</code>.</p>
+<p><strong>Компилятор переименовывает имя списка экстернов только когда так названа локальная переменная.</strong></p>
+<p>Например:</p>
+<div id="lz3qxvmn5b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.resetNode = function(node) {
+  var innerHTML = &quot;test&quot;;
+  node.innerHTML = innerHTML;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На выходе:</p>
+<div id="455frpdi4e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.a = function(a) {
+  a.innerHTML = &quot;test&quot;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видите, внутренняя переменная <code>innerHTML</code> не просто переименована – она заинлайнена (заменена на значение). Так как переменная локальна, то любые действия внутри функции с ней безопасны.</p>
+<p>А свойство <code>innerHTML</code> не тронуто, как и объект <code>window</code> – так как они в списке экстернов и не являются локальными переменными.</p>
+<p>Это приводит к следующему побочному эффекту. Иногда свойства, которые следовало бы сжать, не сжимаются. Например:</p>
+<div id="v11jaarjcd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window['User'] = function(name, type, age) {
+  this.name = name
+  this.type = type
+  this.age = age
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После сжатия:</p>
+<div id="3keenldz41" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.User = function(a, b, c) {
+  this.name = a;
+  this.type = b;
+  this.a = c
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, свойство <code>age</code> сжалось, а <code>name</code> и <code>type</code> – нет. Это побочный эффект экстернов:  <code>name</code> и <code>type</code> – в списке объектов браузера, и компилятор просто старается не наломать дров.</p>
+<p>Поэтому отметим ещё одно полезное правило оптимизации:</p>
+<p><strong>Названия своих свойств не должны совпадать с зарезервированными словами (экстернами). Тогда они будут хорошо сжиматься.</strong></p>
+<p>Для задания списка экстернов их достаточно перечислить в файле и указать этот файл флагом <code>–externs &lt;файл экстернов.js&gt;</code>.</p>
+<p>При перечислении объектов в файле экстернов – объявляйте их и перечисляйте свойства. Все эти объявления никуда не идут, они используются только для создания списка, который обрабатывается компилятором.</p>
+<p>Например, файл <code>myexterns.js</code>:</p>
+<div id="zily0w4vwe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var dojo = {}
+dojo._scopeMap;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Использование такого файла при сжатии (опция <code>–externs myexterns.js</code>) приведёт к тому, что все обращения к символам <code>dojo</code> и к <code>dojo._scopeMap</code> будут не сжаты, а оставлены «как есть».</p>
+<h3><a class="main__anchor" name="eksport" href="#eksport">Экспорт</a></h3><p><em>Экспорт</em> – программный ход, основанный на следующем правиле поведения компилятора.</p>
+<p><strong>Компилятор заменяет обращения к свойствам через кавычки на точку, и при этом не трогает название свойства.</strong></p>
+<p>Например, <code>window[„User“]</code> превратится в <code>window.User</code>, но не дальше.</p>
+<p>Таким образом можно <em>«экспортировать»</em> нужные функции и объекты:</p>
+<div id="gw3k75l3gj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function SayWidget(elem) {
+  this.elem = elem
+  this.init()
+}
+window['SayWidget'] = SayWidget;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На выходе:</p>
+<div id="ac5iy40ug1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function a(b) {
+  this.a = b;
+  this.b()
+}
+window.SayWidget = a;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратим внимание – сама функция <code>SayWidget</code> была переименована в <code>a</code>. Но затем – экспортирована как <code>window.SayWidget</code>, и таким образом доступна внешним скриптам.</p>
+<p>Добавим пару методов в прототип:</p>
+<div id="oevdskms3c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function SayWidget(elem) {
+  this.elem = elem;
+  this.init();
+}
+
+SayWidget.prototype = {
+  init: function() {
+    this.elem.style.display = 'none'
+  },
+
+  setSayHandler: function() {
+    this.elem.onclick = function() {
+      alert(&quot;hi&quot;)
+    };
+  }
+}
+
+window['SayWidget'] = SayWidget;
+SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После сжатия:</p>
+<div id="r51w7pvdoh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function a(b) {
+  this.a = b;
+  this.b()
+}
+a.prototype = {b:function() {
+  this.a.style.display = &quot;none&quot;
+}, c:function() {
+  this.a.onclick = function() {
+    alert(&quot;hi&quot;)
+  }
+}};
+window.SayWidget = a;
+a.prototype.setSayHandler = a.prototype.c;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Благодаря строке</p>
+<div id="8ba850vrf4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler</code></pre>
+        </div>
+      </div>
+      
+      </div><p>метод <code>setSayHandler</code> экспортирован и доступен для внешнего вызова.</p>
+<p>Сама строка экспорта выглядит довольно глупо. По виду – присваиваем свойство самому себе.</p>
+<p>Но логика сжатия GCC работает так, что такая конструкция является экспортом. Справа переименование свойства <code>setSayHandler</code> происходит, а слева – нет.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Планируйте жизнь после сжатия</span></div>
+            <div class="important__content"><p>Рассмотрим следующий код:</p>
+<div id="gtecu6hk0t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window['Animal'] = function() {
+  this.blabla = 1;
+  this['blabla'] = 2;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После сжатия:</p>
+<div id="dp8jexfhf7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.Animal = function() {
+  this.a = 1;
+  this.blabla = 2
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, первое обращение к свойству <code>blabla</code> сжалось, а второе (как и все аналогичные) – преобразовалось в синтаксис через точку.
+В результате получили некорректное поведение кода.</p>
+<p>Так что, используя продвинутый режим оптимизации, планируйте поведение кода после сжатия.</p>
+<p><strong>Если где-то возможно обращение к свойствам через квадратные скобки по полному имени – такое свойство должно быть экспортировано.</strong></p>
+</div></div>
+<h3><a class="main__anchor" name="goog-exportsymbol-i-goog-exportproperty" href="#goog-exportsymbol-i-goog-exportproperty">goog.exportSymbol и goog.exportProperty</a></h3><p>В библиотеке <a href="https://developers.google.com/closure/library/">Google Closure Library</a> для экспорта есть специальная функция <code>goog.exportSymbol</code>. Вызывается так:</p>
+<div id="ozykfequo5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>goog.exportSymbol('my.SayWidget', SayWidget)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эта функция по сути работает также, как и рассмотренная выше строка с присвоением свойства, но при необходимости создаёт нужные объекты.</p>
+<p>Она аналогична коду:</p>
+<div id="6ep57sdbg4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window['my'] = window['my'] || {}
+window['my']['SayWidget'] = SayWidget</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, если путь к объекту не существует – <code>exportSymbol</code> создаст нужные пустые объекты.</p>
+<p>Функция <code>goog.exportProperty</code> экспортирует свойство объекта:</p>
+<div id="fr5r0niqzd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>goog.exportProperty(SayWidget.prototype, 'setSayHandler', SayWidget.prototype.setSayHandler)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Строка выше – то же самое, что и:</p>
+<div id="orotzsa225" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Зачем они нужны, если все можно сделать простым присваиванием?</p>
+<p>Основная цель этих функций – во взаимодействии с Google Closure Compiler. Они дают информацию компилятору об экспортах, которую он может использовать.</p>
+<p>Например, есть недокументированная внутренняя опция <code>externExportsPath</code>, которая генерирует из всех экспортов файл экстернов. Таким образом можно распространять откомпилированный JavaScript-файл как внешнюю библиотеку, с файлом экстернов для удобного внешнего связывания.</p>
+<p>Кроме того, экспорт через эти функции удобен и нагляден.</p>
+<p>Если вы используете продвинутый режим оптимизации, то можно взять их из файла base.js Google Closure Library. Можно и подключить этот файл целиком – оптимизатор при продвинутом сжатии вырежет из него почти всё лишнее, так что overhead будет минимальным.</p>
+<h3><a class="main__anchor" name="otlichiya-eksporta-ot-eksterna" href="#otlichiya-eksporta-ot-eksterna">Отличия экспорта от экстерна</a></h3><p>Между экспортом и экстерном есть кое-что общее. И то и другое даёт возможность доступа к объектам под исходным именем, до переименования.</p>
+<p>Но, в остальном, это совершенно разные вещи.</p>
+<table>
+<thead>
+<tr>
+<th>Экстерн</th>
+<th>Экспорт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Служит для тотального запрета на переименование всех обращений к свойству.
+Задумано для сохранения обращений к стандартным объектам браузера, внешним библиотекам.</td>
+<td>Служит для открытия доступа к свойству извне под указанным именем.
+Задумано для открытия внешнего интерфейса к сжатому скрипту.</td>
+</tr>
+<tr>
+<td>Работает со свойством, объявленным вне скрипта.
+Вы не можете объявить новое свойство в скрипте и сделать его экстерном.</td>
+<td>Создаёт ссылку на свойство, объявленное в скрипте.</td>
+</tr>
+<tr>
+<td>Если <code>window</code> - экстерн, то все обращения к  <code>window</code> в скрипте останутся как есть.</td>
+<td>Если <code>user</code> экспортируется, то создаётся только одна ссылка под полным именем, а все остальные обращения будут сокращены.</td>
+</tr>
+</tbody>
+</table>
+<h2><a class="main__anchor" name="stil-razrabotki" href="#stil-razrabotki">Стиль разработки</a></h2><p>Посмотрим, как сжиматель поведёт себя на следующем, типичном, объявлении библиотеки:</p>
+<div id="mz8oh9awyo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>(function(window, undefined) {
+
+  // пространство имён и локальная переменная для него
+  var MyFramework = window.MyFramework = {};
+
+  // функция фреймворка, доступная снаружи
+  MyFramework.publicOne = function() {
+    makeElem();
+  };
+
+  // приватная функция фреймворка
+  function makeElem() {
+    var div = document.createElement('div');
+    document.body.appendChild(div);
+  }
+
+  // ещё какая-то функция
+  MyFramework.publicTwo = function() {};
+
+})(window);
+
+// использование
+MyFramework.publicOne();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат компиляции в обычном режиме:</p>
+<div id="sohgdqqzr5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// java -jar compiler.jar --js myframework.js --formatting PRETTY_PRINT
+(function(a) {
+  a = a.MyFramework = {};
+  a.publicOne = function() {
+    var a = document.createElement(&quot;div&quot;);
+    document.body.appendChild(a)
+  };
+  a.publicTwo = function() {
+  }
+})(window);
+MyFramework.publicOne();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это – примерно то, что мы ожидали. Неиспользованный метод <code>publicTwo</code> остался, локальные свойства переименованы и заинлайнены.</p>
+<p>А теперь продвинутый режим:</p>
+<div id="k7dgsxyow2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// --compilation_level ADVANCED_OPTIMIZATIONS
+window.a = {};
+MyFramework.b();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Оно не работает! Компилятор попросту не разобрался, что и как вызывается, и превратил рабочий JS-файл в один сплошной баг.</p>
+<p>В зависимости от версии GCC у вас может быть и что-то другое.</p>
+<p>Всё дело в том, что такой стиль объявления нетипичен для инструментов, которые в самом Google разрабатываются и сжимаются этим минификатором.</p>
+<p>Типичный правильный стиль:</p>
+<div id="lt1s3q70pv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// пространство имён и локальная переменная для него
+var MyFramework = {};
+
+MyFrameWork._makeElem = function() {
+  var div = document.createElement('div');
+  document.body.appendChild(div);
+};
+
+MyFramework.publicOne = function() {
+  MyFramework._makeElem();
+};
+
+MyFramework.publicTwo = function() {};
+
+// использование
+MyFramework.publicOne();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обычное сжатие здесь будет бесполезно, а вот продвинутый режим идеален:</p>
+<div id="fss3hbva2h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// в зависимости от версии GCC результат может отличаться
+MyFrameWork.a = function() {
+  var a = document.createElement(&quot;div&quot;);
+  document.body.appendChild(a)
+};
+MyFrameWork.a();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Google Closure Compiler не только разобрался в структуре и удалил лишний метод – он заинлайнил функции, чтобы итоговый размер получился минимальным.</p>
+<p>Как говорится, преимущества налицо.</p>
+<h2><a class="main__anchor" name="rezyume" href="#rezyume">Резюме</a></h2><p>Продвинутый режим оптимизации сжимает, оптимизирует и, при возможности, удаляет все свойства и методы, за исключением экстернов.</p>
+<p>Это является принципиальным отличием, по сравнению с другими упаковщиками.</p>
+<p>Отказ от сохранения внешней ссылочной целостности с одной стороны позволяет увеличить уровень сжатия, но требует поддержки со стороны разработчика.</p>
+<p>Основная проблема этого сжатия – усложнение разработки. Добавляется дополнительный уровень возможных проблем: сжатие. Конечно, можно отлаживать и сжатый код, для этого придуманы <a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">Source Maps</a>, но клиентская разработка и без того достаточно сложна.</p>
+<p>Поэтому его используют редко.</p>
+<p>Как правило, есть две причины для использования продвинутого режима:</p>
+<ol>
+<li>
+<p><strong>Обфускация кода.</strong></p>
+<p>Если в коде после обычного сжатия ещё как-то можно разобраться, то после продвинутого – уже нет. Всё переименовано и заинлайнено. В теории это, конечно, возможно, но «порог входа» в такой код несоизмеримо выше.</p>
+<p>Судя по виду скриптов на сайтах, созданных Google, сам Google жмёт свои скрипты именно продвинутым режимом оптимизации. И библиотека Google Closure Library тоже рассчитана на него.</p>
+</li>
+<li>
+<p><strong>Хорошие сжатие виджетов, счётчиков.</strong></p>
+<p>Небольшой код, который отдаётся наружу, может быть сжат в продвинутом режиме. Так как он небольшой – все ошибки можно легко исправить, а продвинутый режим гарантирует наилучшее сжатие.</p>
+</li>
+</ol>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fgcc-advanced-optimization" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/gcc-advanced-optimization","identifier":"\/gcc-advanced-optimization"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/gcc-advanced-optimization by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

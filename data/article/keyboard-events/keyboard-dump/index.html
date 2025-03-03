@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/keyboard-events/keyboard-dump/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <form id="form" onsubmit="return false">
+
+    Предотвратить действие по умолчанию для:
+    <label>
+      <input type="checkbox" name="keydownStop" value="1"> keydown</label>&nbsp;&nbsp;&nbsp;
+    <label>
+      <input type="checkbox" name="keyupStop" value="1"> keyup</label>
+
+    <p>
+      Игнорировать:
+      <label>
+        <input type="checkbox" name="keydownIgnore" value="1"> keydown</label>&nbsp;&nbsp;&nbsp;
+      <label>
+        <input type="checkbox" name="keyupIgnore" value="1"> keyup</label>
+    </p>
+
+    <p>Сфокусируйтесь на поле и нажмите какую-нибудь клавишу.</p>
+
+    <input type="text" placeholder="Клавишу нажимать тут" id="kinput">
+
+    <textarea id="area"></textarea>
+    <input type="button" value="Очистить" onclick="area.value = ''" />
+  </form>
+  <script src="script.js"></script>
+
+
+</body>
+
+<!-- Mirrored from learn.javascript.ru/article/keyboard-events/keyboard-dump/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:24 GMT -->
+</html>

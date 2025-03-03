@@ -1,0 +1,592 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/testing by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Автоматические тесты при помощи chai и mocha</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="testing.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Автоматические тесты при помощи chai и mocha"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Автоматические тесты при помощи chai и mocha"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Автоматические тесты при помощи chai и mocha"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Автоматические тесты при помощи chai и mocha</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="testing-mocha.html">https://learn.javascript.ru/testing-mocha</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Автоматические тесты при помощи chai и mocha"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В этой главе мы разберём основы автоматического тестирования. Оно будет применяться далее в задачах, и вообще, входит в «образовательный минимум» программиста.</p>
+<h2><a class="main__anchor" name="zachem-nuzhny-testy" href="#zachem-nuzhny-testy">Зачем нужны тесты?</a></h2><p>При написании функции мы обычно представляем, что она должна делать, какое значение на каких аргументах выдавать.</p>
+<p>В процессе разработки мы время от времени проверяем, правильно ли работает функция. Самый простой способ проверить – это запустить её, например в консоли, и посмотреть результат.</p>
+<p>Если что-то не так, поправить, опять запустить – посмотреть результат… И так «до победного конца».</p>
+<p>Но такие ручные запуски – очень несовершенное средство проверки.</p>
+<p><strong>Когда проверяешь работу кода вручную – легко его «недотестировать».</strong></p>
+<p>Например, пишем функцию <code>f</code>. Написали, тестируем с разными аргументами. Вызов функции <code>f(a)</code> работает, а вот <code>f(b)</code> не работает. Поправили код – стало работать <code>f(b)</code>, вроде закончили. Но при этом забыли заново протестировать <code>f(a)</code> – упс, вот и возможная ошибка в коде.</p>
+<p><strong>Автоматизированное тестирование – это когда тесты написаны отдельно от кода, и можно в любой момент запустить их и проверить все важные случаи использования.</strong></p>
+<h2><a class="main__anchor" name="bdd-povedencheskie-testy-koda" href="#bdd-povedencheskie-testy-koda">BDD – поведенческие тесты кода</a></h2><p>Мы рассмотрим методику тестирования, которая входит в <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">BDD</a> – Behavior Driven Development. Подход BDD давно и с успехом используется во многих проектах.</p>
+<p>BDD – это не просто тесты. Это гораздо больше.</p>
+<p><strong>Тесты BDD – это три в одном: И тесты, И документация, И примеры использования.</strong></p>
+<p>Впрочем, хватит слов. Рассмотрим примеры.</p>
+<h2><a class="main__anchor" name="razrabotka-pow-spetsifikatsiya" href="#razrabotka-pow-spetsifikatsiya">Разработка pow: спецификация</a></h2><p>Допустим, мы хотим разработать функцию <code>pow(x, n)</code>, которая возводит <code>x</code> в целую степень <code>n</code>, для простоты <code>n≥0</code>.</p>
+<p>Ещё до разработки мы можем представить себе, что эта функция будет делать, и описать это по методике BDD.</p>
+<p>Это описание называется <em>спецификация</em> (или, как говорят в обиходе, «спека») и выглядит так:</p>
+<div id="bfj4z6qb4d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;возводит в n-ю степень&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>У спецификации есть три основных строительных блока, которые вы видите в примере выше:</p>
+<dl>
+<dt><code>describe(название, function() { ... })</code></dt>
+<dd>
+<p>Задаёт, что именно мы описываем, используется для группировки «рабочих лошадок» – блоков <code>it</code>. В данном случае мы описываем функцию <code>pow</code>.</p>
+</dd>
+<dt><code>it(название, function() { ... })</code></dt>
+<dd>
+<p>В названии блока <code>it</code> <em>человеческим языком</em> описывается, что должна делать функция, далее следует <em>тест</em>, который проверяет это.</p>
+</dd>
+<dt><code>assert.equal(value1, value2)</code></dt>
+<dd>
+<p>Код внутри <code>it</code>, если реализация верна, должен выполняться без ошибок.</p>
+<p>Различные функции вида <code>assert.*</code> используются, чтобы проверить, делает ли <code>pow</code> то, что задумано. Пока что нас интересует только одна из них – <code>assert.equal</code>, она сравнивает свой первый аргумент со вторым и выдаёт ошибку в случае, когда они не равны. В данном случае она проверяет, что результат <code>pow(2, 3)</code> равен <code>8</code>.</p>
+<p>Есть и другие виды сравнений и проверок, которые мы увидим далее.</p>
+</dd>
+</dl>
+<h2><a class="main__anchor" name="potok-razrabotki" href="#potok-razrabotki">Поток разработки</a></h2><p>Как правило, поток разработки таков:</p>
+<ol>
+<li>Пишется спецификация, которая описывает самую базовую функциональность.</li>
+<li>Делается начальная реализация.</li>
+<li>Для проверки соответствия спецификации мы задействуем фреймворк (в нашем случае <a href="https://mochajs.org/">Mocha</a>). Фреймворк запускает все тесты <code>it</code> и выводит ошибки, если они возникнут. При ошибках вносятся исправления.</li>
+<li>Спецификация расширяется, в неё добавляются возможности, которые пока, возможно, не поддерживаются реализацией.</li>
+<li>Идём на пункт 2, делаем реализацию. И так «до победного конца».</li>
+</ol>
+<p>Разработка ведётся <em>итеративно</em>: один проход за другим, пока спецификация и реализация не будут завершены.</p>
+<p>В нашем случае первый шаг уже завершён, начальная спецификация готова, хорошо бы приступить к реализации. Но перед этим проведём «нулевой» запуск спецификации, просто чтобы увидеть, что уже в таком виде, даже без реализации – тесты работают.</p>
+<h2><a class="main__anchor" name="primer-v-deystvii" href="#primer-v-deystvii">Пример в действии</a></h2><p>Для запуска тестов нужны соответствующие JavaScript-библиотеки.</p>
+<p>Мы будем использовать:</p>
+<ul>
+<li><a href="https://mochajs.org/">Mocha</a> – эта библиотека содержит общие функции для тестирования, включая <code>describe</code> и <code>it</code>.</li>
+<li><a href="https://chaijs.com/">Chai</a> – библиотека поддерживает разнообразные функции для проверок. Есть разные «стили» проверки результатов, с которыми мы познакомимся позже, на текущий момент мы будем использовать лишь <code>assert.equal</code>.</li>
+<li><a href="https://sinonjs.org/">Sinon</a> – для эмуляции и хитрой подмены функций «заглушками», понадобится позднее.</li>
+</ul>
+<p>Эти библиотеки позволяют тестировать JS не только в браузере, но и на сервере Node.JS. Здесь мы рассмотрим браузерный вариант, серверный использует те же функции.</p>
+<p>Пример HTML-страницы для тестов:</p>
+<div id="xao8oyxj92" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+
+  &lt;!-- подключаем стили Mocha, для отображения результатов --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css&quot;&gt;
+  &lt;!-- подключаем библиотеку Mocha --&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- настраиваем Mocha: предстоит BDD-тестирование --&gt;
+  &lt;script&gt;
+    mocha.setup('bdd');
+  &lt;/script&gt;
+
+  &lt;!-- подключаем chai --&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- в chai есть много всего, выносим assert в глобальную область --&gt;
+  &lt;script&gt;
+    var assert = chai.assert;
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;script&gt;
+    function pow(x, n) {
+      /* код функции, пока что пусто */
+    }
+  &lt;/script&gt;
+
+  &lt;!-- в этом скрипте находятся спеки --&gt;
+  &lt;script src=&quot;test.js&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- в элементе с id=&quot;mocha&quot; будут результаты тестов --&gt;
+  &lt;div id=&quot;mocha&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- запустить тесты! --&gt;
+  &lt;script&gt;
+    mocha.run();
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эту страницу можно условно разделить на четыре части:</p>
+<ol>
+<li>Блок <code>&lt;head&gt;</code> – в нём мы подключаем библиотеки и стили для тестирования, нашего кода там нет.</li>
+<li>Блок <code>&lt;script&gt;</code> с реализацией спецификации, в нашем случае – с кодом для <code>pow</code>.</li>
+<li>Далее подключаются тесты, файл <code>test.js</code> содержит <code>describe(&quot;pow&quot;, ...)</code>, который был описан выше. Методы <code>describe</code> и <code>it</code> принадлежат библиотеке Mocha, так что важно, что она была подключена выше.</li>
+<li>Элемент <code>&lt;div id=&quot;mocha&quot;&gt;</code> будет использоваться библиотекой Mocha для вывода результатов. Запуск тестов инициируется командой <code>mocha.run()</code>.</li>
+</ol>
+<p>Результат срабатывания:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/uEW4UyaMgCzHnAO0?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="uEW4UyaMgCzHnAO0" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/article/testing/pow-1/"></iframe>
+  </div><p>Пока что тесты не проходят, но это логично – вместо функции стоит «заглушка», пустой код.</p>
+<p>Пока что у нас одна функция и одна спецификация, но на будущее заметим, что если различных функций и тестов много –  это не проблема, можно их все подключить на одной странице. Конфликта не будет, так как каждой части кода соответствует свой блок <code>describe(&quot;что тестируем&quot;...)</code>. Сами же тесты обычно пишутся так, чтобы не влиять друг на друга, не делать лишних глобальных переменных.</p>
+<h2><a class="main__anchor" name="nachalnaya-realizatsiya" href="#nachalnaya-realizatsiya">Начальная реализация</a></h2><p>Пока что, как видно, тесты не проходят, ошибка сразу же. Давайте сделаем минимальную реализацию <code>pow</code>, которая бы работала нормально:</p>
+<div id="umu9qcvieh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow() {
+  return 8; // :) мы - мошенники!
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>О, вот теперь работает:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/O33DbDpkTAg08CWx?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="O33DbDpkTAg08CWx" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/article/testing/pow-min/"></iframe>
+  </div><h2><a class="main__anchor" name="ispravlenie-spetsifikatsii" href="#ispravlenie-spetsifikatsii">Исправление спецификации</a></h2><p>Функция, конечно, ещё не готова, но тесты проходят. Это ненадолго :)</p>
+<p>Здесь мы видим ситуацию, которая (и не обязательно при ленивом программисте!) бывает на практике – да, есть тесты, они проходят, но функция (увы!) работает неправильно.</p>
+<p><strong>С точки зрения BDD, ошибка при проходящих тестах –  вина спецификации.</strong></p>
+<p>В первую очередь не реализация исправляется, а уточняется спецификация, пишется падающий тест.</p>
+<p>Сейчас мы расширим спецификацию, добавив проверку на <code>pow(3, 4) = 81</code>.</p>
+<p>Здесь есть два варианта организации кода:</p>
+<ol>
+<li>
+<p>Первый вариант – добавить <code>assert</code> в тот же <code>it</code>:</p>
+<div id="ksgqze99wd" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;возводит в n-ю степень&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+    assert.equal(pow(3, 4), 81);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Второй вариант – сделать два теста:</p>
+<div id="ktjwm6qg4h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;при возведении 2 в 3ю степень результат 8&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+  });
+
+  it(&quot;при возведении 3 в 4ю степень равен 81&quot;, function() {
+    assert.equal(pow(3, 4), 81);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>Их принципиальное различие в том, что если <code>assert</code> обнаруживает ошибку, то он тут же прекращает выполнение блока <code>it</code>. Поэтому в первом варианте, если вдруг первый <code>assert</code> «провалился», то про результат второго мы никогда не узнаем.</p>
+<p><strong>Таким образом, разделить эти тесты может быть полезно, чтобы мы получили больше информации о происходящем.</strong></p>
+<p>Кроме того, есть ещё одно правило, которое желательно соблюдать.</p>
+<p><strong>Один тест тестирует ровно одну вещь.</strong></p>
+<p>Если мы явно видим, что тест включает в себя совершенно независимые проверки – лучше разбить его на два более простых и наглядных.</p>
+<p>По этим причинам второй вариант здесь предпочтительнее.</p>
+<p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/hY17c6pZhNX9wfEg?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="hY17c6pZhNX9wfEg" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/article/testing/pow-2/"></iframe>
+  </div><p>Как и следовало ожидать, второй тест не проходит. Ещё бы, ведь функция всё время возвращает <code>8</code>.</p>
+<h2><a class="main__anchor" name="utochnenie-realizatsii" href="#utochnenie-realizatsii">Уточнение реализации</a></h2><p>Придётся написать нечто более реальное, чтобы тесты проходили:</p>
+<div id="q84i7aq8pb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  var result = 1;
+
+  for (var i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Чтобы быть уверенными, что функция работает верно, желательно протестировать её на большем количестве значений. Вместо того, чтобы писать блоки <code>it</code> вручную, мы можем сгенерировать тесты в цикле <code>for</code>:</p>
+<div id="l08uddz714" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  function makeTest(x) {
+    var expected = x * x * x;
+    it(&quot;при возведении &quot; + x + &quot; в степень 3 результат: &quot; + expected, function() {
+      assert.equal(pow(x, 3), expected);
+    });
+  }
+
+  for (var x = 1; x &lt;= 5; x++) {
+    makeTest(x);
+  }
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/z4ChOWD4sCjlrwd5?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="z4ChOWD4sCjlrwd5" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://ru.js.cx/article/testing/pow-3/"></iframe>
+  </div><h2><a class="main__anchor" name="vlozhennyy-describe" href="#vlozhennyy-describe">Вложенный describe</a></h2><p>Функция <code>makeTest</code> и цикл <code>for</code>, очевидно, нужны друг другу, но не нужны для других тестов, которые мы добавим в дальнейшем. Они образуют единую группу, задача которой – проверить возведение в <code>n</code>-ю степень.</p>
+<p>Будет правильно выделить их, при помощи вложенного блока <code>describe</code>:</p>
+<div id="e62j1kar05" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15},{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  describe(&quot;возводит x в степень n&quot;, function() {
+
+    function makeTest(x) {
+      var expected = x * x * x;
+      it(&quot;при возведении &quot; + x + &quot; в степень 3 результат: &quot; + expected, function() {
+        assert.equal(pow(x, 3), expected);
+      });
+    }
+
+    for (var x = 1; x &lt;= 5; x++) {
+      makeTest(x);
+    }
+
+  });
+
+  // ... дальнейшие тесты it и подблоки describe ...
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вложенный <code>describe</code> объявит новую «подгруппу» тестов, блоки <code>it</code> которой запускаются так же, как и обычно, но выводятся с подзаголовком, вот так:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/Vj6Dpj3uw7hO99Bk?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="Vj6Dpj3uw7hO99Bk" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/testing/pow-4/"></iframe>
+  </div><p>В будущем мы сможем добавить другие тесты <code>it</code> и блоки <code>describe</code> со своими вспомогательными функциями.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">before/after и beforeEach/afterEach</span></div>
+            <div class="important__content"><p>В каждом блоке <code>describe</code> можно также задать функции <code>before/after</code>, которые будут выполнены до/после запуска тестов, а также <code>beforeEach/afterEach</code>, которые выполняются до/после каждого <code>it</code>.</p>
+<p>Например:</p>
+<div id="cx0i227btl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;Тест&quot;, function() {
+
+  before(function() { alert(&quot;Начало тестов&quot;); });
+  after(function() { alert(&quot;Конец тестов&quot;); });
+
+  beforeEach(function() { alert(&quot;Вход в тест&quot;); });
+  afterEach(function() { alert(&quot;Выход из теста&quot;); });
+
+  it('тест 1', function() { alert('1'); });
+  it('тест 2', function() { alert('2'); });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Последовательность будет такой:</p>
+<div id="s8s4g96uba" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Начало тестов
+Вход в тест
+1
+Выход из теста
+Вход в тест
+2
+Выход из теста
+Конец тестов</code></pre>
+        </div>
+      </div>
+      
+      </div><a class="edit" target="_blank" href="https://plnkr.co/edit/unHppjqTBiNTZGyp?p=preview">Открыть пример с тестами в песочнице</a><p>Как правило, <code>beforeEach/afterEach</code> (<code>before/after</code>) используют, если необходимо произвести инициализацию, обнулить счётчики или сделать что-то ещё в таком духе между тестами (или их группами).</p>
+</div></div>
+<h2><a class="main__anchor" name="rasshirenie-spetsifikatsii" href="#rasshirenie-spetsifikatsii">Расширение спецификации</a></h2><p>Базовая функциональность <code>pow</code> описана и реализована, первая итерация разработки завершена. Теперь расширим и уточним её.</p>
+<p>Как говорилось ранее, функция <code>pow(x, n)</code> предназначена для работы с целыми неотрицательными <code>n</code>.</p>
+<p>В JavaScript для ошибки вычислений служит специальное значение <code>NaN</code>, которое функция будет возвращать при некорректных <code>n</code>.</p>
+<p>Добавим это поведение в спецификацию:</p>
+<div id="64ekbd9c4e" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  // ...
+
+  it(&quot;при возведении в отрицательную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, -1)));
+  });
+
+  it(&quot;при возведении в дробную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, 1.5)));
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат с новыми тестами:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/oAp0b91L9NDE2iDb?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="oAp0b91L9NDE2iDb" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:450px" src="https://ru.js.cx/article/testing/pow-nan/"></iframe>
+  </div><p>Конечно, новые тесты не проходят, так как наша реализация ещё не поддерживает их. Так и задумано: сначала написали заведомо не работающие тесты, а затем пишем реализацию под них.</p>
+<h2><a class="main__anchor" name="drugie-assert" href="#drugie-assert">Другие assert</a></h2><p>Обратим внимание, в спецификации выше использована проверка не <code>assert.equal</code>, как раньше, а <code>assert(выражение)</code>. Такая проверка выдаёт ошибку, если значение выражения при приведении к логическому типу не <code>true</code>.</p>
+<p>Она потребовалась, потому что сравнивать с <code>NaN</code> обычным способом нельзя: <code>NaN</code> не равно никакому значению, даже самому себе, поэтому <code>assert.equal(NaN, x)</code> не подойдёт.</p>
+<p>Кстати, мы и ранее могли бы использовать <code>assert(value1 == value2)</code> вместо <code>assert.equal(value1, value2)</code>. Оба этих <code>assert</code> проверяют одно и тоже.</p>
+<p>Однако, между этими вызовами есть отличие в деталях сообщения об ошибке.</p>
+<p>При «упавшем» <code>assert</code> в примере выше мы видим <code>&quot;Unspecified AssertionError&quot;</code>, то есть просто «что-то пошло не так», а при <code>assert.equal(value1, value2)</code> будут дополнительные подробности: <code>expected 8 to equal 81</code>.</p>
+<p><strong>Поэтому рекомендуется использовать именно ту проверку, которая максимально соответствует задаче.</strong></p>
+<p>Вот самые востребованные <code>assert</code>-проверки, встроенные в Chai:</p>
+<ul>
+<li><code>assert(value)</code> – проверяет что <code>value</code> является <code>true</code> в логическом контексте.</li>
+<li><code>assert.equal(value1, value2)</code> – проверяет равенство  <code>value1 == value2</code>.</li>
+<li><code>assert.strictEqual(value1, value2)</code> – проверяет строгое равенство <code>value1 === value2</code>.</li>
+<li><code>assert.notEqual</code>, <code>assert.notStrictEqual</code> – проверки, обратные двум предыдущим.</li>
+<li><code>assert.isTrue(value)</code> – проверяет, что <code>value === true</code></li>
+<li><code>assert.isFalse(value)</code> – проверяет, что <code>value === false</code></li>
+<li>…более полный список – в <a href="https://chaijs.com/api/assert/">документации</a></li>
+</ul>
+<p>В нашем случае хорошо бы использовать проверку <code>assert.isNaN</code>, и такой метод существует, но сейчас мы рассматриваем самый общий метод <code>assert(...)</code>. В этом случае для того, чтобы сделать сообщение об ошибке понятнее, желательно добавить к <code>assert</code> описание.</p>
+<p><strong>Все вызовы <code>assert</code> позволяют дополнительным последним аргументом указать строку с описанием ошибки, которое выводится, если <code>assert</code> не проходит.</strong></p>
+<p>Добавим описание ошибки в конец наших <code>assert'ов</code>:</p>
+<div id="c10o3jk7rk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  // ...
+
+  it(&quot;при возведении в отрицательную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, -1)), &quot;pow(2, -1) не NaN&quot;);
+  });
+
+  it(&quot;при возведении в дробную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, 1.5)), &quot;pow(2, 1.5) не NaN&quot;);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь результат теста гораздо яснее говорит о том, что не так:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/3A7UKCycYZGvPIqa?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="3A7UKCycYZGvPIqa" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:450px" src="https://ru.js.cx/article/testing/pow-nan-assert/"></iframe>
+  </div><p>В коде тестов выше можно было бы добавить описание и к <code>assert.equal</code>, указав в конце: <code>assert.equal(value1, value2, &quot;описание&quot;)</code>, но с равенством обычно и так всё понятно, поэтому мы так делать не будем.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Итак, разработка завершена, мы получили полноценную спецификацию и код, который её реализует.</p>
+<p>Задачи выше позволяют дополнить её, и в результате может получиться что-то в таком духе:</p>
+<div id="pxla0ezkcz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  describe(&quot;возводит x в степень n&quot;, function() {
+
+    function makeTest(x) {
+      var expected = x * x * x;
+      it(&quot;при возведении &quot; + x + &quot; в степень 3 результат: &quot; + expected, function() {
+        assert.equal(pow(x, 3), expected);
+      });
+    }
+
+    for (var x = 1; x &lt;= 5; x++) {
+      makeTest(x);
+    }
+
+  });
+
+  it(&quot;при возведении в отрицательную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, -1)), &quot;pow(2, -1) не NaN&quot;);
+  });
+
+  it(&quot;при возведении в дробную степень результат NaN&quot;, function() {
+    assert(isNaN(pow(2, 1.5)), &quot;pow(2, -1.5) не NaN&quot;);
+  });
+
+  describe(&quot;любое число, кроме нуля, в степени 0 равно 1&quot;, function() {
+
+    function makeTest(x) {
+      it(&quot;при возведении &quot; + x + &quot; в степень 0 результат: 1&quot;, function() {
+        assert.equal(pow(x, 0), 1);
+      });
+    }
+
+    for (var x = -5; x &lt;= 5; x += 2) {
+      makeTest(x);
+    }
+
+  });
+
+  it(&quot;ноль в нулевой степени даёт NaN&quot;, function() {
+    assert(isNaN(pow(0, 0)), &quot;0 в степени 0 не NaN&quot;);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><a class="edit" target="_blank" href="https://plnkr.co/edit/JiuhtrbIp7YRfQIj?p=preview">Открыть полный пример с реализацией в песочнице</a><p>Эту спецификацию можно использовать как:</p>
+<ol>
+<li><strong>Тесты</strong>, которые гарантируют правильность работы кода.</li>
+<li><strong>Документацию</strong> по функции, что она конкретно делает.</li>
+<li><strong>Примеры</strong> использования функции, которые демонстрируют её работу внутри <code>it</code>.</li>
+</ol>
+<p>Имея спецификацию, мы можем улучшать, менять, переписывать функцию и легко контролировать её работу, просматривая тесты.</p>
+<p>Особенно важно это в больших проектах.</p>
+<p>Бывает так, что изменение в одной части кода может повлечь за собой «падение» другой части, которая её использует. Так как всё-всё в большом проекте руками не перепроверишь, то такие ошибки имеют большой шанс остаться в продукте и вылезти позже, когда проект увидит посетитель или заказчик.</p>
+<p>Чтобы избежать таких проблем, бывает, что вообще стараются не трогать код, от которого много что зависит, даже если его ну очень нужно переписать. Жизнь пробивается тонкими росточками там, где должна цвести и пахнуть новая функциональность.</p>
+<p><strong>Код, покрытый автотестами, являет собой полную противоположность этому!</strong></p>
+<p>Даже если какое-то изменение потенциально может порушить всё – его совершенно не страшно сделать. Ведь есть масса тестов, которые быстро и в автоматическом режиме проверят работу кода. И если что-то падает, то это можно будет легко локализовать и поправить.</p>
+<p><strong>Кроме того, код, покрытый тестами, имеет лучшую архитектуру.</strong></p>
+<p>Конечно, это естественное следствие того, что его легче менять и улучшать. Но не только.</p>
+<p>Чтобы написать тесты, нужно разбить код на функции так, чтобы для каждой функции было чётко понятно, что она получает на вход, что делает с этим и что возвращает. Это означает ясную и понятную структуру с самого начала.</p>
+<p>Конечно, в реальной жизни всё не так просто. Зачастую написать тест сложно. Или сложно поддерживать тесты, поскольку код активно меняется. Сами тесты тоже пишутся по-разному, при помощи разных инструментов.</p>
+<h2><a class="main__anchor" name="chto-dalshe" href="#chto-dalshe">Что дальше?</a></h2><p>В дальнейшем условия ряда задач будут уже содержать в себе тесты. На них вы познакомитесь с дополнительными примерами.</p>
+<p>Как правило, они будут вполне понятны, даже если немного выходят за пределы этой главы.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sdelat-pow-po-spetsifikatsii" name="sdelat-pow-po-spetsifikatsii">Сделать pow по спецификации</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/pow-nan-spec" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Исправьте код функции <code>pow</code>, чтобы тесты проходили.</p>
+<p>Для этого ниже в задаче вы найдёте ссылку на песочницу.</p>
+<p>Она содержит HTML с тестами. Обратите внимание, что HTML-страница в ней короче той, что обсуждалась в статье <a href="testing.html">Автоматические тесты при помощи chai и mocha</a>. Это потому что библиотеки Chai, Mocha и Sinon объединены в один файл:</p>
+<div id="qry0ho1zfe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script src=&quot;https://js.cx/test/libs.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Этот файл содержит код библиотек, стили, настройки для них и запуск <code>mocha.run</code> по окончании загрузки страницы. Если нет элемента с <code>id=&quot;mocha&quot;</code>, то результаты выводятся в <code>&lt;body&gt;</code>.</p>
+<p>Сборка сделана исключительно для более компактного представления задач, без рекомендаций использовать именно её в проектах.</p>
+<p><a href="https://plnkr.co/edit/oP27TyUPcoKg5EHf?p=preview" target="_blank" data-plunk-id="oP27TyUPcoKg5EHf">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="8a75bzetl5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) return NaN;
+  if (Math.round(n) != n) return NaN;
+
+  var result = 1;
+  for (var i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div id="67b4qyvdbj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) return NaN;
+  if (Math.round(n) != n) return NaN;
+
+  var result = 1;
+  for (var i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/0wLJXpJ9e6g7TXt9?p=preview" target="_blank" data-plunk-id="0wLJXpJ9e6g7TXt9">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dobavte-test-k-zadache" name="dobavte-test-k-zadache">Добавьте тест к задаче</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/pow-test-0" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Добавьте к <a href="https://learn.javascript.ru/task/pow-nan-spec">предыдущей задаче</a> тесты, которые будут проверять, что любое число, кроме нуля, в нулевой степени равно <code>1</code>, а ноль в нулевой степени даёт <code>NaN</code> (это математически корректно, результат 0<sup>0</sup> не определён).</p>
+<p>При необходимости, исправьте саму функцию <code>pow()</code>, чтобы тесты проходили без ошибок.</p>
+<p><a href="https://plnkr.co/edit/v5HDLqBB1OiU47H7?p=preview" target="_blank" data-plunk-id="v5HDLqBB1OiU47H7">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Новый тест может быть, к примеру, таким:</p>
+<div id="cyph9awu3o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>it(&quot;любое число в степени 0 равно 1&quot;, function() {
+  assert.equal(pow(123, 0), 1);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Конечно, желательно проверить на нескольких числах.</p>
+<p>Поэтому лучше будет создать блок <code>describe</code>, аналогичный тому, что мы делали для произвольных чисел:</p>
+<div id="amzwonfy5s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;любое число, кроме нуля, в степени 0 равно 1&quot;, function() {
+
+  function makeTest(x) {
+    it(&quot;при возведении &quot; + x + &quot; в степень 0 результат: 1&quot;, function() {
+      assert.equal(pow(x, 0), 1);
+    });
+  }
+
+  for (var x = -5; x &lt;= 5; x += 2) {
+    makeTest(x);
+  }
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>И не забудем добавить отдельный тест для нуля:</p>
+<div id="asveaolupq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>...
+it(&quot;ноль в нулевой степени даёт NaN&quot;, function() {
+  assert( isNaN(pow(0, 0)), &quot;0 в степени 0 не NaN&quot;);
+});
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/uBC3Qr34zkFz0d8Z?p=preview" target="_blank" data-plunk-id="uBC3Qr34zkFz0d8Z">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftesting" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/testing","identifier":"\/testing"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/testing by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+</html>

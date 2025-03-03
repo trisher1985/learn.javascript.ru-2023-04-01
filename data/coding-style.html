@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/coding-style by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Советы по стилю кода</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="coding-style.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Советы по стилю кода"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Советы по стилю кода"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="debugging-chrome.html"><link rel="next" href="comments.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Советы по стилю кода"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/coding-style"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/coding-style"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/coding-style"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/coding-style"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/coding-style"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/coding-style"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/coding-style"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/coding-style"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/coding-style"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="coding-style.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/coding-style"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/coding-style"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/coding-style"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/coding-style">عربي</option><option value="https://javascript.info/coding-style">English</option><option value="https://es.javascript.info/coding-style">Español</option><option value="https://fa.javascript.info/coding-style">فارسی</option><option value="https://fr.javascript.info/coding-style">Français</option><option value="https://id.javascript.info/coding-style">Indonesia</option><option value="https://it.javascript.info/coding-style">Italiano</option><option value="https://ja.javascript.info/coding-style">日本語</option><option value="https://ko.javascript.info/coding-style">한국어</option><option value="https://learn.javascript.ru/coding-style" selected>Русский</option><option value="https://tr.javascript.info/coding-style">Türkçe</option><option value="https://uk.javascript.info/coding-style">Українська</option><option value="https://zh.javascript.info/coding-style">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="24" max="95" data-tooltip="Урок 24 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="code-quality.html"><span>Качество кода</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Качество кода","item":"https://learn.javascript.ru/code-quality"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 1 января 2023 г."><div class="updated-at__content">1 января 2023 г.</div></div></div><h1 class="main__header-title">Советы по стилю кода</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Советы по стилю кода"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Код должен быть максимально читаемым и понятным.</p>
+<p>Это и есть искусство программирования – взять сложную задачу и написать такой код для её решения, который и правильно работает, и легко читается, понятен для людей. Для этого нужен <em>хороший стиль</em> написания кода. В этой главе мы рассмотрим составляющие такого стиля.</p>
+<h2><a class="main__anchor" name="sintaksis" href="#sintaksis">Синтаксис</a></h2><p>Шпаргалка с правилами синтаксиса (подробнее смотрите ниже по тексту):</p>
+<figure><div class="image" style="width:715px">
+      <div class="image__ratio" style="padding-top:73.84615384615385%"></div>
+      <object type="image/svg+xml" data="article/coding-style/code-style.svg" width="715" height="528" class="image__image" data-use-theme>
+        <img src="article/coding-style/code-style.svg" alt="" width="715" height="528">
+      </object>
+      </div></figure><!--
+```js
+function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt("x?", "");
+let n = prompt("n?", "");
+
+if (n < 0) {
+  alert(`Степень ${n} не поддерживается,
+   введите целую степень, большую 0`);
+} else {
+  alert( pow(x, n) );
+}
+```
+
+-->
+<p>Не всё здесь однозначно, так что разберём эти правила подробнее.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Ни одно правило не является жёстко обязательным</span></div>
+            <div class="important__content"><p>Здесь нет железных правил. Это стилевые предпочтения, а не религиозные догмы.</p>
+</div></div>
+<h3><a class="main__anchor" name="figurnye-skobki" href="#figurnye-skobki">Фигурные скобки</a></h3><p>В большинстве JavaScript проектов фигурные скобки пишутся в так называемом «египетском» стиле с открывающей скобкой на той же строке, что и соответствующее ключевое слово – не на новой строке. Перед открывающей скобкой должен быть пробел, как здесь:</p>
+<div id="9zf6wrzdd6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (condition) {
+  // делай это
+  // ...и это
+  // ...и потом это
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>А что если у нас однострочная запись, типа <code>if (condition) doSomething()</code>, должны ли мы использовать фигурные скобки?</p>
+<p>Вот различные варианты расстановки скобок с комментариями, посмотрите сами, какой вам кажется самым читаемым:</p>
+<ol>
+<li>😠 Такое иногда бывает в коде начинающих. Плохо, фигурные скобки не нужны:<div id="gtdlc7ty38" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:11,&quot;end&quot;:12},{&quot;start&quot;:52,&quot;end&quot;:53}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) {alert(`Степень ${n} не поддерживается`);}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😠 Никогда не разделяйте строки без фигурных скобок, можно ненароком сделать ошибку при добавлении строк:<div id="63t7xb5obj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0)
+  alert(`Степень ${n} не поддерживается`);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😏 В одну строку без скобок – приемлемо, если эта строка короткая:<div id="suiqqys6vh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) alert(`Степень ${n} не поддерживается`);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😃 Самый лучший вариант:<div id="bkec024zsy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) {
+  alert(`Степень ${n} не поддерживается`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>Для очень короткого кода допустима одна строка. Например: <code>if (cond) return null</code>. Но блок кода (последний вариант) обычно всё равно читается лучше.</p>
+<h3><a class="main__anchor" name="dlina-stroki" href="#dlina-stroki">Длина строки</a></h3><p>Никто не любит читать длинные горизонтальные строки кода. Лучше всего разбивать их, например:</p>
+<div id="lcfxglewsn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// обратные кавычки ` позволяют разделять строку на части
+let str = `
+  Рабочая группа TC39 организации Ecma International -
+  это группа JavaScript-разработчиков, теоретиков и авторов движков JavaScript,
+  которые вместе с сообществом занимаются поддержкой и развитием языка JavaScript.
+`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или для if:</p>
+<div id="45tdrc68hj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (
+  id === 123 &amp;&amp;
+  moonPhase === 'Waning Gibbous' &amp;&amp;
+  zodiacSign === 'Libra'
+) {
+  letTheSorceryBegin();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Максимальную длину строки согласовывают в команде. Обычно это <code>80</code> или <code>120</code> символов.</p>
+<h3><a class="main__anchor" name="otstupy" href="#otstupy">Отступы</a></h3><p>Существует два типа отступов:</p>
+<ul>
+<li>
+<p><strong>Горизонтальные отступы: 2 или 4 пробела.</strong></p>
+<p>Горизонтальный отступ выполняется с помощью 2 или 4 пробелов, или символа табуляции (клавиша <kbd class="shortcut">Tab</kbd>). Какой из них выбрать – это уже на ваше усмотрение. Пробелы больше распространены.</p>
+<p>Одно из преимуществ пробелов над табуляцией заключается в том, что пробелы допускают более гибкие конфигурации отступов, чем символ табуляции.</p>
+<p>Например, мы можем выровнять аргументы относительно открывающей скобки:</p>
+<div id="e89nvzxz16" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>show(parameters,
+     aligned, // 5 пробелов слева
+     one,
+     after,
+     another
+  ) {
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><strong>Вертикальные отступы: пустые строки для разбивки кода на «логические блоки».</strong></p>
+<p>Даже одну функцию часто можно разделить на логические блоки. В примере ниже разделены инициализация переменных, основной цикл и возвращаемый результат:</p>
+<div id="9i2ffyqs6y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = 1;
+  //              &lt;--
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+  //              &lt;--
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вставляйте дополнительный перевод строки туда, где это сделает код более читаемым. Не должно быть более 9 строк кода подряд без вертикального отступа.</p>
+</li>
+</ul>
+<h3><a class="main__anchor" name="tochka-s-zapyatoy" href="#tochka-s-zapyatoy">Точка с запятой</a></h3><p>Точки с запятой должны присутствовать после каждого выражения, даже если их, казалось бы, можно пропустить.</p>
+<p>Есть языки, в которых точка с запятой необязательна и редко используется. Однако в JavaScript бывают случаи, когда перенос строки не интерпретируется, как точка с запятой, что может привести к ошибкам. Подробнее об этом – в главе <a href="structure.html#semicolon">о структуре кода</a>.</p>
+<p>Если вы – опытный разработчик на JavaScript, то можно выбрать стиль кода без точек с запятой, например <a href="https://standardjs.com/">StandardJS</a>. В ином случае, лучше будет использовать точки с запятой, чтобы избежать подводных камней. Большинство разработчиков их ставят.</p>
+<h3><a class="main__anchor" name="urovni-vlozhennosti" href="#urovni-vlozhennosti">Уровни вложенности</a></h3><p>Уровней вложенности должно быть немного.</p>
+<p>Например, в цикле бывает полезно использовать директиву <a href="while-for.html#continue"><code>continue</code></a>, чтобы избежать лишней вложенности.</p>
+<p>Например, вместо добавления вложенного условия <code>if</code>, как здесь:</p>
+<div id="ntj4sgdpy5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let i = 0; i &lt; 10; i++) {
+  if (cond) {
+    ... // &lt;- ещё один уровень вложенности
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем написать:</p>
+<div id="5tr9czqnq7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:21}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let i = 0; i &lt; 10; i++) {
+  if (!cond) continue;
+  ...  // &lt;- нет лишнего уровня вложенности
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Аналогичная ситуация – с <code>if/else</code> и <code>return</code>.</p>
+<p>Например, две нижеследующие конструкции идентичны.</p>
+<p>Первая:</p>
+<div id="9fzu4t0fz7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) {
+    alert(&quot;Отрицательные значения 'n' не поддерживаются&quot;);
+  } else {
+    let result = 1;
+
+    for (let i = 0; i &lt; n; i++) {
+      result *= x;
+    }
+
+    return result;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вторая:</p>
+<div id="csbfwbcyuq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) {
+    alert(&quot;Отрицательные значения 'n' не поддерживаются&quot;);
+    return;
+  }
+
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Второй вариант является более читабельным, потому что «особый случай» <code>n &lt; 0</code> обрабатывается на ранней стадии. После проверки можно переходить к «основному» потоку кода без необходимости увеличения вложенности.</p>
+<h2><a class="main__anchor" name="razmeschenie-funktsiy" href="#razmeschenie-funktsiy">Размещение функций</a></h2><p>Если вы пишете несколько вспомогательных функций, а затем используемый ими код, то существует три способа организации функций.</p>
+<ol>
+<li>
+<p>Объявить функции <em>перед</em> кодом, который их вызовет:</p>
+<div id="8f07jedc48" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:29}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:21}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// объявление функций
+function createElement() {
+  ...
+}
+
+function setHandler(elem) {
+  ...
+}
+
+function walkAround() {
+  ...
+}
+
+// код, который использует их
+let elem = createElement();
+setHandler(elem);
+walkAround();</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Сначала код, затем функции</p>
+<div id="vc37pk7vqe" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:7,&quot;end&quot;:30}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// код, использующий функции
+let elem = createElement();
+setHandler(elem);
+walkAround();
+
+// --- вспомогательные функции ---
+function createElement() {
+  ...
+}
+
+function setHandler(elem) {
+  ...
+}
+
+function walkAround() {
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Смешанный стиль: функция объявляется там, где она используется впервые.</p>
+</li>
+</ol>
+<p>В большинстве случаев второй вариант является предпочтительным.</p>
+<p>Это потому, что при чтении кода мы сначала хотим знать, <em>что он делает</em>. Если сначала идёт код, то это тут же становится понятно. И тогда, может быть, нам вообще не нужно будет читать функции, особенно если их имена хорошо подобраны.</p>
+<h2><a class="main__anchor" name="rukovodstva-po-stilyu-koda" href="#rukovodstva-po-stilyu-koda">Руководства по стилю кода</a></h2><p>Руководство по стилю содержит общие правила о том, как писать код, например: какие кавычки использовать, сколько пробелов отступать, максимальную длину строки и так далее – в общем, множество мелочей.</p>
+<p>Когда все участники команды используют одно и то же руководство по стилю, код выглядит одинаково, независимо от того, кто из команды его написал.</p>
+<p>Конечно, команда всегда может написать собственное руководство по стилю, но обычно в этом нет необходимости. Существует множество уже готовых.</p>
+<p>Некоторые популярные руководства:</p>
+<ul>
+<li><a href="https://google.github.io/styleguide/javascriptguide.xml">Google JavaScript Style Guide</a></li>
+<li><a href="https://github.com/airbnb/javascript">Airbnb JavaScript Style Guide</a> (есть <a href="https://leonidlebedev.github.io/javascript-airbnb/">перевод</a>)</li>
+<li><a href="../github.com/rwaldron/idiomatic.html">Idiomatic.JS</a> (есть <a href="https://github.com/rwaldron/idiomatic.js/tree/master/translations/ru_RU">перевод</a>)</li>
+<li><a href="https://standardjs.com/">StandardJS</a></li>
+<li>(и ещё множество других)</li>
+</ul>
+<p>Если вы – начинающий разработчик, то начните со шпаргалки в начале этой главы. Как только вы освоитесь, просмотрите другие руководства, чтобы выбрать общие принципы и решить, какое вам больше подходит.</p>
+<h2><a class="main__anchor" name="avtomatizirovannye-sredstva-proverki-lintery" href="#avtomatizirovannye-sredstva-proverki-lintery">Автоматизированные средства проверки (линтеры)</a></h2><p>Автоматизированные средства проверки, так называемые «линтеры» – это инструменты, которые могут автоматически проверять стиль вашего кода и вносить предложения по его улучшению.</p>
+<p>Самое замечательное в них то, что проверка стиля может также найти программные ошибки, такие как опечатки в именах переменных или функций. Из-за этой особенности использовать линтер рекомендуется, даже если вы не хотите придерживаться какого-то конкретного «стиля кода».</p>
+<p>Вот некоторые известные инструменты для проверки:</p>
+<ul>
+<li><a href="https://www.jslint.com/">JSLint</a> – проверяет код на соответствие <a href="https://www.jslint.com/index.html">стилю JSLint</a>, в онлайн-интерфейсе вверху можно ввести код, а внизу – различные настройки проверки, чтобы попробовать её в действии.</li>
+<li><a href="https://jshint.com/">JSHint</a> – больше проверок, чем в JSLint.</li>
+<li><a href="https://eslint.org/">ESLint</a> – пожалуй, самый современный линтер.</li>
+</ul>
+<p>Все они, в общем-то, работают. Автор пользуется <a href="https://eslint.org/">ESLint</a>.</p>
+<p>Большинство линтеров интегрированы со многими популярными редакторами: просто включите плагин в редакторе и настройте стиль.</p>
+<p>Например, для ESLint вы должны выполнить следующее:</p>
+<ol>
+<li>Установите <a href="https://nodejs.org/">Node.JS</a>.</li>
+<li>Установите ESLint с помощью команды <code>npm install -g eslint</code> (npm – установщик пакетов JavaScript).</li>
+<li>Создайте файл конфигурации с именем <code>.eslintrc</code> в корне вашего JavaScript-проекта (в папке, содержащей все ваши файлы).</li>
+<li>Установите/включите плагин для вашего редактора, который интегрируется с ESLint. У большинства редакторов он есть.</li>
+</ol>
+<p>Вот пример файла <code>.eslintrc</code>:</p>
+<div id="ms02vh882w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{
+  &quot;extends&quot;: &quot;eslint:recommended&quot;,
+  &quot;env&quot;: {
+    &quot;browser&quot;: true,
+    &quot;node&quot;: true,
+    &quot;es6&quot;: true
+  },
+  &quot;rules&quot;: {
+    &quot;no-console&quot;: 0,
+    &quot;indent&quot;: [&quot;warning&quot;, 2]
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь директива <code>&quot;extends&quot;</code> означает, что конфигурация основана на наборе настроек «eslint:recommended». После этого мы уточняем наши собственные.</p>
+<p>Кроме того, возможно загрузить наборы правил стиля из сети и расширить их. Смотрите <a href="https://eslint.org/docs/user-guide/getting-started">https://eslint.org/docs/user-guide/getting-started</a> для получения более подробной информации об установке.</p>
+<p>Также некоторые среды разработки имеют встроенные линтеры, возможно, удобные, но не такие гибкие в настройке, как ESLint.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Все правила синтаксиса, описанные в этой главе (и в ссылках на руководства по стилю), направлены на повышение читаемости вашего кода. О любых можно поспорить.</p>
+<p>Когда мы думаем о написании «лучшего» кода, мы должны задать себе вопросы: «Что сделает код более читаемым и лёгким для понимания?» и «Что может помочь избегать ошибок?». Это – основные моменты, о которых следует помнить при выборе и обсуждении стилей кода.</p>
+<p>Чтение популярных руководств по стилю позволит вам быть в курсе лучших практик и последних идей и тенденций в стилях написания кода.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#plohoy-stil" name="plohoy-stil">Плохой стиль</a></h3><a class="task__open-link" href="task/style-errors.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Какие недостатки вы видите в стиле написания кода этого примера?</p>
+<div id="kfc6g8p7nf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x,n)
+{
+  let result=1;
+  for(let i=0;i&lt;n;i++) {result*=x;}
+  return result;
+}
+
+let x=prompt(&quot;x?&quot;,''), n=prompt(&quot;n?&quot;,'')
+if (n&lt;=0)
+{
+  alert(`Степень ${n} не поддерживается, введите целую степень, большую 0`);
+}
+else
+{
+  alert(pow(x,n))
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Вы могли заметить следующие недостатки, сверху вниз:</p>
+<div id="esu8qk50m1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x,n)  // &lt;- отсутствует пробел между аргументами
+{  // &lt;- фигурная скобка на отдельной строке
+  let result=1;   // &lt;- нет пробелов вокруг знака =
+  for(let i=0;i&lt;n;i++) {result*=x;}   // &lt;- нет пробелов
+  // содержимое скобок { ... } лучше вынести на отдельную строку
+  return result;
+}
+
+let x=prompt(&quot;x?&quot;,''), n=prompt(&quot;n?&quot;,'') // &lt;-- технически допустимо,
+// но лучше написать в 2 строки, также нет пробелов и точки с запятой
+if (n&lt;=0)  // &lt;- нет пробелов, стоит добавить отступ в одну строку сверху
+{   // &lt;- фигурная скобка на отдельной строке
+  // ниже - слишком длинная строка, лучше разбить для улучшения читаемости
+  alert(`Степень ${n} не поддерживается, введите целую степень, большую 0`);
+}
+else // &lt;- можно на одной строке, вместе: &quot;} else {&quot;
+{
+  alert(pow(x,n))  // вложенный вызов функции, нет пробелов и точки с запятой
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Исправленный вариант:</p>
+<div id="9t5r66ynk3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt(&quot;x?&quot;, &quot;&quot;);
+let n = prompt(&quot;n?&quot;, &quot;&quot;);
+
+if (n &lt;= 0) {
+  alert(`Степень ${n} не поддерживается,
+    введите целую степень, большую 0`);
+} else {
+  alert( pow(x, n) );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="debugging-chrome.html" data-tooltip="Отладка в браузере"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="comments.html" data-tooltip="Комментарии"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/coding-style","identifier":"\/coding-style"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="code-quality.html">Качество кода</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sintaksis">Синтаксис</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#razmeschenie-funktsiy">Размещение функций</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#rukovodstva-po-stilyu-koda">Руководства по стилю кода</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#avtomatizirovannye-sredstva-proverki-lintery">Автоматизированные средства проверки (линтеры)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fcoding-style" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/03-code-quality/02-coding-style" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/coding-style by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:50 GMT -->
+</html>

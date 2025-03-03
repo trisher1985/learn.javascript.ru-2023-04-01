@@ -1,0 +1,990 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/promise by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Promise</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="promise.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Promise"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Promise"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><style>
+.promise-avatar-example {
+  border-radius: 50%;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+</style><meta property="og:title" content="Promise"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Promise</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="promise-basics.html">https://learn.javascript.ru/promise-basics</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Promise"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Promise (обычно их так и называют «промисы») – предоставляют удобный способ организации асинхронного кода.</p>
+<p>В современном JavaScript промисы часто используются в том числе и неявно, при помощи генераторов, но об этом чуть позже.</p>
+<h2><a class="main__anchor" name="chto-takoe-promise" href="#chto-takoe-promise">Что такое Promise?</a></h2><p>Promise – это специальный объект, который содержит своё состояние. Вначале <code>pending</code> («ожидание»), затем – одно из: <code>fulfilled</code> («выполнено успешно») или <code>rejected</code> («выполнено с ошибкой»).</p>
+<figure><div class="image" style="width:359px">
+      <div class="image__ratio" style="padding-top:59.888579387186624%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseInit.png" alt="" width="359" height="215" class="image__image">
+      </div></figure><p>На <code>promise</code> можно навешивать колбэки двух типов:</p>
+<ul>
+<li><code>onFulfilled</code> – срабатывают, когда <code>promise</code> в состоянии «выполнен успешно».</li>
+<li><code>onRejected</code> – срабатывают, когда <code>promise</code> в состоянии «выполнен с ошибкой».</li>
+</ul>
+<p>Способ использования, в общих чертах, такой:</p>
+<ol>
+<li>Код, которому надо сделать что-то асинхронно, создаёт объект <code>promise</code> и возвращает его.</li>
+<li>Внешний код, получив <code>promise</code>, навешивает на него обработчики.</li>
+<li>По завершении процесса асинхронный код переводит <code>promise</code> в состояние <code>fulfilled</code> (с результатом) или <code>rejected</code> (с ошибкой). При этом автоматически вызываются соответствующие обработчики во внешнем коде.</li>
+</ol>
+<p>Синтаксис создания <code>Promise</code>:</p>
+<div id="0tj4j3penq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var promise = new Promise(function(resolve, reject) {
+  // Эта функция будет вызвана автоматически
+
+  // В ней можно делать любые асинхронные операции,
+  // А когда они завершатся — нужно вызвать одно из:
+  // resolve(результат) при успешном выполнении
+  // reject(ошибка) при ошибке
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Универсальный метод для навешивания обработчиков:</p>
+<div id="y2ec1708yt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>promise.then(onFulfilled, onRejected)</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>onFulfilled</code> – функция, которая будет вызвана с результатом при <code>resolve</code>.</li>
+<li><code>onRejected</code> – функция, которая будет вызвана с ошибкой при <code>reject</code>.</li>
+</ul>
+<p>С его помощью можно назначить как оба обработчика сразу, так и только один:</p>
+<div id="ow12lvy1ae" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// onFulfilled сработает при успешном выполнении
+promise.then(onFulfilled)
+// onRejected сработает при ошибке
+promise.then(null, onRejected)</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">.catch</span></div>
+            <div class="important__content"><p>Для того, чтобы поставить обработчик только на ошибку, вместо <code>.then(null, onRejected)</code> можно написать <code>.catch(onRejected)</code> – это то же самое.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Синхронный <code>throw</code> – то же самое, что <code>reject</code></span></div>
+            <div class="important__content"><p>Если в функции промиса происходит синхронный <code>throw</code> (или иная ошибка), то вызывается <code>reject</code>:</p>
+<div id="hqcjqmjj9x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let p = new Promise((resolve, reject) =&gt; {
+  // то же что reject(new Error(&quot;o_O&quot;))
+  throw new Error(&quot;o_O&quot;);
+})
+
+p.catch(alert); // Error: o_O</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>Посмотрим, как это выглядит вместе, на простом примере.</p>
+<h2><a class="main__anchor" name="primer-s-settimeout" href="#primer-s-settimeout">Пример с setTimeout</a></h2><p>Возьмём <code>setTimeout</code> в качестве асинхронной операции, которая должна через некоторое время успешно завершиться с результатом «result»:</p>
+<div id="2u49fukwrc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+// Создаётся объект promise
+let promise = new Promise((resolve, reject) =&gt; {
+
+  setTimeout(() =&gt; {
+    // переведёт промис в состояние fulfilled с результатом &quot;result&quot;
+    resolve(&quot;result&quot;);
+  }, 1000);
+
+});
+
+// promise.then навешивает обработчики на успешный результат или ошибку
+promise
+  .then(
+    result =&gt; {
+      // первая функция-обработчик - запустится при вызове resolve
+      alert(&quot;Fulfilled: &quot; + result); // result - аргумент resolve
+    },
+    error =&gt; {
+      // вторая функция - запустится при вызове reject
+      alert(&quot;Rejected: &quot; + error); // error - аргумент reject
+    }
+  );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В результате запуска кода выше – через 1 секунду выведется «Fulfilled: result».</p>
+<p>А если бы вместо <code>resolve(&quot;result&quot;)</code> был вызов <code>reject(&quot;error&quot;)</code>, то вывелось бы «Rejected: error». Впрочем, как правило, если при выполнении возникла проблема, то <code>reject</code> вызывают не со строкой, а с объектом ошибки типа <code>new Error</code>:</p>
+<div id="etsg9bq8ei" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Этот promise завершится с ошибкой через 1 секунду
+var promise = new Promise((resolve, reject) =&gt; {
+
+  setTimeout(() =&gt; {
+    reject(new Error(&quot;время вышло!&quot;));
+  }, 1000);
+
+});
+
+promise
+  .then(
+    result =&gt; alert(&quot;Fulfilled: &quot; + result),
+    error =&gt; alert(&quot;Rejected: &quot; + error.message) // Rejected: время вышло!
+  );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Конечно, вместо <code>setTimeout</code> внутри функции промиса может быть и запрос к серверу и ожидание ввода пользователя, или другой асинхронный процесс. Главное, чтобы по своему завершению он вызвал <code>resolve</code> или <code>reject</code>, которые передадут результат обработчикам.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Только один аргумент</span></div>
+            <div class="important__content"><p>Функции <code>resolve/reject</code> принимают ровно один аргумент – результат/ошибку.</p>
+<p>Именно он передаётся обработчикам в <code>.then</code>, как можно видеть в примерах выше.</p>
+</div></div>
+<h2><a class="main__anchor" name="promise-posle-reject-resolve-neizmenny" href="#promise-posle-reject-resolve-neizmenny">Promise после reject/resolve – неизменны</a></h2><p>Заметим, что после вызова <code>resolve/reject</code> промис уже не может «передумать».</p>
+<p>Когда промис переходит в состояние «выполнен» – с результатом (resolve) или ошибкой (reject) – это навсегда.</p>
+<p>Например:</p>
+<div id="m0gdqaobkx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let promise = new Promise((resolve, reject) =&gt; {
+
+  // через 1 секунду готов результат: result
+  setTimeout(() =&gt; resolve(&quot;result&quot;), 1000);
+
+  // через 2 секунды — reject с ошибкой, он будет проигнорирован
+  setTimeout(() =&gt; reject(new Error(&quot;ignored&quot;)), 2000);
+
+});
+
+promise
+  .then(
+    result =&gt; alert(&quot;Fulfilled: &quot; + result), // сработает
+    error =&gt; alert(&quot;Rejected: &quot; + error) // не сработает
+  );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В результате вызова этого кода сработает только первый обработчик <code>then</code>, так как после вызова <code>resolve</code> промис уже получил состояние (с результатом), и в дальнейшем его уже ничто не изменит.</p>
+<p>Последующие вызовы resolve/reject  будут просто проигнорированы.</p>
+<p>А так – наоборот, ошибка будет раньше:</p>
+<div id="6qrs8iujur" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let promise = new Promise((resolve, reject) =&gt; {
+
+  // reject вызван раньше, resolve будет проигнорирован
+  setTimeout(() =&gt; reject(new Error(&quot;error&quot;)), 1000);
+
+  setTimeout(() =&gt; resolve(&quot;ignored&quot;), 2000);
+
+});
+
+promise
+  .then(
+    result =&gt; alert(&quot;Fulfilled: &quot; + result), // не сработает
+    error =&gt; alert(&quot;Rejected: &quot; + error) // сработает
+  );</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="promisifikatsiya" href="#promisifikatsiya">Промисификация</a></h2><p><em>Промисификация</em> – это когда берут асинхронную функциональность и делают для неё обёртку, возвращающую промис.</p>
+<p>После промисификации использование функциональности зачастую становится гораздо удобнее.</p>
+<p>В качестве примера сделаем такую обёртку для запросов при помощи XMLHttpRequest.</p>
+<p>Функция <code>httpGet(url)</code> будет возвращать промис, который при успешной загрузке данных с <code>url</code> будет переходить в <code>fulfilled</code> с этими данными, а при ошибке – в <code>rejected</code> с информацией об ошибке:</p>
+<div id="h36l6t0hdv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:18,&quot;end&quot;:18},{&quot;start&quot;:11,&quot;end&quot;:13},{&quot;start&quot;:9,&quot;end&quot;:9}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function httpGet(url) {
+
+  return new Promise(function(resolve, reject) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+
+    xhr.onload = function() {
+      if (this.status == 200) {
+        resolve(this.response);
+      } else {
+        var error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
+    };
+
+    xhr.onerror = function() {
+      reject(new Error(&quot;Network Error&quot;));
+    };
+
+    xhr.send();
+  });
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, внутри функции объект <code>XMLHttpRequest</code> создаётся и отсылается как обычно, при <code>onload/onerror</code> вызываются, соответственно, <code>resolve</code> (при статусе 200) или <code>reject</code>.</p>
+<p>Использование:</p>
+<div id="fkyitawqha" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet(&quot;/article/promise/user.json&quot;)
+  .then(
+    response =&gt; alert(`Fulfilled: ${response}`),
+    error =&gt; alert(`Rejected: ${error}`)
+  );</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Метод <code>fetch</code></span></div>
+            <div class="important__content"><p>Заметим, что ряд современных браузеров уже поддерживает <a href="fetch.html">fetch</a> – новый встроенный метод для AJAX-запросов, призванный заменить XMLHttpRequest. Он гораздо мощнее, чем <code>httpGet</code>. И – да, этот метод использует промисы. Полифил для него доступен на <a href="https://github.com/github/fetch">https://github.com/github/fetch</a>.</p>
+</div></div>
+<h2><a class="main__anchor" name="tsepochki-promisov" href="#tsepochki-promisov">Цепочки промисов</a></h2><p>«Чейнинг» (chaining), то есть возможность строить асинхронные цепочки из промисов – пожалуй, основная причина, из-за которой существуют и активно используются промисы.</p>
+<p>Например, мы хотим по очереди:</p>
+<ol>
+<li>Загрузить данные посетителя с сервера (асинхронно).</li>
+<li>Затем отправить запрос о нём на github (асинхронно).</li>
+<li>Когда это будет готово, вывести его github-аватар на экран (асинхронно).</li>
+<li>…И сделать код расширяемым, чтобы цепочку можно было легко продолжить.</li>
+</ol>
+<p>Вот код для этого, использующий функцию <code>httpGet</code>, описанную выше:</p>
+<div id="o0si8lnd8y" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:25,&quot;end&quot;:25},{&quot;start&quot;:15,&quot;end&quot;:15},{&quot;start&quot;:13,&quot;end&quot;:13},{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+// сделать запрос
+httpGet('/article/promise/user.json')
+  // 1. Получить данные о пользователе в JSON и передать дальше
+  .then(response =&gt; {
+    console.log(response);
+    let user = JSON.parse(response);
+    return user;
+  })
+  // 2. Получить информацию с github
+  .then(user =&gt; {
+    console.log(user);
+    return httpGet(`https://api.github.com/users/${user.name}`);
+  })
+  // 3. Вывести аватар на 3 секунды (можно с анимацией)
+  .then(githubUser =&gt; {
+    console.log(githubUser);
+    githubUser = JSON.parse(githubUser);
+
+    let img = new Image();
+    img.src = githubUser.avatar_url;
+    img.className = &quot;promise-avatar-example&quot;;
+    document.body.appendChild(img);
+
+    setTimeout(() =&gt; img.remove(), 3000); // (*)
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Самое главное в этом коде – последовательность вызовов:</p>
+<div id="ygnu5dndda" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet(...)
+  .then(...)
+  .then(...)
+  .then(...)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При чейнинге, то есть последовательных вызовах <code>.then…then…then</code>, в каждый следующий <code>then</code> переходит результат от предыдущего. Вызовы <code>console.log</code> оставлены, чтобы при запуске можно было посмотреть конкретные значения, хотя они здесь и не очень важны.</p>
+<p><strong>Если очередной <code>then</code> вернул промис, то далее по цепочке будет передан не сам этот промис, а его результат.</strong></p>
+<p>В коде выше:</p>
+<ol>
+<li>Функция в первом <code>then</code> возвращает «обычное» значение <code>user</code>. Это значит, что <code>then</code> возвратит промис в состоянии «выполнен» с <code>user</code> в качестве результата. Он станет аргументом в следующем <code>then</code>.</li>
+<li>Функция во втором <code>then</code> возвращает промис (результат нового вызова <code>httpGet</code>). Когда он будет завершён (может пройти какое-то время), то будет вызван следующий <code>then</code> с его результатом.</li>
+<li>Третий <code>then</code> ничего не возвращает.</li>
+</ol>
+<p>Схематично его работу можно изобразить так:</p>
+<figure><div class="image" style="width:479px">
+      <div class="image__ratio" style="padding-top:113.15240083507308%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseUserFlow.png" alt="" width="479" height="542" class="image__image">
+      </div></figure><p>Значком «песочные часы» помечены периоды ожидания, которых всего два: в исходном <code>httpGet</code> и в подвызове далее по цепочке.</p>
+<p>Если <code>then</code> возвращает промис, то до его выполнения может пройти некоторое время, оставшаяся часть цепочки будет ждать.</p>
+<p>То есть, логика довольно проста:</p>
+<ul>
+<li>В каждом <code>then</code> мы получаем текущий результат работы.</li>
+<li>Можно его обработать синхронно и вернуть результат (например, применить <code>JSON.parse</code>). Или же, если нужна асинхронная обработка – инициировать её и вернуть промис.</li>
+</ul>
+<p>Обратим внимание, что последний <code>then</code> в нашем примере ничего не возвращает. Если мы хотим, чтобы после <code>setTimeout</code> <code>(*)</code> асинхронная цепочка могла быть продолжена, то последний <code>then</code> тоже должен вернуть промис. Это общее правило: если внутри <code>then</code> стартует новый асинхронный процесс, то для того, чтобы оставшаяся часть цепочки выполнилась после его окончания, мы должны вернуть промис.</p>
+<p>В данном случае промис должен перейти в состояние «выполнен» после срабатывания <code>setTimeout</code>.</p>
+<p>Строку <code>(*)</code> для этого нужно переписать так:</p>
+<div id="bq9n917irl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>.then(githubUser =&gt; {
+  ...
+
+  // вместо setTimeout(() =&gt; img.remove(), 3000); (*)
+
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      img.remove();
+      // после таймаута — вызов resolve,
+      // можно без результата, чтобы управление перешло в следующий then
+      // (или можно передать данные пользователя дальше по цепочке)
+      resolve();
+    }, 3000);
+  });
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь, если к цепочке добавить ещё <code>then</code>, то он будет вызван после окончания <code>setTimeout</code>.</p>
+<h2><a class="main__anchor" name="perehvat-oshibok" href="#perehvat-oshibok">Перехват ошибок</a></h2><p>Выше мы рассмотрели «идеальный случай» выполнения, когда ошибок нет.</p>
+<p>А что, если github не отвечает? Или JSON.parse бросил синтаксическую ошибку при обработке данных?</p>
+<p>Да мало ли, где ошибка…</p>
+<p>Правило здесь очень простое.</p>
+<p><strong>При возникновении ошибки – она отправляется в ближайший обработчик <code>onRejected</code>.</strong></p>
+<p>Такой обработчик нужно поставить через второй аргумент <code>.then(..., onRejected)</code> или, что то же самое, через <code>.catch(onRejected)</code>.</p>
+<p>Чтобы поймать всевозможные ошибки, которые возникнут при загрузке и обработке данных, добавим <code>catch</code> в конец нашей цепочки:</p>
+<div id="yvk5k7fry9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:21,&quot;end&quot;:23},{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+// в httpGet обратимся к несуществующей странице
+httpGet('/page-not-exists')
+  .then(response =&gt; JSON.parse(response))
+  .then(user =&gt; httpGet(`https://api.github.com/users/${user.name}`))
+  .then(githubUser =&gt; {
+    githubUser = JSON.parse(githubUser);
+
+    let img = new Image();
+    img.src = githubUser.avatar_url;
+    img.className = &quot;promise-avatar-example&quot;;
+    document.body.appendChild(img);
+
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        img.remove();
+        resolve();
+      }, 3000);
+    });
+  })
+  .catch(error =&gt; {
+    alert(error); // Error: Not Found
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В примере выше ошибка возникает в первом же <code>httpGet</code>, но <code>catch</code> с тем же успехом поймал бы ошибку во втором <code>httpGet</code> или в <code>JSON.parse</code>.</p>
+<p>Принцип очень похож на обычный <code>try..catch</code>: мы делаем асинхронную цепочку из <code>.then</code>, а затем, в том месте кода, где нужно перехватить ошибки, вызываем <code>.catch(onRejected)</code>.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">А что после <code>catch</code>?</span></div>
+            <div class="important__content"><p>Обработчик <code>.catch(onRejected)</code> получает ошибку и должен обработать её.</p>
+<p>Есть два варианта развития событий:</p>
+<ol>
+<li>Если ошибка не критичная, то <code>onRejected</code> возвращает значение через <code>return</code>, и управление переходит в ближайший <code>.then(onFulfilled)</code>.</li>
+<li>Если продолжить выполнение с такой ошибкой нельзя, то он делает <code>throw</code>, и тогда ошибка переходит в следующий ближайший <code>.catch(onRejected)</code>.</li>
+</ol>
+<p>Это также похоже на обычный <code>try..catch</code> – в блоке <code>catch</code> ошибка либо обрабатывается, и тогда выполнение кода продолжается как обычно, либо он делает <code>throw</code>. Существенное отличие – в том, что промисы асинхронные, поэтому при отсутствии внешнего <code>.catch</code> ошибка не «вываливается» в консоль и не «убивает» скрипт.</p>
+<p>Ведь возможно, что новый обработчик <code>.catch</code> будет добавлен в цепочку позже.</p>
+</div></div>
+<h2><a class="main__anchor" name="promisy-v-detalyah" href="#promisy-v-detalyah">Промисы в деталях</a></h2><p>Самым основным источником информации по промисам является, разумеется, <a href="https://www.ecma-international.org/ecma-262/6.0/index.html#sec-promise-objects">стандарт</a>.</p>
+<p>Чтобы наше понимание промисов было полным, и мы могли с лёгкостью разрешать сложные ситуации, посмотрим внимательнее, что такое промис и как он работает, но уже не в общих словах, а детально, в соответствии со стандартом ECMAScript.</p>
+<p>Согласно стандарту, у объекта <code>new Promise(executor)</code> при создании есть четыре внутренних свойства:</p>
+<ul>
+<li><code>PromiseState</code> – состояние, вначале «pending».</li>
+<li><code>PromiseResult</code> – результат, при создании значения нет.</li>
+<li><code>PromiseFulfillReactions</code> – список функций-обработчиков успешного выполнения.</li>
+<li><code>PromiseRejectReactions</code> – список функций-обработчиков ошибки.</li>
+</ul>
+<figure><div class="image" style="width:333px">
+      <div class="image__ratio" style="padding-top:45.04504504504504%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseEcma.png" alt="" width="333" height="150" class="image__image">
+      </div></figure><p>Когда функция-executor вызывает <code>reject</code> или <code>resolve</code>, то <code>PromiseState</code> становится <code>&quot;resolved&quot;</code> или <code>&quot;rejected&quot;</code>, а все функции-обработчики из соответствующего списка перемещаются в специальную системную очередь <code>&quot;PromiseJobs&quot;</code>.</p>
+<p>Эта очередь автоматически выполняется, когда интерпретатору «нечего делать».  Иначе говоря, все функции-обработчики выполнятся асинхронно, одна за другой, по завершении текущего кода, примерно как <code>setTimeout(..,0)</code>.</p>
+<p>Исключение из этого правила – если <code>resolve</code> возвращает другой <code>Promise</code>. Тогда дальнейшее выполнение ожидает его результата (в очередь помещается специальная задача), и функции-обработчики выполняются уже с ним.</p>
+<p>Добавляет обработчики в списки один метод: <code>.then(onResolved, onRejected)</code>. Метод <code>.catch(onRejected)</code> – всего лишь сокращённая запись <code>.then(null, onRejected)</code>.</p>
+<p>Он делает следующее:</p>
+<ul>
+<li>Если <code>PromiseState == &quot;pending&quot;</code>, то есть промис ещё не выполнен, то обработчики добавляются в соответствующие списки.</li>
+<li>Иначе обработчики сразу помещаются в очередь на выполнение.</li>
+</ul>
+<p>Здесь важно, что обработчики можно добавлять в любой момент. Можно до выполнения промиса (они подождут), а можно – после (выполнятся в ближайшее время, через асинхронную очередь).</p>
+<p>Например:</p>
+<div id="3yiya0hxcz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Промис выполнится сразу же
+var promise = new Promise((resolve, reject) =&gt; resolve(1));
+
+// PromiseState = &quot;resolved&quot;
+// PromiseResult = 1
+
+// Добавили обработчик к выполненному промису
+promise.then(alert); // ...он сработает тут же</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Разумеется, можно добавлять и много обработчиков на один и тот же промис:</p>
+<div id="19qhu76yyo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Промис выполнится сразу же
+var promise = new Promise((resolve, reject) =&gt; resolve(1));
+
+promise.then( function f1(result) {
+  alert(result); // 1
+  return 'f1';
+})
+
+promise.then( function f2(result) {
+  alert(result); // 1
+  return 'f2';
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вид объекта <code>promise</code> после этого:</p>
+<figure><div class="image" style="width:409px">
+      <div class="image__ratio" style="padding-top:36.674816625916876%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseTwo.png" alt="" width="409" height="150" class="image__image">
+      </div></figure><p>На этой иллюстрации можно увидеть добавленные нами обработчики <code>f1</code>, <code>f2</code>, а также – автоматически добавленные обработчики ошибок <code>&quot;Thrower&quot;</code>.</p>
+<p>Дело в том, что <code>.then</code>, если один из обработчиков не указан, добавляет его «от себя», следующим образом:</p>
+<ul>
+<li>Для успешного выполнения – функция <code>Identity</code>, которая выглядит как <code>arg =&gt; arg</code>, то есть возвращает аргумент без изменений.</li>
+<li>Для ошибки – функция <code>Thrower</code>, которая выглядит как <code>arg =&gt; throw arg</code>, то есть генерирует ошибку.</li>
+</ul>
+<p>Это, по сути дела, формальность, но без неё некоторые особенности поведения промисов могут «не сойтись» в общую логику, поэтому мы упоминаем о ней здесь.</p>
+<p>Обратим внимание, в этом примере намеренно <em>не используется чейнинг</em>. То есть, обработчики добавляются именно на один и тот же промис.</p>
+<p>Поэтому оба <code>alert</code> выдадут одно значение <code>1</code>.</p>
+<p>Все функции из списка обработчиков вызываются с результатом промиса, одна за другой. Никакой передачи результатов между обработчиками в рамках одного промиса нет, а сам результат промиса (<code>PromiseResult</code>) после установки не меняется.</p>
+<p>Поэтому, чтобы продолжить работу с результатом, используется чейнинг.</p>
+<p><strong>Для того, чтобы результат обработчика передать следующей функции, <code>.then</code> создаёт новый промис и возвращает его.</strong></p>
+<p>В примере выше создаётся два таких промиса (т.к. два вызова <code>.then</code>), каждый из которых даёт свою ветку выполнения:</p>
+<figure><div class="image" style="width:566px">
+      <div class="image__ratio" style="padding-top:49.293286219081274%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseTwoThen.png" alt="" width="566" height="279" class="image__image">
+      </div></figure><p>Изначально эти новые промисы – «пустые», они ждут. Когда в будущем выполнятся обработчики <code>f1, f2</code>, то их результат будет передан в новые промисы по стандартному принципу:</p>
+<ul>
+<li>Если вернётся обычное значение (не промис), новый промис перейдёт в <code>&quot;resolved&quot;</code> с ним.</li>
+<li>Если был <code>throw</code>, то новый промис перейдёт в состояние <code>&quot;rejected&quot;</code> с ошибкой.</li>
+<li>Если вернётся промис, то используем его результат (он может быть как <code>resolved</code>, так и <code>rejected</code>).</li>
+</ul>
+<figure><div class="image" style="width:665px">
+      <div class="image__ratio" style="padding-top:52.63157894736842%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseHandlerVariants.png" alt="" width="665" height="350" class="image__image">
+      </div></figure><p>Дальше выполнятся уже обработчики на новом промисе, и так далее.</p>
+<p>Чтобы лучше понять происходящее, посмотрим на цепочку, которая получается в процессе написания кода для показа github-аватара.</p>
+<p>Первый промис и обработка его результата:</p>
+<div id="d9f244qx4j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet('/article/promise/user.json')
+  .then(JSON.parse)</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:641px">
+      <div class="image__ratio" style="padding-top:33.541341653666144%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseLoadAvatarChain-1.png" alt="" width="641" height="215" class="image__image">
+      </div></figure><p>Если промис завершился через <code>resolve</code>, то результат – в <code>JSON.parse</code>, если <code>reject</code> – то в Thrower.</p>
+<p>Как было сказано выше, <code>Thrower</code> – это стандартная внутренняя функция, которая автоматически используется, если второй обработчик не указан.</p>
+<p>Можно считать, что второй обработчик выглядит так:</p>
+<div id="ue8akv7u1g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:36}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet('/article/promise/user.json')
+  .then(JSON.parse, err =&gt; throw err)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что когда обработчик в промисах делает <code>throw</code> – в данном случае, при ошибке запроса, то такая ошибка не «валит» скрипт и не выводится в консоли. Она просто будет передана в ближайший следующий обработчик <code>onRejected</code>.</p>
+<p>Добавим в код ещё строку:</p>
+<div id="xwk3tgkjwi" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet('/article/promise/user.json')
+  .then(JSON.parse)
+  .then(user =&gt; httpGet(`https://api.github.com/users/${user.name}`))</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Цепочка «выросла вниз»:</p>
+<figure><div class="image" style="width:641px">
+      <div class="image__ratio" style="padding-top:49.921996879875195%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseLoadAvatarChain-2.png" alt="" width="641" height="320" class="image__image">
+      </div></figure><p>Функция <code>JSON.parse</code> либо возвращает объект с данными, либо генерирует ошибку (что расценивается как <code>reject</code>).</p>
+<p>Если всё хорошо, то <code>then(user =&gt; httpGet(…))</code> вернёт новый промис, на который стоят уже два обработчика:</p>
+<div id="d4b39z5htl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>httpGet('/article/promise/user.json')
+  .then(JSON.parse)
+  .then(user =&gt; httpGet(`https://api.github.com/users/${user.name}`))
+  .then(
+    JSON.parse,
+    function avatarError(error) {
+      if (error.code == 404) {
+        return {name: &quot;NoGithub&quot;, avatar_url: '/article/promise/anon.png'};
+      } else {
+        throw error;
+      }
+    }
+  })</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:641px">
+      <div class="image__ratio" style="padding-top:91.88767550702028%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseLoadAvatarChain-3.png" alt="" width="641" height="589" class="image__image">
+      </div></figure><p>Наконец-то хоть какая-то обработка ошибок!</p>
+<p>Обработчик <code>avatarError</code> перехватит ошибки, которые были ранее. Функция <code>httpGet</code> при генерации ошибки записывает её HTTP-код в свойство <code>error.code</code>, так что мы легко можем понять – что это:</p>
+<ul>
+<li>Если страница на Github не найдена – можно продолжить выполнение, используя «аватар по умолчанию»</li>
+<li>Иначе – пробрасываем ошибку дальше.</li>
+</ul>
+<p>Итого, после добавления оставшейся части цепочки, картина получается следующей:</p>
+<div id="bu4929pr0r" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+httpGet('/article/promise/userNoGithub.json')
+  .then(JSON.parse)
+  .then(user =&gt; httpGet(`https://api.github.com/users/${user.name}`))
+  .then(
+    JSON.parse,
+    function githubError(error) {
+      if (error.code == 404) {
+        return {name: &quot;NoGithub&quot;, avatar_url: '/article/promise/anon.png'};
+      } else {
+        throw error;
+      }
+    }
+  )
+  .then(function showAvatar(githubUser) {
+    let img = new Image();
+    img.src = githubUser.avatar_url;
+    img.className = &quot;promise-avatar-example&quot;;
+    document.body.appendChild(img);
+    setTimeout(() =&gt; img.remove(), 3000);
+  })
+  .catch(function genericError(error) {
+    alert(error); // Error: Not Found
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:641px">
+      <div class="image__ratio" style="padding-top:109.36037441497659%"></div>
+      <img src="https://learn.javascript.ru/article/promise/promiseLoadAvatarChain-4.png" alt="" width="641" height="701" class="image__image">
+      </div></figure><p>В конце срабатывает общий обработчик <code>genericError</code>, который перехватывает любые ошибки. В данном случае ошибки, которые в него попадут, уже носят критический характер, что-то серьёзно не так. Чтобы посетитель не удивился отсутствию информации, мы показываем ему сообщение об этом.</p>
+<p>Можно и как-то иначе вывести уведомление о проблеме, главное – не забыть обработать ошибки в конце. Если последнего <code>catch</code> не будет, а цепочка завершится с ошибкой, то посетитель об этом не узнает.</p>
+<p>В консоли тоже ничего не будет, так как ошибка остаётся «внутри» промиса, ожидая добавления следующего обработчика <code>onRejected</code>, которому будет передана.</p>
+<p>Итак, мы рассмотрели основные приёмы использования промисов. Далее – посмотрим некоторые полезные вспомогательные методы.</p>
+<h2><a class="main__anchor" name="parallelnoe-vypolnenie" href="#parallelnoe-vypolnenie">Параллельное выполнение</a></h2><p>Что, если мы хотим осуществить несколько асинхронных процессов одновременно и обработать их результат?</p>
+<p>В классе <code>Promise</code> есть следующие статические методы.</p>
+<h3><a class="main__anchor" name="promise-all-iterable" href="#promise-all-iterable">Promise.all(iterable)</a></h3><p>Вызов <code>Promise.all(iterable)</code> получает массив (или другой итерируемый объект) промисов и возвращает промис, который ждёт, пока все переданные промисы завершатся, и переходит в состояние «выполнено» с массивом их результатов.</p>
+<p>Например:</p>
+<div id="39f8nxhvkq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  httpGet('/article/promise/user.json'),
+  httpGet('/article/promise/guest.json')
+]).then(results =&gt; {
+  alert(results);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Допустим, у нас есть массив с URL.</p>
+<div id="gdig5ewoy6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let urls = [
+  '/article/promise/user.json',
+  '/article/promise/guest.json'
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Чтобы загрузить их параллельно, нужно:</p>
+<ol>
+<li>Создать для каждого URL соответствующий промис.</li>
+<li>Обернуть массив таких промисов в <code>Promise.all</code>.</li>
+</ol>
+<p>Получится так:</p>
+<div id="2n1677ttsl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let urls = [
+  '/article/promise/user.json',
+  '/article/promise/guest.json'
+];
+
+Promise.all( urls.map(httpGet) )
+  .then(results =&gt; {
+    alert(results);
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что если какой-то из промисов завершился с ошибкой, то результатом <code>Promise.all</code> будет эта ошибка. При этом остальные промисы игнорируются.</p>
+<p>Например:</p>
+<div id="riwcjxdeui" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  httpGet('/article/promise/user.json'),
+  httpGet('/article/promise/guest.json'),
+  httpGet('/article/promise/no-such-page.json') // (нет такой страницы)
+]).then(
+  result =&gt; alert(&quot;не сработает&quot;),
+  error =&gt; alert(&quot;Ошибка: &quot; + error.message) // Ошибка: Not Found
+)</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="promise-race-iterable" href="#promise-race-iterable">Promise.race(iterable)</a></h3><p>Вызов <code>Promise.race</code>, как и <code>Promise.all</code>, получает итерируемый объект с промисами, которые нужно выполнить, и возвращает новый промис.</p>
+<p>Но, в отличие от <code>Promise.all</code>, результатом будет только первый успешно выполнившийся промис из списка. Остальные игнорируются.</p>
+<p>Например:</p>
+<div id="rzdhq5syfr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.race([
+  httpGet('/article/promise/user.json'),
+  httpGet('/article/promise/guest.json')
+]).then(firstResult =&gt; {
+  firstResult = JSON.parse(firstResult);
+  alert( firstResult.name ); // iliakan или guest, смотря что загрузится раньше
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="promise-resolve-value" href="#promise-resolve-value">Promise.resolve(value)</a></h2><p>Вызов <code>Promise.resolve(value)</code> создаёт успешно выполнившийся промис с результатом <code>value</code>.</p>
+<p>Он аналогичен конструкции:</p>
+<div id="l9l7sqdw0e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Promise((resolve) =&gt; resolve(value))</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Promise.resolve</code> используют, когда хотят построить асинхронную цепочку, и начальный результат уже есть.</p>
+<p>Например:</p>
+<div id="0av6jree4y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.resolve(window.location) // начать с этого значения
+  .then(httpGet) // вызвать для него httpGet
+  .then(alert) // и вывести результат</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="promise-reject-error" href="#promise-reject-error">Promise.reject(error)</a></h2><p>Аналогично <code>Promise.reject(error)</code> создаёт уже выполнившийся промис, но не с успешным результатом, а с ошибкой <code>error</code>.</p>
+<p>Например:</p>
+<div id="w0i2jcppr2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.reject(new Error(&quot;...&quot;))
+  .catch(alert) // Error: ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Метод <code>Promise.reject</code> используется очень редко, гораздо реже чем <code>resolve</code>, потому что ошибка возникает обычно не в начале цепочки, а в процессе её выполнения.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>Промис – это специальный объект, который хранит своё состояние, текущий результат (если есть) и колбэки.</li>
+<li>При создании <code>new Promise((resolve, reject) =&gt; ...)</code> автоматически запускается функция-аргумент, которая должна вызвать <code>resolve(result)</code> при успешном выполнении и <code>reject(error)</code> – при ошибке.</li>
+<li>Аргумент <code>resolve/reject</code> (только первый, остальные игнорируются) передаётся обработчикам на этом промисе.</li>
+<li>Обработчики назначаются вызовом <code>.then/catch</code>.</li>
+<li>Для передачи результата от одного обработчика к другому используется чейнинг.</li>
+</ul>
+<p>У промисов есть некоторые ограничения. В частности, стандарт не предусматривает какой-то метод для «отмены» промиса, хотя в ряде ситуаций (http-запросы) это было бы довольно удобно. Возможно, он появится в следующей версии стандарта JavaScript.</p>
+<p>В современной JavaScript-разработке сложные цепочки с промисами используются редко, так как они куда проще описываются при помощи генераторов с библиотекой <code>co</code>, которые рассмотрены в <a href="generator.html">соответствующей главе</a>. Можно сказать, что промисы лежат в основе более продвинутых способов асинхронной разработки.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#promisifitsirovat-settimeout" name="promisifitsirovat-settimeout">Промисифицировать setTimeout</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/promise-settimeout" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>delay(ms)</code>, которая возвращает промис, переходящий в состояние <code>&quot;resolved&quot;</code> через <code>ms</code> миллисекунд.</p>
+<p>Пример использования:</p>
+<div id="700wr6rxa1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>delay(1000)
+  .then(() =&gt; alert(&quot;Hello!&quot;))</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такая функция полезна для использования в других промис-цепочках.</p>
+<p>Вот такой вызов:</p>
+<div id="drw8szfp9h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>return new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; {
+    doSomeThing();
+    resolve();
+  }, ms)
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Станет возможным переписать так:</p>
+<div id="humldt4nxx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>return delay(ms).then(doSomething);</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="6j0lywjeks" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(ms) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(resolve, ms);
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zagruzit-massiv-posledovatelno" name="zagruzit-massiv-posledovatelno">Загрузить массив последовательно</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/promise-sequence" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Есть массив URL:</p>
+<div id="4gj342xai2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let urls = [
+  'user.json',
+  'guest.json'
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Напишите код, который все URL из этого массива загружает один за другим (последовательно) и сохраняет результаты в массиве <code>results</code>, а потом выводит.</p>
+<p>Вариант с параллельной загрузкой выглядел бы так:</p>
+<div id="2ct0sf41dw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all( urls.map(httpGet) )
+  .then(alert);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В этой задаче загрузку нужно реализовать последовательно.</p>
+<p><a href="https://plnkr.co/edit/R74ArlYftge4MOWg?p=preview" target="_blank" data-plunk-id="R74ArlYftge4MOWg">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Для последовательной загрузки нужно организовать промисы в цепочку, чтобы они выполнялись строго – один после другого.</p>
+<p>Вот код, который это делает:</p>
+<div id="7jk2l7s875" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// начало цепочки
+let chain = Promise.resolve();
+
+let results = [];
+
+// в цикле добавляем задачи в цепочку
+urls.forEach(function(url) {
+  chain = chain
+    .then(() =&gt; httpGet(url))
+    .then((result) =&gt; {
+      results.push(result);
+    });
+});
+
+// в конце — выводим результаты
+chain.then(() =&gt; {
+  alert(results);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Использование <code>Promise.resolve()</code> как начала асинхронной цепочки – очень распространённый приём.</p>
+<p><a href="https://plnkr.co/edit/RWxA6Pj1I2w7sx3F?p=preview" target="_blank" data-plunk-id="RWxA6Pj1I2w7sx3F">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/promise","identifier":"\/promise"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/promise by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+</html>

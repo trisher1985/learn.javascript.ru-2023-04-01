@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/regexp-alternation by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Альтернация (или) |</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="regexp-alternation.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Альтернация (или) |"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Альтернация (или) |"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="regexp-backreferences.html"><link rel="next" href="regexp-lookahead-lookbehind.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Альтернация (или) |"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/regexp-alternation"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-alternation"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-alternation"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/regexp-alternation"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-alternation"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-alternation"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="regexp-alternation.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/regexp-alternation"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/regexp-alternation"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/regexp-alternation">عربي</option><option value="https://javascript.info/regexp-alternation">English</option><option value="https://es.javascript.info/regexp-alternation">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/regexp-alternation">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-alternation">Italiano</option><option value="https://ja.javascript.info/regexp-alternation">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/regexp-alternation" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/regexp-alternation">Українська</option><option value="https://zh.javascript.info/regexp-alternation">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="13" max="17" data-tooltip="Урок 13 из 17"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="regular-expressions.html"><span>Регулярные выражения</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Регулярные выражения","item":"https://learn.javascript.ru/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 7 июля 2021 г."><div class="updated-at__content">7 июля 2021 г.</div></div></div><h1 class="main__header-title">Альтернация (или) |</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Альтернация (или) |"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Альтернация – термин в регулярных выражениях, которому в русском языке соответствует слово «ИЛИ».</p>
+<p>В регулярных выражениях она обозначается символом вертикальной черты <code class="pattern">|</code>.</p>
+<p>Например, нам нужно найти языки программирования: HTML, PHP, Java и JavaScript.</p>
+<p>Соответствующее регулярное выражение: <code class="pattern">html|php|java(script)?</code>.</p>
+<p>Пример использования:</p>
+<div id="gcpbsk2wqz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /html|css|java(script)?/gi;
+
+let str = &quot;Сначала появился язык Java, затем HTML, потом JavaScript&quot;;
+
+alert( str.match(regexp) ); // Java,HTML,JavaScript</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы уже видели нечто подобное – квадратные скобки. Они позволяют выбирать между несколькими символами, например  <code class="pattern">gr[ae]y</code> найдёт <code class="match">gray</code>, либо <code class="match">grey</code>.</p>
+<p>Квадратные скобки работают только с символами или наборами символов. Альтернация мощнее, она работает с любыми выражениями. Регулярное выражение <code class="pattern">A|B|C</code> обозначает поиск одного из выражений: <code>A</code>, <code>B</code> или <code>C</code>.</p>
+<p>Например:</p>
+<ul>
+<li><code class="pattern">gr(a|e)y</code> означает точно то же, что и <code class="pattern">gr[ae]y</code>.</li>
+<li><code class="pattern">gra|ey</code> означает <code class="match">gra</code> или <code class="match">ey</code>.</li>
+</ul>
+<p>Чтобы применить альтернацию только к части шаблона, можно заключить её в скобки:</p>
+<ul>
+<li><code class="pattern">Люблю HTML|CSS</code> найдёт <code class="match">Люблю HTML</code> или <code class="match">CSS</code>.</li>
+<li><code class="pattern">Люблю (HTML|CSS)</code> найдёт <code class="match">Люблю HTML</code> или <code class="match">Люблю CSS</code>.</li>
+</ul>
+<h2><a class="main__anchor" name="primer-shablon-dlya-vremeni" href="#primer-shablon-dlya-vremeni">Пример: шаблон для времени</a></h2><p>В предыдущих главах было задание написать регулярное выражение для поиска времени в формате  <code>чч:мм</code>, например <code>12:00</code>. Но шаблон <code class="pattern">\d\d:\d\d</code> недостаточно точный. Он принимает <code>25:99</code> за время (99 секунд подходят под шаблон, но так не должно быть).</p>
+<p>Как сделать лучше?</p>
+<p>Мы можем применить более тщательное сравнение. Во-первых, часы:</p>
+<ul>
+<li>Если первая цифра <code>0</code> или <code>1</code>, тогда следующая цифра может быть любой: <code class="pattern">[01]\d</code>.</li>
+<li>Или если первая цифра <code>2</code>, тогда следующая должна быть от 0 до 3: <code class="pattern">2[0-3]</code>.</li>
+<li>(другой первой цифры быть не может)</li>
+</ul>
+<p>В виде регулярного выражения оба варианта для часов можно записать при помощи альтернации: <code class="pattern">[01]\d|2[0-3]</code>.</p>
+<p>Далее, минуты должны быть от <code>00</code> до <code>59</code>. На языке регулярных выражений это означает <code class="pattern">[0-5]\d</code>: первая цифра <code>0-5</code>, а за ней любая.</p>
+<p>Давайте соединим часы и минуты в одно выражение, получится так: <code class="pattern">[01]\d|2[0-3]:[0-5]\d</code>.</p>
+<p>Почти готово, но есть проблема. После такого соединения альтернация <code class="pattern">|</code> оказалась между <code class="pattern">[01]\d</code> и <code class="pattern">2[0-3]:[0-5]\d</code>.</p>
+<p>То есть, минуты добавились ко второму варианту альтернации, вот более наглядно:</p>
+<div id="d8q4eqitbw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>[01]\d  |  2[0-3]:[0-5]\d</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такой шаблон будет искать <code class="pattern">[01]\d</code> или <code class="pattern">2[0-3]:[0-5]\d</code>.</p>
+<p>Но это неверно. Нам нужно, чтобы альтернация использовалась только внутри части регулярного выражения, относящейся к часам, чтобы разрешать <code class="pattern">[01]\d</code> ИЛИ <code class="pattern">2[0-3]</code>. Для этого обернём «часы» в скобки: <code class="pattern">([01]\d|2[0-3]):[0-5]\d</code>.</p>
+<p>Пример работы:</p>
+<div id="s1zsbmfwek" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /([01]\d|2[0-3]):[0-5]\d/g;
+
+alert(&quot;00:00 10:10 23:59 25:99 1:2&quot;.match(regexp)); // 00:00,10:10,23:59</code></pre>
+        </div>
+      </div>
+      
+      </div></div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#naydite-yazyki-programmirovaniya" name="naydite-yazyki-programmirovaniya">Найдите языки программирования</a></h3><a class="task__open-link" href="task/find-programming-language.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Существует много языков программирования, например, Java, JavaScript, PHP, C, C++.</p>
+<p>Напишите регулярное выражение, которое найдёт их все в строке <code class="subject">Java JavaScript PHP C++ C</code>:</p>
+<div id="frycks28xv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/флаги;
+
+alert(&quot;Java JavaScript PHP C++ C&quot;.match(regexp)); // Java JavaScript PHP C++ C</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Первая идея, которая может прийти в голову – перечислить языки, разделив их <code>|</code>.</p>
+<p>Но это не сработает, как надо:</p>
+<div id="hqvy1c9oob" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /Java|JavaScript|PHP|C|C\+\+/g;
+
+let str = &quot;Java, JavaScript, PHP, C, C++&quot;;
+
+alert( str.match(regexp) ); // Java,Java,PHP,C,C</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Движок регулярных выражений ищет альтернации в порядке их перечисления. То есть, он сначала смотрит, есть ли  <code class="match">Java</code>, а если нет – ищет  <code class="match">JavaScript</code> и так далее.</p>
+<p>В результате <code class="match">JavaScript</code> не будет найден никогда, только потому что <code class="match">Java</code> проверяется первым.</p>
+<p>То же самое – с языками <code class="match">C</code> и <code class="match">C++</code>.</p>
+<p>Есть два решения проблемы:</p>
+<ol>
+<li>Поменять порядок, чтобы более длинное совпадение проверялось первым:  <code class="pattern">JavaScript|Java|C\+\+|C|PHP</code>.</li>
+<li>Соединить одинаково начинающиеся варианты: <code class="pattern">Java(Script)?|C(\+\+)?|PHP</code>.</li>
+</ol>
+<p>В действии:</p>
+<div id="y5nm0qk4kb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /Java(Script)?|C(\+\+)?|PHP/g;
+
+let str = &quot;Java, JavaScript, PHP, C, C++&quot;;
+
+alert( str.match(regexp) ); // Java,JavaScript,PHP,C,C++</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#naydite-pary-bb-kodov" name="naydite-pary-bb-kodov">Найдите пары BB-кодов</a></h3><a class="task__open-link" href="task/find-matching-bbtags.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p><a href="https://ru.wikipedia.org/wiki/BBCode">BB-код</a> имеет вид <code>[tag]...[/tag]</code>, где <code>tag</code>– это один из: <code>b</code>, <code>url</code> или <code>quote</code>.</p>
+<p>Например:</p>
+<div id="ljgabg3egq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>[b]текст[/b]
+[url]http://ya.ru[/url]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>BB-коды могут быть вложенными. Но сам в себя тег не может быть вложен, например:</p>
+<div id="7hwisryuu6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Возможно:
+[url] [b]http://ya.ru[/b] [/url]
+[quote] [b]текст[/b] [/quote]
+
+Не может быть:
+[b][b]текст[/b][/b]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теги могут содержать переносы строк, это допустимо:</p>
+<div id="5qrwyb9rux" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>[quote]
+  [b]текст[/b]
+[/quote]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Создайте регулярное выражение для поиска всех BB-кодов и их содержимого.</p>
+<p>Например:</p>
+<div id="d6oi3raovv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/флаги;
+
+let str = &quot;..[url]http://ya.ru[/url]..&quot;;
+alert( str.match(regexp) ); // [url]http://ya.ru[/url]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если теги вложены, то нужно искать самый внешний тег (при желании можно продолжить поиск в его содержимом):</p>
+<div id="2q7tui5k7c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/флаги;
+
+let str = &quot;..[url][b]http://ya.ru[/b][/url]..&quot;;
+alert( str.match(regexp) ); // [url][b]http://ya.ru[/b][/url]</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Открывающий тег – это <code class="pattern">\[(b|url|quote)]</code>.</p>
+<p>Затем, чтобы найти всё до закрывающего тега – используем выражение <code class="pattern">.*?</code> с флагом <code class="pattern">s</code>: оно найдёт любые символы, включая новую строку, и затем добавим обратную ссылку на открывающий тег.</p>
+<p>Полное выражение: <code class="pattern">\[(b|url|quote)\].*?\[/\1]</code>.</p>
+<p>В действии:</p>
+<div id="zalu80o3u1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /\[(b|url|quote)].*?\[\/\1]/gs;
+
+let str = `
+  [b]привет![/b]
+  [quote]
+    [url]http://ya.ru[/url]
+  [/quote]
+`;
+
+alert( str.match(regexp) ); // [b]привет![/b],[quote][url]http://ya.ru[/url][/quote]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание, что кроме экранирования <code class="pattern">[</code> нам необходимо экранировать слеш в закрывающем теге <code class="pattern">[\/\1]</code>, потому что обычно слеш завершает паттерн.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#naydite-stroki-v-kavychkah" name="naydite-stroki-v-kavychkah">Найдите строки в кавычках</a></h3><a class="task__open-link" href="task/match-quoted-string.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Создайте регулярное выражение для поиска строк в двойных кавычках <code class="subject">&quot;...&quot;</code>.</p>
+<p>Важно, что строки должны поддерживать экранирование с помощью обратного слеша, по аналогии со строками JavaScript. Например, кавычки могут быть вставлены как <code class="subject">\&quot;</code>, новая строка как <code class="subject">\n</code>, а сам обратный слеш как <code class="subject">\\</code>.</p>
+<div id="k4xej04xl5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Как вот \&quot;здесь\&quot;.&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В частности, обратите внимание: двойная кавычка после обратного слеша <code class="subject">\&quot;</code> не оканчивает строку.</p>
+<p>Поэтому мы должны искать от одной кавычки до другой, игнорируя встречающиеся экранированные кавычки.</p>
+<p>В этом и состоит основная сложность задачи, которая без этого условия была бы элементарной.</p>
+<p>Примеры подходящих строк:</p>
+<div id="53ajzlnjeo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:10}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:7}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:22}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:12}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>.. &quot;test me&quot; ..
+.. &quot;Скажи \&quot;Привет\&quot;!&quot; ... (строка с экранированными кавычками)
+.. &quot;\\&quot; ..  (внутри двойной слеш)
+.. &quot;\\ \&quot;&quot; ..  (внутри двойной слеш и экранированная кавычка)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В JavaScript приходится удваивать обратные слеши, чтобы добавлять их в строку, как здесь:</p>
+<div id="vuj0rqka6w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = ' .. &quot;test me&quot; .. &quot;Скажи \\&quot;Привет\\&quot;!&quot; .. &quot;\\\\ \\&quot;&quot; .. ';
+
+// эта строка в памяти:
+alert(str); //  .. &quot;test me&quot; .. &quot;Скажи \&quot;Привет\&quot;!&quot; .. &quot;\\ \&quot;&quot; ..</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Решение: <code class="pattern">/&quot;(\\.|[^&quot;\\])*&quot;/g</code>.</p>
+<p>Шаг за шагом:</p>
+<ul>
+<li>Сначала ищем открывающую кавычку <code class="pattern">&quot;</code></li>
+<li>Затем, если есть обратный слеш <code class="pattern">\\</code> (удвоение обратного слеша – техническое, потому что это спец.символ, на самом деле там один обратный слеш), то после него также подойдёт любой символ (точка).</li>
+<li>Иначе берём любой символ, кроме кавычек (которые будут означать конец строки) и обратного слеша (чтобы предотвратить одинокие обратные слеши, сам по себе единственный обратный слеш не нужен, он должен экранировать какой-то символ) <code class="pattern">[^&quot;\\]</code></li>
+<li>…И так далее, до закрывающей кавычки.</li>
+</ul>
+<p>В действии:</p>
+<div id="dutrh7fwg2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&quot;(\\.|[^&quot;\\])*&quot;/g;
+let str = ' .. &quot;test me&quot; .. &quot;Скажи \\&quot;Привет\\&quot;!&quot; .. &quot;\\\\ \\&quot;&quot; .. ';
+
+alert( str.match(regexp) ); // &quot;test me&quot;,&quot;Скажи \&quot;Привет\&quot;!&quot;,&quot;\\ \&quot;&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#naydite-ves-teg" name="naydite-ves-teg">Найдите весь тег</a></h3><a class="task__open-link" href="task/match-exact-tag.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Напишите регулярное выражение, которое ищет тег <code>&lt;style...&gt;</code>. Оно должно искать весь тег: он может как не иметь атрибутов  <code>&lt;style&gt;</code>, так и иметь несколько <code>&lt;style type=&quot;...&quot; id=&quot;...&quot;&gt;</code>.</p>
+<p>…Но регулярное выражение не должно находить <code>&lt;styler&gt;</code>!</p>
+<p>Например:</p>
+<div id="az5j6345ug" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/g;
+
+alert( '&lt;style&gt; &lt;styler&gt; &lt;style test=&quot;...&quot;&gt;'.match(regexp) ); // &lt;style&gt;, &lt;style test=&quot;...&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Начало шаблона очевидно: <code class="pattern">&lt;style</code>.</p>
+<p>…А вот дальше… Мы не можем написать просто <code class="pattern">&lt;style.*?&gt;</code>, потому что <code class="match">&lt;styler&gt;</code> удовлетворяет этому выражению.</p>
+<p>После <code class="match">&lt;style</code> должен быть либо пробел, после которого может быть что-то ещё, либо закрытие тега <code class="match">&gt;</code>.</p>
+<p>На языке регулярных выражений: <code class="pattern">&lt;style(&gt;|\s.*?&gt;)</code>.</p>
+<p>В действии:</p>
+<div id="mip4bvhnqu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&lt;style(&gt;|\s.*?&gt;)/g;
+
+alert( '&lt;style&gt; &lt;styler&gt; &lt;style test=&quot;...&quot;&gt;'.match(regexp) ); // &lt;style&gt;, &lt;style test=&quot;...&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="regexp-backreferences.html" data-tooltip="Обратные ссылки в шаблоне: \N и \k&lt;имя&gt;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="regexp-lookahead-lookbehind.html" data-tooltip="Опережающие и ретроспективные проверки"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/regexp-alternation","identifier":"\/regexp-alternation"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="regular-expressions.html">Регулярные выражения</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#primer-shablon-dlya-vremeni">Пример: шаблон для времени</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fregexp-alternation" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/9-regular-expressions/13-regexp-alternation" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/regexp-alternation by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:40 GMT -->
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/object-toprimitive by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Преобразование объектов в примитивы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="object-toprimitive.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Преобразование объектов в примитивы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Преобразование объектов в примитивы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="symbol.html"><link rel="next" href="data-types.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Преобразование объектов в примитивы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/object-toprimitive"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/object-toprimitive"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/object-toprimitive"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/object-toprimitive"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/object-toprimitive"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/object-toprimitive"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/object-toprimitive"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/object-toprimitive"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/object-toprimitive"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="object-toprimitive.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/object-toprimitive"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/object-toprimitive"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/object-toprimitive"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/object-toprimitive">عربي</option><option value="https://javascript.info/object-toprimitive">English</option><option value="https://es.javascript.info/object-toprimitive">Español</option><option value="https://fa.javascript.info/object-toprimitive">فارسی</option><option value="https://fr.javascript.info/object-toprimitive">Français</option><option value="https://id.javascript.info/object-toprimitive">Indonesia</option><option value="https://it.javascript.info/object-toprimitive">Italiano</option><option value="https://ja.javascript.info/object-toprimitive">日本語</option><option value="https://ko.javascript.info/object-toprimitive">한국어</option><option value="https://learn.javascript.ru/object-toprimitive" selected>Русский</option><option value="https://tr.javascript.info/object-toprimitive">Türkçe</option><option value="https://uk.javascript.info/object-toprimitive">Українська</option><option value="https://zh.javascript.info/object-toprimitive">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="36" max="95" data-tooltip="Урок 36 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="object-basics.html"><span>Объекты: основы</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Объекты: основы","item":"https://learn.javascript.ru/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 24 января 2023 г."><div class="updated-at__content">24 января 2023 г.</div></div></div><h1 class="main__header-title">Преобразование объектов в примитивы</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Преобразование объектов в примитивы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Что произойдёт, если сложить два объекта <code>obj1 + obj2</code>, вычесть один из другого <code>obj1 - obj2</code> или вывести их на экран, воспользовавшись <code>alert(obj)</code>?</p>
+<p>JavaScript совершенно не позволяет настраивать, как операторы работают с объектами. В отличие от некоторых других языков программирования, таких как Ruby или C++, мы не можем реализовать специальный объектный метод для обработки сложения (или других операторов).</p>
+<p>В случае таких операций, объекты автоматически преобразуются в примитивы, затем выполняется сама операция над этими примитивами, и на выходе мы получим примитивное значение.</p>
+<p>Это важное ограничение: результатом <code>obj1 + obj2</code> (или другой математической операции) не может быть другой объект!</p>
+<p>К примеру, мы не можем создавать объекты, представляющие векторы или матрицы (или достижения или может ещё что-то), складывать их и ожидать в качестве результата «суммированный» объект. Такие архитектурные ходы автоматически оказываются «за бортом».</p>
+<p>Итак, поскольку мы технически здесь мало что можем сделать, в реальных проектах нет математики с объектами. Если она всё же происходит, то за редким исключением, это из-за ошибок в коде.</p>
+<p>В этой главе мы рассмотрим, как объект преобразуется в примитив и как это можно настроить.</p>
+<p>У нас есть две цели:</p>
+<ol>
+<li>Это позволит нам понять, что происходит в случае ошибок в коде, когда такая операция произошла случайно.</li>
+<li>Есть исключения, когда такие операции возможны и вполне уместны. Например, вычитание или сравнение дат (<code>Date</code> объекты). Мы встретимся с ними позже.</li>
+</ol>
+<h2><a class="main__anchor" name="pravila-preobrazovaniya" href="#pravila-preobrazovaniya">Правила преобразования</a></h2><p>В главе <a href="type-conversions.html">Преобразование типов</a> мы рассмотрели правила для числовых, строковых и логических преобразований примитивов. Но мы оставили пробел для объектов. Теперь, когда мы уже знаем о методах и символах, пришло время заполнить этот пробел.</p>
+<ol>
+<li>Не существует преобразования к логическому значению. В логическом контексте все объекты являются <code>true</code>, всё просто. Существует лишь их числовое и строковое преобразование.</li>
+<li>Числовое преобразование происходит, когда мы вычитаем объекты или применяем математические функции. Например, объекты <code>Date</code> (которые будут рассмотрены в главе <a href="date.html">Дата и время</a>) могут быть вычтены, и результатом <code>date1 - date2</code> будет разница во времени между двумя датами.</li>
+<li>Что касается преобразований к строке – оно обычно происходит, когда мы выводим на экран объект при помощи <code>alert(obj)</code> и в подобных контекстах.</li>
+</ol>
+<p>Мы можем реализовать свои преобразования к строкам и числам, используя специальные объектные методы.</p>
+<p>Теперь давайте углубимся в детали. Это единственный путь для того, чтобы разобраться в нюансах этой темы.</p>
+<h2><a class="main__anchor" name="hinty" href="#hinty">Хинты</a></h2><p>Как JavaScript решает, какое преобразование применить?</p>
+<p>Существует три варианта преобразования типов, которые происходят в различных ситуациях. Они называются «хинтами», как описано в <a href="https://tc39.github.io/ecma262/#sec-toprimitive">спецификации</a>:</p>
+<dl>
+<dt><code>&quot;string&quot;</code></dt>
+<dd>
+<p>Для преобразования объекта к строке, когда мы выполняем операцию над объектом, которая ожидает строку, например <code>alert</code>:</p>
+<div id="uqd2n30xdp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// вывод
+alert(obj);
+
+// используем объект в качестве ключа
+anotherObj[obj] = 123;</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>&quot;number&quot;</code></dt>
+<dd>
+<p>Для преобразования объекта к числу, в случае математических операций:</p>
+<div id="eonj4ndcdm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// явное преобразование
+let num = Number(obj);
+
+// математические (не считая бинарного плюса)
+let n = +obj; // унарный плюс
+let delta = date1 - date2;
+
+// сравнения больше/меньше
+let greater = user1 &gt; user2;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Большинство встроенных математических функций также включают в себя такое преобразование.</p>
+</dd>
+<dt><code>&quot;default&quot;</code></dt>
+<dd>
+<p>Происходит редко, когда оператор «не уверен», какой тип ожидать.</p>
+<p>Например, бинарный плюс <code>+</code> может работать как со строками (объединяя их в одну), так и с числами (складывая их). Поэтому, если бинарный плюс получает объект в качестве аргумента, он использует хинт <code>&quot;default&quot;</code> для его преобразования.</p>
+<p>Также, если объект сравнивается с помощью <code>==</code> со строкой, числом или символом, тоже неясно, какое преобразование следует выполнить, поэтому используется хинт <code>&quot;default&quot;</code>.</p>
+<div id="dw8y6ukhyi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// бинарный плюс использует хинт &quot;default&quot;
+let total = obj1 + obj2;
+
+// obj == number использует хинт &quot;default&quot;
+if (user == 1) { ... };</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Операторы сравнения больше/меньше, такие как <code>&lt;</code> <code>&gt;</code>, также могут работать как со строками, так и с числами. Тем не менее, по историческим причинам, они используют хинт <code>&quot;number&quot;</code>, а не <code>&quot;default&quot;</code>.</p>
+</dd>
+</dl>
+<p>Впрочем на практике, всё немного проще.</p>
+<p>Все встроенные объекты, за исключением одного (объект <code>Date</code>, который мы рассмотрим позже), реализуют <code>&quot;default&quot;</code> преобразование тем же способом, что и <code>&quot;number&quot;</code>. И нам следует поступать так же.</p>
+<p><strong>Чтобы выполнить преобразование, JavaScript пытается найти и вызвать три следующих  метода объекта:</strong></p>
+<ol>
+<li>Вызвать <code>obj[Symbol.toPrimitive](hint)</code> – метод с символьным ключом <code>Symbol.toPrimitive</code> (системный символ), если такой метод существует,</li>
+<li>Иначе, если хинт равен <code>&quot;string&quot;</code>
+<ul>
+<li>попробовать вызвать <code>obj.toString()</code> или <code>obj.valueOf()</code>, смотря какой из них существует.</li>
+</ul>
+</li>
+<li>Иначе, если хинт равен <code>&quot;number&quot;</code> или <code>&quot;default&quot;</code>
+<ul>
+<li>попробовать вызвать <code>obj.valueOf()</code> или <code>obj.toString()</code>, смотря какой из них существует.</li>
+</ul>
+</li>
+</ol>
+<h2><a class="main__anchor" name="symbol-toprimitive" href="#symbol-toprimitive">Symbol.toPrimitive</a></h2><p>Давайте начнём с первого метода. Есть встроенный символ с именем <code>Symbol.toPrimitive</code>, который следует использовать для обозначения метода преобразования, вот так:</p>
+<div id="suzbnwun1o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>obj[Symbol.toPrimitive] = function(hint) {
+  // вот код для преобразования этого объекта в примитив
+  // он должен вернуть примитивное значение
+  // hint = чему-то из &quot;string&quot;, &quot;number&quot;, &quot;default&quot;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если метод <code>Symbol.toPrimitive</code> существует, он используется для всех хинтов, и больше никаких методов не требуется.</p>
+<p>Например, здесь объект <code>user</code> реализует его:</p>
+<div id="3svs863d5u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`);
+    return hint == &quot;string&quot; ? `{name: &quot;${this.name}&quot;}` : this.money;
+  }
+};
+
+// демонстрация результатов преобразований:
+alert(user); // hint: string -&gt; {name: &quot;John&quot;}
+alert(+user); // hint: number -&gt; 1000
+alert(user + 500); // hint: default -&gt; 1500</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как мы можем видеть из кода, <code>user</code> становится либо строкой со своим описанием, либо  суммой денег в зависимости от преобразования. Единый метод <code>user[Symbol.toPrimitive]</code> обрабатывает все случаи преобразования.</p>
+<h2><a class="main__anchor" name="tostring-valueof" href="#tostring-valueof">toString/valueOf</a></h2><p>Если нет <code>Symbol.toPrimitive</code>, тогда JavaScript пытается найти методы <code>toString</code> и <code>valueOf</code>:</p>
+<ul>
+<li>Для хинта <code>&quot;string&quot;</code>: вызвать метод <code>toString</code>, а если он не существует или возвращает объект вместо примитивного значения, то <code>valueOf</code> (таким образом, <code>toString</code> имеет приоритет при строковом преобразовании).</li>
+<li>Для других хинтов: вызвать метод <code>valueOf</code>, а если он не существует или возвращает объект вместо примитивного значения, то <code>toString</code> (таким образом, <code>valueOf</code> имеет приоритет для математических операций).</li>
+</ul>
+<p>Методы <code>toString</code> и <code>valueOf</code> берут своё начало с древних времён. Это не символы (символов тогда ещё не было), а скорее просто «обычные» методы со строковыми именами. Они предоставляют альтернативный «старомодный» способ реализации преобразования.</p>
+<p>Эти методы должны возвращать примитивное значение. Если <code>toString</code> или <code>valueOf</code> возвращает объект, то он игнорируется (так же, как если бы метода не было).</p>
+<p>По умолчанию обычный объект имеет следующие методы <code>toString</code> и <code>valueOf</code>:</p>
+<ul>
+<li>Метод <code>toString</code> возвращает строку <code>&quot;[object Object]&quot;</code>.</li>
+<li>Метод <code>valueOf</code> возвращает сам объект.</li>
+</ul>
+<p>Взгляните на пример:</p>
+<div id="0ztgx4x9df" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {name: &quot;John&quot;};
+
+alert(user); // [object Object]
+alert(user.valueOf() === user); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Таким образом, если мы попытаемся использовать объект в качестве строки, как например в <code>alert</code> или вроде того, то по умолчанию мы увидим <code>[object Object]</code>.</p>
+<p>Значение по умолчанию <code>valueOf</code> упоминается здесь только для полноты картины, чтобы избежать какой-либо путаницы. Как вы можете видеть, он возвращает сам объект и поэтому игнорируется. Не спрашивайте меня почему, это по историческим причинам. Так что мы можем предположить, что его не существует.</p>
+<p>Давайте применим эти методы для настройки преобразования.</p>
+<p>Для примера, используем их в реализации всё того же объекта <code>user</code>. Но уже используя комбинацию <code>toString</code> и <code>valueOf</code> вместо <code>Symbol.toPrimitive</code>:</p>
+<div id="o1l8eeigjj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  money: 1000,
+
+  // для хинта равного &quot;string&quot;
+  toString() {
+    return `{name: &quot;${this.name}&quot;}`;
+  },
+
+  // для хинта равного &quot;number&quot; или &quot;default&quot;
+  valueOf() {
+    return this.money;
+  }
+
+};
+
+alert(user); // toString -&gt; {name: &quot;John&quot;}
+alert(+user); // valueOf -&gt; 1000
+alert(user + 500); // valueOf -&gt; 1500</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видим, получилось то же поведение, что и в предыдущем примере с <code>Symbol.toPrimitive</code>.</p>
+<p>Довольно часто нам нужно единое «универсальное» место для обработки всех примитивных преобразований. В этом случае мы можем реализовать только <code>toString</code>:</p>
+<div id="jv4fxwgqp6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+
+  toString() {
+    return this.name;
+  }
+};
+
+alert(user); // toString -&gt; John
+alert(user + 500); // toString -&gt; John500</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В отсутствие <code>Symbol.toPrimitive</code> и <code>valueOf</code>, <code>toString</code> обработает все примитивные преобразования.</p>
+<h3><a class="main__anchor" name="preobrazovanie-mozhet-vernut-lyuboy-primitivnyy-tip" href="#preobrazovanie-mozhet-vernut-lyuboy-primitivnyy-tip">Преобразование может вернуть любой примитивный тип</a></h3><p>Важная вещь, которую следует знать обо всех методах преобразования примитивов, заключается в том, что они не обязательно возвращают подсказанный хинтом примитив.</p>
+<p>Нет никакого контроля над тем, вернёт ли <code>toString</code> именно строку, или чтобы метод <code>Symbol.toPrimitive</code> возвращал именно число для хинта <code>&quot;number&quot;</code>.</p>
+<p>Единственное обязательное условие: эти методы должны возвращать примитив, а не объект.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Историческая справка</span></div>
+            <div class="important__content"><p>По историческим причинам, если <code>toString</code> или <code>valueOf</code> вернёт объект, то ошибки не будет, но такое значение будет проигнорировано (как если бы метода вообще не существовало). Это всё потому, что в древние времена в JavaScript не было хорошей концепции «ошибки».</p>
+<p>А вот <code>Symbol.toPrimitive</code> уже «четче», этот метод <em>обязан</em> возвращать примитив, иначе будет ошибка.</p>
+</div></div>
+<h2><a class="main__anchor" name="dalneyshie-preobrazovaniya" href="#dalneyshie-preobrazovaniya">Дальнейшие преобразования</a></h2><p>Как мы уже знаем, многие операторы и функции выполняют преобразования типов, например, умножение <code>*</code> преобразует операнды в числа.</p>
+<p>Если мы передаём объект в качестве аргумента, то в вычислениях будут две стадии:</p>
+<ol>
+<li>Объект преобразуется в примитив (с использованием правил, описанных выше).</li>
+<li>Если необходимо для дальнейших вычислений, этот примитив преобразуется дальше.</li>
+</ol>
+<p>Например:</p>
+<div id="h9g59fhftd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  // toString обрабатывает все преобразования в случае отсутствия других методов
+  toString() {
+    return &quot;2&quot;;
+  }
+};
+
+alert(obj * 2); // 4, объект был преобразован к примитиву &quot;2&quot;, затем умножение сделало его числом</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>Умножение <code>obj * 2</code> сначала преобразует объект в примитив (это строка <code>&quot;2&quot;</code>).</li>
+<li>Затем <code>&quot;2&quot; * 2</code> становится <code>2 * 2</code> (строка преобразуется в число).</li>
+</ol>
+<p>А вот, к примеру, бинарный плюс в подобной ситуации соединил бы строки, так как он совсем не брезгует строк:</p>
+<div id="97lmire6w1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  toString() {
+    return &quot;2&quot;;
+  }
+};
+
+alert(obj + 2); // 22 (&quot;2&quot; + 2), преобразование к примитиву вернуло строку =&gt; конкатенация</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Преобразование объекта в примитив вызывается автоматически многими встроенными функциями и операторами, которые ожидают примитив в качестве значения.</p>
+<p>Существует всего 3 типа (хинта) для этого:</p>
+<ul>
+<li><code>&quot;string&quot;</code> (для <code>alert</code> и других операций, которым нужна строка)</li>
+<li><code>&quot;number&quot;</code> (для математических операций)</li>
+<li><code>&quot;default&quot;</code> (для некоторых других операторов, обычно объекты реализуют его как <code>&quot;number&quot;</code>)</li>
+</ul>
+<p>Спецификация явно описывает для каждого оператора, какой ему следует использовать хинт.</p>
+<p>Алгоритм преобразования таков:</p>
+<ol>
+<li>Сначала вызывается метод <code>obj[Symbol.toPrimitive](hint)</code>, если он существует,</li>
+<li>В случае, если хинт равен <code>&quot;string&quot;</code>
+<ul>
+<li>происходит попытка вызвать <code>obj.toString()</code> и <code>obj.valueOf()</code>, смотря что есть.</li>
+</ul>
+</li>
+<li>В случае, если хинт равен <code>&quot;number&quot;</code> или <code>&quot;default&quot;</code>
+<ul>
+<li>происходит попытка вызвать <code>obj.valueOf()</code> и <code>obj.toString()</code>, смотря что есть.</li>
+</ul>
+</li>
+</ol>
+<p>Все эти методы должны возвращать примитив (если определены).</p>
+<p>На практике часто бывает достаточно реализовать только <code>obj.toString()</code> в качестве универсального метода для преобразований к строке, который должен возвращать удобочитаемое представление объекта для целей логирования или отладки.</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="symbol.html" data-tooltip="Тип данных Symbol"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="data-types.html" data-tooltip="Типы данных"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/object-toprimitive","identifier":"\/object-toprimitive"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="object-basics.html">Объекты: основы</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#pravila-preobrazovaniya">Правила преобразования</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#hinty">Хинты</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#symbol-toprimitive">Symbol.toPrimitive</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tostring-valueof">toString/valueOf</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dalneyshie-preobrazovaniya">Дальнейшие преобразования</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fobject-toprimitive" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/04-object-basics/09-object-toprimitive" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/object-toprimitive by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:56 GMT -->
+</html>

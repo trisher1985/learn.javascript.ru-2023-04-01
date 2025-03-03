@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/dom-polyfill by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Современный DOM: полифилы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="dom-polyfill.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Современный DOM: полифилы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Современный DOM: полифилы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Современный DOM: полифилы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 1 августа 2019 г."><div class="updated-at__content">1 августа 2019 г.</div></div></div><h1 class="main__header-title">Современный DOM: полифилы</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Современный DOM: полифилы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В старых IE, особенно в IE8 и ниже, ряд стандартных DOM-свойств не поддерживаются или поддерживаются плохо.</p>
+<p>Если говорить о современных браузерах, то они тоже не все идут «в ногу», всегда какие-то современные возможности реализуются сначала в одном, потом в другом.</p>
+<p>Но это не значит, что нужно ориентироваться на самый старый браузер из поддерживаемых!</p>
+<p>Для того, чтобы не думать об устаревших браузерах, а писать современный код, который при этом работает везде, используют полифилы.</p>
+<h2><a class="main__anchor" name="polifily" href="#polifily">Полифилы</a></h2><p>«Полифил» (англ. polyfill) – это библиотека, которая добавляет в старые браузеры поддержку возможностей, которые в современных браузерах являются встроенными.</p>
+<p>Один полифил мы уже видели, когда изучали собственно JavaScript – это библиотека <a href="https://github.com/es-shims/es5-shim">ES5 shim</a>. Если её подключить, то в IE8- начинают работать многие возможности ES5. Работает она через модификацию стандартных объектов и их прототипов. Это типично для полифилов.</p>
+<p>В работе с DOM несовместимостей гораздо больше, как и способов их обхода.</p>
+<h2><a class="main__anchor" name="chto-delaet-polifil" href="#chto-delaet-polifil">Что делает полифил?</a></h2><p>Для примера добавим в DOM поддержку свойства <code>firstElementChild</code>, если её нет. Здесь речь, конечно, об IE8, в других браузерах оно и так поддерживается, но пример типовой.</p>
+<p>Вот код для такого полифила:</p>
+<div id="6oltxwayic" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (document.documentElement.firstElementChild === undefined) { // (1)
+
+  Object.defineProperty(Element.prototype, 'firstElementChild', { // (2)
+    get: function() {
+      var el = this.firstChild;
+      do {
+        if (el.nodeType === 1) {
+          return el;
+        }
+        el = el.nextSibling;
+      } while (el);
+
+      return null;
+    }
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если этот код запустить, то <code>firstElementChild</code> появится у всех элементов в IE8.</p>
+<p>Общий вид этого полифила довольно типичен. Обычно полифил состоит из двух частей:</p>
+<ol>
+<li>Проверка, есть ли встроенная возможность.</li>
+<li>Эмуляция, если её нет.</li>
+</ol>
+<h2><a class="main__anchor" name="proverka-vstroennogo-svoystva" href="#proverka-vstroennogo-svoystva">Проверка встроенного свойства</a></h2><p>Для проверки встроенной поддержки <code>firstElementChild</code> мы можем просто обратиться к <code>document.documentElement.firstElementChild</code>.</p>
+<p>Если DOM-свойство <code>firstElementChild</code> поддерживается, то его значение не может быть <code>undefined</code>. Если детей нет  – свойство равно <code>null</code>, но не <code>undefined</code>.</p>
+<p>Сравним:</p>
+<div id="s20n9hdwr1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.head.previousSibling ); // null, поддержка есть
+alert( document.head.blabla ); // undefined, поддержки нет</code></pre>
+        </div>
+      </div>
+      
+      </div><p>За счёт этого работает проверка в первой строке полифила.</p>
+<p><strong>Важная тонкость – элемент, который мы тестируем, должен <em>по стандарту</em> поддерживать такое свойство.</strong></p>
+<p>Попытаемся, к примеру, проверить «поддержку» свойства <code>value</code>. У <code>input</code> оно есть, у <code>div</code> такого свойства нет:</p>
+<div id="fstbdcxxo2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var div = document.createElement('div');
+var input = document.createElement('input');
+
+alert( input.value ); // пустая строка, поддержка есть
+alert( div.value ); // undefined, поддержки нет</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Поддержка значений свойств</span></div>
+            <div class="important__content"><p>Если мы хотим проверить поддержку не свойства целиком, а некоторых его значений, то ситуация сложнее.</p>
+<p>Например, нам интересно, поддерживает ли браузер <code>&lt;input type=&quot;range&quot;&gt;</code>. То есть, понятно, что свойство <code>type</code> у <code>input</code>, в целом, поддерживается, а вот конкретный тип <code>&lt;input&gt;</code>?</p>
+<p>Для этого можно создать <code>&lt;input&gt;</code> с таким <code>type</code> и посмотреть, подействовал ли он.</p>
+<p>Например:</p>
+<div id="sn6x0pyonh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input type=&quot;radio&quot;&gt;
+&lt;input type=&quot;no-such-type&quot;&gt;
+
+&lt;script&gt;
+  alert( document.body.children[0].type ); // radio, поддерживается
+  alert( document.body.children[1].type ); // text, не поддерживается
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>Первый <code>input</code> имеет <code>type=&quot;radio&quot;</code>. Этот тип точно поддерживается, поэтому <code>input.type</code> имеет значение <code>&quot;radio&quot;</code>, как и указано.</li>
+<li>Второй <code>input</code> имеет <code>type=&quot;no-such-type&quot;</code>. В качестве типа, для примера, специально указано заведомо неподдерживаемое значение. При этом <code>input.type</code> равен <code>&quot;text&quot;</code>, таково значение по умолчанию. Мы можем прочитать его и увидеть, что поддержки нет.</li>
+</ol>
+<p>Эта проверка работает, так как хоть в HTML-атрибут <code>type</code> и можно присвоить любую строку, но DOM-свойство <code>type</code> <a href="http://www.w3.org/TR/html-markup/input.html">по стандарту</a> хранит реальный тип <code>input'а</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="dobavlyaem-podderzhku-svoystva" href="#dobavlyaem-podderzhku-svoystva">Добавляем поддержку свойства</a></h2><p>Если мы осуществили проверку и видим, что встроенной поддержки нет – полифил должен её добавить.</p>
+<p>Для этого вспомним, что DOM элементы описываются соответствующими JS-классами.</p>
+<p>Например:</p>
+<ul>
+<li><code>&lt;li&gt;</code> – <a href="http://www.w3.org/TR/html5/grouping-content.html#the-li-element">HTMLLiElement</a></li>
+<li><code>&lt;a&gt;</code> – <a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">HTMLAnchorElement</a></li>
+<li><code>&lt;body&gt;</code> – <a href="http://www.w3.org/TR/html5/sections.html#the-body-element">HTMLBodyElement</a></li>
+</ul>
+<p>Они наследуют, как мы видели ранее, от <a href="http://www.w3.org/TR/html5/dom.html#htmlelement">HTMLElement</a>, который является общим родительским классом для HTML-элементов.</p>
+<p>А <code>HTMLElement</code>, в свою очередь, наследует от <a href="http://www.w3.org/TR/dom/#interface-element">Element</a>, который является общим родителем не только для HTML, но и для других DOM-структур, например для XML и SVG.</p>
+<p><strong>Для добавления нужной возможности берётся правильный класс и модифицируется его <code>prototype</code>.</strong></p>
+<p>Например, можно добавить всем элементам в прототип функцию:</p>
+<div id="div8fu4k5s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Element.prototype.sayHi = function() {
+  alert( &quot;Привет от &quot; + this );
+}
+
+document.body.sayHi(); // Привет от [object HTMLBodyElement]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сложнее – добавить свойство, но это тоже возможно, через <code>Object.defineProperty</code>:</p>
+<div id="wpb4cwc1j6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Object.defineProperty(Element.prototype, 'lowerTag', {
+  get: function() {
+    return this.tagName.toLowerCase();
+  }
+});
+
+alert( document.body.lowerTag ); // body</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Геттер-сеттер и IE8</span></div>
+            <div class="important__content"><p>В IE8 современные методы для работы со свойствами, такие как <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a> и другие не поддерживаются для произвольных объектов, но отлично работают для DOM-элементов.</p>
+<p>Чем полифилы и пользуются, «добавляя» в IE8 многие из современных методов DOM.</p>
+</div></div>
+<h2><a class="main__anchor" name="kakova-podderzhka-svoystva" href="#kakova-podderzhka-svoystva">Какова поддержка свойства?</a></h2><p>А нужен ли вообще полифил? Какие браузеры поддерживают интересное нам свойство или метод?</p>
+<p>Зачастую такая информация есть в справочнике MDN, например для метода <code>remove()</code>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode.remove">https://developer.mozilla.org/en-US/docs/Web/API/ChildNode.remove</a> – табличка совместимости внизу.</p>
+<p>Также бывает полезен сервис <a href="http://caniuse.com/">http://caniuse.com</a>, например для <code>elem.matches(css)</code>: <a href="http://caniuse.com/#feat=matchesselector">http://caniuse.com/#feat=matchesselector</a>.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Если вы поддерживаете устаревшие браузеры – и здесь речь идёт не только про старые IE, другие браузеры тоже обновляются не у всех мгновенно – не обязательно ограничивать себя в использовании современных возможностей.</p>
+<p>Многие из них легко полифилятся добавлением на страницу соответствующих библиотек.</p>
+<p>Для поиска полифила обычно достаточно ввести в поисковике <code>&quot;polyfill&quot;</code>, и нужное свойство либо метод. Как правило, полифилы идут в виде коллекций скриптов.</p>
+<p><strong>Полифилы хороши тем, что мы просто подключаем их и используем везде современный DOM/JS, а когда старые браузеры окончательно отомрут – просто выкинем полифил, без изменения кода.</strong></p>
+<p>Типичная схема работы полифила DOM-свойства или метода:</p>
+<ul>
+<li>Создаётся элемент, который его, в теории, должен поддерживать.</li>
+<li>Соответствующее свойство сравнивается с <code>undefined</code>.</li>
+<li>Если его нет – модифицируется прототип, обычно это <code>Element.prototype</code> – в него дописываются новые геттеры и функции.</li>
+</ul>
+<p>Другие полифилы сделать сложнее. Например, полифил, который хочет добавить в браузер поддержку элементов вида <code>&lt;input type=&quot;range&quot;&gt;</code>, может найти все такие элементы на странице и обработать их, меняя внешний вид и работу через JavaScript. Это возможно. Но если уже существующему <code>&lt;input&gt;</code> поменять <code>type</code> на <code>range</code> – полифил не «подхватит» его автоматически.</p>
+<p>Описанная ситуация нормальна. Не всегда полифил обеспечивает идеальную поддержку наравне с родными свойствами. Но если мы не собираемся так делать, то подобный полифил вполне подойдёт.</p>
+<p>Один из лучших сервисов для полифилов: <a href="http://polyfill.io/">polyfill.io</a>. Он даёт возможность вставлять на свою страницу скрипт с запросом к сервису, например:</p>
+<div id="gmxwotmb2t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script src=&quot;//cdn.polyfill.io/v1/polyfill.js?features=es6&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При запросе сервис анализирует заголовки, понимает, какая версия какого браузера к нему обратилась и возвращает скрипт-полифил, добавляющий в браузер возможности, которых там нет. В параметре <code>features</code> можно указать, какие именно возможности нужны, в примере выше это функции стандарта ES6. Подробнее – см. <a href="http://polyfill.webservices.ft.com/v1/docs/examples">примеры</a> и <a href="http://polyfill.webservices.ft.com/v1/docs/features/">список возможностей</a>.</p>
+<p>Также есть и другие коллекции, как правило, полифилы организованы в виде коллекции, из которой можно как выбрать отдельные свойства и функции, так и подключить всё вместе, пачкой.</p>
+<p>Примеры полифилов:</p>
+<ul>
+<li><a href="https://github.com/jonathantneal/polyfill">https://github.com/jonathantneal/polyfill</a> – ES5 вместе с DOM</li>
+<li><a href="https://github.com/termi/ES5-DOM-SHIM">https://github.com/termi/ES5-DOM-SHIM</a> – ES5 вместе с DOM</li>
+<li><a href="https://github.com/inexorabletash/polyfill">https://github.com/inexorabletash/polyfill</a> – ES5+ вместе с DOM</li>
+</ul>
+<p>Более мелкие библиотеки, а также коллекции ссылок на них:</p>
+<ul>
+<li><a href="http://compatibility.shwups-cms.ch/en/polyfills/">http://compatibility.shwups-cms.ch/en/polyfills/</a></li>
+<li><a href="http://html5please.com/#polyfill">http://html5please.com/#polyfill</a></li>
+<li><a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills">https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills</a></li>
+</ul>
+<p>Конечно, можно собрать и свою библиотеку полифилов самостоятельно из различных коллекций, которые перечислены выше, а при необходимости и написать самому. В этой части учебника мы изучим ещё много методов работы с DOM, которые в этом помогут.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#polifill-dlya-matches" name="polifill-dlya-matches">Полифилл для matches</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/polyfill-matches" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Метод <code>elem.matches(css)</code> в некоторых старых браузерах поддерживается под старым именем <code>matchesSelector</code> или с префиксами, то есть: <code>webkitMatchesSelector</code> (старый Chrome, Safari), <code>mozMatchesSelector</code> (старый Firefox) или <code>Element.prototype.msMatchesSelector</code> (старый IE).</p>
+<p>Создайте полифилл, который гарантирует стандартный синтаксис <code>elem.matches(css)</code> для всех браузеров.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Код для полифилла здесь особенно прост.</p>
+<p>Реализовывать ничего не надо, просто записать нужный метод в <code>Element.prototype.matches</code>, если его там нет:</p>
+<div id="n3c6mxo1ry" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>(function() {
+
+  // проверяем поддержку
+  if (!Element.prototype.matches) {
+
+    // определяем свойство
+    Element.prototype.matches = Element.prototype.matchesSelector ||
+      Element.prototype.webkitMatchesSelector ||
+      Element.prototype.mozMatchesSelector ||
+      Element.prototype.msMatchesSelector;
+
+  }
+
+})();</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#polifill-dlya-closest" name="polifill-dlya-closest">Полифилл для closest</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/polyfill-closest" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Метод <code>elem.closest(css)</code> для поиска ближайшего родителя, удовлетворяющего селектору <code>css</code>, не поддерживается некоторыми браузерами, например IE11-.</p>
+<p>Создайте для него полифилл.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Код для этого полифилла имеет стандартный вид:</p>
+<div id="y8k6hsy99x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>(function() {
+
+  // проверяем поддержку
+  if (!Element.prototype.closest) {
+
+    // реализуем
+    Element.prototype.closest = function(css) {
+      var node = this;
+
+      while (node) {
+        if (node.matches(css)) return node;
+        else node = node.parentElement;
+      }
+      return null;
+    };
+  }
+
+})();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратим внимание, что код этого полифилла использует <code>node.matches</code>, то есть может в свою очередь потребовать полифилла для него. Это типичная ситуация – один полифилл тянет за собой другой. Именно поэтому сервисы и библиотеки полифиллов очень полезны.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#polifill-dlya-textcontent" name="polifill-dlya-textcontent">Полифилл для textContent</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/polyfill-textcontent-ie8" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 3</span></div><div class="task__content"><div class="task__formatted"><p>Свойство <code>textContent</code> не поддерживается IE8. Однако, там есть свойство <code>innerText</code>.</p>
+<p>Создаёте полифилл, который проверяет поддержку свойства <code>textContent</code>, и если её нет – создаёт его, используя <code>innerText</code>. Получится, что в IE8 «новое» свойство <code>textContent</code> будет «псевдонимом» для <code>innerText</code>.</p>
+<p>Хотя свойство <code>innerText</code> и работает по-иному, нежели <code>textContent</code>, но в некоторых ситуациях они могут быть взаимозаменимы. Именно на них направлен полифилл.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Код для полифилла здесь имеет стандартный вид:</p>
+<div id="a1xdngw0vs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>(function() {
+
+  // проверяем поддержку
+  if (document.documentElement.textContent === undefined) {
+
+    // определяем свойство
+    Object.defineProperty(HTMLElement.prototype, &quot;textContent&quot;, {
+      get: function() {
+        return this.innerText;
+      },
+      set: function(value) {
+        this.innerText = value;
+      }
+    });
+  }
+
+})();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Единственный тонкий момент – в проверке поддержки.</p>
+<p>Мы часто можем использовать уже существующий элемент. В частности, при проверке <code>firstElementChild</code> мы можем проверить его наличие в <code>document.documentElement</code>.</p>
+<p>Однако, в данном случае попытка получить <code>document.documentElement.textContent</code> при поддержке этого свойства приведёт к совершенно лишним затратам времени и памяти, так как браузер будет динамически генерировать строку из содержимого документа.</p>
+<p>Поэтому лучше бы использовать пустой DOM-элемент. Но это лишь оптимизация, общий подход верен.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdom-polyfill" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/dom-polyfill","identifier":"\/dom-polyfill"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/dom-polyfill by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

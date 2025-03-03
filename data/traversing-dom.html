@@ -1,0 +1,517 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/traversing-dom by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Навигация по DOM-элементам</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="traversing-dom.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Навигация по DOM-элементам"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Навигация по DOM-элементам"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><link rel='stylesheet' href='../ru.js.cx/libs/domtree.css'>
+<script src="../cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="../ru.js.cx/libs/domtree.js"></script>
+<style>
+#travel-dom-comment {
+  font-style: italic;
+}
+#travel-dom-control ul {
+  margin: 6px 0;
+}
+</style><meta property="og:title" content="Навигация по DOM-элементам"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Навигация по DOM-элементам</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="dom-navigation.html">https://learn.javascript.ru/dom-navigation</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Навигация по DOM-элементам"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>DOM позволяет делать что угодно с HTML-элементом и его содержимым, но для этого нужно сначала нужный элемент получить.</p>
+<p>Доступ к DOM начинается с объекта <code>document</code>. Из него можно добраться до любых узлов.</p>
+<p>Так выглядят основные ссылки, по которым можно переходить между узлами DOM:</p>
+<figure><div class="image" style="width:420px">
+      <div class="image__ratio" style="padding-top:92.38095238095238%"></div>
+      <img src="https://learn.javascript.ru/article/traversing-dom/dom-links.png" alt="" width="420" height="388" class="image__image">
+      </div></figure><p>Посмотрим на них повнимательнее.</p>
+<h2><a class="main__anchor" name="sverhu-documentelement-i-body" href="#sverhu-documentelement-i-body">Сверху documentElement и body</a></h2><p>Самые верхние элементы дерева доступны напрямую из <code>document</code>.</p>
+<dl>
+<dt><code>&lt;HTML&gt;</code> = <code>document.documentElement</code></dt>
+<dd>Первая точка входа – <code>document.documentElement</code>. Это свойство ссылается на DOM-объект для тега <code>&lt;html&gt;</code>.</dd>
+<dt><code>&lt;BODY&gt;</code> = <code>document.body</code></dt>
+<dd>Вторая точка входа – <code>document.body</code>, который соответствует тегу <code>&lt;body&gt;</code>.</dd>
+</dl>
+<p>В современных браузерах (кроме IE8-) также есть <code>document.head</code> – прямая ссылка на <code>&lt;head&gt;</code></p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Есть одна тонкость: <code>document.body</code> может быть равен <code>null</code></span></div>
+            <div class="important__content"><p>Нельзя получить доступ к элементу, которого ещё не существует в момент выполнения скрипта.</p>
+<p>В частности, если скрипт находится в <code>&lt;head&gt;</code>, то в нём недоступен <code>document.body</code>.</p>
+<p>Поэтому в следующем примере первый <code>alert</code> выведет <code>null</code>:</p>
+<div id="im3s1lg3om" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;script&gt;
+    alert( &quot;Из HEAD: &quot; + document.body ); // null, body ещё нет
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;script&gt;
+    alert( &quot;Из BODY: &quot; + document.body ); // body есть
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">В DOM активно используется <code>null</code></span></div>
+            <div class="important__content"><p>В мире DOM в качестве значения, обозначающего «нет такого элемента» или «узел не найден», используется не <code>undefined</code>, а <code>null</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="deti-childnodes-firstchild-lastchild" href="#deti-childnodes-firstchild-lastchild">Дети: childNodes, firstChild, lastChild</a></h2><p>Здесь и далее мы будем использовать два принципиально разных термина.</p>
+<ul>
+<li><strong>Дочерние элементы (или дети)</strong> – элементы, которые лежат <em>непосредственно</em> внутри данного. Например, внутри <code>&lt;HTML&gt;</code> обычно лежат <code>&lt;HEAD&gt;</code> и <code>&lt;BODY&gt;</code>.</li>
+<li><strong>Потомки</strong> – все элементы, которые лежат внутри данного, вместе с их детьми, детьми их детей и так далее. То есть, всё поддерево DOM.</li>
+</ul>
+<p>Псевдо-массив <code>childNodes</code> хранит все дочерние элементы, включая текстовые.</p>
+<p>Пример ниже последовательно выведет дочерние элементы <code>document.body</code>:</p>
+<div id="z5iq7buqbz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+  &lt;div&gt;Начало&lt;/div&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Информация&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;div&gt;Конец&lt;/div&gt;
+
+  &lt;script&gt;
+    for (var i = 0; i &lt; document.body.childNodes.length; i++) {
+      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
+    }
+  &lt;/script&gt;
+  ...
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратим внимание на маленькую деталь. Если запустить пример выше, то последним будет выведен элемент <code>&lt;script&gt;</code>. На самом-то деле в документе есть ещё текст (обозначенный троеточием), но на момент выполнения скрипта браузер ещё до него не дошёл.</p>
+<p>Пробельный узел будет в <em>итоговом документе</em>, но его ещё нет на момент выполнения скрипта.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Список детей – только для чтения!</span></div>
+            <div class="important__content"><p>Скажем больше – все навигационные свойства, которые перечислены в этой главе – только для чтения. Нельзя просто заменить элемент присвоением <code>childNodes[i] = ...</code>.</p>
+<p>Изменение DOM осуществляется другими методами, которые мы рассмотрим далее, все навигационные ссылки при этом обновляются автоматически.</p>
+</div></div>
+<p>Свойства <code>firstChild</code> и <code>lastChild</code> обеспечивают быстрый доступ к первому и последнему элементу.</p>
+<p>При наличии дочерних узлов всегда верно:</p>
+<div id="p4mavb9crd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>elem.childNodes[0] === elem.firstChild
+elem.childNodes[elem.childNodes.length - 1] === elem.lastChild</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="kollektsii-ne-massivy" href="#kollektsii-ne-massivy">Коллекции – не массивы</a></h2><p>DOM-коллекции, такие как <code>childNodes</code> и другие, которые мы увидим далее, не являются JavaScript-массивами.</p>
+<p>В них нет методов массивов, таких как <code>forEach</code>, <code>map</code>, <code>push</code>, <code>pop</code> и других.</p>
+<div id="n5p20vt04z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elems = document.documentElement.childNodes;
+
+elems.forEach(function(elem) { // нет такого метода!
+  /* ... */
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Именно поэтому <code>childNodes</code> и называют «коллекция» или «псевдомассив».</p>
+<p>Можно для перебора коллекции использовать обычный цикл <code>for(var i=0; i&lt;elems.length; i++) ...</code> Но что делать, если уж очень хочется воспользоваться методами массива?</p>
+<p>Это возможно, основных варианта два:</p>
+<ol>
+<li>
+<p>Применить метод массива через <code>call/apply</code>:</p>
+<div id="q33pnfkq8m" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elems = document.documentElement.childNodes;
+
+[].forEach.call(elems, function(elem) {
+  alert( elem ); // HEAD, текст, BODY
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>При помощи <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">Array.prototype.slice</a> сделать из коллекции массив.</p>
+<p>Обычно вызов <code>arr.slice(a, b)</code> делает новый массив и копирует туда элементы <code>arr</code> с индексами от <code>a</code> до <code>b-1</code> включительно. Если же вызвать его без аргументов <code>arr.slice()</code>, то он делает новый массив и копирует туда все элементы  <code>arr</code>.</p>
+<p>Это работает и для коллекции:</p>
+<div id="kykk318oml" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elems = document.documentElement.childNodes;
+elems = Array.prototype.slice.call(elems); // теперь elems - массив
+
+elems.forEach(function(elem) {
+  alert( elem.tagName ); // HEAD, текст, BODY
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Нельзя перебирать коллекцию через <code>for..in</code></span></div>
+            <div class="important__content"><p>Ранее мы говорили, что не рекомендуется использовать для перебора массива цикл <code>for..in</code>.</p>
+<p><strong>Коллекции – наглядный пример, почему нельзя. Они похожи на массивы, но у них есть свои свойства и методы, которых в массивах нет.</strong></p>
+<p>К примеру, код ниже должен перебрать все дочерние элементы <code>&lt;html&gt;</code>. Их, естественно, два: <code>&lt;head&gt;</code> и <code>&lt;body&gt;</code>. Максимум, три, если взять ещё и текст между ними.</p>
+<p>Но в примере ниже <code>alert</code> сработает не три, а целых 5 раз!</p>
+<div id="2rl67xar6f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elems = document.documentElement.childNodes;
+
+for (var key in elems) {
+  alert( key ); // 0, 1, 2, length, item
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Цикл <code>for..in</code> выведет не только ожидаемые индексы <code>0</code>, <code>1</code>, <code>2</code>, по которым лежат узлы в коллекции, но и свойство <code>length</code> (в коллекции оно enumerable), а также функцию <code>item(n)</code> – она никогда не используется, возвращает <code>n-й</code> элемент коллекции, проще обратиться по индексу <code>[n]</code>.</p>
+<p>В реальном коде нам нужны только элементы, мы же будем работать с ними, а служебные свойства – не нужны. Поэтому желательно использовать <code>for(var i=0; i&lt;elems.length; i++)</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="sosedi-i-roditel" href="#sosedi-i-roditel">Соседи и родитель</a></h2><p>Доступ к элементам слева и справа данного можно получить по ссылкам <code>previousSibling</code> / <code>nextSibling</code>.</p>
+<p>Родитель доступен через <code>parentNode</code>. Если долго идти от одного элемента к другому, то рано или поздно дойдёшь до корня DOM, то есть до <code>document.documentElement</code>, а затем и <code>document</code>.</p>
+<h2><a class="main__anchor" name="navigatsiya-tolko-po-elementam" href="#navigatsiya-tolko-po-elementam">Навигация только по элементам</a></h2><p>Навигационные ссылки, описанные выше, равно касаются всех узлов в документе. В частности, в <code>childNodes</code> сосуществуют и текстовые узлы и узлы-элементы и узлы-комментарии, если есть.</p>
+<p>Но для большинства задач текстовые узлы нам не интересны.</p>
+<p>Поэтому посмотрим на дополнительный набор ссылок, которые их не учитывают:</p>
+<figure><div class="image" style="width:440px">
+      <div class="image__ratio" style="padding-top:71.81818181818181%"></div>
+      <img src="https://learn.javascript.ru/article/traversing-dom/dom-links-elements.png" alt="" width="440" height="316" class="image__image">
+      </div></figure><p>Эти ссылки похожи на те, что раньше, только в ряде мест стоит слово <code>Element</code>:</p>
+<ul>
+<li><code>children</code> – только дочерние узлы-элементы, то есть соответствующие тегам.</li>
+<li><code>firstElementChild</code>, <code>lastElementChild</code> – соответственно, первый и последний дети-элементы.</li>
+<li><code>previousElementSibling</code>, <code>nextElementSibling</code> – соседи-элементы.</li>
+<li><code>parentElement</code> – родитель-элемент.</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Зачем <code>parentElement</code>? Неужели бывают родители не-элементы?</span></div>
+            <div class="important__content"><p>Свойство <code>elem.parentNode</code> возвращает родитель элемента.</p>
+<p>Оно всегда равно <code>parentElement</code>, кроме одного исключения:</p>
+<div id="gmwh7xtbxx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.documentElement.parentNode ); // document
+alert( document.documentElement.parentElement ); // null</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Иногда это имеет значение, если хочется перебрать всех предков и вызвать какой-то метод, а на документе его нет.</p>
+</div></div>
+<p>Модифицируем предыдущий пример, применив <code>children</code> вместо <code>childNodes</code>.</p>
+<p>Теперь он будет выводить не все узлы, а только узлы-элементы:</p>
+<div id="nr6f75jxcn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+  &lt;div&gt;Начало&lt;/div&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Информация&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;div&gt;Конец&lt;/div&gt;
+
+  &lt;script&gt;
+    for (var i = 0; i &lt; document.body.children.length; i++) {
+      alert( document.body.children[i] ); // DIV, UL, DIV, SCRIPT
+    }
+  &lt;/script&gt;
+  ...
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Всегда верны равенства:</p>
+<div id="v476twp0mw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>elem.firstElementChild === elem.children[0]
+elem.lastElementChild === elem.children[elem.children.length - 1]</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">В IE8- поддерживается только <code>children</code></span></div>
+            <div class="important__content"><p>Других навигационных свойств в этих браузерах нет. Впрочем, как мы увидим далее, можно легко сделать полифил, и они, всё же, будут.</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">В IE8- в <code>children</code> присутствуют узлы-комментарии</span></div>
+            <div class="important__content"><p>С точки зрения стандарта это ошибка, но IE8- также включает в <code>children</code> узлы, соответствующие HTML-комментариям.</p>
+<p>Это может привести к сюрпризам при использовании свойства <code>children</code>, поэтому HTML-комментарии либо убирают либо используют фреймворк, к примеру, jQuery, который даёт свои методы перебора и отфильтрует их.</p>
+</div></div>
+<h2><a class="main__anchor" name="dom-navigation-tables" href="#dom-navigation-tables">Особые ссылки для таблиц</a></h2><p>У конкретных элементов DOM могут быть свои дополнительные ссылки для большего удобства навигации.</p>
+<p>Здесь мы рассмотрим таблицу, так как это важный частный случай и просто для примера.</p>
+<p>В списке ниже выделены наиболее полезные:</p>
+<dl>
+<dt><code>TABLE</code></dt>
+<dd>
+<ul>
+<li><strong><code>table.rows</code></strong> – коллекция строк <code>TR</code> таблицы.</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li><code>table.caption/tHead/tFoot</code> – ссылки на элементы таблицы <code>CAPTION</code>, <code>THEAD</code>, <code>TFOOT</code>.</li>
+<li><code>table.tBodies</code> – коллекция элементов таблицы <code>TBODY</code>, по спецификации их может быть несколько.</li>
+</ul>
+<dl>
+<dt><code>THEAD/TFOOT/TBODY</code></dt>
+<dd>
+<ul>
+<li><code>tbody.rows</code> – коллекция строк <code>TR</code> секции.</li>
+</ul>
+</dd>
+<dt><code>TR</code></dt>
+<dd>
+<ul>
+<li><strong><code>tr.cells</code></strong> – коллекция ячеек <code>TD/TH</code></li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li><strong><code>tr.sectionRowIndex</code></strong> – номер строки в текущей секции <code>THEAD/TBODY</code></li>
+<li><code>tr.rowIndex</code> – номер строки в таблице</li>
+</ul>
+<dl>
+<dt><code>TD/TH</code></dt>
+<dd>
+<ul>
+<li><strong><code>td.cellIndex</code></strong> – номер ячейки в строке</li>
+</ul>
+</dd>
+</dl>
+<p>Пример использования:</p>
+<div id="n8uumcj2wi" data-trusted="1" class="code-example" data-demo-height="100" data-highlight="[{&quot;start&quot;:12,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:29}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;один&lt;/td&gt; &lt;td&gt;два&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;три&lt;/td&gt;  &lt;td&gt;четыре&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;script&gt;
+var table = document.body.children[0];
+
+alert( table.rows[0].cells[0].innerHTML ) // &quot;один&quot;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Спецификация: <a href="https://html.spec.whatwg.org/multipage/tables.html">HTML5: tabular data</a>.</p>
+<p>Даже если эти свойства не нужны вам прямо сейчас, имейте их в виду на будущее, когда понадобится пройтись по таблице.</p>
+<p>Конечно же, таблицы – не исключение.</p>
+<p>Аналогичные полезные свойства есть у HTML-форм, они позволяют из формы получить все её элементы, а из них – в свою очередь, форму. Мы рассмотрим их позже.</p>
+<h2><a class="main__anchor" name="interaktivnoe-puteshestvie" href="#interaktivnoe-puteshestvie">Интерактивное путешествие</a></h2><p>Для того, чтобы убедиться, что вы разобрались с навигацией по DOM-ссылкам – вашему вниманию предлагается интерактивное путешествие по DOM.</p>
+<p>Ниже вы найдёте документ (в ифрейме), и кнопки для перехода по нему.</p>
+<p>Изначальный элемент – <code>&lt;html&gt;</code>. Попробуйте по ссылкам найти «информацию». Или ещё чего-нибудь.</p>
+<p>Вы также можете открыть документ <a href="https://learn.javascript.ru/article/traversing-dom/travel/">в отдельном окне</a> и походить по нему в браузерной консоли разработчика, чтобы лучше понять разницу между показанным там DOM и реальным.</p>
+<p>Разметка:</p>
+<div id="moe0ibv4s5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Документ&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;header&quot;&gt;Шапка&lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;span style=&quot;background-color:red&quot;&gt;Осторожно&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;info&quot;&gt;&lt;input type=&quot;text&quot; value=&quot;Информация&quot;&gt;&lt;/li&gt;
+
+    &lt;/ul&gt;
+    &lt;div id=&quot;footer&quot;&gt;Подвал. &amp;copy; javascript.ru&lt;/div&gt;
+    &lt;!-- комментарий --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Документ:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe id="travel-dom-iframe" class="code-result__iframe" data-trusted="1" style="height:150px" src="https://learn.javascript.ru/article/traversing-dom/travel/"></iframe>
+  </div><div id="travel-dom-control">
+<p>Навигация:</p>
+<ul>
+<li>
+<input type="button" data-travel-dir="parentNode" value="Вверх (parentNode)">
+<ul>
+  <li><input type="button" data-travel-dir="previousSibling" value="previousSibling">
+  - <b>Здесь стоите вы <code data-travel-prop="nodeText"></code></b>
+    <ul>
+      <li><input type="button" data-travel-dir="firstChild" value="firstChild">
+      - <input type="button" data-travel-dir="lastChild" value="lastChild">
+  </li>
+  <li><input type="button" data-travel-dir="nextSibling" value="nextSibling"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div id="travel-dom-comment"></div>
+</div>
+<script src="https://learn.javascript.ru/script/travel.js"></script>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>В DOM доступна навигация по соседним узлам через ссылки:</p>
+<ul>
+<li>По любым узлам.</li>
+<li>Только по элементам.</li>
+</ul>
+<p>Также некоторые виды элементов предоставляют дополнительные ссылки для большего удобства, например у таблиц есть свойства для доступа к строкам/ячейкам.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#proverka-suschestvovaniya-detey" name="proverka-suschestvovaniya-detey">Проверка существования детей</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/has-childnodes" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Придумайте самый короткий код для проверки, пуст ли элемент <code>elem</code>.</p>
+<p>«Пустой» – значит нет дочерних узлов, даже текстовых.</p>
+<div id="myapr4d4e9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (/*...ваш код проверки elem... */) { узел elem пуст }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Что написать в условии <code>if</code> ?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Вначале нерабочие способы, которые могут прийти на ум:</p>
+<div id="bkjw5dm8jc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!elem) { .. }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это не работает, так как <code>elem</code> всегда есть, и является объектом. Так что проверка <code>if (elem)</code> всегда верна, вне зависимости от того, есть ли у <code>elem</code> потомки.</p>
+<div id="2klfbr4yf3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!elem.childNodes) { ... }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Тоже не работает, так как псевдо-массив <code>childNodes</code> всегда существует. Он может быть пуст или непуст, но он всегда является объектом, так что проверка <code>if (elem.childNodes)</code> всегда верна.</p>
+<p>Несколько рабочих способов:</p>
+<div id="4enmsc546d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!elem.childNodes.length) { ... }
+
+if (!elem.firstChild) { ... }
+
+if (!elem.lastChild) { ... }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Также существует метод <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.hasChildNodes">hasChildNodes</a>, который позволяет вызовом <code>elem.hasChildNodes()</code> определить наличие детей. Он работает так же, как проверка <code>elem.childNodes.length != 0</code>.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Ftraversing-dom" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/traversing-dom","identifier":"\/traversing-dom"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/traversing-dom by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:07 GMT -->
+</html>

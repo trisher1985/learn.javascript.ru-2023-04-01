@@ -1,0 +1,1464 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/proxy by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:31:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Proxy и Reflect</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="proxy.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Proxy и Reflect"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Proxy и Reflect"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="js-misc.html"><link rel="next" href="eval.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Proxy и Reflect"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/proxy"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/proxy"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/proxy"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/proxy"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/proxy"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/proxy"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/proxy"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="proxy.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/proxy"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/proxy"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/proxy"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/proxy">عربي</option><option value="https://javascript.info/proxy">English</option><option value="https://es.javascript.info/proxy">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/proxy">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/proxy">Italiano</option><option value="https://ja.javascript.info/proxy">日本語</option><option value="https://ko.javascript.info/proxy">한국어</option><option value="https://learn.javascript.ru/proxy" selected>Русский</option><option value="https://tr.javascript.info/proxy">Türkçe</option><option value="https://uk.javascript.info/proxy">Українська</option><option value="https://zh.javascript.info/proxy">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="88" max="95" data-tooltip="Урок 88 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="js-misc.html"><span>Разное</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Разное","item":"https://learn.javascript.ru/js-misc"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 27 июля 2022 г."><div class="updated-at__content">27 июля 2022 г.</div></div></div><h1 class="main__header-title">Proxy и Reflect</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Proxy и Reflect"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Объект <code>Proxy</code> «оборачивается» вокруг другого объекта и может перехватывать (и, при желании, самостоятельно обрабатывать) разные действия с ним, например чтение/запись свойств и другие. Далее мы будем называть такие объекты «прокси».</p>
+<p>Прокси используются во многих библиотеках и некоторых браузерных фреймворках. В этой главе мы увидим много случаев применения прокси в решении реальных задач.</p>
+<p>Синтаксис:</p>
+<div id="aj1flpfxq4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let proxy = new Proxy(target, handler);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>target</code> – это объект, для которого нужно сделать прокси, может быть чем угодно, включая функции.</li>
+<li><code>handler</code> – конфигурация прокси: объект с «ловушками» («traps»): методами, которые перехватывают разные операции, например, ловушка <code>get</code> – для чтения свойства из <code>target</code>, ловушка <code>set</code> – для записи свойства в <code>target</code> и так далее.</li>
+</ul>
+<p>При операциях над <code>proxy</code>, если в <code>handler</code> имеется соответствующая «ловушка», то она срабатывает, и прокси имеет возможность по-своему обработать её, иначе операция будет совершена над оригинальным объектом <code>target</code>.</p>
+<p>В качестве начального примера создадим прокси без всяких ловушек:</p>
+<div id="nunconzamr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let target = {};
+let proxy = new Proxy(target, {}); // пустой handler
+
+proxy.test = 5; // записываем в прокси (1)
+alert(target.test); // 5, свойство появилось в target!
+
+alert(proxy.test); // 5, мы также можем прочитать его из прокси (2)
+
+for(let key in proxy) alert(key); // test, итерация работает (3)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Так как нет ловушек, то все операции на <code>proxy</code> применяются к оригинальному объекту <code>target</code>.</p>
+<ol>
+<li>Запись свойства <code>proxy.test=</code> устанавливает значение на <code>target</code>.</li>
+<li>Чтение свойства <code>proxy.test</code> возвращает значение из <code>target</code>.</li>
+<li>Итерация по <code>proxy</code> возвращает значения из <code>target</code>.</li>
+</ol>
+<p>Как мы видим, без ловушек <code>proxy</code> является прозрачной обёрткой над <code>target</code>.</p>
+<figure><div class="image" style="width:292px">
+      <div class="image__ratio" style="padding-top:61.64383561643836%"></div>
+      <object type="image/svg+xml" data="article/proxy/proxy.svg" width="292" height="180" class="image__image" data-use-theme>
+        <img src="article/proxy/proxy.svg" alt="" width="292" height="180">
+      </object>
+      </div></figure><p><code>Proxy</code> – это особый, «экзотический», объект, у него нет собственных свойств. С пустым <code>handler</code> он просто перенаправляет все операции на <code>target</code>.</p>
+<p>Чтобы активировать другие его возможности, добавим ловушки.</p>
+<p>Что именно мы можем ими перехватить?</p>
+<p>Для большинства действий с объектами в спецификации JavaScript есть так называемый «внутренний метод», который на самом низком уровне описывает, как его выполнять. Например, <code>[[Get]]</code> – внутренний метод для чтения свойства, <code>[[Set]]</code> – для записи свойства, и так далее. Эти методы используются только в спецификации, мы не можем обратиться напрямую к ним по имени.</p>
+<p>Ловушки как раз перехватывают вызовы этих внутренних методов. Полный список методов, которые можно перехватывать, перечислен в <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">спецификации Proxy</a>, а также в таблице ниже.</p>
+<p>Для каждого внутреннего метода в этой таблице указана ловушка, то есть имя метода, который мы можем добавить в параметр <code>handler</code> при создании <code>new Proxy</code>, чтобы перехватывать данную операцию:</p>
+<table>
+<thead>
+<tr>
+<th>Внутренний метод</th>
+<th>Ловушка</th>
+<th>Что вызывает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[[Get]]</code></td>
+<td><code>get</code></td>
+<td>чтение свойства</td>
+</tr>
+<tr>
+<td><code>[[Set]]</code></td>
+<td><code>set</code></td>
+<td>запись свойства</td>
+</tr>
+<tr>
+<td><code>[[HasProperty]]</code></td>
+<td><code>has</code></td>
+<td>оператор <code>in</code></td>
+</tr>
+<tr>
+<td><code>[[Delete]]</code></td>
+<td><code>deleteProperty</code></td>
+<td>оператор <code>delete</code></td>
+</tr>
+<tr>
+<td><code>[[Call]]</code></td>
+<td><code>apply</code></td>
+<td>вызов функции</td>
+</tr>
+<tr>
+<td><code>[[Construct]]</code></td>
+<td><code>construct</code></td>
+<td>оператор <code>new</code></td>
+</tr>
+<tr>
+<td><code>[[GetPrototypeOf]]</code></td>
+<td><code>getPrototypeOf</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf</a></td>
+</tr>
+<tr>
+<td><code>[[SetPrototypeOf]]</code></td>
+<td><code>setPrototypeOf</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf">Object.setPrototypeOf</a></td>
+</tr>
+<tr>
+<td><code>[[IsExtensible]]</code></td>
+<td><code>isExtensible</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible">Object.isExtensible</a></td>
+</tr>
+<tr>
+<td><code>[[PreventExtensions]]</code></td>
+<td><code>preventExtensions</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions">Object.preventExtensions</a></td>
+</tr>
+<tr>
+<td><code>[[DefineOwnProperty]]</code></td>
+<td><code>defineProperty</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties</a></td>
+</tr>
+<tr>
+<td><code>[[GetOwnProperty]]</code></td>
+<td><code>getOwnPropertyDescriptor</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a>, <code>for..in</code>, <code>Object.keys/values/entries</code></td>
+</tr>
+<tr>
+<td><code>[[OwnPropertyKeys]]</code></td>
+<td><code>ownKeys</code></td>
+<td><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols</a>, <code>for..in</code>, <code>Object.keys/values/entries</code></td>
+</tr>
+</tbody>
+</table>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Инварианты</span></div>
+            <div class="important__content"><p>JavaScript налагает некоторые условия – инварианты на реализацию внутренних методов и ловушек.</p>
+<p>Большинство из них касаются возвращаемых значений:</p>
+<ul>
+<li>Метод <code>[[Set]]</code> должен возвращать <code>true</code>, если значение было успешно записано, иначе <code>false</code>.</li>
+<li>Метод <code>[[Delete]]</code> должен возвращать <code>true</code>, если значение было успешно удалено, иначе <code>false</code>.</li>
+<li>…и так далее, мы увидим больше в примерах ниже.</li>
+</ul>
+<p>Есть и другие инварианты, например:</p>
+<ul>
+<li>Метод <code>[[GetPrototypeOf]]</code>, применённый к прокси, должен возвращать то же значение, что и метод <code>[[GetPrototypeOf]]</code>, применённый к оригинальному объекту. Другими словами, чтение прототипа объекта прокси всегда должно возвращать прототип оригинального объекта.</li>
+</ul>
+<p>Ловушки могут перехватывать вызовы этих методов, но должны выполнять указанные условия.</p>
+<p>Инварианты гарантируют корректное и последовательное поведение конструкций и методов языка. Полный список инвариантов можно найти в <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">спецификации</a>, хотя скорее всего вы не нарушите эти условия, если только не соберётесь делать что-то совсем уж странное.</p>
+</div></div>
+<p>Теперь давайте посмотрим, как это всё работает, на реальных примерах.</p>
+<h2><a class="main__anchor" name="znachenie-po-umolchaniyu-s-lovushkoy-get" href="#znachenie-po-umolchaniyu-s-lovushkoy-get">Значение по умолчанию с ловушкой «get»</a></h2><p>Чаще всего используются ловушки на чтение/запись свойств.</p>
+<p>Чтобы перехватить операцию чтения, <code>handler</code> должен иметь метод  <code>get(target, property, receiver)</code>.</p>
+<p>Он срабатывает при попытке прочитать свойство объекта, с аргументами:</p>
+<ul>
+<li><code>target</code> – это оригинальный объект, который передавался первым аргументом в конструктор <code>new Proxy</code>,</li>
+<li><code>property</code> – имя свойства,</li>
+<li><code>receiver</code> – если свойство объекта является геттером, то <code>receiver</code> – это объект, который будет использован как <code>this</code> при его вызове. Обычно это сам объект прокси (или наследующий от него объект). Прямо сейчас нам не понадобится этот аргумент, подробнее разберём его позже.</li>
+</ul>
+<p>Давайте применим ловушку <code>get</code>, чтобы реализовать «значения по умолчанию» для свойств объекта.</p>
+<p>Например, сделаем числовой массив, так чтобы при чтении из него несуществующего элемента возвращался <code>0</code>.</p>
+<p>Обычно при чтении из массива несуществующего свойства возвращается <code>undefined</code>, но мы обернём обычный массив в прокси, который перехватывает операцию чтения свойства из массива и возвращает <code>0</code>, если такого элемента нет:</p>
+<div id="zdk67vgqwv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let numbers = [0, 1, 2];
+
+numbers = new Proxy(numbers, {
+  get(target, prop) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      return 0; // значение по умолчанию
+    }
+  }
+});
+
+alert( numbers[1] ); // 1
+alert( numbers[123] ); // 0 (нет такого элемента)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, это очень легко сделать при помощи ловушки <code>get</code>.</p>
+<p>Мы можем использовать <code>Proxy</code> для реализации любой логики возврата значений по умолчанию.</p>
+<p>Представим, что у нас есть объект-словарь с фразами на английском и их переводом на испанский:</p>
+<div id="wmrgbuled" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dictionary = {
+  'Hello': 'Hola',
+  'Bye': 'Adiós'
+};
+
+alert( dictionary['Hello'] ); // Hola
+alert( dictionary['Welcome'] ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сейчас, если фразы в <code>dictionary</code> нет, при чтении возвращается <code>undefined</code>. Но на практике оставлять фразы непереведёнными лучше, чем использовать <code>undefined</code>. Поэтому давайте сделаем так, чтобы при отсутствии перевода возвращалась оригинальная фраза на английском вместо <code>undefined</code>.</p>
+<p>Чтобы достичь этого, обернём <code>dictionary</code> в прокси, перехватывающий операцию чтения:</p>
+<div id="bu9lxxgduq" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dictionary = {
+  'Hello': 'Hola',
+  'Bye': 'Adiós'
+};
+
+dictionary = new Proxy(dictionary, {
+  get(target, phrase) { // перехватываем чтение свойства в dictionary
+    if (phrase in target) { // если перевод для фразы есть в словаре
+      return target[phrase]; // возвращаем его
+    } else {
+      // иначе возвращаем непереведённую фразу
+      return phrase;
+    }
+  }
+});
+
+// Запросим перевод произвольного выражения в словаре!
+// В худшем случае оно не будет переведено
+alert( dictionary['Hello'] ); // Hola
+alert( dictionary['Welcome to Proxy']); // Welcome to Proxy (нет перевода)</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Прокси следует использовать везде вместо <code>target</code></span></div>
+            <div class="important__content"><p>Пожалуйста, обратите внимание: прокси перезаписывает переменную:</p>
+<div id="d9j1ztlird" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>dictionary = new Proxy(dictionary, ...);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Прокси должен заменить собой оригинальный объект повсюду. Никто не должен ссылаться на оригинальный объект после того, как он был проксирован. Иначе очень легко запутаться.</p>
+</div></div>
+<h2><a class="main__anchor" name="validatsiya-s-lovushkoy-set" href="#validatsiya-s-lovushkoy-set">Валидация с ловушкой «set»</a></h2><p>Допустим, мы хотим сделать массив исключительно для чисел. Если в него добавляется значение иного типа, то это должно приводить к ошибке.</p>
+<p>Ловушка <code>set</code> срабатывает, когда происходит запись свойства.</p>
+<p><code>set(target, property, value, receiver)</code>:</p>
+<ul>
+<li><code>target</code> – это оригинальный объект, который передавался первым аргументом в конструктор <code>new Proxy</code>,</li>
+<li><code>property</code> – имя свойства,</li>
+<li><code>value</code> – значение свойства,</li>
+<li><code>receiver</code> – аналогично ловушке <code>get</code>, этот аргумент имеет значение, только если свойство – сеттер.</li>
+</ul>
+<p>Ловушка <code>set</code> должна вернуть <code>true</code>, если запись прошла успешно, и <code>false</code> в противном случае (будет сгенерирована ошибка <code>TypeError</code>).</p>
+<p>Давайте применим её для проверки новых значений:</p>
+<div id="slq54pirfr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:17,&quot;end&quot;:17},{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let numbers = [];
+
+numbers = new Proxy(numbers, { // (*)
+  set(target, prop, val) { // для перехвата записи свойства
+    if (typeof val == 'number') {
+      target[prop] = val;
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+numbers.push(1); // добавилось успешно
+numbers.push(2); // добавилось успешно
+alert(&quot;Длина: &quot; + numbers.length); // 2
+
+numbers.push(&quot;тест&quot;); // TypeError (ловушка set на прокси вернула false)
+
+alert(&quot;Интерпретатор никогда не доходит до этой строки (из-за ошибки в строке выше)&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание, что встроенная функциональность массива по-прежнему работает! Значения добавляются методом <code>push</code>. Свойство <code>length</code> при этом увеличивается. Наш прокси ничего не ломает.</p>
+<p>Нам не нужно переопределять методы массива <code>push</code> и <code>unshift</code> и другие, чтобы добавлять туда проверку на тип, так как внутри себя они используют операцию <code>[[Set]]</code>, которая перехватывается прокси.</p>
+<p>Таким образом, код остаётся чистым и прозрачным.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Не забывайте вернуть <code>true</code></span></div>
+            <div class="important__content"><p>Как сказано ранее, нужно соблюдать инварианты.</p>
+<p>Для <code>set</code> реализация ловушки должна возвращать <code>true</code> в случае успешной записи свойства.</p>
+<p>Если забыть это сделать или возвратить любое ложное значение, это приведёт к ошибке <code>TypeError</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="perebor-pri-pomoschi-ownkeys-i-getownpropertydescriptor" href="#perebor-pri-pomoschi-ownkeys-i-getownpropertydescriptor">Перебор при помощи «ownKeys» и «getOwnPropertyDescriptor»</a></h2><p><code>Object.keys</code>, цикл <code>for..in</code> и большинство других методов, которые работают со списком свойств объекта, используют внутренний метод <code>[[OwnPropertyKeys]]</code> (перехватываемый ловушкой <code>ownKeys</code>) для их получения.</p>
+<p>Такие методы различаются в деталях:</p>
+<ul>
+<li><code>Object.getOwnPropertyNames(obj)</code> возвращает не-символьные ключи.</li>
+<li><code>Object.getOwnPropertySymbols(obj)</code> возвращает символьные ключи.</li>
+<li><code>Object.keys/values()</code> возвращает не-символьные ключи/значения с флагом <code>enumerable</code> (подробнее про флаги свойств было в главе <a href="property-descriptors.html">Флаги и дескрипторы свойств</a>).</li>
+<li><code>for..in</code> перебирает не-символьные ключи с флагом <code>enumerable</code>, а также ключи прототипов.</li>
+</ul>
+<p>…Но все они начинают с этого списка.</p>
+<p>В примере ниже мы используем ловушку <code>ownKeys</code>, чтобы цикл <code>for..in</code> по объекту, равно как <code>Object.keys</code> и <code>Object.values</code> пропускали свойства, начинающиеся с подчёркивания <code>_</code>:</p>
+<div id="q4y88zhhxh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;Вася&quot;,
+  age: 30,
+  _password: &quot;***&quot;
+};
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return Object.keys(target).filter(key =&gt; !key.startsWith('_'));
+  }
+});
+
+// ownKeys исключил _password
+for(let key in user) alert(key); // name, затем: age
+
+// аналогичный эффект для этих методов:
+alert( Object.keys(user) ); // name,age
+alert( Object.values(user) ); // Вася,30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, работает.</p>
+<p>Впрочем, если мы попробуем возвратить ключ, которого в объекте на самом деле нет, то <code>Object.keys</code> его не выдаст:</p>
+<div id="36f14irmox" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return ['a', 'b', 'c'];
+  }
+});
+
+alert( Object.keys(user) ); // &lt;пусто&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Почему? Причина проста: <code>Object.keys</code> возвращает только свойства с флагом <code>enumerable</code>. Для того, чтобы определить, есть ли этот флаг, он для каждого свойства вызывает внутренний метод <code>[[GetOwnProperty]]</code>, который получает <a href="property-descriptors.html">его дескриптор</a>. А в данном случае свойство отсутствует, его дескриптор пуст, флага <code>enumerable</code> нет, поэтому оно пропускается.</p>
+<p>Чтобы <code>Object.keys</code> возвращал свойство, нужно либо чтобы свойство в объекте физически было, причём с флагом <code>enumerable</code>, либо перехватить вызовы <code>[[GetOwnProperty]]</code> (это делает ловушка <code>getOwnPropertyDescriptor</code>), и там вернуть дескриптор с <code>enumerable: true</code>.</p>
+<p>Вот так будет работать:</p>
+<div id="77mmfevfgu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) { // вызывается 1 раз для получения списка свойств
+    return ['a', 'b', 'c'];
+  },
+
+  getOwnPropertyDescriptor(target, prop) { // вызывается для каждого свойства
+    return {
+      enumerable: true,
+      configurable: true
+      /* ...другие флаги, возможно, &quot;value: ...&quot; */
+    };
+  }
+
+});
+
+alert( Object.keys(user) ); // a, b, c</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ещё раз заметим, что получение дескриптора нужно перехватывать только если свойство отсутствует в самом объекте.</p>
+<h2><a class="main__anchor" name="zaschischyonnye-svoystva-s-lovushkoy-deleteproperty-i-drugimi" href="#zaschischyonnye-svoystva-s-lovushkoy-deleteproperty-i-drugimi">Защищённые свойства с ловушкой «deleteProperty» и другими</a></h2><p>Существует широко распространённое соглашение о том, что свойства и методы, название которых начинается с символа подчёркивания <code>_</code>, следует считать внутренними. К ним не следует обращаться снаружи объекта.</p>
+<p>Однако технически это всё равно возможно:</p>
+<div id="so95ntgzxi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;Вася&quot;,
+  _password: &quot;secret&quot;
+};
+
+alert(user._password); // secret</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Давайте применим прокси, чтобы защитить свойства, начинающиеся на <code>_</code>, от доступа извне.</p>
+<p>Нам будут нужны следующие ловушки:</p>
+<ul>
+<li><code>get</code> – для того, чтобы сгенерировать ошибку при чтении такого свойства,</li>
+<li><code>set</code> – для того, чтобы сгенерировать ошибку при записи,</li>
+<li><code>deleteProperty</code> – для того, чтобы сгенерировать ошибку при удалении,</li>
+<li><code>ownKeys</code> – для того, чтобы исключить такие свойства из <code>for..in</code> и методов типа <code>Object.keys</code>.</li>
+</ul>
+<p>Вот соответствующий код:</p>
+<div id="2qy77zedv6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:30,&quot;end&quot;:30},{&quot;start&quot;:22,&quot;end&quot;:22},{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;Вася&quot;,
+  _password: &quot;***&quot;
+};
+
+user = new Proxy(user, {
+  get(target, prop) {
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Отказано в доступе&quot;);
+    } else {
+      let value = target[prop];
+      return (typeof value === 'function') ? value.bind(target) : value; // (*)
+    }
+  },
+  set(target, prop, val) { // перехватываем запись свойства
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Отказано в доступе&quot;);
+    } else {
+      target[prop] = val;
+      return true;
+    }
+  },
+  deleteProperty(target, prop) { // перехватываем удаление свойства
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Отказано в доступе&quot;);
+    } else {
+      delete target[prop];
+      return true;
+    }
+  },
+  ownKeys(target) { // перехватываем попытку итерации
+    return Object.keys(target).filter(key =&gt; !key.startsWith('_'));
+  }
+});
+
+// &quot;get&quot; не позволяет прочитать _password
+try {
+  alert(user._password); // Error: Отказано в доступе
+} catch(e) { alert(e.message); }
+
+// &quot;set&quot; не позволяет записать _password
+try {
+  user._password = &quot;test&quot;; // Error: Отказано в доступе
+} catch(e) { alert(e.message); }
+
+// &quot;deleteProperty&quot; не позволяет удалить _password
+try {
+  delete user._password; // Error: Отказано в доступе
+} catch(e) { alert(e.message); }
+
+// &quot;ownKeys&quot; исключает _password из списка видимых для итерации свойств
+for(let key in user) alert(key); // name</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание на важную деталь в ловушке <code>get</code> на строке <code>(*)</code>:</p>
+<div id="43drdxmujo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>get(target, prop) {
+  // ...
+  let value = target[prop];
+  return (typeof value === 'function') ? value.bind(target) : value; // (*)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Зачем для функции вызывать <code>value.bind(target)</code>?</p>
+<p>Всё дело в том, что метод самого объекта, например <code>user.checkPassword()</code>, должен иметь доступ к свойству <code>_password</code>:</p>
+<div id="0yccemvpkj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>user = {
+  // ...
+  checkPassword(value) {
+    // метод объекта должен иметь доступ на чтение _password
+    return value === this._password;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вызов <code>user.checkPassword()</code> получает проксированный объект <code>user</code> в качестве <code>this</code> (объект перед точкой становится <code>this</code>), так что когда такой вызов обращается к <code>this._password</code>, ловушка <code>get</code> вступает в действие (она срабатывает при любом чтении свойства), и выбрасывается ошибка.</p>
+<p>Поэтому мы привязываем контекст к методам объекта – оригинальный объект <code>target</code> в строке <code>(*)</code>. Тогда их дальнейшие вызовы будут использовать <code>target</code> в качестве <code>this</code>, без всяких ловушек.</p>
+<p>Такое решение обычно работает, но не является идеальным, поскольку метод может передать оригинальный объект куда-то ещё, и возможна путаница: где изначальный объект, а где – проксированный.</p>
+<p>К тому же, объект может проксироваться несколько раз (для добавления различных возможностей), и если передавать методу исходный, то могут быть неожиданности.</p>
+<p>Так что везде использовать такой прокси не стоит.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Приватные свойства в классах</span></div>
+            <div class="important__content"><p>Современные интерпретаторы JavaScript поддерживают приватные свойства в классах. Названия таких свойств должны начинаться с символа <code>#</code>. Они подробно описаны в главе <a href="private-protected-properties-methods.html">Приватные и защищённые методы и свойства</a>. Для них не нужны подобные прокси.</p>
+<p>Впрочем, приватные свойства имеют свои недостатки. В частности, они не наследуются.</p>
+</div></div>
+<h2><a class="main__anchor" name="v-diapazone-s-lovushkoy-has" href="#v-diapazone-s-lovushkoy-has">«В диапазоне» с ловушкой «has»</a></h2><p>Давайте посмотрим ещё примеры.</p>
+<p>Предположим, у нас есть объект <code>range</code>, описывающий диапазон:</p>
+<div id="4kwowaq28m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  start: 1,
+  end: 10
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы бы хотели использовать оператор <code>in</code>, чтобы проверить, что некоторое число находится в указанном диапазоне.</p>
+<p>Ловушка <code>has</code> перехватывает вызовы <code>in</code>.</p>
+<p><code>has(target, property)</code></p>
+<ul>
+<li><code>target</code> – это оригинальный объект, который передавался первым аргументом в конструктор <code>new Proxy</code>,</li>
+<li><code>property</code> – имя свойства</li>
+</ul>
+<p>Вот демо:</p>
+<div id="lnt30iq6c2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:12},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  start: 1,
+  end: 10
+};
+
+range = new Proxy(range, {
+  has(target, prop) {
+    return prop &gt;= target.start &amp;&amp; prop &lt;= target.end
+  }
+});
+
+alert(5 in range); // true
+alert(50 in range); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Отлично выглядит, не правда ли? И очень просто в реализации.</p>
+<h2><a class="main__anchor" name="oborachivaem-funktsii-apply" href="#oborachivaem-funktsii-apply">Оборачиваем функции: «apply»</a></h2><p>Мы можем оборачивать в прокси и функции.</p>
+<p>Ловушка <code>apply(target, thisArg, args)</code> активируется при вызове прокси как функции:</p>
+<ul>
+<li><code>target</code> – это оригинальный объект (как мы помним, функция – это объект в языке JavaScript),</li>
+<li><code>thisArg</code> – это контекст <code>this</code>.</li>
+<li><code>args</code> – список аргументов.</li>
+</ul>
+<p>Например, давайте вспомним декоратор <code>delay(f, ms)</code>, созданный нами в главе <a href="call-apply-decorators.html">Декораторы и переадресация вызова, call/apply</a>.</p>
+<p>Тогда мы обошлись без создания прокси. Вызов <code>delay(f, ms)</code> возвращал функцию, которая передавала вызовы <code>f</code> после <code>ms</code> миллисекунд.</p>
+<p>Вот предыдущая реализация, на основе функции:</p>
+<div id="tk5osi50mz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  // возвращает обёртку, которая вызывает функцию f через таймаут
+  return function() { // (*)
+    setTimeout(() =&gt; f.apply(this, arguments), ms);
+  };
+}
+
+function sayHi(user) {
+  alert(`Привет, ${user}!`);
+}
+
+// после обёртки вызовы sayHi будут срабатывать с задержкой в 3 секунды
+sayHi = delay(sayHi, 3000);
+
+sayHi(&quot;Вася&quot;); // Привет, Вася! (через 3 секунды)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как мы уже видели, это в целом работает. Функция-обёртка в строке <code>(*)</code> вызывает нужную функцию с указанной задержкой.</p>
+<p>Но наша функция-обёртка не перенаправляет операции чтения/записи свойства и другие. После обёртывания доступ к свойствам оригинальной функции, таким как <code>name</code>, <code>length</code>, и другим, будет потерян.</p>
+<div id="hzdmqh33r3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  return function() {
+    setTimeout(() =&gt; f.apply(this, arguments), ms);
+  };
+}
+
+function sayHi(user) {
+  alert(`Привет, ${user}!`);
+}
+
+alert(sayHi.length); // 1 (в функции length - это число аргументов в её объявлении)
+
+sayHi = delay(sayHi, 3000);
+
+alert(sayHi.length); // 0 (в объявлении функции-обёртки ноль аргументов)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Прокси куда более мощные в этом смысле, поскольку они перенаправляют всё к оригинальному объекту.</p>
+<p>Давайте используем прокси вместо функции-обёртки:</p>
+<div id="22u54ai0f9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  return new Proxy(f, {
+    apply(target, thisArg, args) {
+      setTimeout(() =&gt; target.apply(thisArg, args), ms);
+    }
+  });
+}
+
+function sayHi(user) {
+  alert(`Привет, ${user}!`);
+}
+
+sayHi = delay(sayHi, 3000);
+
+alert(sayHi.length); // 1 (*) прокси перенаправляет чтение свойства length на исходную функцию
+
+sayHi(&quot;Вася&quot;); // Привет, Вася! (через 3 секунды)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат такой же, но сейчас не только вызовы, но и другие операции на прокси перенаправляются к оригинальной функции. Таким образом, операция чтения свойства <code>sayHi.length</code> возвращает корректное значение в строке <code>(*)</code> после проксирования.</p>
+<p>Мы получили лучшую обёртку.</p>
+<p>Существуют и другие ловушки: полный список есть в начале этой главы. Использовать их можно по аналогии с вышеописанными.</p>
+<h2><a class="main__anchor" name="reflect" href="#reflect">Reflect</a></h2><p><code>Reflect</code> – встроенный объект, упрощающий создание прокси.</p>
+<p>Ранее мы говорили о том, что внутренние методы, такие как <code>[[Get]]</code>, <code>[[Set]]</code> и другие, существуют только в спецификации, что к ним нельзя обратиться напрямую.</p>
+<p>Объект <code>Reflect</code> делает это возможным. Его методы – минимальные обёртки вокруг внутренних методов.</p>
+<p>Вот примеры операций и вызовы <code>Reflect</code>, которые делают то же самое:</p>
+<table>
+<thead>
+<tr>
+<th>Операция</th>
+<th>Вызов <code>Reflect</code></th>
+<th>Внутренний метод</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obj[prop]</code></td>
+<td><code>Reflect.get(obj, prop)</code></td>
+<td><code>[[Get]]</code></td>
+</tr>
+<tr>
+<td><code>obj[prop] = value</code></td>
+<td><code>Reflect.set(obj, prop, value)</code></td>
+<td><code>[[Set]]</code></td>
+</tr>
+<tr>
+<td><code>delete obj[prop]</code></td>
+<td><code>Reflect.deleteProperty(obj, prop)</code></td>
+<td><code>[[Delete]]</code></td>
+</tr>
+<tr>
+<td><code>new F(value)</code></td>
+<td><code>Reflect.construct(F, value)</code></td>
+<td><code>[[Construct]]</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>Например:</p>
+<div id="rjy5p6kekx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+
+Reflect.set(user, 'name', 'Вася');
+
+alert(user.name); // Вася</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В частности, <code>Reflect</code> позволяет вызвать операторы (<code>new</code>, <code>delete</code>…) как функции (<code>Reflect.construct</code>, <code>Reflect.deleteProperty</code>, …). Это интересная возможность, но здесь нам важно другое.</p>
+<p><strong>Для каждого внутреннего метода, перехватываемого <code>Proxy</code>, есть соответствующий метод в <code>Reflect</code>, который имеет такое же имя и те же аргументы, что и у ловушки <code>Proxy</code>.</strong></p>
+<p>Поэтому мы можем использовать <code>Reflect</code>, чтобы перенаправить операцию на исходный объект.</p>
+<p>В этом примере обе ловушки <code>get</code> и <code>set</code> прозрачно (как будто их нет) перенаправляют операции чтения и записи на объект, при этом выводя сообщение:</p>
+<div id="u8duce5vlu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11},{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;Вася&quot;,
+};
+
+user = new Proxy(user, {
+  get(target, prop, receiver) {
+    alert(`GET ${prop}`);
+    return Reflect.get(target, prop, receiver); // (1)
+  },
+  set(target, prop, val, receiver) {
+    alert(`SET ${prop}=${val}`);
+    return Reflect.set(target, prop, val, receiver); // (2)
+  }
+});
+
+let name = user.name; // выводит &quot;GET name&quot;
+user.name = &quot;Петя&quot;; // выводит &quot;SET name=Петя&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь:</p>
+<ol>
+<li><code>Reflect.get</code> читает свойство объекта.</li>
+<li><code>Reflect.set</code> записывает свойство и возвращает <code>true</code> при успехе, иначе <code>false</code>.</li>
+</ol>
+<p>То есть, всё очень просто – если ловушка хочет перенаправить вызов на объект, то достаточно вызвать <code>Reflect.&lt;метод&gt;</code> с теми же аргументами.</p>
+<p>В большинстве случаев мы можем сделать всё то же самое и без <code>Reflect</code>, например, чтение свойства <code>Reflect.get(target, prop, receiver)</code> можно заменить на <code>target[prop]</code>. Но некоторые нюансы легко упустить.</p>
+<h3><a class="main__anchor" name="proksi-dlya-gettera" href="#proksi-dlya-gettera">Прокси для геттера</a></h3><p>Рассмотрим конкретный пример, демонстрирующий, чем лучше <code>Reflect.get</code>, и заодно разберёмся, зачем в <code>get/set</code> нужен третий аргумент <code>receiver</code>, мы его ранее не использовали.</p>
+<p>Допустим, у нас есть объект <code>user</code> со свойством <code>_name</code> и геттером для него.</p>
+<p>Сделаем вокруг <code>user</code> прокси:</p>
+<div id="v93pcq9ng7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Гость&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return target[prop];
+  }
+});
+
+alert(userProxy.name); // Гость</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ловушка <code>get</code> здесь «прозрачная», она возвращает свойство исходного объекта и больше ничего не делает. Для нашего примера этого вполне достаточно.</p>
+<p>Казалось бы, всё в порядке. Но давайте немного усложним пример.</p>
+<p>Если мы унаследуем от проксированного <code>user</code> объект <code>admin</code>, то мы увидим, что он ведёт себя некорректно:</p>
+<div id="335doyb5yp" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Гость&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return target[prop]; // (*) target = user
+  }
+});
+
+let admin = {
+  __proto__: userProxy,
+  _name: &quot;Админ&quot;
+};
+
+// Ожидается: Админ
+alert(admin.name); // выводится Гость (?!?)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обращение к свойству <code>admin.name</code> должно возвращать строку <code>&quot;Админ&quot;</code>, а выводит <code>&quot;Гость&quot;</code>!</p>
+<p>В чём дело? Может быть, мы делаем что-то не так с наследованием?</p>
+<p>Но если убрать прокси, то всё будет работать как ожидается.</p>
+<p>На самом деле, проблема в прокси, в строке <code>(*)</code>.</p>
+<ol>
+<li>
+<p>При чтении <code>admin.name</code>, так как в объекте <code>admin</code> нет свойства <code>name</code>, оно ищется в прототипе.</p>
+</li>
+<li>
+<p>Прототипом является прокси <code>userProxy</code>.</p>
+</li>
+<li>
+<p>При чтении из прокси свойства <code>name</code> срабатывает ловушка <code>get</code> и возвращает его из исходного объекта как <code>target[prop]</code> в строке <code>(*)</code>.</p>
+<p>Вызов <code>target[prop]</code>, если <code>prop</code> – это геттер, запускает его код в контексте <code>this=target</code>. Поэтому результатом является <code>this._name</code> из исходного объекта <code>target</code>, то есть из <code>user</code>.</p>
+</li>
+</ol>
+<p>Именно для исправления таких ситуаций нужен <code>receiver</code>, третий аргумент ловушки <code>get</code>. В нём хранится ссылка на правильный контекст <code>this</code>, который нужно передать геттеру. В данном случае это <code>admin</code>.</p>
+<p>Как передать геттеру контекст? Для обычной функции мы могли бы использовать <code>call/apply</code>, но это же геттер, его не вызывают, просто читают значение.</p>
+<p>Это может сделать <code>Reflect.get</code>. Всё будет работать верно, если использовать его.</p>
+<p>Вот исправленный вариант:</p>
+<div id="77as0pn1cu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19},{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Гость&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) { // receiver = admin
+    return Reflect.get(target, prop, receiver); // (*)
+  }
+});
+
+
+let admin = {
+  __proto__: userProxy,
+  _name: &quot;Админ&quot;
+};
+
+alert(admin.name); // Админ</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сейчас <code>receiver</code>, содержащий ссылку на корректный <code>this</code> (то есть на <code>admin</code>), передаётся геттеру посредством <code>Reflect.get</code> в строке <code>(*)</code>.</p>
+<p>Можно переписать ловушку и короче:</p>
+<div id="y59w14scov" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:33}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>get(target, prop, receiver) {
+  return Reflect.get(...arguments);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Методы в <code>Reflect</code> имеют те же названия, что и соответствующие ловушки, и принимают такие же аргументы. Это было специально задумано при разработке спецификации JavaScript.</p>
+<p>Так что <code>return Reflect...</code> даёт простую и безопасную возможность перенаправить операцию на оригинальный объект и при этом предохраняет нас от возможных ошибок, связанных с этим действием.</p>
+<h2><a class="main__anchor" name="ogranicheniya-proksi" href="#ogranicheniya-proksi">Ограничения прокси</a></h2><p>Прокси – уникальное средство для настройки поведения объектов на самом низком уровне. Но они не идеальны, есть некоторые ограничения.</p>
+<h3><a class="main__anchor" name="vstroennye-obekty-vnutrennie-sloty" href="#vstroennye-obekty-vnutrennie-sloty">Встроенные объекты: внутренние слоты</a></h3><p>Многие встроенные объекты, например <code>Map</code>, <code>Set</code>, <code>Date</code>, <code>Promise</code> и другие используют так называемые «внутренние слоты».</p>
+<p>Это как свойства, но только для внутреннего использования в самой спецификациии. Например, <code>Map</code> хранит элементы во внутреннем слоте <code>[[MapData]]</code>. Встроенные методы обращаются к слотам напрямую, не через <code>[[Get]]/[[Set]]</code>. Таким образом, прокси не может перехватить их.</p>
+<p>Почему это имеет значение? Они же всё равно внутренние!</p>
+<p>Есть один нюанс. Если встроенный объект проксируется, то в прокси не будет этих «внутренних слотов», так что попытка вызвать на таком прокси встроенный метод приведёт к ошибке.</p>
+<p>Пример:</p>
+<div id="lzh7zzl6y1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+let proxy = new Proxy(map, {});
+
+proxy.set('test', 1); // будет ошибка</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Внутри себя объект типа <code>Map</code> хранит все данные во внутреннем слоте <code>[[MapData]]</code>. Прокси не имеет такого слота. <a href="https://tc39.es/ecma262/#sec-map.prototype.set">Встроенный метод <code>Map.prototype.set</code></a> пытается получить доступ к своему внутреннему свойству <code>this.[[MapData]]</code>, но так как <code>this=proxy</code>, то не может его найти и завершается с ошибкой.</p>
+<p>К счастью, есть способ исправить это:</p>
+<div id="awar9g3qbc" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+let proxy = new Proxy(map, {
+  get(target, prop, receiver) {
+    let value = Reflect.get(...arguments);
+    return typeof value == 'function' ? value.bind(target) : value;
+  }
+});
+
+proxy.set('test', 1);
+alert(proxy.get('test')); // 1 (работает!)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сейчас всё сработало, потому что <code>get</code> привязывает свойства-функции, такие как <code>map.set</code>, к оригинальному объекту <code>map</code>. Таким образом, когда реализация метода <code>set</code> попытается получить доступ к внутреннему слоту <code>this.[[MapData]]</code>, то всё пройдёт благополучно.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Объект <code>Array</code> не использует внутренние слоты</span></div>
+            <div class="important__content"><p>Важным исключением является встроенный объект <code>Array</code>: он не использует внутренние слоты. Так сложилось исторически, ведь массивы были добавлены в язык очень давно.</p>
+<p>То есть описанная выше проблема не возникает при проксировании массивов.</p>
+</div></div>
+<h3><a class="main__anchor" name="privatnye-polya" href="#privatnye-polya">Приватные поля</a></h3><p>Нечто похожее происходит и с приватными полями классов.</p>
+<p>Например, метод <code>getName()</code> осуществляет доступ к приватному полю <code>#name</code>, после проксирования он перестаёт работать:</p>
+<div id="2xhwrhbvr0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  #name = &quot;Гость&quot;;
+
+  getName() {
+    return this.#name;
+  }
+}
+
+let user = new User();
+
+user = new Proxy(user, {});
+
+alert(user.getName()); // Ошибка</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Причина всё та же: приватные поля реализованы с использованием внутренних слотов. JavaScript не использует <code>[[Get]]/[[Set]]</code> при доступе к ним.</p>
+<p>В вызове <code>getName()</code> значением <code>this</code> является проксированный <code>user</code>, в котором нет внутреннего слота с приватными полями.</p>
+<p>Решением, как и в предыдущем случае, является привязка контекста к методу:</p>
+<div id="8kubismuiq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  #name = &quot;Гость&quot;;
+
+  getName() {
+    return this.#name;
+  }
+}
+
+let user = new User();
+
+user = new Proxy(user, {
+  get(target, prop, receiver) {
+    let value = Reflect.get(...arguments);
+    return typeof value == 'function' ? value.bind(target) : value;
+  }
+});
+
+alert(user.getName()); // Гость</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Однако, такое решение имеет ряд недостатков, о которых уже говорилось: методу передаётся оригинальный объект, который может быть передан куда-то ещё, и это может поломать всю функциональность проксирования.</p>
+<h3><a class="main__anchor" name="proksi-originalnyy-obekt" href="#proksi-originalnyy-obekt">Прокси != оригинальный объект</a></h3><p>Прокси и объект, который проксируется, являются двумя разными объектами. Это естественно, не правда ли?</p>
+<p>Если мы используем оригинальный объект как ключ, а затем проксируем его, то прокси не будет найден:</p>
+<div id="685an9wvof" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let allUsers = new Set();
+
+class User {
+  constructor(name) {
+    this.name = name;
+    allUsers.add(this);
+  }
+}
+
+let user = new User(&quot;Вася&quot;);
+
+alert(allUsers.has(user)); // true
+
+user = new Proxy(user, {});
+
+alert(allUsers.has(user)); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как мы видим, после проксирования не получается найти объект <code>user</code> внутри множества <code>allUsers</code>, потому что прокси – это другой объект.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Прокси не перехватывают проверку на строгое равенство <code>===</code></span></div>
+            <div class="important__content"><p>Прокси способны перехватывать много операторов, например <code>new</code> (ловушка <code>construct</code>), <code>in</code> (ловушка <code>has</code>), <code>delete</code> (ловушка <code>deleteProperty</code>) и так далее.</p>
+<p>Но нет способа перехватить проверку на строгое равенство. Объект строго равен только самому себе, и никаким другим значениям.</p>
+<p>Так что все операции и встроенные классы, которые используют строгую проверку объектов на равенство, отличат прокси от изначального объекта. Прозрачной замены в данном случае не произойдёт.</p>
+</div></div>
+<h2><a class="main__anchor" name="otklyuchaemye-proksi" href="#otklyuchaemye-proksi">Отключаемые прокси</a></h2><p><em>Отключаемый</em> (revocable) прокси – это прокси, который может быть отключён вызовом специальной функции.</p>
+<p>Допустим, у нас есть какой-то ресурс, и мы бы хотели иметь возможность закрыть к нему доступ в любой момент.</p>
+<p>Для того, чтобы решить поставленную задачу, мы можем использовать отключаемый прокси, без ловушек. Такой прокси будет передавать все операции на проксируемый объект, и у нас будет возможность в любой момент отключить это.</p>
+<p>Синтаксис:</p>
+<div id="5gbd04g3q1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let {proxy, revoke} = Proxy.revocable(target, handler)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вызов возвращает объект с <code>proxy</code> и функцией <code>revoke</code>, которая отключает его.</p>
+<p>Вот пример:</p>
+<div id="mvek4hyz3i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let object = {
+  data: &quot;Важные данные&quot;
+};
+
+let {proxy, revoke} = Proxy.revocable(object, {});
+
+// передаём прокси куда-нибудь вместо оригинального объекта...
+alert(proxy.data); // Важные данные
+
+// позже в коде
+revoke();
+
+// прокси больше не работает (отключён)
+alert(proxy.data); // Ошибка</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вызов <code>revoke()</code> удаляет все внутренние ссылки на оригинальный объект из прокси, так что между ними больше нет связи, и оригинальный объект теперь может быть очищен сборщиком мусора.</p>
+<p>Мы можем хранить функцию <code>revoke</code> в <code>WeakMap</code>, чтобы легко найти её по объекту прокси:</p>
+<div id="onabelsa8z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let revokes = new WeakMap();
+
+let object = {
+  data: &quot;Важные данные&quot;
+};
+
+let {proxy, revoke} = Proxy.revocable(object, {});
+
+revokes.set(proxy, revoke);
+
+// ..позже в коде..
+revoke = revokes.get(proxy);
+revoke();
+
+alert(proxy.data); // Ошибка (прокси отключён)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Преимущество такого подхода в том, что мы не должны таскать функцию <code>revoke</code> повсюду. Мы получаем её при необходимости из <code>revokes</code> по объекту прокси.</p>
+<p>Мы использовали <code>WeakMap</code> вместо <code>Map</code>, чтобы не блокировать сборку мусора. Если прокси объект становится недостижимым (то есть на него больше нет ссылок), то <code>WeakMap</code> позволяет сборщику мусора удалить его из памяти вместе с соответствующей функцией <code>revoke</code>, которая в этом случае больше не нужна.</p>
+<h2><a class="main__anchor" name="ssylki" href="#ssylki">Ссылки</a></h2><ul>
+<li>Спецификация: <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">Proxy</a>, <a href="https://tc39.es/ecma262/#sec-reflection">Reflect</a>.</li>
+<li>MDN: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect</a>.</li>
+</ul>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Прокси – это обёртка вокруг объекта, которая «по умолчанию» перенаправляет операции над ней на объект, но имеет возможность перехватывать их.</p>
+<p>Проксировать можно любой объект, включая классы и функции.</p>
+<p>Синтаксис:</p>
+<div id="9o8ghcqq55" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let proxy = new Proxy(target, {
+  /* ловушки */
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Затем обычно используют прокси везде вместо оригинального объекта <code>target</code>. Прокси не имеет собственных свойств или методов. Он просто перехватывает операцию, если имеется соответствующая ловушка, а иначе перенаправляет её сразу на объект <code>target</code>.</p>
+<p>Мы можем перехватывать:</p>
+<ul>
+<li>Чтение (<code>get</code>), запись (<code>set</code>), удаление (<code>deleteProperty</code>) свойства (даже несуществующего).</li>
+<li>Вызов функции (<code>apply</code>).</li>
+<li>Оператор <code>new</code> (ловушка <code>construct</code>).</li>
+<li>И многие другие операции (полный список приведён в начале статьи, а также в <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy">документации</a>).</li>
+</ul>
+<p>Это позволяет нам создавать «виртуальные» свойства и методы, реализовывать значения по умолчанию, наблюдаемые объекты, функции-декораторы и многое другое.</p>
+<p>Мы также можем оборачивать один и тот же объект много раз в разные прокси, добавляя ему различные аспекты функциональности.</p>
+<p><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect</a> API создано как дополнение к <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>. Для любой ловушки из <code>Proxy</code> существует метод в <code>Reflect</code> с теми же аргументами. Нам следует использовать его, если нужно перенаправить вызов на оригинальный объект.</p>
+<p>Прокси имеют некоторые ограничения:</p>
+<ul>
+<li>Встроенные объекты используют так называемые «внутренние слоты», доступ к которым нельзя проксировать. Однако, ранее в этой главе был показан один способ, как обойти это ограничение.</li>
+<li>То же самое можно сказать и о приватных полях классов, так как они реализованы на основе слотов. То есть вызовы проксированных методов должны иметь оригинальный объект в качестве <code>this</code>, чтобы получить к ним доступ.</li>
+<li>Проверка объектов на строгое равенство <code>===</code> не может быть перехвачена.</li>
+<li>Производительность: конкретные показатели зависят от интерпретатора, но в целом получение свойства с помощью простейшего прокси занимает в несколько раз больше времени. В реальности это имеет значение только для некоторых «особо нагруженных» объектов.</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#oshibka-pri-chtenii-nesuschestvuyuschego-svoystva" name="oshibka-pri-chtenii-nesuschestvuyuschego-svoystva">Ошибка при чтении несуществующего свойства</a></h3><a class="task__open-link" href="task/error-nonexisting.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Обычно при чтении несуществующего свойства из объекта возвращается <code>undefined</code>.</p>
+<p>Создайте прокси, который генерирует ошибку при попытке прочитать несуществующее свойство.</p>
+<p>Это может помочь обнаружить программные ошибки пораньше.</p>
+<p>Напишите функцию <code>wrap(target)</code>, которая берёт объект <code>target</code> и возвращает прокси, добавляющий в него этот аспект функциональности.</p>
+<p>Вот как это должно работать:</p>
+<div id="6ekd6g7lx7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:13},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;
+};
+
+function wrap(target) {
+  return new Proxy(target, {
+      /* ваш код */
+  });
+}
+
+user = wrap(user);
+
+alert(user.name); // John
+alert(user.age); // Ошибка: такого свойства не существует</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="at7fjkdwt3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;
+};
+
+function wrap(target) {
+  return new Proxy(target, {
+    get(target, prop, receiver) {
+      if (prop in target) {
+        return Reflect.get(target, prop, receiver);
+      } else {
+        throw new ReferenceError(`Свойство не существует: &quot;${prop}&quot;`)
+      }
+    }
+  });
+}
+
+user = wrap(user);
+
+alert(user.name); // John
+alert(user.age); // Ошибка: Свойство не существует</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#poluchenie-elementa-massiva-s-otritsatelnoy-pozitsii" name="poluchenie-elementa-massiva-s-otritsatelnoy-pozitsii">Получение элемента массива с отрицательной позиции</a></h3><a class="task__open-link" href="task/array-negative.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>В некоторых языках программирования возможно получать элементы массива, используя отрицательные индексы, отсчитываемые с конца.</p>
+<p>Вот так:</p>
+<div id="xjapupnzrr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array[-1]; // 3, последний элемент
+array[-2]; // 2, предпоследний элемент
+array[-3]; // 1, за два элемента до последнего</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другими словами, <code>array[-N]</code> – это то же, что и <code>array[array.length - N]</code>.</p>
+<p>Создайте прокси, который реализовывал бы такое поведение.</p>
+<p>Вот как это должно работать:</p>
+<div id="58xv33gi8d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array = new Proxy(array, {
+  /* ваш код */
+});
+
+alert( array[-1] ); // 3
+alert( array[-2] ); // 2
+
+// вся остальная функциональность массивов должна остаться без изменений</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="dzzjtopj1y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array = new Proxy(array, {
+  get(target, prop, receiver) {
+    if (prop &lt; 0) {
+      // даже если обращение к элементу идёт как arr[1]
+      // prop является строкой, нужно преобразовать её к числу
+      prop = +prop + target.length;
+    }
+    return Reflect.get(target, prop, receiver);
+  }
+});
+
+
+alert(array[-1]); // 3
+alert(array[-2]); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#observable" name="observable">Observable</a></h3><a class="task__open-link" href="task/observable.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Создайте функцию <code>makeObservable(target)</code>, которая делает объект «наблюдаемым», возвращая прокси.</p>
+<p>Вот как это должно работать:</p>
+<div id="eg8ev5mchz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeObservable(target) {
+  /* ваш код */
+}
+
+let user = {};
+user = makeObservable(user);
+
+user.observe((key, value) =&gt; {
+  alert(`SET ${key}=${value}`);
+});
+
+user.name = &quot;John&quot;; // выводит: SET name=John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другими словами, возвращаемый <code>makeObservable</code> объект аналогичен исходному, но также имеет метод <code>observe(handler)</code>, который позволяет запускать <code>handler</code> при любом изменении свойств.</p>
+<p>При изменении любого свойства вызывается <code>handler(key, value)</code> с именем и значением свойства.</p>
+<p>P.S. В этой задаче ограничьтесь, пожалуйста, только записью свойства. Остальные операции могут быть реализованы похожим образом.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Решение состоит из двух частей:</p>
+<ol>
+<li>При вызове <code>.observe(handler)</code> нам нужно где-то сохранить обработчик, чтобы вызвать его позже. Можно хранить обработчики прямо в объекте, создав в нём для этого свой символьный ключ.</li>
+<li>Нам нужен прокси с ловушкой <code>set</code>, чтобы вызывать обработчики при изменении свойств.</li>
+</ol>
+<div id="zyktx29ztc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let handlers = Symbol('handlers');
+
+function makeObservable(target) {
+  // 1. Создадим хранилище обработчиков
+  target[handlers] = [];
+
+  // положим туда функции-обработчики для вызовов в будущем
+  target.observe = function(handler) {
+    this[handlers].push(handler);
+  };
+
+  // 2. Создадим прокси для реакции на изменения
+  return new Proxy(target, {
+    set(target, property, value, receiver) {
+      let success = Reflect.set(...arguments); // перенаправим операцию к оригинальному объекту
+      if (success) { // если не произошло ошибки при записи свойства
+        // вызовем обработчики
+        target[handlers].forEach(handler =&gt; handler(property, value));
+      }
+      return success;
+    }
+  });
+}
+
+let user = {};
+
+user = makeObservable(user);
+
+user.observe((key, value) =&gt; {
+  alert(`SET ${key}=${value}`);
+});
+
+user.name = &quot;John&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="js-misc.html" data-tooltip="Разное"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="eval.html" data-tooltip="Eval: выполнение строки кода"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/proxy","identifier":"\/proxy"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="js-misc.html">Разное</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#znachenie-po-umolchaniyu-s-lovushkoy-get">Значение по умолчанию с ловушкой «get»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#validatsiya-s-lovushkoy-set">Валидация с ловушкой «set»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#perebor-pri-pomoschi-ownkeys-i-getownpropertydescriptor">Перебор при помощи «ownKeys» и «getOwnPropertyDescriptor»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zaschischyonnye-svoystva-s-lovushkoy-deleteproperty-i-drugimi">Защищённые свойства с ловушкой «deleteProperty» и другими</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#v-diapazone-s-lovushkoy-has">«В диапазоне» с ловушкой «has»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#oborachivaem-funktsii-apply">Оборачиваем функции: «apply»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#reflect">Reflect</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ogranicheniya-proksi">Ограничения прокси</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#otklyuchaemye-proksi">Отключаемые прокси</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ssylki">Ссылки</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fproxy" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/99-js-misc/01-proxy" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/proxy by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:31:17 GMT -->
+</html>

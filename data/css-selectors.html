@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/css-selectors by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Знаете ли вы селекторы?</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="css-selectors.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Знаете ли вы селекторы?"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Знаете ли вы селекторы?"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="height-percent.html"><link rel="next" href="css-sprite.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Знаете ли вы селекторы?"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="15" max="17" data-tooltip="Урок 15 из 17"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="css-for-js.html"><span>CSS для JavaScript-разработчика</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"CSS для JavaScript-разработчика","item":"https://learn.javascript.ru/css-for-js"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 3 июля 2019 г."><div class="updated-at__content">3 июля 2019 г.</div></div></div><h1 class="main__header-title">Знаете ли вы селекторы?</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Знаете ли вы селекторы?"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>CSS3-селекторы – фундаментально полезная вещь.</p>
+<p>Даже если вы почему-то (старый IE?) не пользуетесь ими в CSS, есть много фреймворков для их кросс-браузерного использования CSS3 из JavaScript.</p>
+<p>Поэтому эти селекторы необходимо знать.</p>
+<h2><a class="main__anchor" name="osnovnye-vidy-selektorov" href="#osnovnye-vidy-selektorov">Основные виды селекторов</a></h2><p>Основных видов селекторов всего несколько:</p>
+<ul>
+<li><code>*</code> – любые элементы.</li>
+<li><code>div</code> – элементы с таким тегом.</li>
+<li><code>#id</code> – элемент с данным <code>id</code>.</li>
+<li><code>.class</code> – элементы с таким классом.</li>
+<li><code>[name=&quot;value&quot;]</code> – селекторы на атрибут (см. далее).</li>
+<li><code>:visited</code> – «псевдоклассы», остальные разные условия на элемент (см. далее).</li>
+</ul>
+<p><strong>Селекторы можно комбинировать, записывая последовательно, без пробела:</strong></p>
+<ul>
+<li><code>.c1.c2</code> – элементы одновременно с двумя классами <code>c1</code> и <code>c2</code></li>
+<li><code>a#id.c1.c2:visited</code> – элемент <code>a</code> с данным <code>id</code>, классами <code>c1</code> и <code>c2</code>, и псевдоклассом <code>visited</code></li>
+</ul>
+<h2><a class="main__anchor" name="otnosheniya" href="#otnosheniya">Отношения</a></h2><p>В CSS3 предусмотрено четыре вида отношений между элементами.</p>
+<p>Самые известные вы наверняка знаете:</p>
+<ul>
+<li><code>div p</code> – элементы <code>p</code>, являющиеся потомками <code>div</code>.</li>
+<li><code>div &gt; p</code> – только непосредственные потомки</li>
+</ul>
+<p>Есть и два более редких:</p>
+<ul>
+<li><code>div ~ p</code> – правые соседи: все <code>p</code> на том же уровне вложенности, которые идут после <code>div</code>.</li>
+<li><code>div + p</code> – первый правый сосед: <code>p</code> на том же уровне вложенности, который идёт сразу после <code>div</code> (если есть).</li>
+</ul>
+<p>Посмотрим их на примере HTML:</p>
+<div id="j7apk22hvu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;h3&gt;Балтославянские языки&lt;/h3&gt;
+
+&lt;ol id=&quot;languages&quot;&gt;
+  ...Вложенный OL/LI список языков...
+&lt;/ol&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>CSS-селекторы:</p>
+<div id="3lh56tiii8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:23,&quot;end&quot;:25},{&quot;start&quot;:11,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>/*+ no-beautify */
+#languages li {
+  color: brown;   /* потомки #languages, подходящие под селектор  LI */
+}
+
+#languages &gt; li {
+  color: black;   /* первый уровень детей #languages подходящих под LI */
+}
+
+#e-slavic { font-style: italic; }
+
+#e-slavic ~ li {  /* правые соседи #e-slavic с селектором LI */
+  color: red;
+}
+
+#latvian {
+  font-style: italic;
+}
+
+#latvian * {      /* потомки #latvian, подходяще под * (т.е. любые) */
+  font-style: normal;
+}
+
+#latvian + li {  /* первый правый сосед #latvian с селектором LI */
+ color: green;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/css-selectors/relation/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/KSCLawMJW8kpdKHh?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="KSCLawMJW8kpdKHh" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/css-selectors/relation/"></iframe>
+  </div><h2><a class="main__anchor" name="filtr-po-mestu-sredi-sosedey" href="#filtr-po-mestu-sredi-sosedey">Фильтр по месту среди соседей</a></h2><p>При выборе элемента можно указать его место среди соседей.</p>
+<p>Список псевдоклассов для этого:</p>
+<ul>
+<li>
+<p><code>:first-child</code> – первый потомок своего родителя.</p>
+</li>
+<li>
+<p><code>:last-child</code> – последний потомок своего родителя.</p>
+</li>
+<li>
+<p><code>:only-child</code> – единственный потомок своего родителя, соседних элементов нет.</p>
+</li>
+<li>
+<p><code>:nth-child(a)</code> – потомок номер <code>a</code> своего родителя, например <code>:nth-child(2)</code> – второй потомок. Нумерация начинается с <code>1</code>.</p>
+</li>
+<li>
+<p><code>:nth-child(an+b)</code> – расширение предыдущего селектора через указание номера потомка формулой, где <code>a,b</code> – константы, а под <code>n</code> подразумевается любое целое число.</p>
+<p>Этот псевдокласс будет фильтровать все элементы, которые попадают под формулу при каком-либо <code>n</code>. Например:
+-<code>:nth-child(2n)</code> даст элементы номер <code>2</code>, <code>4</code>, <code>6</code>…, то есть чётные.</p>
+<ul>
+<li><code>:nth-child(2n+1)</code> даст элементы номер <code>1</code>, <code>3</code>…, то есть нечётные.</li>
+<li><code>:nth-child(3n+2)</code> даст элементы номер <code>2</code>, <code>5</code>, <code>8</code> и так далее.</li>
+</ul>
+</li>
+</ul>
+<p>Пример использования для выделения в списке:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/css-selectors/nthchild/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/PylbatRxSGycupON?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="PylbatRxSGycupON" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/css-selectors/nthchild/"></iframe>
+  </div><div id="qmf1thmiyk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>/*+ hide=&quot;CSS к примеру выше&quot;  no-beautify */
+li:nth-child(2n) { /* чётные */
+  background: #eee;
+}
+
+li:nth-child(3) {  /* 3-ий потомок */
+  color: red;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>:nth-last-child(a)</code>, <code>:nth-last-child(an+b)</code> – то же самое, но отсчёт начинается с конца, например <code>:nth-last-child(2)</code> – второй элемент с конца.</li>
+</ul>
+<h2><a class="main__anchor" name="filtr-po-mestu-sredi-sosedey-s-tem-zhe-tegom" href="#filtr-po-mestu-sredi-sosedey-s-tem-zhe-tegom">Фильтр по месту среди соседей с тем же тегом</a></h2><p>Есть аналогичные псевдоклассы, которые учитывают не всех соседей, а только с тем же тегом:</p>
+<ul>
+<li><code>:first-of-type</code></li>
+<li><code>:last-of-type</code></li>
+<li><code>:only-of-type</code></li>
+<li><code>:nth-of-type</code></li>
+<li><code>:nth-last-of-type</code></li>
+</ul>
+<p>Они имеют в точности тот же смысл, что и обычные <code>:first-child</code>, <code>:last-child</code> и так далее, но во время подсчёта игнорируют элементы с другими тегами, чем тот, к которому применяется фильтр.</p>
+<p>Пример использования для раскраски списка <code>DT</code> «через один» и предпоследнего <code>DD</code>:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/css-selectors/nthchild-type/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/hh7UFtE1VN12HyGN?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="hh7UFtE1VN12HyGN" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/css-selectors/nthchild-type/"></iframe>
+  </div><div id="z1s0905r8z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>/*+ hide=&quot;CSS к примеру выше&quot;  no-beautify */
+dt:nth-of-type(2n) {
+  /* чётные dt (соседи с другими тегами игнорируются) */
+  background: #eee;
+}
+
+dd:nth-last-of-type(2) {
+  /* второй dd снизу */
+  color: red;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видим, селектор <code>dt:nth-of-type(2n)</code> выбрал каждый второй элемент <code>dt</code>, причём другие элементы (<code>dd</code>) в подсчётах не участвовали.</p>
+<h2><a class="main__anchor" name="selektory-atributov" href="#selektory-atributov">Селекторы атрибутов</a></h2><p>На атрибут целиком:</p>
+<ul>
+<li><code>[attr]</code> – атрибут установлен,</li>
+<li><code>[attr=&quot;val&quot;]</code> – атрибут равен <code>val</code>.</li>
+</ul>
+<p>На начало атрибута:</p>
+<ul>
+<li><code>[attr^=&quot;val&quot;]</code> – атрибут начинается с <code>val</code>, например <code>&quot;value&quot;</code>.</li>
+<li><code>[attr|=&quot;val&quot;]</code> – атрибут равен <code>val</code> <em>или</em> начинается с <code>val-</code>, например равен <code>&quot;val-1&quot;</code>.</li>
+</ul>
+<p>На содержание:</p>
+<ul>
+<li><code>[attr*=&quot;val&quot;]</code> – атрибут содержит подстроку <code>val</code>, например равен <code>&quot;myvalue&quot;</code>.</li>
+<li><code>[attr~=&quot;val&quot;]</code> – атрибут содержит <code>val</code> как одно из значений через пробел.</li>
+</ul>
+<p>Например: <code>[attr~=&quot;delete&quot;]</code> верно для <code>&quot;edit delete&quot;</code> и неверно для <code>&quot;undelete&quot;</code> или <code>&quot;no-delete&quot;</code>.</p>
+<p>На конец атрибута:</p>
+<ul>
+<li><code>[attr$=&quot;val&quot;]</code> – атрибут заканчивается на <code>val</code>, например равен <code>&quot;myval&quot;</code>.</li>
+</ul>
+<h2><a class="main__anchor" name="drugie-psevdoklassy" href="#drugie-psevdoklassy">Другие псевдоклассы</a></h2><ul>
+<li>
+<p><code>:not(селектор)</code> – все, кроме подходящих под селектор.</p>
+</li>
+<li>
+<p><code>:focus</code> – в фокусе.</p>
+</li>
+<li>
+<p><code>:hover</code> – под мышью.</p>
+</li>
+<li>
+<p><code>:empty</code> – без детей (даже без текстовых).</p>
+</li>
+<li>
+<p><code>:checked</code>, <code>:disabled</code>, <code>:enabled</code> – состояния <code>INPUT</code>.</p>
+</li>
+<li>
+<p><code>:target</code> – этот фильтр сработает для элемента, <code>ID</code> которого совпадает с анкором  <code>#...</code> текущего URL.</p>
+<p>Например, если на странице есть элемент с <code>id=&quot;intro&quot;</code>, то правило <code>:target { color: red }</code> подсветит его в том случае, если текущий URL имеет вид <code>http://...#intro</code>.</p>
+</li>
+</ul>
+<h2><a class="main__anchor" name="psevdoelementy-before-after" href="#psevdoelementy-before-after">Псевдоэлементы ::before, ::after</a></h2><p>«Псевдоэлементы» – различные вспомогательные элементы, которые браузер записывает или может записать в документ.</p>
+<p>При помощи <em>псевдоэлементов</em> <code>::before</code> и <code>::after</code> можно добавлять содержимое в начало и конец элемента:</p>
+<div id="wgqa3cgbob" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  li::before {
+    content: &quot; [[ &quot;;
+  }
+
+  li::after {
+    content: &quot; ]] &quot;;
+  }
+&lt;/style&gt;
+
+Обратите внимание: содержимое добавляется &lt;b&gt;внутрь&lt;/b&gt; LI.
+
+&lt;ul&gt;
+  &lt;li&gt;Первый элемент&lt;/li&gt;
+  &lt;li&gt;Второй элемент&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe
+            class="code-result__iframe"
+            name="test-wgqa3cgbob"
+            style="height:200px"
+            src="about:blank"></iframe>
+        </div>
+      </div><p>Псевдоэлементы <code>::before</code>/<code>::after</code> добавили содержимое в начало и конец каждого <code>LI</code>.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>:before</code> или <code>::before</code>?</span></div>
+            <div class="important__content"><p>Когда-то все браузеры реализовали эти псевдоэлементы с одним двоеточием: <code>:after/:before</code>.</p>
+<p>Стандарт с тех пор изменился и сейчас все, кроме IE8, понимают также современную запись с двумя двоеточиями. А для IE8 нужно по-прежнему одно.</p>
+<p>Поэтому если вам важна поддержка IE8, то имеет смысл использовать одно двоеточие.</p>
+</div></div>
+<h2><a class="main__anchor" name="praktika" href="#praktika">Практика</a></h2><p>Вы можете использовать информацию выше как справочную для решения задач ниже, которые уже реально покажут, владеете вы CSS-селекторами или нет.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#vyberite-elementy-selektorom" name="vyberite-elementy-selektorom">Выберите элементы селектором</a></h3><a class="task__open-link" href="task/select-elements-selector.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>HTML-документ:</p>
+<div id="9v1rge1f3h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input type=&quot;checkbox&quot;&gt;
+&lt;input type=&quot;checkbox&quot; checked&gt;
+&lt;input type=&quot;text&quot; id=&quot;message&quot;&gt;
+
+&lt;h3 id=&quot;widget-title&quot;&gt;Сообщения:&lt;/h3&gt;
+&lt;ul id=&quot;messages&quot;&gt;
+  &lt;li id=&quot;message-1&quot;&gt;Сообщение 1&lt;/li&gt;
+  &lt;li id=&quot;message-2&quot;&gt;Сообщение 2&lt;/li&gt;
+  &lt;li id=&quot;message-3&quot; data-action=&quot;delete&quot;&gt;Сообщение 3&lt;/li&gt;
+  &lt;li id=&quot;message-4&quot; data-action=&quot;edit do-not-delete&quot;&gt;Сообщение 4&lt;/li&gt;
+  &lt;li id=&quot;message-5&quot; data-action=&quot;edit delete&quot;&gt;Сообщение 5&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;a href=&quot;http://site.com/list.zip&quot;&gt;Ссылка на архив&lt;/a&gt;
+&lt;a href=&quot;http://site.com/list.pdf&quot;&gt;..И на PDF&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Задания:</p>
+<ol>
+<li>Выбрать <code>input</code> типа <code>checkbox</code>.</li>
+<li>Выбрать <code>input</code> типа <code>checkbox</code>, НЕ отмеченный.</li>
+<li>Найти все элементы с <code>id=message</code> или <code>message-*</code>.</li>
+<li>Найти все элементы с <code>id=message-*</code>.</li>
+<li>Найти все ссылки с расширением <code>href=&quot;...zip&quot;</code>.</li>
+<li>Найти все элементы с атрибутом <code>data-action</code>, содержащим <code>delete</code> в списке (через пробел).</li>
+<li>Найти все элементы, у которых ЕСТЬ атрибут <code>data-action</code>, но он НЕ содержит <code>delete</code> в списке (через пробел).</li>
+<li>Выбрать все чётные элементы списка <code>#messages</code>.</li>
+<li>Выбрать один элемент сразу за заголовком <code>h3#widget-title</code> на том же уровне вложенности.</li>
+<li>Выбрать все ссылки, следующие за заголовком <code>h3#widget-title</code> на том же уровне вложенности.</li>
+<li>Выбрать ссылку внутри последнего элемента списка <code>#messages</code>.</li>
+</ol>
+<p><a href="https://plnkr.co/edit/M3cGr0QJx2vh1fc7?p=preview" target="_blank" data-plunk-id="M3cGr0QJx2vh1fc7">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="s93x7v0k68" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;input type=&quot;checkbox&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; checked&gt;
+  &lt;input type=&quot;text&quot; id=&quot;message&quot;&gt;
+
+  &lt;h3 id=&quot;widget-title&quot;&gt;Сообщения:&lt;/h3&gt;
+  &lt;ul id=&quot;messages&quot;&gt;
+    &lt;li id=&quot;message-1&quot;&gt;Сообщение 1&lt;/li&gt;
+    &lt;li id=&quot;message-2&quot;&gt;Сообщение 2&lt;/li&gt;
+    &lt;li id=&quot;message-3&quot; data-action=&quot;delete&quot;&gt;Сообщение 3&lt;/li&gt;
+    &lt;li id=&quot;message-4&quot; data-action=&quot;edit do-not-delete&quot;&gt;Сообщение 4&lt;/li&gt;
+    &lt;li id=&quot;message-5&quot; data-action=&quot;edit delete&quot;&gt;Сообщение 5&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;...&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+
+  &lt;a href=&quot;http://site.com/list.zip&quot;&gt;Ссылка на архив&lt;/a&gt;
+  &lt;a href=&quot;http://site.com/list.pdf&quot;&gt;..И на PDF&lt;/a&gt;
+
+
+  &lt;script&gt;
+    // тестовая функция для селекторов
+    // проверяет, чтобы элементов по селектору selector было ровно count
+    function test(selector, count) {
+      var elems = document.querySelectorAll(selector);
+      var ok = (elems.length == count);
+
+      if (!ok) alert(selector + &quot;: &quot; + elems.length + &quot; != &quot; + count);
+    }
+
+    // ------------- селекторы --------------
+
+    // Выбрать input типа checkbox
+    test('input[type=&quot;checkbox&quot;]', 2);
+
+    // Выбрать input типа checkbox, НЕ отмеченный
+    test('input[type=&quot;checkbox&quot;]:not(:checked)', 1);
+
+    // Найти все элементы с id=message или message-*
+    test('[id|=&quot;message&quot;]', 6);
+
+    // Найти все элементы с id=message-*
+    test('[id^=&quot;message-&quot;]', 5);
+
+    // Найти все ссылки с расширением href=&quot;...zip&quot;
+    test('a[href$=&quot;.zip&quot;]', 1);
+
+    // Найти все элементы с data-action, содержащим delete в списке (через пробел)
+    test('[data-action~=&quot;delete&quot;]', 2);
+
+    // Найти все элементы, у которых ЕСТЬ атрибут data-action,
+    // но он НЕ содержащит delete в списке (через пробел)
+    test('[data-action]:not([data-action~=&quot;delete&quot;])', 1);
+
+    // Выбрать все чётные элементы списка #messages
+    test('#messages li:nth-child(2n)', 3);
+
+    // Выбрать один элемент сразу за заголовком h3#widget-title
+    // на том же уровне вложенности
+    test('h3#widget-title + *', 1);
+
+    // Выбрать все ссылки, следующие за заголовком h3#widget-title
+    // на том же уровне вложенности
+    test('h3#widget-title ~ a', 2);
+
+    // Выбрать ссылку внутри последнего элемента списка #messages
+    test('#messages li:last-child a', 1);
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#otstup-mezhdu-elementami-razmer-odna-stroka" name="otstup-mezhdu-elementami-razmer-odna-stroka">Отступ между элементами, размер одна строка</a></h3><a class="task__open-link" href="task/margin-between-pairs-size-1.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Есть список <code>UL/LI</code>.</p>
+<div id="h3o9ca7rh2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>Текст вверху без отступа от списка.
+&lt;ul&gt;
+  &lt;li&gt;Маша&lt;/li&gt;
+  &lt;li&gt;Паша&lt;/li&gt;
+  &lt;li&gt;Даша&lt;/li&gt;
+  &lt;li&gt;Женя&lt;/li&gt;
+  &lt;li&gt;Саша&lt;/li&gt;
+  &lt;li&gt;Гоша&lt;/li&gt;
+&lt;/ul&gt;
+Текст внизу без отступа от списка.</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Размеры шрифта и строки заданы стилем:</p>
+<div id="pq8qx6byni" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>body {
+  font: 14px/1.5 serif;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>Сделайте, чтобы между элементами был вертикальный отступ.</strong></p>
+<ul>
+<li>Размер отступа: ровно 1 строка.</li>
+<li>Нужно добавить только одно правило CSS с одним псевдоселектором, можно использовать CSS3.</li>
+<li>Не должно быть лишних отступов сверху и снизу списка.</li>
+</ul>
+<p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/task/margin-between-pairs-size-1/solution/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/task/margin-between-pairs-size-1/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/Mre2BfgQufIky3ed?p=preview" target="_blank" data-plunk-id="Mre2BfgQufIky3ed">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Выбор элементов</button><div class="task__answer-content"><h4 class="task__step-title">Выбор элементов</h4><div class="formatted"><p>Для выбора элементов, начиная с первого, можно использовать селектор <a href="http://css-tricks.ru/Articles/Details/HowNthChildWorks">nth-child</a>.</p>
+<p>Его вид: <code>li:nth-child(n+2)</code>, т.к. <code>n</code> идёт от нуля, соответственно первым будет второй элемент (<code>n=0</code>), что нам и нужно.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Решение</button><div class="task__answer-content"><h4 class="task__step-title">Решение</h4><div class="formatted"><p>Отступ, размером в одну строку, при <code>line-height: 1.5</code> – это <code>1.5em</code>.</p>
+<p>Правило:</p>
+<div id="s3kt9c1u9f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>li:nth-child(n+2) {
+  margin-top: 1.5em;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Ещё решение</button><div class="task__answer-content"><h4 class="task__step-title">Ещё решение</h4><div class="formatted"><p>Ещё один вариант селектора: <code>li + li</code></p>
+<div id="grn661idzt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>li + li {
+  margin-top: 1.5em;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/rzEdszOzLvp4EpB0?p=preview" target="_blank" data-plunk-id="rzEdszOzLvp4EpB0">Открыть решение в песочнице.</a></p></div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#otstup-mezhdu-parami-razmerom-so-stroku" name="otstup-mezhdu-parami-razmerom-so-stroku">Отступ между парами, размером со строку</a></h3><a class="task__open-link" href="task/margin-between-pairs.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Есть список <code>UL/LI</code>.</p>
+<div id="si8x6vs1n3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>Текст вверху без отступа от списка.
+&lt;ul&gt;
+  &lt;li&gt;Маша&lt;/li&gt;
+  &lt;li&gt;Паша&lt;/li&gt;
+  &lt;li&gt;Даша&lt;/li&gt;
+  &lt;li&gt;Женя&lt;/li&gt;
+  &lt;li&gt;Саша&lt;/li&gt;
+  &lt;li&gt;Гоша&lt;/li&gt;
+&lt;/ul&gt;
+Текст внизу без отступа от списка.</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Размеры шрифта и строки заданы стилем:</p>
+<div id="fu3mw5duy5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>body {
+  font: 14px/1.5 serif;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>Сделайте, чтобы между каждой парой элементов был вертикальный отступ.</strong></p>
+<ul>
+<li>Размер отступа: ровно 1 строка.</li>
+<li>Нужно добавить только одно правило CSS, можно использовать CSS3.</li>
+<li>Не должно быть лишних отступов сверху и снизу списка.</li>
+</ul>
+<p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/task/margin-between-pairs/solution/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/task/margin-between-pairs/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/anVCgt9iSgAznCuh?p=preview" target="_blank" data-plunk-id="anVCgt9iSgAznCuh">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Селектор</button><div class="task__answer-content"><h4 class="task__step-title">Селектор</h4><div class="formatted"><p>Для отступа между парами, то есть перед каждым нечётным элементом, можно использовать селектор <a href="http://css-tricks.ru/Articles/Details/HowNthChildWorks">nth-child</a>.</p>
+<p>Селектор будет <code>li:nth-child(odd)</code>, к нему нужно ещё добавить отсечение первого элемента: <code>li:nth-child(odd):not(:first-child)</code>.</p>
+<p>Можно поступить и по-другому: <code>li:nth-child(2n+3)</code> выберет все элементы для <code>n=0,1,2...</code>, то есть 3-й, 5-й и далее, те же, что и предыдущий селектор. Немного менее очевидно, зато короче.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Правило</button><div class="task__answer-content"><h4 class="task__step-title">Правило</h4><div class="formatted"><p>Отступ, размером в одну строку, при <code>line-height: 1.5</code> – это <code>1.5em</code>.</p>
+<p>Поставим отступ перед каждым <em>нечётным</em> элементом, кроме первого:</p>
+<div id="34kf9zf4rz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>li:nth-child(odd):not(:first-child) {
+  margin-top: 1.5em;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Получится так:</p>
+<div id="prm8hliu25" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font: 14px/1.5 serif;
+    }
+
+    ul {
+      margin: 0;
+    }
+
+    li:nth-child(odd):not(:first-child) {
+      margin-top: 1.5em;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Текст вверху без отступа от списка.
+  &lt;ul&gt;
+    &lt;li&gt;Маша&lt;/li&gt;
+    &lt;li&gt;Паша&lt;/li&gt;
+    &lt;li&gt;Даша&lt;/li&gt;
+    &lt;li&gt;Женя&lt;/li&gt;
+    &lt;li&gt;Саша&lt;/li&gt;
+    &lt;li&gt;Гоша&lt;/li&gt;
+  &lt;/ul&gt;
+  Текст внизу без отступа от списка.
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/q8GDeqLFIPXk7YPm?p=preview" target="_blank" data-plunk-id="q8GDeqLFIPXk7YPm">Открыть решение в песочнице.</a></p></div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="height-percent.html" data-tooltip="Особенности свойства height в %"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="css-sprite.html" data-tooltip="CSS-спрайты"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/css-selectors","identifier":"\/css-selectors"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="css-for-js.html">CSS для JavaScript-разработчика</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#osnovnye-vidy-selektorov">Основные виды селекторов</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#otnosheniya">Отношения</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#filtr-po-mestu-sredi-sosedey">Фильтр по месту среди соседей</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#filtr-po-mestu-sredi-sosedey-s-tem-zhe-tegom">Фильтр по месту среди соседей с тем же тегом</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#selektory-atributov">Селекторы атрибутов</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#drugie-psevdoklassy">Другие псевдоклассы</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#psevdoelementy-before-after">Псевдоэлементы ::before, ::after</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#praktika">Практика</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fcss-selectors" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/20-css-for-js/15-css-selectors" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/css-selectors by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:44 GMT -->
+</html>

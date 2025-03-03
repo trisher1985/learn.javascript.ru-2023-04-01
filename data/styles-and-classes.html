@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/styles-and-classes by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Стили и классы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="styles-and-classes.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Стили и классы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Стили и классы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="modifying-document.html"><link rel="next" href="size-and-scroll.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Стили и классы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/styles-and-classes"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/styles-and-classes"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/styles-and-classes"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/styles-and-classes"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/styles-and-classes"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/styles-and-classes"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/styles-and-classes"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="styles-and-classes.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/styles-and-classes"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/styles-and-classes"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/styles-and-classes"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/styles-and-classes">عربي</option><option value="https://javascript.info/styles-and-classes">English</option><option value="https://es.javascript.info/styles-and-classes">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/styles-and-classes">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/styles-and-classes">Italiano</option><option value="https://ja.javascript.info/styles-and-classes">日本語</option><option value="https://ko.javascript.info/styles-and-classes">한국어</option><option value="https://learn.javascript.ru/styles-and-classes" selected>Русский</option><option value="https://tr.javascript.info/styles-and-classes">Türkçe</option><option value="https://uk.javascript.info/styles-and-classes">Українська</option><option value="https://zh.javascript.info/styles-and-classes">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="8" max="32" data-tooltip="Урок 8 из 32"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="ui.html"><span>Браузер: документ, события, интерфейсы</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="document.html"><span>Документ</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Браузер: документ, события, интерфейсы","item":"https://learn.javascript.ru/ui"},{"@type":"ListItem","position":3,"name":"Документ","item":"https://learn.javascript.ru/document"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 2 ноября 2022 г."><div class="updated-at__content">2 ноября 2022 г.</div></div></div><h1 class="main__header-title">Стили и классы</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Стили и классы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>До того, как начнёте изучать способы работы со стилями и классами в JavaScript, есть одно важное правило. Надеемся, это достаточно очевидно, но мы всё равно должны об этом упомянуть.</p>
+<p>Как правило, существует два способа задания стилей для элемента:</p>
+<ol>
+<li>Создать класс в CSS и использовать его: <code>&lt;div class=&quot;...&quot;&gt;</code></li>
+<li>Писать стили непосредственно в атрибуте <code>style</code>: <code>&lt;div style=&quot;...&quot;&gt;</code>.</li>
+</ol>
+<p>JavaScript может менять и классы, и свойство <code>style</code>.</p>
+<p>Классы – всегда предпочтительный вариант по сравнению со <code>style</code>. Мы должны манипулировать свойством <code>style</code> только в том случае, если классы «не могут справиться».</p>
+<p>Например, использование <code>style</code> является приемлемым, если мы вычисляем координаты элемента динамически и хотим установить их из JavaScript:</p>
+<div id="45sccqldxs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let top = /* сложные расчёты */;
+let left = /* сложные расчёты */;
+
+elem.style.left = left; // например, '123px', значение вычисляется во время работы скрипта
+elem.style.top = top; // например, '456px'</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В других случаях, например, чтобы сделать текст красным, добавить значок фона – описываем это в CSS и добавляем класс (JavaScript может это сделать). Это более гибкое и лёгкое в поддержке решение.</p>
+<h2><a class="main__anchor" name="classname-i-classlist" href="#classname-i-classlist">className и classList</a></h2><p>Изменение класса является одним из наиболее часто используемых действий в скриптах.</p>
+<p>Когда-то давно в JavaScript существовало ограничение: зарезервированное слово типа <code>&quot;class&quot;</code> не могло быть свойством объекта. Это ограничение сейчас отсутствует, но в то время было невозможно иметь свойство <code>elem.class</code>.</p>
+<p>Поэтому для классов было введено схожее свойство <code>&quot;className&quot;</code>: <code>elem.className</code> соответствует атрибуту <code>&quot;class&quot;</code>.</p>
+<p>Например:</p>
+<div id="8yybopipj1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    alert(document.body.className); // main page
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если мы присваиваем что-то <code>elem.className</code>, то это заменяет всю строку с классами. Иногда это то, что нам нужно, но часто мы хотим добавить/удалить один класс.</p>
+<p>Для этого есть другое свойство: <code>elem.classList</code>.</p>
+<p><code>elem.classList</code> – это специальный объект с методами для добавления/удаления одного класса.</p>
+<p>Например:</p>
+<div id="2ulvfczbd5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    // добавление класса
+    document.body.classList.add('article');
+
+    alert(document.body.className); // main page article
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Так что мы можем работать как со строкой полного класса, используя <code>className</code>, так и с отдельными классами, используя <code>classList</code>. Выбираем тот вариант, который нам удобнее.</p>
+<p>Методы <code>classList</code>:</p>
+<ul>
+<li><code>elem.classList.add/remove(&quot;class&quot;)</code> – добавить/удалить класс.</li>
+<li><code>elem.classList.toggle(&quot;class&quot;)</code> – добавить класс, если его нет, иначе удалить.</li>
+<li><code>elem.classList.contains(&quot;class&quot;)</code> – проверка наличия класса, возвращает <code>true/false</code>.</li>
+</ul>
+<p>Кроме того, <code>classList</code> является перебираемым, поэтому можно перечислить все классы при помощи <code>for..of</code>:</p>
+<div id="ze1i2czak7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    for (let name of document.body.classList) {
+      alert(name); // main, затем page
+    }
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="element-style" href="#element-style">Element style</a></h2><p>Свойство <code>elem.style</code> – это объект, который соответствует тому, что написано в атрибуте <code>&quot;style&quot;</code>. Установка стиля <code>elem.style.width=&quot;100px&quot;</code> работает так же, как наличие в атрибуте <code>style</code> строки <code>width:100px</code>.</p>
+<p>Для свойства из нескольких слов используется camelCase:</p>
+<div id="3aefnwvb4y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>background-color  =&gt; elem.style.backgroundColor
+z-index           =&gt; elem.style.zIndex
+border-left-width =&gt; elem.style.borderLeftWidth</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Например:</p>
+<div id="q2ap7ajmum" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.body.style.backgroundColor = prompt('background color?', 'green');</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Свойства с префиксом</span></div>
+            <div class="important__content"><p>Стили с браузерным префиксом, например, <code>-moz-border-radius</code>, <code>-webkit-border-radius</code>  преобразуются по тому же принципу: дефис означает заглавную букву.</p>
+<p>Например:</p>
+<div id="dk60j1fmr4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>button.style.MozBorderRadius = '5px';
+button.style.WebkitBorderRadius = '5px';</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="sbros-stiley" href="#sbros-stiley">Сброс стилей</a></h2><p>Иногда нам нужно добавить свойство стиля, а потом, позже, убрать его.</p>
+<p>Например, чтобы скрыть элемент, мы можем задать <code>elem.style.display = &quot;none&quot;</code>.</p>
+<p>Затем мы можем удалить свойство <code>style.display</code>, чтобы вернуться к первоначальному состоянию. Вместо <code>delete elem.style.display</code> мы должны присвоить ему пустую строку: <code>elem.style.display = &quot;&quot;</code>.</p>
+<div id="qfe5r7lp89" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// если мы запустим этот код, &lt;body&gt; &quot;мигнёт&quot;
+document.body.style.display = &quot;none&quot;; // скрыть
+
+setTimeout(() =&gt; document.body.style.display = &quot;&quot;, 1000); // возврат к нормальному состоянию</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если мы установим в <code>style.display</code> пустую строку, то браузер применит CSS-классы и встроенные стили, как если бы такого свойства <code>style.display</code> вообще не было.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Полная перезапись <code>style.cssText</code></span></div>
+            <div class="important__content"><p>Обычно мы используем <code>style.*</code> для присвоения индивидуальных свойств стиля. Нельзя установить список стилей как, например, <code>div.style=&quot;color: red; width: 100px&quot;</code>, потому что <code>div.style</code> – это объект, и он доступен только для чтения.</p>
+<p>Для задания нескольких стилей в одной строке используется специальное свойство <code>style.cssText</code>:</p>
+<div id="bn3b3t3lht" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;div&quot;&gt;Button&lt;/div&gt;
+
+&lt;script&gt;
+  // можем даже устанавливать специальные флаги для стилей, например, &quot;important&quot;
+  div.style.cssText=`color: red !important;
+    background-color: yellow;
+    width: 100px;
+    text-align: center;
+  `;
+
+  alert(div.style.cssText);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это свойство редко используется, потому что такое присваивание удаляет все существующие стили: оно не добавляет, а заменяет их. Можно ненароком удалить что-то нужное. Но его можно использовать, к примеру, для новых элементов, когда мы точно знаем, что не удалим существующий стиль.</p>
+<p>То же самое можно сделать установкой атрибута: <code>div.setAttribute('style', 'color: red...')</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="sledite-za-edinitsami-izmereniya" href="#sledite-za-edinitsami-izmereniya">Следите за единицами измерения</a></h2><p>Не забудьте добавить к значениям единицы измерения.</p>
+<p>Например, мы должны устанавливать <code>10px</code>, а не просто <code>10</code> в свойство <code>elem.style.top</code>. Иначе это не сработает:</p>
+<div id="ll5uvzx4r0" data-trusted="1" class="code-example" data-demo-height="100" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;script&gt;
+    // не работает!
+    document.body.style.margin = 20;
+    alert(document.body.style.margin); // '' (пустая строка, присваивание игнорируется)
+
+    // сейчас добавим единицу измерения (px) - и заработает
+    document.body.style.margin = '20px';
+    alert(document.body.style.margin); // 20px
+
+    alert(document.body.style.marginTop); // 20px
+    alert(document.body.style.marginLeft); // 20px
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Пожалуйста, обратите внимание, браузер «распаковывает» свойство <code>style.margin</code> в последних строках и выводит <code>style.marginLeft</code> и <code>style.marginTop</code> из него.</p>
+<h2><a class="main__anchor" name="vychislennye-stili-getcomputedstyle" href="#vychislennye-stili-getcomputedstyle">Вычисленные стили: getComputedStyle</a></h2><p>Итак, изменить стиль очень просто. Но как его <em>прочитать</em>?</p>
+<p>Например, мы хотим знать размер, отступы, цвет элемента. Как это сделать?</p>
+<p><strong>Свойство <code>style</code> оперирует только значением атрибута <code>&quot;style&quot;</code>, без учёта CSS-каскада.</strong></p>
+<p>Поэтому, используя <code>elem.style</code>, мы не можем прочитать ничего, что приходит из классов CSS.</p>
+<p>Например, здесь <code>style</code> не может видеть отступы:</p>
+<div id="7xdzy8ctcu" data-trusted="1" class="code-example" data-demo-height="60" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  Красный текст
+  &lt;script&gt;
+    alert(document.body.style.color); // пусто
+    alert(document.body.style.marginTop); // пусто
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Но что, если нам нужно, скажем, увеличить отступ на <code>20px</code>? Для начала нужно его текущее значение получить.</p>
+<p>Для этого есть метод: <code>getComputedStyle</code>.</p>
+<p>Синтаксис:</p>
+<div id="lwdvundr2p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getComputedStyle(element, [pseudo])</code></pre>
+        </div>
+      </div>
+      
+      </div><dl>
+<dt>element</dt>
+<dd>Элемент, значения для которого нужно получить</dd>
+<dt>pseudo</dt>
+<dd>Указывается, если нужен стиль псевдоэлемента, например <code>::before</code>. Пустая строка или отсутствие аргумента означают сам элемент.</dd>
+</dl>
+<p>Результат вызова – объект со стилями, похожий на <code>elem.style</code>, но с учётом всех CSS-классов.</p>
+<p>Например:</p>
+<div id="ets7ekk46e" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;script&gt;
+    let computedStyle = getComputedStyle(document.body);
+
+    // сейчас мы можем прочитать отступ и цвет
+
+    alert( computedStyle.marginTop ); // 5px
+    alert( computedStyle.color ); // rgb(255, 0, 0)
+  &lt;/script&gt;
+
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Вычисленное (computed) и окончательное (resolved) значения</span></div>
+            <div class="important__content"><p>Есть две концепции в <a href="https://drafts.csswg.org/cssom/#resolved-values">CSS</a>:</p>
+<ol>
+<li><em>Вычисленное</em> (computed) значение – это то, которое получено после применения всех CSS-правил и CSS-наследования. Например, <code>height:1em</code> или <code>font-size:125%</code>.</li>
+<li><em>Окончательное</em> (<a href="https://drafts.csswg.org/cssom/#resolved-values">resolved</a>) значение – непосредственно применяемое к элементу. Значения <code>1em</code> или <code>125%</code> являются относительными. Браузер берёт вычисленное значение и делает все единицы измерения фиксированными и абсолютными, например, <code>height:20px</code> или <code>font-size:16px</code>. Для геометрических свойств разрешённые значения могут иметь плавающую точку, например, <code>width:50.5px</code>.</li>
+</ol>
+<p>Давным-давно <code>getComputedStyle</code> был создан для получения вычисленных значений, но оказалось, что окончательные значения гораздо удобнее, и стандарт изменился.</p>
+<p>Так что, в настоящее время <code>getComputedStyle</code> фактически возвращает окончательное значение свойства, для геометрии оно обычно в пикселях.</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>getComputedStyle</code> требует полное свойство!</span></div>
+            <div class="important__content"><p>Для правильного получения значения нужно указать точное свойство. Например: <code>paddingLeft</code>, <code>marginTop</code>, <code>borderTopWidth</code>. При обращении к сокращённому: <code>padding</code>, <code>margin</code>, <code>border</code> – правильный результат не гарантируется.</p>
+<p>Например, если есть свойства <code>paddingLeft/paddingTop</code>, то что мы получим вызывая <code>getComputedStyle(elem).padding</code>? Ничего, или, может быть, «сгенерированное» значение из известных внутренних отступов? Стандарта для этого нет.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Стили, применяемые к посещённым <code>:visited</code> ссылкам, скрываются!</span></div>
+            <div class="important__content"><p>Посещённые ссылки могут быть окрашены с помощью псевдокласса <code>:visited</code>.</p>
+<p>Но <code>getComputedStyle</code> не даёт доступ к этой информации, чтобы произвольная страница не могла определить, посещал ли пользователь ту или иную ссылку, проверив стили.</p>
+<p>JavaScript не видит стили, применяемые с помощью <code>:visited</code>. Кроме того, в CSS есть ограничение, которое запрещает в целях безопасности применять к <code>:visited</code> CSS-стили, изменяющие геометрию элемента. Это гарантирует, что нет обходного пути для «злой» страницы проверить, была ли ссылка посещена и, следовательно, нарушить конфиденциальность.</p>
+</div></div>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Для управления классами существуют два DOM-свойства:</p>
+<ul>
+<li><code>className</code> – строковое значение, удобно для управления всем набором классов.</li>
+<li><code>classList</code> – объект с методами <code>add/remove/toggle/contains</code>, удобно для управления отдельными классами.</li>
+</ul>
+<p>Чтобы изменить стили:</p>
+<ul>
+<li>
+<p>Свойство <code>style</code> является объектом со стилями в формате camelCase. Чтение и запись в него работают так же, как изменение соответствующих свойств в атрибуте <code>&quot;style&quot;</code>. Чтобы узнать, как добавить в него <code>important</code> и делать некоторые другие редкие вещи – смотрите <a href="https://developer.mozilla.org/ru/docs/Web/API/CSSStyleDeclaration">документацию</a>.</p>
+</li>
+<li>
+<p>Свойство <code>style.cssText</code> соответствует всему атрибуту <code>&quot;style&quot;</code>, полной строке стилей.</p>
+</li>
+</ul>
+<p>Для чтения окончательных стилей (с учётом всех классов, после применения CSS и вычисления окончательных значений) используется:</p>
+<ul>
+<li>Метод <code>getComputedStyle(elem, [pseudo])</code> возвращает объект, похожий по формату на <code>style</code>. Только для чтения.</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sozdat-uvedomlenie" name="sozdat-uvedomlenie">Создать уведомление</a></h3><a class="task__open-link" href="task/create-notification.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию <code>showNotification(options)</code>, которая создаёт уведомление: <code>&lt;div class=&quot;notification&quot;&gt;</code> с заданным содержимым. Уведомление должно автоматически исчезнуть через 1,5 секунды.</p>
+<p>Пример объекта <code>options</code>:</p>
+<div id="mmevbbzm90" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// показывает элемент с текстом &quot;Hello&quot; рядом с правой верхней частью окна.
+showNotification({
+  top: 10, // 10px от верхней границы окна (по умолчанию 0px)
+  right: 10, // 10px от правого края окна (по умолчанию 0px)
+  html: &quot;Hello!&quot;, // HTML-уведомление
+  className: &quot;welcome&quot; // дополнительный класс для div (необязательно)
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://ru.js.cx/task/create-notification/solution/" target="blank">Демо в новом окне</a></p><p>Используйте CSS-позиционирование для отображения элемента в заданных координатах. Исходный документ имеет необходимые стили.</p>
+<p><a href="https://plnkr.co/edit/uECFceJMf05n2bbI?p=preview" target="_blank" data-plunk-id="uECFceJMf05n2bbI">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/My2zWmO6zoJN8gM7?p=preview" target="_blank" data-plunk-id="My2zWmO6zoJN8gM7">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="modifying-document.html" data-tooltip="Изменение документа"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="size-and-scroll.html" data-tooltip="Размеры и прокрутка элементов"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/styles-and-classes","identifier":"\/styles-and-classes"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="document.html">Документ</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#classname-i-classlist">className и classList</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#element-style">Element style</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sbros-stiley">Сброс стилей</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sledite-za-edinitsami-izmereniya">Следите за единицами измерения</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#vychislennye-stili-getcomputedstyle">Вычисленные стили: getComputedStyle</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fstyles-and-classes" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/2-ui/1-document/08-styles-and-classes" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/styles-and-classes by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:02 GMT -->
+</html>

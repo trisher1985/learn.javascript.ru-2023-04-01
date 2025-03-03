@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/js-animation/bounce-easeinout/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../../../js.cx/libs/animate.js"></script>
+</head>
+
+<body>
+
+
+  <div id="path">
+    <div id="brick"></div>
+  </div>
+
+  <script>
+    function makeEaseInOut(timing) {
+      return function(timeFraction) {
+        if (timeFraction < .5)
+          return timing(2 * timeFraction) / 2;
+        else
+          return (2 - timing(2 * (1 - timeFraction))) / 2;
+      }
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1; 1; a += b, b /= 2) {
+        if (timeFraction >= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+
+    let bounceEaseInOut = makeEaseInOut(bounce);
+
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: bounceEaseInOut,
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  </script>
+
+
+</body>
+
+
+<!-- Mirrored from learn.javascript.ru/article/js-animation/bounce-easeinout/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:31 GMT -->
+</html>

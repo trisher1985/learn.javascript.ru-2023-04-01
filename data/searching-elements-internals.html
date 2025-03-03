@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/searching-elements-internals by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Внутреннее устройство поисковых методов</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="searching-elements-internals.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Внутреннее устройство поисковых методов"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Внутреннее устройство поисковых методов"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Внутреннее устройство поисковых методов"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 18 августа 2019 г."><div class="updated-at__content">18 августа 2019 г.</div></div></div><h1 class="main__header-title">Внутреннее устройство поисковых методов</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Внутреннее устройство поисковых методов"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Эта глава не обязательна при первом чтении учебника.</p>
+<p>Если вы хотите действительно глубоко понимать, что происходит при поиске, то посмотрите эту главу. Если нет – её можно пропустить.</p>
+<p>Несмотря на схожесть в синтаксисе, поисковые методы <code>get*</code> и <code>querySelector*</code> внутри устроены очень по-разному.</p>
+<h2><a class="main__anchor" name="document-getelementbyid-id" href="#document-getelementbyid-id">document.getElementById(id)</a></h2><p>Браузер поддерживает у себя внутреннее соответствие <code>id -&gt; элемент</code>. Поэтому нужный элемент возвращается сразу. Это очень быстро.</p>
+<h2><a class="main__anchor" name="elem-queryselector-query-elem-queryselectorall-query" href="#elem-queryselector-query-elem-queryselectorall-query">elem.querySelector(query), elem.querySelectorAll(query)</a></h2><p>Чтобы найти элементы, удовлетворяющие поисковому запросу, браузер не использует никаких сложных структур данных.</p>
+<p>Он просто перебирает все подэлементы внутри элемента <code>elem</code>(или по всему документу, если вызов в контексте документа) и проверяет каждый элемент на соответствие запросу <code>query</code>.</p>
+<p>Вызов <code>querySelector</code> прекращает перебор после первого же найденного элемента, а <code>querySelectorAll</code> собирает найденные элементы в «псевдомассив»: внутреннюю структуру данных, по сути аналогичную массиву JavaScript.</p>
+<p>Этот перебор происходит очень быстро, так как осуществляется непосредственно движком браузера, а не JavaScript-кодом.</p>
+<p>Оптимизации:</p>
+<ul>
+<li>В случае поиска по ID: <code>elem.querySelector('#id')</code>, большинство браузеров оптимизируют поиск, используя вызов <code>getElementById</code>.</li>
+<li>Последние результаты поиска сохраняются в кеше. Но это до тех пор, пока документ как-нибудь не изменится.</li>
+</ul>
+<h2><a class="main__anchor" name="elem-getelementsby" href="#elem-getelementsby">elem.getElementsBy*(…)</a></h2><p>Результаты поиска <code>getElementsBy*</code> –  живые!  При изменении документа – изменяется и результат запроса.</p>
+<p>Например, найдём все <code>div</code> при помощи <code>querySelectorAll</code> и <code>getElementsByTagName</code>, а потом изменим документ:</p>
+<div id="vbl3oqv2nr" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+  var resultGet = document.getElementsByTagName('div');
+  var resultQuery = document.querySelectorAll('div');
+
+  alert( resultQuery.length + ', ' + resultGet.length ); // 1, 1
+
+  document.body.innerHTML = ''; // удалить всё содержимое BODY
+
+  alert( resultQuery.length + ', ' + resultGet.length ); // 1, 0
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, длина коллекции, найденной через <code>querySelectorAll</code>, осталась прежней. А длина коллекции, возвращённой <code>getElementsByTagName</code>, изменилась.</p>
+<p>Дело в том, что результат запросов <code>getElementsBy*</code> – это не массив, а специальный объект, имеющий тип <a href="http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-536297177">NodeList</a> или <a href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-75708506">HTMLCollection</a>. Он похож на массив, так как имеет нумерованные элементы и длину, но внутри это не готовая коллекция, а «живой поисковой запрос».</p>
+<p>Собственно поиск выполняется только при обращении к элементам коллекции или к её длине.</p>
+<h2><a class="main__anchor" name="algoritmy-getelementsby" href="#algoritmy-getelementsby">Алгоритмы getElementsBy*</a></h2><p>Поиск <code>getElementsBy*</code> наиболее сложно сделать эффективно, так как его результат – «живая» коллекция, она должна быть всегда актуальной для текущего состояния документа.</p>
+<div id="tmc2gh7p3i" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var elems = document.getElementsByTagName('div');
+alert( elems[0] );
+// изменили документ
+alert( elems[0] ); // результат может быть уже другой</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Можно искать заново при каждой попытке получить элемент из <code>elems</code>. Тогда результат будет всегда актуален, но поиск будет работать уж слишком медленно. Да и зачем? Ведь, скорее всего, документ не поменялся.</p>
+<p><strong>Чтобы производительность <code>getElementsBy*</code> была достаточно хорошей, активно используется кеширование результатов поиска.</strong></p>
+<p>Для этого есть два основных способа: назовём их условно «Способ Firefox» (Firefox, IE) и «Способ WebKit» (Chrome, Safari, Opera).</p>
+<p>Для примера, рассмотрим поиск в произвольном документе, в котором есть 1000 элементов <code>div</code>.</p>
+<p>Посмотрим, как будут работать браузеры, если нужно выполнить следующий код:</p>
+<div id="9gggin8qvx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// вместо document может быть любой элемент
+var elems = document.getElementsByTagName('div');
+alert( elems[0] );
+alert( elems[995] );
+alert( elems[500] );
+alert( elems.length );</code></pre>
+        </div>
+      </div>
+      
+      </div><dl>
+<dt>Способ Firefox</dt>
+<dd>
+<p>Перебрать подэлементы <code>document.body</code> в порядке их появления в поддереве. Запоминать <em>все найденные элементы</em> во внутренней структуре данных, чтобы при повторном обращении обойтись без поиска.</p>
+<p>Разбор действий браузера при выполнении кода выше:</p>
+</dd>
+</dl>
+<ol>
+<li>Браузер создаёт пустую «живую коллекцию» <code>elems</code>. Пока ничего не ищет.</li>
+<li>Перебирает элементы, пока не найдёт первый <code>div</code>. Запоминает его и возвращает.</li>
+<li>Перебирает элементы дальше, пока не найдёт элемент с индексом <code>995</code>. Запоминает все найденные.</li>
+<li>Возвращает ранее запомненный элемент с индексом <code>500</code>, без дополнительного поиска!</li>
+<li>Продолжает обход поддерева с элемента, на котором остановился (<code>995</code>) и до конца. Запоминает найденные элементы и возвращает их количество.</li>
+</ol>
+<dl>
+<dt>Способ WebKit</dt>
+<dd>
+<p>Перебирать подэлементы <code>document.body</code>. Запоминать только один, <em>последний найденный</em>, элемент, а также, по окончании перебора – длину коллекции.</p>
+<p>Здесь кеширование используется меньше.</p>
+<p>Разбор действий браузера по строкам:</p>
+</dd>
+</dl>
+<ol>
+<li>Браузер создаёт пустую «живую коллекцию» <code>elems</code>. Пока ничего не ищет.</li>
+<li>Перебирает элементы, пока не найдёт первый <code>div</code>. Запоминает его и возвращает.</li>
+<li>Перебирает элементы дальше, пока не найдёт элемент с индексом <code>995</code>. Запоминает его и возвращает.</li>
+<li>Браузер запоминает только последний найденный, поэтому не помнит об элементе <code>500</code>. Нужно найти его перебором поддерева. Этот перебор можно начать либо с начала – вперёд по поддереву, 500-й по счету) либо с элемента <code>995</code> –  назад по поддереву, 495-й по счету. Так как назад разница в индексах меньше, то браузер выбирает второй путь и идёт от 995-го назад 495 раз. Запоминает теперь уже 500-й элемент и возвращает его.</li>
+<li>Продолжает обход поддерева с 500-го (не 995-го!) элемента и до конца. Запоминает число найденных элементов и возвращает его.</li>
+</ol>
+<p>Основное различие – в том, что Firefox запоминает все найденные, а Webkit – только последний. Таким образом, «метод Firefox» требует больше памяти, но гораздо эффективнее при повторном доступе к предыдущим элементам.</p>
+<p>А «метод Webkit» ест меньше памяти и при этом работает не хуже в самом важном и частом случае – последовательном переборе коллекции, без возврата к ранее выбранным.</p>
+<p><strong>Запомненные элементы сбрасываются при изменениях DOM.</strong></p>
+<p>Документ может меняться. При этом, если изменение может повлиять на результаты поиска, то запомненные элементы необходимо сбросить. Например, добавление нового узла <code>div</code> сбросит запомненные элементы коллекции <code>elem.getElementsByTagName('div')</code>.</p>
+<p>Сбрасывание запомненных элементов при изменении документа выполняется интеллектуально.</p>
+<ol>
+<li>
+<p>Во-первых, при добавлении элемента будут сброшены только те коллекции, которые могли быть затронуты обновлением. Например, если в документе есть два независимых раздела <code>&lt;section&gt;</code>, и поисковая коллекция привязана к первому из них, то при добавлении во второй – она сброшена не будет.</p>
+<p>Если точнее – будут сброшены все коллекции, привязанные к элементам вверх по иерархии от непосредственного родителя нового <code>div</code> и выше, то есть такие, которые потенциально могли измениться. И только они.</p>
+</li>
+<li>
+<p>Во-вторых, если добавлен только <code>div</code>, то не будут сброшены запомненные элементы для поиска по другим тегам, например <code>elem.getElementsByTagName('a')</code>.</p>
+</li>
+<li>
+<p>…И, конечно же, не любые изменения DOM приводят к сбросу кешей, а только те, которые могут повлиять на коллекцию. Если где-то добавлен новый атрибут элементу –  с кешем для <code>getElementsByTagName</code> ничего не произойдёт, так как атрибут никак не может повлиять на результат поиска по тегу.</p>
+</li>
+</ol>
+<p>Прочие поисковые методы, такие как <code>getElementsByClassName</code> тоже сбрасывают кеш при изменениях интеллектуально.</p>
+<p>Разницу в алгоритмах поиска легко «пощупать». Посмотрите сами:</p>
+<div id="fsgg3t6sn9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11},{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  for (var i = 0; i &lt; 10000; i++) document.write('&lt;span&gt; &lt;/span&gt;');
+
+  var elements = document.body.getElementsByTagName('span');
+  var len = elements.length;
+
+  var d = new Date;
+  for (var i = 0; i &lt; len; i++) elements[i];
+  alert( &quot;Последовательно: &quot; + (new Date - d) + &quot;мс&quot; ); // (1)
+
+  var d = new Date;
+  for (var i = 0; i &lt; len; i += 2) elements[i], elements[len - i - 1];
+  alert( &quot;Вразнобой: &quot; + (new Date - d) + &quot;мс&quot; ); // (2)
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В примере выше первый цикл проходит элементы последовательно. А второй – идёт по шагам: один с начала, потом один с конца, потом ещё один с начала, ещё один – с конца, и так далее.</p>
+<p>Количество обращений к элементам одинаково.</p>
+<ul>
+<li>В браузерах, которые запоминают все найденные (Firefox, IE) – скорость будет одинаковой.</li>
+<li>В браузерах, которые запоминают только последний (Webkit) – разница будет порядка 100 и более раз, так как браузер вынужден бегать по дереву при каждом запросе заново.</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dlina-kollektsii-posle-udaleniya-elementov" name="dlina-kollektsii-posle-udaleniya-elementov">Длина коллекции после удаления элементов</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/collection-length-after-remove" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Вот небольшой документ:</p>
+<div id="l4p8gtou2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul id=&quot;menu&quot;&gt;
+  &lt;li&gt;Главная страница&lt;/li&gt;
+  &lt;li&gt;Форум&lt;/li&gt;
+  &lt;li&gt;Магазин&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>Что выведет следующий код (простой вопрос)?</li>
+</ol>
+<div id="1m6c818eli" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var lis = document.body.getElementsByTagName('li');
+
+document.body.innerHTML = &quot;&quot;;
+
+alert( lis.length );</code></pre>
+        </div>
+      </div>
+      
+      </div><ol start="2">
+<li>А такой код (вопрос посложнее)?</li>
+</ol>
+<div id="na5v7lbnqt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var menu = document.getElementById('menu');
+var lis = menu.getElementsByTagName('li');
+
+document.body.innerHTML = &quot;&quot;;
+
+alert( lis.length );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Ответ на первый вопрос</button><div class="task__answer-content"><h4 class="task__step-title">Ответ на первый вопрос</h4><div class="formatted"><p>Ответ: 0, пустая коллекция.</p>
+<div id="2xw2q91x4e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul id=&quot;menu&quot;&gt;
+  &lt;li&gt;Главная страница&lt;/li&gt;
+  &lt;li&gt;Форум&lt;/li&gt;
+  &lt;li&gt;Магазин&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  var lis = document.body.getElementsByTagName('li');
+
+  document.body.innerHTML = &quot;&quot;;
+
+  alert( lis.length );
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это потому, что все элементы из <code>BODY</code> удаляются, а коллекция – <em>живая</em>.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Ответ на второй вопрос</button><div class="task__answer-content"><h4 class="task__step-title">Ответ на второй вопрос</h4><div class="formatted"><p>Ответ на второй вопрос зависит от браузера. В большинстве браузеров будет 3, коллекция не изменилась, так как она теперь привязана не к <code>BODY</code>, а к элементу, на котором идёт поиск, т.е. к <code>menu</code>.</p>
+<p>Но элемент <code>menu</code> находится в переменной, и поэтому должен быть жив, а значит и его дети тоже. Но некоторые браузеры (IE10) используют агрессивный подход при работе с памятью и очищают все элементы, кроме тех, которые непосредственно хранятся в переменных.</p>
+<p>Поэтому результат кода ниже в большинстве браузеров: <code>3</code>, а в IE10: <code>0</code>.</p>
+<div id="ryxgy8tg20" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul id=&quot;menu&quot;&gt;
+  &lt;li&gt;Главная страница&lt;/li&gt;
+  &lt;li&gt;Форум&lt;/li&gt;
+  &lt;li&gt;Магазин&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  var menu = document.getElementById('menu');
+  var lis = menu.getElementsByTagName('li');
+
+  document.body.innerHTML = &quot;&quot;;
+
+  alert( lis.length );
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sravnenie-kolichestva-elementov" name="sravnenie-kolichestva-elementov">Сравнение количества элементов</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/compare-elements-count" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Для любого документа сделаем следующее:</p>
+<div id="ctamzumbvj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var aList1 = document.getElementsByTagName('a');
+var aList2 = document.querySelectorAll('a');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Что произойдёт со значениями <code>aList1.length</code>, <code>aList2.length</code>, если в документе вдруг появится ещё одна ссылка <code>&lt;a href=&quot;#&quot;&gt;...&lt;/a&gt;</code>?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Значение <code>aList1</code> изменится, потому что <code>getElementsByTagName</code> – <em>живая</em> коллекция. Она автоматически дополнится новым элементом <code>a</code> и её длина увеличится на 1.</p>
+<p>А вот <code>querySelector</code>, наоборот, возвращает статичный список узлов. Он ссылается на те же самые элементы, что бы не происходило с документом. Поэтому длина <code>aList2.length</code> останется неизменной.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#benchmarking-metodov-poiska-v-dom" name="benchmarking-metodov-poiska-v-dom">Бенчмаркинг методов поиска в DOM</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/benchmark-search-dom" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 2</span></div><div class="task__content"><div class="task__formatted"><p>Какой метод поиска элементов работает быстрее: <code>getElementsByTagName(tag)</code> или <code>querySelectorAll(tag)</code>?</p>
+<p>Напишите код, который измеряет разницу между ними.</p>
+<p><em>P.S. В задаче есть подвох, все не так просто. Если разница больше 10 раз – вы решили её неверно. Тогда подумайте, почему такое может быть.</em></p>
+<p><a href="https://plnkr.co/edit/8GcBuJO3UBNAegor?p=preview" target="_blank" data-plunk-id="8GcBuJO3UBNAegor">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Для бенчмаркинга будем использовать функцию <code>bench(f, times)</code>, которая запускает функцию <code>f</code> <code>times</code> раз и возвращает разницу во времени:</p>
+<div id="dil2ur3vu1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function bench(f, times) {
+  var d = new Date();
+  for (var i = 0; i &lt; times; i++) f();
+  return new Date() - d;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Первый вариант (неверный) – замерять разницу между функциями <code>runGet/runQuery</code>, вот так:</p>
+<div id="lusl05qr64" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function runGet() {
+  var results = document.getElementsByTagName('p');
+}
+
+function runQuery() {
+  var results = document.querySelectorAll('p');
+}
+
+alert( bench(runGet, 10000) ); // вывести время 1000*runGet</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Он даст неверные результаты, т.к. <code>getElementsByTagName</code> является «живым поисковым запросом». Если не обратиться к его результатам, то поиска не произойдёт вообще, т.е. <code>runGet</code> ничего по сути не ищет.</p>
+<p>…А <code>querySelectorAll</code> всегда производит поиск и формирует список элементов.</p>
+<p>Более правильный тест – это не только запустить поиск, но и получить все элементы, как это делается в реальной жизни.</p>
+<p><a href="https://plnkr.co/edit/9Th4QnjhwdO43awv?p=preview" target="_blank" data-plunk-id="9Th4QnjhwdO43awv">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#poluchit-vtoroy-li" name="poluchit-vtoroy-li">Получить второй LI</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/get-second-li" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Есть длинный список <code>ul</code>:</p>
+<div id="m04fckexvb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как наиболее эффективно получить второй <code>LI</code>?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Можно так:</p>
+<div id="z7fruja66f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var li = ul.getElementsByTagName('li')[1];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или так:</p>
+<div id="15n0cn33u1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var li = ul.querySelector('li:nth-child(2)');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Оба этих вызова будут перебирать детей <code>UL</code> и остановят перебор на найденном элементе.</p>
+<p>А вот так – браузер найдёт все элементы, а затем выберет второй. Это дольше:</p>
+<div id="eyi0gkeuel" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var li = ul.querySelectorAll('li')[1];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На практике разница в производительности будет видна только для действительно больших списков, либо при частом выполнении запроса. Браузер перебирает элементы весьма шустро.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fsearching-elements-internals" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/searching-elements-internals","identifier":"\/searching-elements-internals"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/searching-elements-internals by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

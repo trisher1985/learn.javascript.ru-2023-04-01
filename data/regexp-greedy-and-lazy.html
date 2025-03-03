@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/regexp-greedy-and-lazy by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Жадные и ленивые квантификаторы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="regexp-greedy-and-lazy.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Жадные и ленивые квантификаторы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Жадные и ленивые квантификаторы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="regexp-quantifiers.html"><link rel="next" href="regexp-groups.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Жадные и ленивые квантификаторы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="regexp-greedy-and-lazy.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/regexp-greedy-and-lazy">English</option><option value="https://es.javascript.info/regexp-greedy-and-lazy">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/regexp-greedy-and-lazy">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-greedy-and-lazy">Italiano</option><option value="https://ja.javascript.info/regexp-greedy-and-lazy">日本語</option><option value="https://ko.javascript.info/regexp-greedy-and-lazy">한국어</option><option value="https://learn.javascript.ru/regexp-greedy-and-lazy" selected>Русский</option><option value="https://tr.javascript.info/regexp-greedy-and-lazy">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/regexp-greedy-and-lazy">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="10" max="17" data-tooltip="Урок 10 из 17"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="regular-expressions.html"><span>Регулярные выражения</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Регулярные выражения","item":"https://learn.javascript.ru/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 6 января 2022 г."><div class="updated-at__content">6 января 2022 г.</div></div></div><h1 class="main__header-title">Жадные и ленивые квантификаторы</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Жадные и ленивые квантификаторы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>На первый взгляд квантификаторы – это просто, но на самом деле это не совсем так.</p>
+<p>Нужно очень хорошо разбираться, как работает поиск, если планируем искать что-то сложнее, чем <code class="pattern">/\d+/</code>.</p>
+<p>Давайте в качестве примера рассмотрим следующую задачу:</p>
+<p>У нас есть текст, в котором нужно заменить все кавычки <code>&quot;...&quot;</code> на «ёлочки» <code>«...»</code>, которые используются в типографике многих стран.</p>
+<p>Например: <code>&quot;Привет, мир&quot;</code> должно превратиться в <code>«Привет, мир»</code>. Есть и другие кавычки, вроде <code>„Witam, świat!”</code> (польский язык) или <code>「你好，世界」</code> (китайский язык), но для нашей задачи давайте выберем <code>«...»</code>.</p>
+<p>Первое, что нам нужно – это найти строки с кавычками, а затем мы сможем их заменить.</p>
+<p>Регулярное выражение вроде <code class="pattern">/&quot;.+&quot;/g</code> (кавычка, какой-то текст, другая кавычка) может выглядеть хорошим решением, но это не так!</p>
+<p>Давайте это проверим:</p>
+<div id="do0wrnz4xt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&quot;.+&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(regexp) ); // &quot;witch&quot; and her &quot;broom&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Как мы видим, регулярное выражение работает не как задумано!</p>
+<p>Вместо того, чтобы найти два совпадения <code class="match">&quot;witch&quot;</code> и <code class="match">&quot;broom&quot;</code>, было найдено одно:<code class="match">&quot;witch&quot; and her &quot;broom&quot;</code>.</p>
+<p>Причину можно описать, как «жадность – причина всех зол».</p>
+<h2><a class="main__anchor" name="zhadnyy-poisk" href="#zhadnyy-poisk">Жадный поиск</a></h2><p>Чтобы найти совпадение, движок регулярных выражений работает по следующему алгоритму:</p>
+<ul>
+<li>Для каждой позиции в строке для поиска:
+<ul>
+<li>Попробовать найти совпадение с шаблоном на этой позиции.</li>
+<li>Если нет совпадения, переход к следующей позиции.</li>
+</ul>
+</li>
+</ul>
+<p>Эти общие слова никак не объясняют, почему регулярное выражение работает неправильно, так что давайте разберём подробно, как работает шаблон <code class="pattern">&quot;.+&quot;</code>.</p>
+<ol>
+<li>
+<p>Первый символ шаблона – это кавычка <code class="pattern">&quot;</code>.</p>
+<p>Движок регулярного выражения пытается найти его на нулевой позиции исходной строки <code class="subject">a &quot;witch&quot; and her &quot;broom&quot; is one</code>, но там – <code class="subject">a</code>, так что совпадения нет.</p>
+<p>Он продолжает: двигается к следующей позиции исходной строки и пытается найти первый символ шаблона там. У него не получается, он двигается дальше и, наконец, находит кавычку на третьей позиции:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy1.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy1.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Кавычка замечена, после чего движок пытается найти совпадение для оставшегося шаблона. Смотрит, удовлетворяет ли остаток строки шаблону <code class="pattern">.+&quot;</code>.</p>
+<p>В нашем случае следующий символ шаблона: <code class="pattern">.</code> (точка). Она обозначает «любой символ, кроме новой строки», так что следующая буква строки <code class="match">'w'</code> подходит.</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy2.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy2.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Затем точка повторяется из-за квантификатора <code class="pattern">.+</code>. Движок регулярного выражения добавляет к совпадению один символ за другим.</p>
+<p>…До каких пор? Точке соответствуют любые символы, так что движок остановится только тогда, когда достигнет конца строки:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy3.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy3.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Тогда он перестанет повторять <code class="pattern">.+</code> и попробует найти следующий символ шаблона. Это кавычка <code class="pattern">&quot;</code>. Но есть проблема: строка для поиска закончилась, больше нет символов!</p>
+<p>Движок регулярного выражения понимает, что захватил слишком много <code class="pattern">.+</code> и начинает <em>отступать</em>.</p>
+<p>Другими словами, он сокращает совпадение по квантификатору на один символ:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy4.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy4.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure><p>Теперь он предполагает, что <code class="pattern">.+</code> заканчивается за один символ до конца строки и пытается сопоставить остаток шаблона для этой позиции.</p>
+<p>Если бы тут была кавычка, тогда бы поиск закончился, но последний символ – это <code class="subject">'e'</code>, так что он не подходит.</p>
+</li>
+<li>
+<p>…Поэтому движок уменьшает количество повторений <code class="pattern">.+</code> ещё на один символ:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy5.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy5.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure><p>Кавычка <code class="pattern">'&quot;'</code>не соответствует <code class="subject">'n'</code>.</p>
+</li>
+<li>
+<p>Движок продолжает возвращаться: он уменьшает количество повторений <code class="pattern">'.'</code>, пока оставшийся шаблон (в нашем случае <code class="pattern">'&quot;'</code>) не совпадёт:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy6.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy6.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Совпадение найдено.</p>
+</li>
+<li>
+<p>Так что первое совпадение: <code class="match">&quot;witch&quot; and her &quot;broom&quot;</code>. Если у регулярного выражения стоит флаг <code class="pattern">g</code>, то поиск продолжится с того места, где закончился предыдущий. В оставшейся строке <code class="subject">is one</code> нет кавычек, так что совпадений больше не будет.</p>
+</li>
+</ol>
+<p>Это, определённо, не то, что мы ожидали. Но так оно работает.</p>
+<p><strong>В жадном режиме (по умолчанию) квантификатор повторяется столько раз, сколько это возможно.</strong></p>
+<p>Движок регулярного выражения пытается получить максимальное количество символов, соответствующих <code class="pattern">.+</code>, а затем сокращает это количество символ за символом, если остаток шаблона не совпадает.</p>
+<p>В нашей задаче мы хотим другого. И нам поможет ленивый режим квантификатора.</p>
+<h2><a class="main__anchor" name="lenivyy-rezhim" href="#lenivyy-rezhim">Ленивый режим</a></h2><p>«Ленивый» режим противоположен «жадному». Он означает: «повторять квантификатор наименьшее количество раз».</p>
+<p>Мы можем включить его, вставив знак вопроса <code class="pattern">'?'</code> после квантификатора, то есть будет <code class="pattern">*?</code> или <code class="pattern">+?</code> или даже <code class="pattern">??</code> для <code class="pattern">'?'</code>.</p>
+<p>Проясним: обычно знак вопроса <code class="pattern">?</code> сам по себе является квантификатором (ноль или один), но, если он добавлен <em>после другого квантификатора (или даже после самого себя)</em>, он получает другое значение – он меняет режим совпадения с жадного на ленивый.</p>
+<p>Регулярное выражение <code class="pattern">/&quot;.+?&quot;/g</code> работает как задумано, оно находит <code class="match">&quot;witch&quot;</code> и <code class="match">&quot;broom&quot;</code>:</p>
+<div id="jfbb9orqqn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&quot;.+?&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(regexp) ); // witch, broom</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Чтобы лучше понять, что поменялось, давайте рассмотрим процесс поиска шаг за шагом.</p>
+<ol>
+<li>
+<p>Первый шаг будет таким же: движок находит начало шаблона <code class="pattern">'&quot;'</code> на 3-ей позиции:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy1.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy1.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Следующий шаг аналогичен: он найдёт совпадение для точки <code class="pattern">'.'</code>:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_greedy2.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_greedy2.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>А отсюда поиск продолжится по-другому. Из-за того, что у нас включён ленивый режим для <code class="pattern">+?</code>, движок не будет пытаться найти совпадение для точки ещё раз, оно остановится и попробует найти совпадение для оставшегося шаблона <code class="pattern">'&quot;'</code> прямо сейчас:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_lazy3.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_lazy3.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure><p>Если бы на этом месте была кавычка, то поиск бы закончился, но там находится <code>'i'</code>, то есть совпадения нет.</p>
+</li>
+<li>
+<p>Тогда движок регулярного выражения увеличит количество повторений для точки и попробует ещё раз:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_lazy4.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_lazy4.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure><p>Опять неудача. Тогда количество повторений будет увеличено ещё и ещё…</p>
+</li>
+<li>
+<p>…До тех пор, пока совпадение для оставшегося шаблона не будет найдено:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_lazy5.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_lazy5.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>Следующий поиск начнётся с того места, где закончилось текущее совпадение и у нас будет ещё один результат:</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="article/regexp-greedy-and-lazy/witch_lazy6.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="article/regexp-greedy-and-lazy/witch_lazy6.svg" alt="" width="463" height="130">
+      </object>
+      </div></figure></li>
+</ol>
+<p>В этом примере мы увидели, как ленивый режим работает для <code class="pattern">+?</code>. Квантификаторы <code class="pattern">*?</code> и <code class="pattern">??</code> работают аналогичным образом – движок регулярного выражения увеличит количество совпадений, только если не сможет найти совпадение для оставшегося шаблона на текущей позиции.</p>
+<p><strong>Ленивый режим включается только для квантификаторов с <code>?</code>.</strong></p>
+<p>Остальные квантификаторы остаются жадными.</p>
+<p>Например:</p>
+<div id="73ce0hngmq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;123 456&quot;.match(/\d+ \d+?/) ); // 123 4</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>Шаблон <code class="pattern">\d+</code> пытается найти столько цифр, сколько возможно (жадный режим), так что он находит <code class="match">123</code> и останавливается, потому что следующим символом будет пробел <code class="pattern">' '</code>.</p>
+</li>
+<li>
+<p>Дальше в шаблоне пробел и в строке тоже, так что есть совпадение.</p>
+</li>
+<li>
+<p>Затем идёт <code class="pattern">\d+?</code>. Квантификатор находится в ленивом режиме, так что он находит одну цифру <code class="match">4</code> и проверяет, есть ли совпадение для оставшегося шаблона с этого места.</p>
+<p>…Но в шаблоне <code class="pattern">\d+?</code> больше ничего нет.</p>
+<p>Ленивый режим ничего не повторяет без необходимости. Шаблон закончился, заканчивается и поиск. Мы получаем <code class="match">123 4</code>.</p>
+</li>
+</ol>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Оптимизации</span></div>
+            <div class="important__content"><p>Современные движки регулярных выражений могут оптимизировать внутренние алгоритмы ради ускорения. Так что их работа может несколько отличаться от описанного алгоритма.</p>
+<p>Но эти внутренние оптимизации для нас незаметны, снаружи всё будет работать, как описано.</p>
+<p>Сложные регулярные выражения трудно оптимизировать, так что поиск может работать и в точности так, как было описано.</p>
+</div></div>
+<h2><a class="main__anchor" name="alternativnyy-podhod" href="#alternativnyy-podhod">Альтернативный подход</a></h2><p>С регулярными выражениями часто есть несколько путей добиться одного и того же результата.</p>
+<p>В нашем случаем мы можем найти кавычки без использования ленивого режима с помощью регулярного выражения <code class="pattern">&quot;[^&quot;]+&quot;</code>:</p>
+<div id="nv3mzid6ax" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&quot;[^&quot;]+&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(regexp) ); // witch, broom</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Регулярное выражение <code class="pattern">&quot;[^&quot;]+&quot;</code> получит нужный результат, потому что оно ищет кавычку <code class="pattern">'&quot;'</code>, за которой следует один или несколько символов «не-кавычек» <code class="pattern">[^&quot;]</code>, а затем – закрывающая кавычка.</p>
+<p>Движок регулярного выражения набирает, сколько может, <code class="pattern">[^&quot;]+</code>, пока не встречает закрывающую кавычку, на которой останавливается.</p>
+<p>Обратите внимание, что эта логика не заменяет ленивые квантификаторы!</p>
+<p>Просто она работает по-другому. Временами нужен один вариант, временами – другой.</p>
+<p><strong>Давайте посмотрим пример, в котором ленивый квантификатор не справляется, а этот вариант работает правильно.</strong></p>
+<p>Например, мы хотим найти ссылки вида <code>&lt;a href=&quot;...&quot; class=&quot;doc&quot;&gt;</code>, с произвольным <code>href</code>.</p>
+<p>Какое регулярное выражение нам нужно использовать?</p>
+<p>Первой мыслью может быть: <code class="pattern">/&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g</code>.</p>
+<p>Давайте проверим:</p>
+<div id="wvmp19ron7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link&quot; class=&quot;doc&quot;&gt;...';
+let regexp = /&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Работает!
+alert( str.match(regexp) ); // &lt;a href=&quot;link&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Регулярное выражение работает. Но давайте посмотрим, что произойдёт, если в тексте будет много ссылок?</p>
+<div id="wji85kavh5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let regexp = /&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Упс! Две ссылки в одном совпадении!
+alert( str.match(regexp) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В данном случае мы получили неправильный результат по той же причине, что в примере с «witches». Квантификатор <code class="pattern">.*</code> забирает слишком много символов.</p>
+<p>Совпадение будет выглядеть так:</p>
+<div id="1qo309bvfc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;.....................................&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Давайте изменим шаблон, сделав квантификатор ленивым <code class="pattern">.*?</code>:</p>
+<div id="03y5k0twjx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let regexp = /&lt;a href=&quot;.*?&quot; class=&quot;doc&quot;&gt;/g;
+
+// Работает!
+alert( str.match(regexp) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;, &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь кажется, что всё работает правильно. У нас есть два совпадения:</p>
+<div id="tag8hro4dj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;.....&quot; class=&quot;doc&quot;&gt;    &lt;a href=&quot;.....&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Но давайте попробуем его на ещё одном тексте:</p>
+<div id="3bpy5kq8lh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;...';
+let regexp = /&lt;a href=&quot;.*?&quot; class=&quot;doc&quot;&gt;/g;
+
+// Неправильное совпадение!
+alert( str.match(regexp) ); // &lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ну вот, ленивый квантификатор нас подвёл. В совпадении находится не только ссылка, но и текст после неё, включая <code>&lt;p...&gt;</code>.</p>
+<p>Почему?</p>
+<p>Происходит следующее:</p>
+<ol>
+<li>Первым делом регулярное выражение находит начало ссылки <code class="match">&lt;a href=&quot;</code>.</li>
+<li>Затем оно ищет <code class="pattern">.*?</code>, берёт один символ (лениво!) и проверяет, есть ли совпадение для <code class="pattern">&quot; class=&quot;doc&quot;&gt;</code> (нет).</li>
+<li>Затем берёт другой символ для <code class="pattern">.*?</code>, и так далее… пока не достигнет <code class="match">&quot; class=&quot;doc&quot;&gt;</code>. Поиск завершён.</li>
+</ol>
+<p>Но с этим есть проблема: конец совпадения находится уже за границей ссылки <code>&lt;a...&gt;</code>, вообще в другом теге <code>&lt;p&gt;</code>. Что нам не подходит.</p>
+<p>Вот как совпадение выглядит по отношению к исходному тексту:</p>
+<div id="7s0zwunfs7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;...................................&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Итак, нужен шаблон для поиска <code>&lt;a href=&quot;...something...&quot; class=&quot;doc&quot;&gt;</code>, но и с ленивым и с жадным режимами есть проблема.</p>
+<p>Правильным вариантом может стать: <code class="pattern">href=&quot;[^&quot;]*&quot;</code>. Он найдёт все символы внутри атрибута <code>href</code> до ближайшей следующей кавычки, как раз то, что нам нужно.</p>
+<p>Работающий пример:</p>
+<div id="bgelihh5y1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str1 = '...&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;...';
+let str2 = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let regexp = /&lt;a href=&quot;[^&quot;]*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Работает!
+alert( str1.match(regexp) ); // совпадений нет, всё правильно
+alert( str2.match(regexp) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;, &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>У квантификаторов есть два режима работы:</p>
+<dl>
+<dt>Жадный</dt>
+<dd>По умолчанию движок регулярного выражения пытается повторить квантификатор столько раз, сколько это возможно. Например, <code class="pattern">\d+</code> получит все возможные цифры. Когда цифры закончатся или он дойдёт до конца строки, движок продолжит искать совпадение для оставшегося шаблона. Если совпадения не будет, он уменьшит количество повторов (осуществит возврат) и попробует снова.</dd>
+<dt>Ленивый</dt>
+<dd>Включается с помощью знака вопроса <code class="pattern">?</code> после квантификатора. Движок регулярного выражения пытается найти совпадение для оставшегося шаблона перед каждым повторением квантификатора.</dd>
+</dl>
+<p>Как мы увидели на примере поиска строк в кавычках, ленивый режим не «панацея» от всех проблем жадного поиска. В качестве альтернативы может выступать «хорошо настроенный» жадный поиск, как в шаблоне <code class="pattern">&quot;[^&quot;]+&quot;</code>.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sovpadenie-dlya-d-d" name="sovpadenie-dlya-d-d">Совпадение для /d+? d+?/</a></h3><a class="task__open-link" href="task/lazy-greedy.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Какое здесь будет совпадение?</p>
+<div id="0j6jbfzclv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;123 456&quot;.match(/\d+? \d+?/g) ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Результат будет: <code class="match">123 4</code>.</p>
+<p>Первый, ленивый шаблон, <code class="pattern">\d+?</code> попытается получить как можно меньше цифр до первого пробела, поэтому совпадением будет <code class="match">123</code>.</p>
+<p>Тогда второй <code>\d+?</code> возьмёт только одну цифру, потому что этого будет достаточно.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#poisk-html-kommentariev" name="poisk-html-kommentariev">Поиск HTML-комментариев</a></h3><a class="task__open-link" href="task/find-html-comments.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Найти все HTML-комментарии в тексте:</p>
+<div id="i4jmeorcd1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/g;
+
+let str = `... &lt;!-- My -- comment
+ test --&gt; ..  &lt;!----&gt; ..
+`;
+
+alert( str.match(regexp) ); // '&lt;!-- My -- comment \n test --&gt;', '&lt;!----&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Нам нужно найти начало комментария <code class="match">&lt;!--</code>. После этого, весь текст до конца комментария <code class="match">--&gt;</code>.</p>
+<p>Подходящий вариант: <code class="pattern">&lt;!--.*?--&gt;</code> – ленивый квантификатор остановит точку прямо перед <code class="match">--&gt;</code>. Но нужно не забыть поставить флаг <code class="pattern">s</code>, чтобы точка включала в себя перевод строки.</p>
+<p>Иначе многострочные комментарии не будут найдены:</p>
+<div id="lb9xd4v9t8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&lt;!--.*?--&gt;/gs;
+
+let str = `... &lt;!-- My -- comment
+ test --&gt; ..  &lt;!----&gt; ..
+`;
+
+alert( str.match(regexp) ); // '&lt;!-- My -- comment \n test --&gt;', '&lt;!----&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#poisk-html-tegov" name="poisk-html-tegov">Поиск HTML-тегов</a></h3><a class="task__open-link" href="task/find-html-tags-greedy-lazy.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Создайте регулярное выражение, чтобы найти все (открывающие и закрывающие) HTML-теги с их атрибутами.</p>
+<p>Пример использования:</p>
+<div id="svdnnsci72" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /ваше регулярное выражение/g;
+
+let str = '&lt;&gt; &lt;a href=&quot;/&quot;&gt; &lt;input type=&quot;radio&quot; checked&gt; &lt;b&gt;';
+
+alert( str.match(regexp) ); // '&lt;a href=&quot;/&quot;&gt;', '&lt;input type=&quot;radio&quot; checked&gt;', '&lt;b&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В этой задаче мы предполагаем, что теги выглядят как <code>&lt;...что угодно...&gt;</code>, и внутри тегов не может быть символов <code>&lt;</code> и <code>&gt;</code> (первый встреченный <code>&gt;</code> закрывает тег).</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Решением будет <code class="pattern">&lt;[^&lt;&gt;]+&gt;</code>.</p>
+<div id="wraura07l9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /&lt;[^&lt;&gt;]+&gt;/g;
+
+let str = '&lt;&gt; &lt;a href=&quot;/&quot;&gt; &lt;input type=&quot;radio&quot; checked&gt; &lt;b&gt;';
+
+alert( str.match(regexp) ); // '&lt;a href=&quot;/&quot;&gt;', '&lt;input type=&quot;radio&quot; checked&gt;', '&lt;b&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="regexp-quantifiers.html" data-tooltip="Квантификаторы +, *, ? и {n}"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="regexp-groups.html" data-tooltip="Скобочные группы"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/regexp-greedy-and-lazy","identifier":"\/regexp-greedy-and-lazy"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="regular-expressions.html">Регулярные выражения</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhadnyy-poisk">Жадный поиск</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lenivyy-rezhim">Ленивый режим</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#alternativnyy-podhod">Альтернативный подход</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/9-regular-expressions/10-regexp-greedy-and-lazy" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/regexp-greedy-and-lazy by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:39 GMT -->
+</html>

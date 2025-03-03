@@ -1,0 +1,577 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/widgets-structure by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Графические компоненты</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="widgets-structure.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Графические компоненты"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Графические компоненты"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Графические компоненты"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 1 августа 2019 г."><div class="updated-at__content">1 августа 2019 г.</div></div></div><h1 class="main__header-title">Графические компоненты</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Графические компоненты"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Первый и главный шаг в наведении порядка – это оформить код в объекты, каждый из которых будет решать свою задачу.</p>
+<p>Здесь мы сосредоточимся на графических компонентах, которые также называют «виджетами».</p>
+<p>В браузерах есть встроенные виджеты, например <code>&lt;select&gt;</code>, <code>&lt;input&gt;</code> и другие элементы, о которых мы даже и не думаем, «как они работают». Они «просто работают»: показывают значение, вызывают события…</p>
+<p>Наша задача – сделать то же самое на уровне выше. Мы будем создавать объекты, которые генерируют меню, диалог или другие компоненты интерфейса, и дают возможность удобно работать с ними.</p>
+<h2><a class="main__anchor" name="vidzhet-menu" href="#vidzhet-menu">Виджет Menu</a></h2><p>Мы начнём работу с виджета, который предусматривает уже готовую разметку.</p>
+<p>То есть, в нужном месте HTML находится DOM-структура для меню – заголовок и список опций:</p>
+<div id="kipw69tkxp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div class=&quot;menu&quot; id=&quot;sweets-menu&quot;&gt;
+  &lt;span class=&quot;title&quot;&gt;Сладости&lt;/span&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Торт&lt;/li&gt;
+    &lt;li&gt;Пончик&lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Далее она может дополняться, изменяться, но в начале – она такая.</p>
+<p>Обратим внимание на важные соглашения виджета:</p>
+<dl>
+<dt>Вся разметка заключена в корневой элемент <code>&lt;div class=&quot;menu&quot; id=&quot;sweets-menu&quot;&gt;</code>.</dt>
+<dd>
+<p>Это очень удобно: вынул этот элемент из DOM – нет меню, вставил в другое место – переместил меню. Кроме того, можно удобно искать подэлементы.</p>
+</dd>
+<dt>Внутри корневого элемента – только классы, не <code>id</code>.</dt>
+<dd>
+<p>Документ вполне может содержать много различных меню. Они не должны конфликтовать между собой, поэтому для разметки везде используются классы.</p>
+<p>Исключение – корневой элемент. В данном случае мы предполагаем, что данное конкретное «меню сладостей» в документе только одно, поэтому даём ему <code>id</code>.</p>
+</dd>
+</dl>
+<h1><a class="main__anchor" name="klass-vidzheta" href="#klass-vidzheta">Класс виджета</a></h1><p>Для работы с разметкой будем создавать объект <code>new Menu</code> и передавать ему корневой элемент. В конструкторе он поставит необходимые обработчики:</p>
+<div id="8mvv6jry4p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(options) {
+  var elem = options.elem;
+
+  elem.onmousedown = function() {
+    return false;
+  }
+
+  elem.onclick = function(event) {
+    if (event.target.closest('.title')) {
+      elem.classList.toggle('open');
+    }
+  };
+
+}
+
+// использование
+var menu = new Menu({
+  elem: document.getElementById('sweets-menu')
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Меню:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">menu.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/widgets-structure/menu/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/m6I1DbAJZY3XOM3p?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/widgets-structure/menu/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function Menu(options) {
+  var elem = options.elem;
+
+  elem.onmousedown = function() {
+    return false;
+  }
+
+  elem.onclick = function(event) {
+    if (event.target.closest('.title')) {
+      elem.classList.toggle('open');
+    }
+  };
+
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.menu ul {
+  display: none;
+  margin: 0;
+}
+
+.menu .title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu .title:before {
+  content: '▶';
+  padding-right: 6px;
+  color: green;
+}
+
+.menu.open ul {
+  display: block;
+}
+
+.menu.open .title:before {
+  content: '▼';
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;menu.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;sweets-menu&quot; class=&quot;menu&quot;&gt;
+    &lt;span class=&quot;title&quot;&gt;Сладости&lt;/span&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Торт&lt;/li&gt;
+      &lt;li&gt;Пончик&lt;/li&gt;
+      &lt;li&gt;Пирожное&lt;/li&gt;
+      &lt;li&gt;Шоколадка&lt;/li&gt;
+      &lt;li&gt;Мороженое&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    var menu = new Menu({
+      elem: document.getElementById('sweets-menu')
+    });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Это, конечно, только первый шаг, но уже здесь видны некоторые важные соглашения в коде.</p>
+<dl>
+<dt>У конструктора только один аргумент – объект <code>options</code>.</dt>
+<dd>
+<p>Это удобно, так как у графических компонентов обычно много настроек, большинство из которых имеют разумные значения «по умолчанию». Если передавать аргументы через запятую – их будет слишком много.</p>
+</dd>
+<dt>Обработчики назначаются через делегирование.</dt>
+<dd>
+<p>Вместо того, чтобы найти элемент и поставить обработчик на него:</p>
+<div id="3dr2bvcpr2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var titleElem = elem.querySelector('.title');
+
+titleElem.onclick = function() {
+  elem.classList.toggle('open');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Мы ставим обработчик на корневой <code>elem</code> и используем делегирование:</p>
+<div id="v5mrbdnaap" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>elem.onclick = function(event) {
+  if (event.target.closest('.title')) {
+    elem.classList.toggle('open');
+  }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это ускоряет инициализацию, так как не надо искать элементы, и даёт возможность в любой момент менять DOM внутри, в том числе через <code>innerHTML</code>, без необходимости переставлять обработчик.</p>
+</dd>
+</dl>
+<p>В этот код лучше добавить дополнительную проверку на то, что найденный <code>.title</code> находится внутри <code>elem</code>:</p>
+<div id="bt4pjk6v1l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>elem.onclick = function(event) {
+  var closestTitle = event.target.closest('.title');
+  if (closestTitle &amp;&amp; elem.contains(closestTitle)) {
+    elem.classList.toggle('open');
+  }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="publichnye-metody" href="#publichnye-metody">Публичные методы</a></h2><p>Уважающий себя компонент обычно имеет публичные методы, которые позволяют управлять им снаружи.</p>
+<p>Рассмотрим повнимательнее этот фрагмент:</p>
+<div id="uj9twnc6qq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (event.target.closest('.title')) {
+  elem.classList.toggle('open');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь в обработчике события сразу код работы с элементом. Пока одна строка – всё понятно, но если их будет много, то при чтении понадобится долго и упорно вникать: «А что же, всё-таки, такое делается при клике?»</p>
+<p>Для улучшения читаемости выделим обработчик в отдельную функцию <code>toggle</code>, которая к тому же станет полезным публичным методом:</p>
+<div id="da8otpeiyz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(options) {
+  var elem = options.elem;
+
+  elem.onmousedown = function() {
+    return false;
+  }
+
+  elem.onclick = function(event) {
+    if (event.target.closest('.title')) {
+      toggle();
+    }
+  };
+
+  function toggle() {
+    elem.classList.toggle('open');
+  }
+
+  this.toggle = toggle;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь метод <code>toggle</code> можно использовать и снаружи:</p>
+<div id="3sxdvf3ysm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var menu = new Menu(...);
+menu.toggle();</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="generatsiya-dom-elementa" href="#generatsiya-dom-elementa">Генерация DOM-элемента</a></h2><p>До этого момента меню «оживляло» уже существующий HTML.</p>
+<p>Но далеко не всегда в HTML уже есть готовая разметка. В сложных интерфейсах намного чаще её нет, а есть данные, на основе которых компонент генерирует разметку.</p>
+<p>В случае меню, данные – это набор пунктов меню, которые передаются конструктору.</p>
+<p>Для генерации DOM добавим меню три метода:</p>
+<ul>
+<li><code>render()</code> – генерирует корневой DOM-элемент и заголовок меню.</li>
+<li><code>renderItems()</code> – генерирует DOM для списка опций <code>ul/li</code>.</li>
+<li><code>getElem()</code> – возвращает DOM-элемент меню, при необходимости запуская генерацию, публичный метод.</li>
+</ul>
+<p>Функция генерации корневого элемента с заголовком <code>render</code> отделена от генерации списка <code>renderItems</code>. Почему – будет видно чуть далее.</p>
+<p>Новый способ использования меню:</p>
+<div id="e9ck79ifpt" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15},{&quot;start&quot;:12,&quot;end&quot;:12},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// создать объект меню с данным заголовком и опциями
+var menu = new Menu({
+  title: &quot;Сладости&quot;,
+  items: [
+    &quot;Торт&quot;,
+    &quot;Пончик&quot;,
+    &quot;Пирожное&quot;,
+    &quot;Шоколадка&quot;,
+    &quot;Мороженое&quot;
+  ]
+});
+
+// получить сгенерированный DOM-элемент меню
+var elem = menu.getElem();
+
+// вставить меню в нужное место страницы
+document.body.appendChild(elem);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Код <code>Menu</code> с новыми методами:</p>
+<div id="k9jh6djzsn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Menu(options) {
+  var elem;
+
+  function getElem() {
+    if (!elem) render();
+    return elem;
+  }
+
+  function render() {
+    elem = document.createElement('div');
+    elem.className = &quot;menu&quot;;
+
+    var titleElem = document.createElement('span');
+    elem.appendChild(titleElem);
+    titleElem.className = &quot;title&quot;;
+    titleElem.textContent = options.title;
+
+    elem.onmousedown = function() {
+      return false;
+    };
+
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+    }
+
+  }
+
+  function renderItems() {
+    var items = options.items || [];
+    var list = document.createElement('ul');
+    items.forEach(function(item) {
+      var li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    elem.appendChild(list);
+  }
+
+  function open() {
+    if (!elem.querySelector('ul')) {
+      renderItems();
+    }
+    elem.classList.add('open');
+  };
+
+  function close() {
+    elem.classList.remove('open');
+  };
+
+  function toggle() {
+    if (elem.classList.contains('open')) close();
+    else open();
+  };
+
+  this.getElem = getElem;
+  this.toggle = toggle;
+  this.close = close;
+  this.open = open;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Отметим некоторые особенности этого кода.</p>
+<dl>
+<dt>Обработчики отделяются от реальных действий.</dt>
+<dd>
+<p>В обработчике <code>onclick</code> мы «ловим» событие и выясняем, что именно произошло. Возможно, нужно проверить  <code>event.target</code>, координаты, клавиши-модификаторы, и т.п. Это всё можно делать здесь же.</p>
+<p>Выяснив, что нужно сделать, обработчик <code>onclick</code> не делает это сам, а вызывает для этого соответствующий метод. Этот метод уже не знает ничего о событии, он просто делает что-то с виджетом. Его можно вызвать и отдельно, не из обработчика.</p>
+<p>Здесь есть ряд важных плюсов:</p>
+</dd>
+</dl>
+<ul>
+<li>Обработчик <code>onclick</code> не «распухает» чрезмерно.</li>
+<li>Код гораздо лучше читается.</li>
+<li>Метод можно повторно использовать, в том числе и сделать публичным, как в коде выше.</li>
+</ul>
+<dl>
+<dt>Генерация DOM, по возможности, должна быть «ленивой».</dt>
+<dd>
+<p>Мы стараемся откладывать работу до момента, когда она реально нужна. Например, когда <code>new Menu</code> создаётся, то переменная <code>elem</code> лишь объявляется. DOM-дерево будет сгенерировано только при вызове <code>getElem()</code> функцией <code>render()</code>.</p>
+<p>Более того! Пока меню закрыто – достаточно заголовка. Кроме того, возможно, посетитель вообще никогда не раскроет это меню, так зачем генерировать список раньше времени? А при первом открытии <code>open()</code> вызовет функцию <code>renderItems()</code>, которая специально для этого выделена отдельно от <code>render()</code>.</p>
+<p><strong>Фаза инициализации очень чувствительна к производительности, так как обычно в сложном интерфейсе создаётся много всего.</strong></p>
+<p>Если изначально подходить к оптимизации на этой фазе «спустя рукава», то потом поправить долгий старт может быть сложно. Тем более, что инициализация – это фундамент, начало работы виджета, её оптимизация в будущем может потребовать сильных изменений кода.</p>
+<p>Конечно, здесь, как и везде в оптимизации – без фанатизма. Бывают ситуации, когда гораздо удобнее что-то сделать сразу. Если это один элемент, то оптимизация здесь ни к чему. А если большой фрагмент DOM, который, как в случае с меню, прямо сейчас не нужен – то лучше отложить.</p>
+</dd>
+</dl>
+<p>В действии:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">menu.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/widgets-structure/menu-dom/"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/fJWPVDUan0OGshLV?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/widgets-structure/menu-dom/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function Menu(options) {
+  var elem;
+
+  function getElem() {
+    if (!elem) render();
+    return elem;
+  }
+
+  function render() {
+    elem = document.createElement('div');
+    elem.className = &quot;menu&quot;;
+
+    var titleElem = document.createElement('span');
+    elem.appendChild(titleElem);
+    titleElem.className = &quot;title&quot;;
+    titleElem.textContent = options.title;
+
+    elem.onmousedown = function() {
+      return false;
+    };
+
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+    }
+
+  }
+
+  function renderItems() {
+    var items = options.items || [];
+    var list = document.createElement('ul');
+    items.forEach(function(item) {
+      var li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    elem.appendChild(list);
+  }
+
+  function open() {
+    if (!elem.querySelector('ul')) {
+      renderItems();
+    }
+    elem.classList.add('open');
+  };
+
+  function close() {
+    elem.classList.remove('open');
+  };
+
+  function toggle() {
+    if (elem.classList.contains('open')) close();
+    else open();
+  };
+
+  this.getElem = getElem;
+  this.toggle = toggle;
+  this.close = close;
+  this.open = open;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.menu ul {
+  display: none;
+  margin: 0;
+}
+
+.menu .title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu .title:before {
+  content: '▶';
+  padding-right: 6px;
+  color: green;
+}
+
+.menu.open ul {
+  display: block;
+}
+
+.menu.open .title:before {
+  content: '▼';
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;menu.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;button onclick=&quot;menu.toggle()&quot;&gt;menu.toggle()&lt;/button&gt;
+  &lt;button onclick=&quot;menu.open()&quot;&gt;menu.open()&lt;/button&gt;
+  &lt;button onclick=&quot;menu.close()&quot;&gt;menu.close()&lt;/button&gt;
+
+  &lt;script&gt;
+    var menu = new Menu({
+      title: &quot;Сладости&quot;,
+      items: [
+        &quot;Торт&quot;,
+        &quot;Пончик&quot;,
+        &quot;Пирожное&quot;,
+        &quot;Шоколадка&quot;,
+        &quot;Мороженое&quot;
+      ]
+    });
+
+    document.body.appendChild(menu.getElem());
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Мы начали создавать компонент «с чистого листа», пока без дополнительных библиотек.</p>
+<p>Основные принципы:</p>
+<ul>
+<li>Виджет – это объект, который либо контролирует готовое дерево DOM, либо создаёт своё.</li>
+<li>В конструктор виджета передаётся объект аргументов <code>options</code>.</li>
+<li>Виджет при необходимости создаёт элемент или «оживляет» готовый. Внутри в разметке не используются <code>id</code>.</li>
+<li>Обработчики назначаются через делегирование – для производительности и упрощения виджета.</li>
+<li>Обработчики событий вызывают соответствующий метод, не пытаются делать всё сами.</li>
+<li>При инициализации, если существенный участок работы можно отложить до реального задействования виджета – откладываем его.</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#chasiki" name="chasiki">Часики</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/clock" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Создайте компонент «Часы» (Clock).</p>
+<p>Интерфейс:</p>
+<div id="zjeyrkmagg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var clock = new Clock({
+  elem: элемент
+});
+
+clock.start(); // старт
+clock.stop(); // стоп</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Остальные методы, если нужны, должны быть приватными.</p>
+<p>При нажатии на <code>alert</code> часы должны приостанавливаться, а затем продолжать идти с правильным временем.</p>
+<p>Пример результата:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:80px" src="https://ru.js.cx/task/clock/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/UOcE1IQWd8rZ1wC0?p=preview" target="_blank" data-plunk-id="UOcE1IQWd8rZ1wC0">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/5BJj4eb0c2ch1fNL?p=preview" target="_blank" data-plunk-id="5BJj4eb0c2ch1fNL">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#slayder-komponent" name="slayder-komponent">Слайдер-компонент</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/slider-widget" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Перепишите слайдер в виде компонента:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:60px" src="https://ru.js.cx/task/slider-widget/solution/"></iframe>
+  </div><p>Исходный документ возьмите из решения задачи <a href="task/slider.html">Слайдер</a>.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/y5FAxIrG822cCgLg?p=preview" target="_blank" data-plunk-id="y5FAxIrG822cCgLg">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#komponent-spisok-s-vydeleniem" name="komponent-spisok-s-vydeleniem">Компонент: список с выделением</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/selectable-list-component" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Перепишите решение задачи <a href="task/selectable-list.html">Выделяемый список</a> в виде компонента.</p>
+<p>У компонента должен быть единственный публичный метод <code>getSelected()</code>, который возвращает выбранные значения в виде массива.</p>
+<p>Использование:</p>
+<div id="7xuki04hfm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var listSelect = new ListSelect({
+  elem: document.querySelector('ul')
+});
+// listSelect.getSelected()</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Демо:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/task/selectable-list-component/solution/"></iframe>
+  </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/VDrXYLOvp6ovTRrZ?p=preview" target="_blank" data-plunk-id="VDrXYLOvp6ovTRrZ">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#golosovalka" name="golosovalka">Голосовалка</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/voter" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию-конструктор <code>new Voter(options)</code> для голосовалки.
+Она должна получать элемент в <code>options.elem</code>, в следующей разметке:</p>
+<div id="g0aj4hjjk1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;voter&quot; class=&quot;voter&quot;&gt;
+  &lt;span class=&quot;down&quot;&gt;—&lt;/span&gt;
+  &lt;span class=&quot;vote&quot;&gt;0&lt;/span&gt;
+  &lt;span class=&quot;up&quot;&gt;+&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>По клику на <code>+</code> и <code>—</code> число должно увеличиваться или уменьшаться.</p>
+<p>Публичный метод <code>voter.setVote(vote)</code> должен устанавливать текущее число – значение голоса.</p>
+<p>Все остальные методы и свойства пусть будут приватными.</p>
+<p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:60px" src="https://ru.js.cx/task/voter/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/34szgm5I1nNovosI?p=preview" target="_blank" data-plunk-id="34szgm5I1nNovosI">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/WVtp1BHtMpvLbg0y?p=preview" target="_blank" data-plunk-id="WVtp1BHtMpvLbg0y">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#golosovalka-v-prototipnom-stile-oop" name="golosovalka-v-prototipnom-stile-oop">Голосовалка в прототипном стиле ООП</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/voter-proto" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Поменяйте стиль ООП в голосовалке, созданной в задаче <a href="https://learn.javascript.ru/task/voter">Голосовалка</a> на прототипный.</p>
+<p>Внешний код, использующий класс <code>Voter</code>, не должен измениться.</p>
+<p>В качестве исходного кода возьмите решение задачи <a href="https://learn.javascript.ru/task/voter">Голосовалка</a>.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/CAH2j2TqRQBqz2JJ?p=preview" target="_blank" data-plunk-id="CAH2j2TqRQBqz2JJ">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dobavit-dvoynoy-golos-v-golosovalku" name="dobavit-dvoynoy-golos-v-golosovalku">Добавить двойной голос в голосовалку</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/voter-add-step" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Создайте функцию-конструктор <code>StepVoter</code>, которая наследует от голосовалки, созданной в задаче <a href="https://learn.javascript.ru/task/voter-proto">Голосовалка в прототипном стиле ООП</a> и добавляет голосовалке опцию <code>options.step</code>, которая задаёт «шаг» голоса.</p>
+<p>Пример:</p>
+<div id="6crv30vbo0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var voter = new StepVoter({
+  elem: document.getElementById('voter'),
+  step: 2 // увеличивать/уменьшать сразу на 2 пункта
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:60px" src="https://ru.js.cx/task/voter-add-step/solution/"></iframe>
+  </div><p>В реальном проекте влияние клика на голосовалку может зависеть от полномочий или репутации посетителя.</p>
+<p>В качестве исходного кода используйте решение задачи <a href="https://learn.javascript.ru/task/voter-proto">Голосовалка в прототипном стиле ООП</a>.</p>
+<p>P.S. Код <code>voter.js</code> изменять нельзя, нужно не переписать <code>Voter</code>, а отнаследовать от него.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/SemZGrtzpSA3fLzs?p=preview" target="_blank" data-plunk-id="SemZGrtzpSA3fLzs">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fwidgets-structure" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/widgets-structure","identifier":"\/widgets-structure"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/widgets-structure by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

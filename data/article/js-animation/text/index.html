@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/js-animation/text/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../../../js.cx/libs/animate.js"></script>
+</head>
+
+<body>
+
+
+  <textarea id="textExample" rows="5" cols="60">Но взял он меч, и взял он щит,
+Высоких полон дyм.
+В глущобу путь его лежит
+Под дерево Тумтум.
+  </textarea>
+
+  <button onclick="animateText(textExample)">Запустить анимацию набора текста!</button>
+
+  <script>
+    function animateText(textArea) {
+      let text = textArea.value;
+      let to = text.length,
+        from = 0;
+
+      animate({
+        duration: 5000,
+        timing: bounce,
+        draw: function(progress) {
+          let result = (to - from) * progress + from;
+          textArea.value = text.slice(0, Math.ceil(result))
+        }
+      });
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1; 1; a += b, b /= 2) {
+        if (timeFraction >= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+  </script>
+
+
+</body>
+
+
+<!-- Mirrored from learn.javascript.ru/article/js-animation/text/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:31 GMT -->
+</html>

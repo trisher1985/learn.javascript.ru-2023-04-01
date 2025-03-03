@@ -1,0 +1,611 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/es-function by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Функции</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="es-function.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Функции"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Функции"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Функции"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 1 августа 2019 г."><div class="updated-at__content">1 августа 2019 г.</div></div></div><h1 class="main__header-title">Функции</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Функции"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В функциях основные изменения касаются передачи параметров, плюс введена дополнительная короткая запись через стрелочку <code>=&gt;</code>.</p>
+<h2><a class="main__anchor" name="parametry-po-umolchaniyu" href="#parametry-po-umolchaniyu">Параметры по умолчанию</a></h2><p>Можно указывать параметры по умолчанию через равенство <code>=</code>, например:</p>
+<div id="9zogijdage" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMenu(title = &quot;Без заголовка&quot;, width = 100, height = 200) {
+  alert(title + ' ' + width + ' ' + height);
+}
+
+showMenu(&quot;Меню&quot;); // Меню 100 200</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Параметр по умолчанию используется при отсутствующем аргументе или равном <code>undefined</code>, например:</p>
+<div id="gpnjyf1i7o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMenu(title = &quot;Заголовок&quot;, width = 100, height = 200) {
+  alert('title=' + title + ' width=' + width + ' height=' + height);
+}
+
+// По умолчанию будут взяты 1 и 3 параметры
+// title=Заголовок width=null height=200
+showMenu(undefined, null);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При передаче любого значения, кроме <code>undefined</code>, включая пустую строку, ноль или <code>null</code>, параметр считается переданным, и значение по умолчанию не используется.</p>
+<p><strong>Параметры по умолчанию могут быть не только значениями, но и выражениями.</strong></p>
+<p>Например:</p>
+<div id="iirqdjyrf0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sayHi(who = getCurrentUser().toUpperCase()) {
+  alert('Привет, ' + who);
+}
+
+function getCurrentUser() {
+  return 'Вася';
+}
+
+sayHi(); // Привет, ВАСЯ</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что значение выражения <code>getCurrentUser().toUpperCase()</code> будет вычислено, и соответствующие функции вызваны – лишь в том случае, если это необходимо, то есть когда функция вызвана без параметра.</p>
+<p>В частности, выражение по умолчанию не вычисляется при объявлении функции. В примере выше функция <code>getCurrentUser()</code> будет вызвана именно в последней строке, так как не передан параметр.</p>
+<h2><a class="main__anchor" name="operator-spread-vmesto-arguments" href="#operator-spread-vmesto-arguments">Оператор spread вместо arguments</a></h2><p>Чтобы получить массив аргументов, можно использовать оператор <code>…</code>, например:</p>
+<div id="m7zp1ycosz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:39,&quot;end&quot;:46}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showName(firstName, lastName, ...rest) {
+  alert(firstName + ' ' + lastName + ' - ' + rest);
+}
+
+// выведет: Юлий Цезарь - Император,Рима
+showName(&quot;Юлий&quot;, &quot;Цезарь&quot;, &quot;Император&quot;, &quot;Рима&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В <code>rest</code> попадёт массив всех аргументов, начиная с третьего.</p>
+<p>Заметим, что <code>rest</code> – настоящий массив, с методами <code>map</code>, <code>forEach</code> и другими, в отличие от <code>arguments</code>.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Оператор … должен быть в конце</span></div>
+            <div class="important__content"><p>Оператор <code>…</code> собирает «все оставшиеся» аргументы, поэтому такое объявление не имеет смысла:</p>
+<div id="v30lukobmf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f(arg1, ...rest, arg2) { // arg2 после ...rest ?!
+  // будет ошибка
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Параметр <code>...rest</code> должен быть в конце функции.</p>
+</div></div>
+<p>Выше мы увидели использование <code>...</code> для чтения параметров в объявлении функции. Но этот же оператор можно использовать и при вызове функции, для передачи массива параметров как списка, например:</p>
+<div id="yvy4lmx20v" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;cols&quot;:[{&quot;start&quot;:19,&quot;end&quot;:29}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let numbers = [2, 3, 15];
+
+// Оператор ... в вызове передаст массив как список аргументов
+// Этот вызов аналогичен Math.max(2, 3, 15)
+let max = Math.max(...numbers);
+
+alert( max ); // 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Формально говоря, эти два вызова делают одно и то же:</p>
+<div id="82txxt8myk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Math.max(...numbers);
+Math.max.apply(Math, numbers);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Похоже, что первый – короче и красивее.</p>
+<h2><a class="main__anchor" name="destrukturizatsiya-v-parametrah" href="#destrukturizatsiya-v-parametrah">Деструктуризация в параметрах</a></h2><p>Если функция получает объект, то она может его тут же разбить в переменные:</p>
+<div id="ls5hw13wpa" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let options = {
+  title: &quot;Меню&quot;,
+  width: 100,
+  height: 200
+};
+
+function showMenu({title, width, height}) {
+  alert(title + ' ' + width + ' ' + height); // Меню 100 200
+}
+
+showMenu(options);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Можно использовать и более сложную деструктуризацию, с соответствиями и значениями по умолчанию:</p>
+<div id="jzned9ksux" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let options = {
+  title: &quot;Меню&quot;
+};
+
+function showMenu({title=&quot;Заголовок&quot;, width:w=100, height:h=200}) {
+  alert(title + ' ' + w + ' ' + h);
+}
+
+// объект options будет разбит на переменные
+showMenu(options); // Меню 100 200</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что в примере выше какой-то аргумент у <code>showMenu()</code> обязательно должен быть, чтобы разбить его на переменные.</p>
+<p>Если хочется, чтобы функция могла быть вызвана вообще без аргументов – нужно добавить ей параметр по умолчанию – уже не внутрь деструктуризации, а в самом списке аргументов:</p>
+<div id="q3budnhy69" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:65,&quot;end&quot;:69}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+function showMenu({title=&quot;Заголовок&quot;, width:w=100, height:h=200} = {}) {
+  alert(title + ' ' + w + ' ' + h);
+}
+
+showMenu(); // Заголовок 100 200</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В коде выше весь объект аргументов по умолчанию равен пустому объекту <code>{}</code>, поэтому всегда есть что деструктурировать.</p>
+<h2><a class="main__anchor" name="imya-name" href="#imya-name">Имя «name»</a></h2><p>В свойстве <code>name</code> у функции находится её имя.</p>
+<p>Например:</p>
+<div id="9yaf7kvuhr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+function f() {} // f.name == &quot;f&quot;
+
+let g = function g() {}; // g.name == &quot;g&quot;
+
+alert(f.name + ' ' + g.name) // f g</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В примере выше показаны Function Declaration и Named Function Expression. В синтаксисе выше довольно очевидно, что у этих функций есть имя <code>name</code>. В конце концов, оно указано в объявлении.</p>
+<p>Но современный JavaScript идёт дальше, он старается даже анонимным функциям дать разумные имена.</p>
+<p>Например, при создании анонимной функции с одновременной записью в переменную или свойство – её имя равно названию переменной (или свойства).</p>
+<p>Например:</p>
+<div id="z1mp5zfcie" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+// свойство g.name = &quot;g&quot;
+let g = function() {};
+
+let user = {
+  // свойство user.sayHi.name == &quot;sayHi&quot;
+  sayHi: function() {}
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="funktsii-v-bloke" href="#funktsii-v-bloke">Функции в блоке</a></h2><p>Объявление функции Function Declaration, сделанное в блоке, видно только в этом блоке.</p>
+<p>Например:</p>
+<div id="6ti76a8dsg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+if (true) {
+
+  sayHi(); // работает
+
+  function sayHi() {
+    alert(&quot;Привет!&quot;);
+  }
+
+}
+sayHi(); // ошибка, функции не существует</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, иными словами, такое объявление – ведёт себя в точности как если бы <code>let sayHi = function() {…}</code> было сделано в начале блока.</p>
+<h2><a class="main__anchor" name="funktsii-cherez" href="#funktsii-cherez">Функции через =&gt;</a></h2><p>Появился новый синтаксис для задания функций через «стрелку» <code>=&gt;</code>.</p>
+<p>Его простейший вариант выглядит так:</p>
+<div id="asuspe823p" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let inc = x =&gt; x+1;
+
+alert( inc(1) ); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эти две записи – примерно аналогичны:</p>
+<div id="bzne6r4e28" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let inc = x =&gt; x+1;
+
+let inc = function(x) { return x + 1; };</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, <code>&quot;x =&gt; x+1&quot;</code> – это уже готовая функция. Слева от <code>=&gt;</code> находится аргумент, а справа – выражение, которое нужно вернуть.</p>
+<p>Если аргументов несколько, то нужно обернуть их в скобки, вот так:</p>
+<div id="y6m4lvk1q9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let sum = (a,b) =&gt; a + b;
+
+// аналог с function
+// let sum = function(a, b) { return a + b; };
+
+alert( sum(1, 2) ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если нужно задать функцию без аргументов, то также используются скобки, в этом случае – пустые:</p>
+<div id="hr007p1sh1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+// вызов getTime() будет возвращать текущее время
+let getTime = () =&gt; new Date().getHours() + ':' + new Date().getMinutes();
+
+alert( getTime() ); // текущее время</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Когда тело функции достаточно большое, то можно его обернуть в фигурные скобки <code>{…}</code>:</p>
+<div id="i1hwzzkypy" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let getTime = () =&gt; {
+  let date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  return hours + ':' + minutes;
+};
+
+alert( getTime() ); // текущее время</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что как только тело функции оборачивается в <code>{…}</code>, то её результат уже не возвращается автоматически. Такая функция должна делать явный <code>return</code>, как в примере выше, если конечно хочет что-либо возвратить.</p>
+<p>Функции-стрелки очень удобны в качестве коллбеков, например:</p>
+<div id="zyuuqawy2n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>`use strict`;
+
+let arr = [5, 8, 3];
+
+let sorted = arr.sort( (a,b) =&gt; a - b );
+
+alert(sorted); // 3, 5, 8</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такая запись – коротка и понятна. Далее мы познакомимся с дополнительными преимуществами использования функций-стрелок для этой цели.</p>
+<h2><a class="main__anchor" name="funktsii-strelki-ne-imeyut-svoego-this" href="#funktsii-strelki-ne-imeyut-svoego-this">Функции-стрелки не имеют своего this</a></h2><p>Внутри функций-стрелок – тот же <code>this</code>, что и снаружи.</p>
+<p>Это очень удобно в обработчиках событий и колбэках, например:</p>
+<div id="zltgklumqy" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let group = {
+  title: &quot;Наш курс&quot;,
+  students: [&quot;Вася&quot;, &quot;Петя&quot;, &quot;Даша&quot;],
+
+  showList: function() {
+    this.students.forEach(
+      student =&gt; alert(this.title + ': ' + student)
+    )
+  }
+}
+
+group.showList();
+// Наш курс: Вася
+// Наш курс: Петя
+// Наш курс: Даша</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь в <code>forEach</code> была использована функция-стрелка, поэтому <code>this.title</code> в колбэке – тот же, что и во внешней функции <code>showList</code>. То есть, в данном случае – <code>group.title</code>.</p>
+<p>Если бы в <code>forEach</code> вместо функции-стрелки была обычная функция, то была бы ошибка:</p>
+<div id="qgz1c4wica" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+let group = {
+  title: &quot;Наш курс&quot;,
+  students: [&quot;Вася&quot;, &quot;Петя&quot;, &quot;Даша&quot;],
+
+  showList: function() {
+    this.students.forEach(function(student) {
+      alert(this.title + ': ' + student); // будет ошибка
+    })
+  }
+}
+
+group.showList();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При запуске будет &quot;попытка прочитать свойство <code>title</code> у <code>undefined</code>&quot;, так как <code>.forEach(f)</code> при запуске <code>f</code> не ставит <code>this</code>. То есть, <code>this</code> внутри <code>forEach</code> будет <code>undefined</code>.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Функции стрелки нельзя запускать с <code>new</code></span></div>
+            <div class="important__content"><p>Отсутствие у функции-стрелки &quot;своего <code>this</code>&quot; влечёт за собой естественное ограничение: такие функции нельзя использовать в качестве конструктора, то есть нельзя вызывать через <code>new</code>.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">=&gt; это не то же самое, что <code>.bind(this)</code></span></div>
+            <div class="important__content"><p>Есть тонкое различие между функцией стрелкой <code>=&gt;</code> и обычной функцией, у которой вызван <code>.bind(this)</code>:</p>
+<ul>
+<li>Вызовом <code>.bind(this)</code> мы передаём текущий <code>this</code>, привязывая его к функции.</li>
+<li>При <code>=&gt;</code> привязки не происходит, так как функция стрелка вообще не имеет контекста <code>this</code>. Поиск <code>this</code> в ней осуществляется так же, как и поиск обычной переменной, то есть, выше в замыкании. До появления стандарта ES-2015 такое было невозможно.</li>
+</ul>
+</div></div>
+<h2><a class="main__anchor" name="funktsii-strelki-ne-imeyut-svoego-arguments" href="#funktsii-strelki-ne-imeyut-svoego-arguments">Функции-стрелки не имеют своего arguments</a></h2><p>В качестве <code>arguments</code> используются аргументы внешней «обычной» функции.</p>
+<p>Например:</p>
+<div id="hmnlc9s3bw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+function f() {
+  let showArg = () =&gt; alert(arguments[0]);
+  showArg();
+}
+
+f(1); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вызов <code>showArg()</code> выведет <code>1</code>, получив его из аргументов функции <code>f</code>. Функция-стрелка здесь вызвана без параметров, но это не важно: <code>arguments</code> всегда берутся из внешней «обычной» функции.</p>
+<p>Сохранение внешнего <code>this</code> и <code>arguments</code> удобно использовать для форвардинга вызовов и создания декораторов.</p>
+<p>Например, декоратор <code>defer(f, ms)</code> ниже получает функцию <code>f</code> и возвращает обёртку вокруг неё, откладывающую вызов на <code>ms</code> миллисекунд:</p>
+<div id="lzhe07txl5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+function defer(f, ms) {
+  return function() {
+    setTimeout(() =&gt; f.apply(this, arguments), ms)
+  }
+}
+
+function sayHi(who) {
+  alert('Привет, ' + who);
+}
+
+let sayHiDeferred = defer(sayHi, 2000);
+sayHiDeferred(&quot;Вася&quot;); // Привет, Вася через 2 секунды</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Аналогичная реализация без функции-стрелки выглядела бы так:</p>
+<div id="783l5qn3go" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function defer(f, ms) {
+  return function() {
+    let args = arguments;
+    let ctx = this;
+    setTimeout(function() {
+      return f.apply(ctx, args);
+    }, ms);
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В этом коде пришлось создавать дополнительные переменные <code>args</code> и <code>ctx</code> для передачи внешних аргументов и контекста через замыкание.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Основные улучшения в функциях:</p>
+<ul>
+<li>Можно задавать параметры по умолчанию, а также использовать деструктуризацию для чтения приходящего объекта.</li>
+<li>Оператор spread (троеточие) в объявлении позволяет функции получать оставшиеся аргументы в массив: <code>function f(arg1, arg2, ...rest)</code>.</li>
+<li>Тот же оператор spread в вызове функции позволяет передать в неё массив как список аргументов (вместо <code>apply</code>).</li>
+<li>У функции есть свойство <code>name</code>, оно содержит имя, указанное при объявлении функции, либо, если его нет, то имя свойства или переменную, в которую она записана. Есть и некоторые другие ситуации, в которых интерпретатор подставляет «самое подходящее» имя.</li>
+<li>Объявление Function Declaration в блоке <code>{...}</code> видно только в этом блоке.</li>
+<li>Появились функции-стрелки:
+<ul>
+<li>Без фигурных скобок возвращают выражение <code>expr</code>: <code>(args) =&gt; expr</code>.</li>
+<li>С фигурными скобками требуют явного <code>return</code>.</li>
+<li>Не имеют своих <code>this</code> и <code>arguments</code>, при обращении получают их из окружающего контекста.</li>
+<li>Не могут быть использованы как конструкторы, с <code>new</code>.</li>
+</ul>
+</li>
+</ul>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fes-function" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/es-function","identifier":"\/es-function"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/es-function by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

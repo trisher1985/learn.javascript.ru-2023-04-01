@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from learn.javascript.ru/article/clickjacking/protector/iframe.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+    #protector {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 99999999;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="protector">
+  <a href="../../../index.html" target="_blank">Перейти к сайту</a>
+</div>
+
+<script>
+
+  if (top.document.domain == document.domain) {
+    protector.remove();
+  }
+
+</script>
+
+  Этот текст всегда виден.
+
+  Но если страница была открыта внутри документа, принадлежащего другому домену, div поверх неё предотвратит любые действия.
+
+  <button onclick="alert(1)">В данном случае клик не сработает</button>
+
+</body>
+
+<!-- Mirrored from learn.javascript.ru/article/clickjacking/protector/iframe.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+</html>

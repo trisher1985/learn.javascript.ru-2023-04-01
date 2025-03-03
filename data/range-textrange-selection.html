@@ -1,0 +1,698 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/range-textrange-selection by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Выделение: Range, TextRange и Selection</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="range-textrange-selection.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Выделение: Range, TextRange и Selection"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Выделение: Range, TextRange и Selection"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><script>
+
+window.$selection = {
+	getText : function() {
+		var txt = '';
+		if (txt = window.getSelection) {
+			txt = window.getSelection().toString();
+		} else {
+			txt = document.selection.createRange().text;
+		}
+		return txt;
+	}
+}
+</script><meta property="og:title" content="Выделение: Range, TextRange и Selection"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Выделение: Range, TextRange и Selection</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="selection-range.html">https://learn.javascript.ru/selection-range</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Выделение: Range, TextRange и Selection"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В этой статье речь пойдёт о документированных, но нечасто используемых объектах <code>Range</code>, <code>TextRange</code> и <code>Selection</code>. Мы рассмотрим вольный перевод спецификаций с понятными примерами и различные кроссбраузерные реализации.</p>
+<p>Эта статья представляет собой обновлённый вариант статьи Александра Бурцева, которой уже нет онлайн. Публикуется с его разрешения, спасибо, Александр!</p>
+<h2><a class="main__anchor" name="range" href="#range">Range</a></h2><p><code>Range</code> – это объект, соответствующий фрагменту документа, который может включать узлы и участки текста из этого документа. Наиболее подробно объект <code>Range</code> описан в спецификации <a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html">DOM Range</a>.</p>
+<p>Чтобы понять о чем речь, обратимся к самому простому случаю  <code>Range</code>, который будет подробно рассмотрен ниже – к выделениям. В приводимом ниже примере выделите несколько слов в предложении. Будет выводиться текстовое содержимое выделяемой области:</p>
+<div id="demo-mix" onmouseup="alert($selection.getText())" style="border:1px dashed #999; color:#666; background:#EEE; padding:2px 5px; margin:10px 0;">
+  Соберём микс из <b>жирности</b>, <em>курсива</em> и <a href="#">ссылки</a> и повыделяем здесь.
+</div>
+<p>Но такие области можно создавать не только с помощью пользовательского выделения, но и из JavaScript-сценария, выполняя с ними определённые манипуляции. Однако, написать простой иллюстрирующий код сразу не выйдет, т.к. есть одно НО – Internet Explorer до версии 9. В Microsoft создали собственную реализацию – <a href="http://msdn.microsoft.com/en-us/library/ms535872.aspx">объект TextRange</a>. Разберём каждую реализацию по отдельности.</p>
+<h3><a class="main__anchor" name="dom-realizatsiya-range-krome-ie8" href="#dom-realizatsiya-range-krome-ie8">DOM-реализация Range (кроме IE8-)</a></h3><p><code>Range</code> состоит из двух граничных точек (boundary-points), соответствующих началу и концу области. Позиция любой граничной точки определяется в документе с помощью двух свойств: узел (node) и смещение (offset).</p>
+<p>Контейнером (container) называют узел, содержащий граничную точку. Сам контейнер и все его предки называются родительскими контейнерами (ancestor containers) для граничной точки. Родительский контейнер, включающий обе граничные точки, называют корневым контейнером (root container).</p>
+<figure><div class="image" style="width:358px">
+      <div class="image__ratio" style="padding-top:9.776536312849162%"></div>
+      <img src="article/range-textrange-selection/57.gif" alt="" width="358" height="35" class="image__image">
+      </div></figure><p>На изображении выше граничные точки выделения лежат в текстовых узлах (<code>#text1</code> и <code>#text2</code>), которые являются контейнерами. Для левой границы родительскими контейнерами являются <code>#text1</code>, <code>H1</code>, <code>BODY</code>, для правой – <code>#text2</code>, <code>P</code>, <code>BODY</code>. Общий родитель для обоих граничных точек – <code>BODY</code>, этот элемент является корневым контейнером.</p>
+<p>Если контейнер является текстовым узлом, то смещение определяется в символах от начала DOM-узла. Если контейнер является элементом (<code>Document</code>, <code>DocumentFragment</code>, <code>Element</code>…), то смещение определяется в дочерних узлах.</p>
+<p>Смотрим на иллюстрацию (<a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#td-boundarypoint">источник</a>):</p>
+<figure><div class="image" style="width:357px">
+      <div class="image__ratio" style="padding-top:96.07843137254902%"></div>
+      <img src="article/range-textrange-selection/56.gif" alt="Пример Range" width="357" height="343" class="image__image">
+      </div></figure><p>Граничные точки объекта <code>Range</code> <span style="color:green; font-weight:bold;">s1</span> лежат в текстовых узлах, поэтому смещение задаётся в символах от начала узла. Для <span style="color:red; font-weight:bold;">s2</span> граничные точки расставлены так, что включают весь абзац &lt;p&gt;Blah xyz&lt;/p&gt;, поэтому контейнером является элемент <code>BODY</code>, и смещение считается в позициях дочерних узлов.</p>
+<p>Объекты <code>Range</code> создаются с помощью вызова <code>document.createRange()</code>. Объект при этом создаётся пустой, и граничные точки нужно задать далее его методами <code>setStart</code> и <code>setEnd</code>. Смотрим пример.</p>
+<p>HTML:</p>
+<div id="96xrrxkzp7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;ex2&quot;&gt;
+  &lt;h2&gt;Соз|даём объект Range&lt;/h2&gt;
+  &lt;p&gt;От третье|го символа заголовка до десятого символа это абзаца.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;alert(domRangeCreate())&quot;&gt;
+  Создать Range и вывести его текст
+&lt;/button&gt;
+
+&lt;script&gt;
+  function domRangeCreate() {
+    // Найдём корневой контейнер
+    var root = document.getElementById('ex2');
+    // Найдём контейнеры граничных точек (в данном случае тестовые)
+    var start = root.getElementsByTagName('h2')[0].firstChild;
+    var end = root.getElementsByTagName('p')[0].firstChild;
+    if (root.createRange) {
+      // Создаём Range
+      var rng = root.createRange();
+      // Задаём верхнюю граничную точку, передав контейнер и смещение
+      rng.setStart(start, 3);
+      // Аналогично для нижней границы
+      rng.setEnd(end, 10);
+      // Теперь мы можем вернуть текст, который содержится в полученной области
+      return rng.toString();
+    } else {
+      return 'Вероятно, у вас IE8-, смотрите реализацию TextRange ниже';
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://ru.js.cx/article/range-textrange-selection/domRangeCreate/" target="_blank" title="открыть в новом окне" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/X5uNda2OlqFYN2e0?p=preview" target="_blank" title="открыть в песочнице"
+        data-plunk-id="X5uNda2OlqFYN2e0" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/article/range-textrange-selection/domRangeCreate/"></iframe>
+  </div><p>Рассмотрим вкратце <a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Interface">свойства и методы Range</a>:</p>
+<ul>
+<li>
+<p>Свойство <code>commonAncestorContainer</code> вернёт ссылку на наиболее вложенный корневой контейнер.</p>
+</li>
+<li>
+<p>Свойство <code>startContainer</code> (<code>endContainer</code>) вернёт ссылку на контейнер верхней (нижней) граничной точки.</p>
+</li>
+<li>
+<p>Свойство <code>startOffset</code> (<code>endOffset</code>) вернёт смещение для верхней (нижней) граничной точки.</p>
+</li>
+<li>
+<p>Свойство <code>collapsed</code> вернёт <code>true</code>, если граничные точки имеют одинаковые контейнеры и смещение (<code>false</code> в противном случае).</p>
+</li>
+<li>
+<p>Метод <code>setStart</code> (<code>setEnd</code>) задаёт контейнер (ссылка на узел) и смещение (целочисленное значение) для соответствующих граничных точек. Пример выше.</p>
+</li>
+<li>
+<p>Методы <code>setStartBefore</code>, <code>setStartAfter</code>, <code>setEndBefore</code>, <code>setEndAfter</code> принимают в качестве единственного аргумента ссылку на узел и устанавливают граничные точки в соотв. с естественной границей переданного узла. Например:</p>
+<div id="6r920fe441" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;span id=&quot;s1&quot;&gt;First&lt;/span&gt;
+&lt;span id=&quot;s2&quot;&gt;Second&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div id="0ivvhto628" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var rng = document.createRange();
+// Установит верхнюю граничную точку по левой границе спана #s1
+rng.setStartBefore(document.getElementById('s1'));
+// Установит нижнюю граничную точку по правой границе спана #s2
+rng.setEndAfter(document.getElementById('s2'));</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Методы <code>selectNode</code> и <code>selectNodeContents</code> позволяют создать объект <code>Range</code> по границам узла, ссылку на который они принимают в качестве единственного аргумента. При использовании <code>selectNode</code> передаваемый узел также войдёт в <code>Range</code>, в то время как <code>selectNodeContents</code> создаст объект только из содержимого узла:</p>
+<figure><div class="image" style="width:358px">
+      <div class="image__ratio" style="padding-top:15.363128491620111%"></div>
+      <img src="article/range-textrange-selection/58.gif" alt="" width="358" height="55" class="image__image">
+      </div></figure></li>
+<li>
+<p>Метод <code>collapse</code> объединяет граничные точки объекта <code>Range</code>. В качестве единственного аргумента принимает булево значение (<code>true</code> – для объединения в верхней точке, <code>false</code> – в нижней). По умолчанию <code>true</code>.</p>
+</li>
+<li>
+<p>Метод <code>toString</code> вернёт текстовое содержимое объекта <code>Range</code>.</p>
+</li>
+<li>
+<p>Метод <code>cloneContents</code> вернёт копию содержимого объекта <code>Range</code> в виде фрагмента документа.</p>
+</li>
+<li>
+<p>Метод <code>cloneRange</code> вернёт копию самого объекта <code>Range</code>.</p>
+</li>
+<li>
+<p>Метод <code>deleteContents</code> удаляет всё содержимое объекта <code>Range</code>.</p>
+</li>
+<li>
+<p>Метод <code>detach</code> извлекает текущий объект из DOM, так что на него больше нельзя сослаться.</p>
+</li>
+<li>
+<p>Метод <code>insertNode</code> принимает в качестве единственного аргумента ссылку на узел (или фрагмент документа) и вставляет его в содержимое объекта <code>Range</code> в начальной точке.</p>
+</li>
+<li>
+<p>Метод <code>extractContents</code> вырезает содержимое объекта <code>Range</code> и возвращает ссылку на полученный фрагмент документа.</p>
+</li>
+<li>
+<p>Метод <code>surroundContents</code> помещает всё содержимое текущего объекта <code>Range</code> в новый родительский элемент, ссылка на который принимается в качестве единственного аргумента.</p>
+</li>
+<li>
+<p>Метод <code>compareBoundaryPoints</code> используется для сравнения граничных точек.</p>
+</li>
+</ul>
+<p>Для примера решим небольшую задачку. Найдём в текстовом узле фразу и подсветим её синим фоном.</p>
+<div id="lifi52wfhn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;ex3&quot;&gt;
+  Найдём в этом тексте слово &quot;бабуля&quot; и подсветим его синим фоном
+&lt;/div&gt;
+
+&lt;script&gt;
+  function domRangeHighlight(text) {
+    // Получим текстовый узел
+    var root = document.getElementById('ex3').firstChild;
+    // и его содержимое
+    var content = root.nodeValue;
+    // Проверим есть ли совпадения с переданным текстом
+    if (~content.indexOf(text)) {
+      if (document.createRange) {
+        // Если есть совпадение, и браузер поддерживает Range, создаём объект
+        var rng = document.createRange();
+        // Ставим верхнюю границу по индексу совпадения,
+        rng.setStart(root, content.indexOf(text));
+        // а нижнюю по индексу + длина текста
+        rng.setEnd(root, content.indexOf(text) + text.length);
+        // Создаём спан с синим фоном
+        var highlightDiv = document.createElement('span');
+        highlightDiv.style.backgroundColor = 'blue';
+        // Обернём наш Range в спан
+        rng.surroundContents(highlightDiv);
+      } else {
+        alert( 'Вероятно, у вас IE8-, смотрите реализацию TextRange ниже' );
+      }
+    } else {
+      alert( 'Совпадений не найдено' );
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/range-textrange-selection/domRangeHighlight/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/F1B1BuQO5XmAGZlH?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/range-textrange-selection/domRangeHighlight/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;ex3&quot; style=&quot;border:1px dashed #999; color:#666; background:#EEE; padding:2px 5px; margin:10px 0;&quot;&gt;
+    Найдем в этом тексте слово &quot;бабуля&quot; и подсветим его синим фоном
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input onclick=&quot;domRangehighlight('бабуля'); this.style.display = 'none';&quot; type=&quot;button&quot; value=&quot;Найти!&quot;&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    function domRangehighlight(text) {
+      var root = document.getElementById('ex3').firstChild;
+      var content = root.nodeValue;
+      if (~content.indexOf(text)) {
+        if (document.createRange) {
+          var rng = document.createRange();
+          rng.setStart(root, content.indexOf(text));
+          rng.setEnd(root, content.indexOf(text) + text.length);
+          var highlightDiv = document.createElement('span');
+          highlightDiv.style.backgroundColor = 'blue';
+          rng.surroundContents(highlightDiv);
+        } else
+          alert('Вероятно, у вас IE8-, смотрите реализацию TextRange ниже');
+      } else
+        alert('Совпадений не найдено');
+    }
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>С остальными свойствами и методами поэкспериментируйте сами. Перейдём к реализации range в IE.</p>
+<h3><a class="main__anchor" name="textrange-dlya-ie" href="#textrange-dlya-ie">TextRange (для IE)</a></h3><p>Объект <code>TextRange</code> в реализации MSIE – это текстовый диапазон нулевой и более длины. У данного диапазона также есть свои границы, «перемещать» которые можно на целое число текстовых единиц: character(символ), word (слово), sentence (предложение). То есть можно взять и сдвинуть границу на 2(5, 8 и т.д.) слова (символа, предложения) вправо (влево). При этом у объекта сохраняются данные о HTML-содержимом диапазона и есть методы взаимодействия с DOM.</p>
+<p>Объект <code>TextRange</code> создаётся с помощью метода <code>createTextRange</code>, который можно вызывать в контексте элементов <code>BODY</code>, <code>BUTTON</code>, <code>INPUT</code> (большинство типов), <code>TEXTAREA</code>.</p>
+<p>Простой пример с кнопкой:</p>
+<div id="hfl2qgkskk" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input id=&quot;buttonId&quot; type=&quot;button&quot; value=&quot;Test button&quot; onclick=&quot;alert( ieTextRangeCreate() );&quot; /&gt;
+
+&lt;script&gt;
+  function ieTextRangeCreate() {
+    // Найдём кнопку
+    var button = document.getElementById('buttonId');
+    // Если мы в ИЕ
+    if (button.createTextRange &amp;&amp; button.createTextRange() != undefined) {
+      // Создаём TextRange
+      var rng = button.createTextRange();
+      // И вернём текстовое содержимое полученного объекта
+      return rng.text;
+    } else {
+      return 'Вероятно, у вас не IE, смотрите реализацию Range выше';
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe
+            class="code-result__iframe"
+            name="test-hfl2qgkskk"
+            style="height:200px"
+            src="about:blank"></iframe>
+        </div>
+      </div><p>Рассмотрим <a href="http://msdn.microsoft.com/en-us/library/ms535872.aspx">свойства и методы объекта TextRange</a> (не все, только самые необходимые):</p>
+<ul>
+<li>
+<p>Свойство <code>boundingWidth</code> (boundingHeight) вернёт ширину (высоту), которую занимает объект TextRange в пикселях.</p>
+</li>
+<li>
+<p>Свойство <code>boundingTop</code> (<code>boundingLeft</code>) вернёт Y(X)-координату верхнего левого угла тестовой области относительно окна документа.</p>
+</li>
+<li>
+<p>Свойство <code>htmlText</code> вернёт HTML-содержимое объекта.</p>
+</li>
+<li>
+<p>Свойство <code>text</code> вернёт текстовое содержимое объекта (см. пример выше).</p>
+</li>
+<li>
+<p>Свойство <code>offsetTop</code> (<code>offsetLeft</code>) вернёт Y(X)-координату верхнего левого угла тестовой области относительно предка.</p>
+</li>
+<li>
+<p>Метод <code>collapse</code> объединяет граничные точки диапазона. В качестве единственного аргумента принимает булево значение (<code>true</code> – для объединения в верхней точке, <code>false</code> – в нижней). По-умолчанию true.</p>
+</li>
+<li>
+<p>Метод <code>duplicate</code> клонирует имеющийся текстовый диапазон, возвращая новый, точно такой же.</p>
+</li>
+<li>
+<p>Метод <code>expand</code> расширяет текущий текстовый диапазон до единицы текста, переданной в качестве единственного текстового аргумента:</p>
+<ul>
+<li><code>&quot;character'</code> – символ.</li>
+<li><code>&quot;word&quot;</code> – слово</li>
+<li><code>&quot;sentence&quot;</code> – предложение</li>
+<li><code>&quot;textedit&quot;</code> – сворачивает до первоначального диапазона.</li>
+</ul>
+<p>Вернёт <code>true</code> (<code>false</code>) в случае успеха (неудачи).</p>
+</li>
+<li>
+<p>Метод <code>findText</code> ищет в диапазоне совпадения с текстовой строкой, передаваемой в качестве первого аргумента (без учёта регистра). Если совпадение найдено, то границы диапазона сворачиваются до него. В качестве второго (необязательного) аргумента можно передать целое число, указывающее число символов от верхней точки, в которых нужно производить поиск. Далее в качестве аргументов можно перечислять INT-флаги, которые вам <a href="http://msdn.microsoft.com/en-us/library/ms536422.aspx">вряд ли понадобятся</a>.</p>
+</li>
+<li>
+<p>Метод <code>getBookmark</code> возвращает в случае успешного вызова строку, по которой можно будет восстановить текущее состояние текстового диапазона с помощью метода <code>moveToBookmark</code>.</li></p>
+</li>
+<li>
+<p>Метод <code>inRange</code> принимает в качестве аргумента другой <code>TextRange</code> и проверяет, входит ли его текстовый диапазон в диапазон контекстного объекта. Возвращает булево значение.</p>
+</li>
+<li>
+<p>Метод <code>isEqual</code> проверяет является ли текущий <code>TextRange</code> идентичным переданному в качестве аргумента. Возвращает булево значение.</p>
+</li>
+<li>
+<p>Метод <code>move(sUnit [, iCount])</code> сворачивает текущий диапазон до нулевой длины и передвигает на единицу текста, переданного в качестве первого аргумента (character | word | sentence | textedit). В качестве второго (необязательного) аргумента можно передать число единиц, на которое следует передвинуть диапазон.</p>
+</li>
+<li>
+<p>Метод <code>moveEnd</code> (<code>moveStart</code>), аналогично методу move, передвигает верхнюю (нижнюю) границу диапазона на единицу текста, число которых также можно задать необязательным вторым параметром.</p>
+</li>
+<li>
+<p>Метод <code>moveToElementText</code> принимает в качестве аргумента ссылку на DOM-элемент и выставляет границы диапазона Textобъекта <code>Range</code> по границам полученного элемента.</p>
+</li>
+<li>
+<p>Метод <code>moveToPoint</code> принимает в качестве двух обязательных аргументов X и Y-координаты (в пикселях) относительно верхнего левого угла документа и переносит границы диапазона туда.</p>
+</li>
+<li>
+<p>Метод <code>parentElement</code> вернёт ссылку на элемент, который полностью содержит диапазон объекта <code>TextRange</code> (или <code>null</code>).</p>
+</li>
+<li>
+<p>Метод <code>pasteHTML</code> заменяет HTML-содержимое текущего текстового диапазона на строку, переданную в качестве единственного аргумента.</p>
+</li>
+<li>
+<p>Метод <code>select</code> формирует выделение на основе содержимого объекта <code>TextRange</code>, о чем мы подробнее поговорим ниже.</p>
+</li>
+<li>
+<p>Метод <code>setEndPoint</code> принимает в качестве обязательных аргументов текстовый указатель и ссылку на другой <code>TextRange</code>, устанавливая в зависимости от значения указателя границы диапазона. Указатели могут быть следующими: „StartToEnd“, „StartToStart“, „EndToStart“, „EndToEnd“.</p>
+</li>
+</ul>
+<p>Также к <code>TextRange</code> применимы команды <a href="http://msdn.microsoft.com/en-us/library/ms536419(v=vs.85).aspx">метода execCommand</a>, который умеет делать текст жирным, курсивным, копировать его в буфер обмена (только IE) и т.п.</p>
+<p>Для закрепления сделаем задачку по поиску текстового содержимого, аналогичную той, что была выше:</p>
+<div id="j4em53apts" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;ex4&quot;&gt;
+  Найдём в этом тексте слово &quot;бабуля&quot; и подсветим его синим фоном
+&lt;/div&gt;
+
+&lt;script&gt;
+  function ieTextRangeHighlight(text) {
+    // Получим ссылку на элемент, в котором будет происходить поиск
+    var root = document.getElementById('ex4');
+    // Получим значение его текстового потомка
+    var content = root.firstChild.nodeValue;
+    // Если есть совпадение
+    if (~content.indexOf(text)) {
+      // и мы в MSIE
+      if (document.body.createTextRange) {
+        // Создадим объект TextRange
+        var rng = document.body.createTextRange();
+        // Свернём его до root
+        rng.moveToElementText(root);
+        // Найдём текст и свернём диапазон до него
+        if (rng.findText(text))
+        // Заменим текстовый фрагмент на span с синим фоном
+          rng.pasteHTML('&lt;span style=&quot;background:blue;&quot;&gt;' + text + '&lt;/span&gt;');
+      } else {
+        alert( 'Вероятно, у вас не  IE, смотрите реализацию Range выше' );
+      }
+    } else {
+      alert( 'Совпадений не найдено' );
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/range-textrange-selection/ieTextRangeHighlight/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/m1a5k6Hmqm2vCVf3?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/range-textrange-selection/ieTextRangeHighlight/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;ex4&quot; style=&quot;border:1px dashed #999; color:#666; background:#EEE; padding:2px 5px; margin:10px 0;&quot;&gt;
+    Найдем в этом тексте слово &quot;бабуля&quot; и подсветим его синим фоном
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input onclick=&quot;ieTextRangeHighlight('бабуля'); this.style.display = 'none';&quot; type=&quot;button&quot; value=&quot;Найти!&quot;&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    function ieTextRangeHighlight(text) {
+      var root = document.getElementById('ex4');
+      var content = root.firstChild.nodeValue;
+      if (~content.indexOf(text)) {
+        if (document.body.createTextRange) {
+          var rng = document.body.createTextRange();
+          rng.moveToElementText(root);
+          if (rng.findText(text))
+            rng.pasteHTML('&lt;span style=&quot;background:blue;&quot;&gt;' + text + '&lt;/span&gt;');
+        } else
+          alert('Вероятно, у вас не IE, смотрите реализацию Range выше');
+      } else
+        alert('Совпадений не найдено');
+    }
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>С остальными свойствами и методами поэкспериментируйте сами.</p>
+<h2><a class="main__anchor" name="selection" href="#selection">Selection</a></h2><p>Всем знакомо выделение элементов на странице, когда, зажав левую кнопку мыши и передвигая курсор, мы выделяем нужный фрагмент. Или зажимаем Shift и жмём на стрелочки клавиатуры. Или ещё как-то, неважно. В данной части статьи мы кроссбраузерно научимся решать две задачи: получать пользовательское выделение и устанавливать собственное.</p>
+<h3><a class="main__anchor" name="poluchaem-polzovatelskoe-vydelenie" href="#poluchaem-polzovatelskoe-vydelenie">Получаем пользовательское выделение</a></h3><p>Эту задачу мы уже решали в самом начале статьи <a href="#demo-mix">в примере с миксом</a>. Теперь рассмотрим код:</p>
+<div id="hwaootmv42" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSelectionText() {
+  var txt = '';
+  if (txt = window.getSelection) { // Не IE, используем метод getSelection
+    txt = window.getSelection().toString();
+  } else { // IE, используем объект selection
+    txt = document.selection.createRange().text;
+  }
+  return txt;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Все браузеры, кроме IE8- поддерживают метод <code>window.getSelection()</code>, который возвращает объект, схожий с рассмотренным ранее <code>Range</code>. У этого объекта есть точка начала выделения (anchor) и фокусная точка окончания (focus). Точки могут совпадать. Рассмотрим свойства и методы объекта <code>Selection</code>:</p>
+<ul>
+<li>Свойство <code>anchorNode</code> вернёт контейнер, в котором начинается выделение. Замечу, что началом выделения считается та граница, от которой вы начали выделение. То есть, если вы выделяете справа налево, то началом будет именно правая граница. Это правило работает везде, кроме браузера Opera, в котором <code>anchorNode</code> вернёт ссылку на узел левого края выделения.</li>
+<li>Свойство <code>anchorOffset</code> вернёт смещение для начала выделения в пределах контейнера <code>anchorNode</code>.</li>
+<li>Свойства <code>focusNode</code> и <code>focusOffset</code> работают аналогично для фокусных точек, то есть точек окончания выделения. Opera и здесь отличилась, возвращает вместо фокусной точки узел правого края выделения.</li>
+<li>Свойство <code>rangeCount</code> возвращает число объектов <code>Range</code>, которые входят в полученное выделение. Это свойство полезно при использовании метода <code>addRange</code>.</li>
+<li>Метод <code>getRangeAt</code> принимает в качестве аргумента индекс объекта <code>Range</code> и возвращает сам объект. Если <code>rangeCount == 1</code>, то работать будет только <code>getRangeAt(0)</code>. Таким образом, мы можем получить объект <code>Range</code>, полностью соответствующий текущему выделению.</li>
+<li>Метод <code>collapse</code> сворачивает выделение в точку (каретку). Методу можно передать в качестве первого аргумента узел, в который нужно поместить каретку.</li>
+<li>Метод <code>extend</code> принимает в качестве аргументов ссылку на контейнер и смещение (<code>parentNode</code>, <code>offset</code>), и перемещает фокусную точку в это положение.</li>
+<li>Метод <code>collapseToStart</code> (<code>collapseToEnd</code>) перемещает фокусную (начальную) границу к начальной (фокусной), тем самым сворачивая выделение в каретку.</li>
+<li>Метод <code>selectAllChildren</code> принимает в качестве единственного аргумента ссылку на узел и добавляет всех его потомков в выделение.</li>
+<li>Метод <code>addRange</code> принимает в качестве аргумента объект <code>Range</code> и добавляет его в выделение. Таким образом можно увеличить количество объектов <code>Range</code>, число которых нам подскажет свойство <code>rangeCount</code>.</li>
+<li>Метод <code>removeRange</code> (<code>removeAllRanges</code>) удаляет переданный (все) объект <code>Range</code> из выделения.</li>
+<li>Метод <code>toString</code> вернёт текстовое содержимое выделения.</li>
+</ul>
+<p>IE предоставляет собственный интерфейс взаимодействия с выделениями – объект <code>selection</code> в контексте document. Для работы с этим объектом используются следующие методы:</p>
+<ul>
+<li>Метод <code>clear</code> убирает выделение вместе с содержимым.</li>
+<li>Метод <code>createRange</code> (ВАЖНО! Не путать со стандартным методом <code>document.createRange()</code> для создания объектов <code>Range</code>!) создаёт из содержимого выделения <code>TextRange</code>.</li>
+<li>Метод <code>empty</code> убирает выделение, но оставляет содержимое.</li>
+</ul>
+<p>Надеюсь, теперь, после знакомства с обеими реализациями выделений, код выше стал более понятен.</p>
+<h3><a class="main__anchor" name="ustanovka-sobstvennogo-vydeleniya" href="#ustanovka-sobstvennogo-vydeleniya">Установка собственного выделения</a></h3><p>Допустим, вам хочется, чтобы какой-то текстовый фрагмент на странице был выделен, как пользовательское выделение. Это нужно при клиентской реализации поиска по странице и некоторых других задач.</p>
+<p>Проще всего решить эту задачу следующим образом:</p>
+<ol>
+<li>Создать объект <code>Range</code> (<code>TextRange</code> для IE8-).</li>
+<li>Перевести полученный объект в выделение.</li>
+</ol>
+<p>Смотрим реализацию:</p>
+<div id="y52gz0nlzh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;ex5&quot;&gt;
+  Снова будем выделять &lt;span&gt;бабулю&lt;/span&gt;, на этот раз без поиска.
+&lt;/div&gt;
+
+&lt;script&gt;
+  function setSelection() {
+    var target = document.getElementById('ex5').getElementsByTagName('span')[0];
+    var rng, sel;
+    if (document.createRange) {
+      rng = document.createRange();
+      rng.selectNode(target)
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(rng);
+    } else {
+      var rng = document.body.createTextRange();
+      rng.moveToElementText(target);
+      rng.select();
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/range-textrange-selection/setSelection/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/N2Hrb6MFW1boIH5Y?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/range-textrange-selection/setSelection/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;ex5&quot; style=&quot;border:1px dashed #999; color:#666; background:#EEE; padding:2px 5px; margin:10px 0;&quot;&gt;
+    Снова будем выделять &lt;span&gt;бабулю&lt;/span&gt;, на этот раз без поиска.
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input onclick=&quot;setSelection()&quot; type=&quot;button&quot; value=&quot;Выделить бабулю&quot;&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    function setSelection() {
+      var target = document.getElementById('ex5').getElementsByTagName('span')[0];
+      var rng, sel;
+      if (document.createRange) {
+        rng = document.createRange();
+        rng.selectNode(target)
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(rng);
+      } else {
+        var rng = document.body.createTextRange();
+        rng.moveToElementText(target);
+        rng.select();
+      }
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h3><a class="main__anchor" name="snyatie-vydeleniya" href="#snyatie-vydeleniya">Снятие выделения</a></h3><p>Код для снятия выделения, использующий соответствующие методы объектов <code>Selection</code>:</p>
+<div id="i5x82fjgqc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function clearSelection() {
+  try {
+    // современный объект Selection
+    window.getSelection().removeAllRanges();
+  } catch (e) {
+    // для IE8-
+    document.selection.empty();
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>В современных браузерах поддерживается стандартный объект <a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html">Range</a></li>
+<li>В IE8- поддерживается только собственный объект <a href="http://help.dottoro.com/ljgbbkjf.php">TextRange</a>.</li>
+</ul>
+<p>Есть библиотеки, которые «исправляют» объект <code>TextRange</code>, добавляя ему нужные свойства из <code>Range</code>.</p>
+<p>Код, получающий выделение, при использовании такой библиотеки может выглядеть так:</p>
+<div id="z23ud5tku2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var range = getRangeObject();
+  if (range) {
+    alert( range );
+    alert( range.startContainer.nodeValue );
+    alert( range.startOffset );
+    alert( range.endOffset );
+  } else {
+    alert( 'Ничего не выделено' );
+  }
+  }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В действии:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">fixIERangeObject.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/range-textrange-selection/fix-ie/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/1SPXvhAz573RZQdo?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/range-textrange-selection/fix-ie/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>/*
+  This code is to fix Microsoft TextRange object (IE8 and below), to give equivalent of
+  HTML5 Range object's startContainer,startOffset,endContainer and endOffset properties.
+
+  Originally from: https://gist.github.com/1115251 (Munnawwar)
+*/
+
+/**
+ * @param {window object} [win] Optional prameter. You could send an IFrame.contentWindow too.
+ */
+function fixIERangeObject(range, win) { //Only for IE8 and below.
+  win = win || window;
+
+  if (!range) return null;
+  if (!range.startContainer &amp;&amp; win.document.selection) { //IE8 and below
+
+    var _findTextNode = function(parentElement, text) {
+      //Iterate through all the child text nodes and check for matches
+      //As we go through each text node keep removing the text value (substring) from the beginning of the text variable.
+      var container = null,
+        offset = -1;
+      for (var node = parentElement.firstChild; node; node = node.nextSibling) {
+        if (node.nodeType == 3) { //Text node
+          var find = node.nodeValue;
+          var pos = text.indexOf(find);
+          if (pos == 0 &amp;&amp; text != find) { //text==find is a special case
+            text = text.substring(find.length);
+          } else {
+            container = node;
+            offset = text.length - 1; //Offset to the last character of text. text[text.length-1] will give the last character.
+            break;
+          }
+        }
+      }
+      //Debug Message
+      //alert(container.nodeValue);
+      return {
+        node: container,
+        offset: offset
+      }; //nodeInfo
+    }
+
+    var rangeCopy1 = range.duplicate(),
+      rangeCopy2 = range.duplicate(); //Create a copy
+    var rangeObj1 = range.duplicate(),
+      rangeObj2 = range.duplicate(); //More copies :P
+
+    rangeCopy1.collapse(true); //Go to beginning of the selection
+    rangeCopy1.moveEnd('character', 1); //Select only the first character
+    rangeCopy2.collapse(false); //Go to the end of the selection
+    rangeCopy2.moveStart('character', -1); //Select only the last character
+
+    //Debug Message
+    // alert(rangeCopy1.text); //Should be the first character of the selection
+    var parentElement1 = rangeCopy1.parentElement(),
+      parentElement2 = rangeCopy2.parentElement();
+
+    //If user clicks the input button without selecting text, then moveToElementText throws an error.
+    if (parentElement1 instanceof HTMLInputElement || parentElement2 instanceof HTMLInputElement) {
+      return null;
+    }
+    rangeObj1.moveToElementText(parentElement1); //Select all text of parentElement
+    rangeObj1.setEndPoint('EndToEnd', rangeCopy1); //Set end point to the first character of the 'real' selection
+    rangeObj2.moveToElementText(parentElement2);
+    rangeObj2.setEndPoint('EndToEnd', rangeCopy2); //Set end point to the last character of the 'real' selection
+
+    var text1 = rangeObj1.text; //Now we get all text from parentElement's first character upto the real selection's first character
+    var text2 = rangeObj2.text; //Here we get all text from parentElement's first character upto the real selection's last character
+
+    var nodeInfo1 = _findTextNode(parentElement1, text1);
+    var nodeInfo2 = _findTextNode(parentElement2, text2);
+
+    //Finally we are here
+    range.startContainer = nodeInfo1.node;
+    range.startOffset = nodeInfo1.offset;
+    range.endContainer = nodeInfo2.node;
+    range.endOffset = nodeInfo2.offset + 1; //End offset comes 1 position after the last character of selection.
+  }
+  return range;
+}
+
+function getRangeObject(win) { //Gets the first range object
+  win = win || window;
+  if (win.getSelection) { // Firefox/Chrome/Safari/Opera/IE9
+    try {
+      return win.getSelection().getRangeAt(0); //W3C DOM Range Object
+    } catch (e) { /*If no text is selected an exception might be thrown*/ }
+  } else if (win.document.selection) { // IE8
+    var range = win.document.selection.createRange(); //Microsoft TextRange Object
+    return fixIERangeObject(range, win);
+  }
+  return null;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;script src=&quot;fixIERangeObject.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    function test() {
+
+      var range = getRangeObject();
+      if (range) {
+        alert(range);
+        alert(range.startContainer.nodeValue);
+        alert(range.startOffset);
+        alert(range.endOffset);
+      } else {
+        alert('Сначала выделите текст');
+      }
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  Выделите текст:
+  &lt;pre&gt;The quick brown fox jumped over the lazy dog&lt;/pre&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Вывести выделение и свойства startContainer, startOffset, endOffset&quot; onclick=&quot;test();&quot; /&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Код функций <code>getRangeObject(win)</code> для получения выделения в окне и <code>fixIERangeObject(range, win)</code> для исправления <code>TextRange</code> – <a href="https://plnkr.co/edit/1SPXvhAz573RZQdo?p=preview">в песочнице вместе с этим примером</a>.</p>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Frange-textrange-selection" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/range-textrange-selection","identifier":"\/range-textrange-selection"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/range-textrange-selection by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:33:24 GMT -->
+</html>

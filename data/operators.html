@@ -1,0 +1,953 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/operators by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Базовые операторы, математика</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="operators.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Базовые операторы, математика"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Базовые операторы, математика"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="type-conversions.html"><link rel="next" href="comparison.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Базовые операторы, математика"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/operators"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/operators"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/operators"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/operators"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/operators"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/operators"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/operators"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/operators"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/operators"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="operators.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/operators"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/operators"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/operators"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/operators">عربي</option><option value="https://javascript.info/operators">English</option><option value="https://es.javascript.info/operators">Español</option><option value="https://fa.javascript.info/operators">فارسی</option><option value="https://fr.javascript.info/operators">Français</option><option value="https://id.javascript.info/operators">Indonesia</option><option value="https://it.javascript.info/operators">Italiano</option><option value="https://ja.javascript.info/operators">日本語</option><option value="https://ko.javascript.info/operators">한국어</option><option value="https://learn.javascript.ru/operators" selected>Русский</option><option value="https://tr.javascript.info/operators">Türkçe</option><option value="https://uk.javascript.info/operators">Українська</option><option value="https://zh.javascript.info/operators">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="12" max="95" data-tooltip="Урок 12 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="first-steps.html"><span>Основы JavaScript</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Основы JavaScript","item":"https://learn.javascript.ru/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 14 января 2023 г."><div class="updated-at__content">14 января 2023 г.</div></div></div><h1 class="main__header-title">Базовые операторы, математика</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Базовые операторы, математика"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Многие операторы знакомы нам ещё со школы: сложение <code>+</code>, умножение <code>*</code>, вычитание <code>-</code> и так далее.</p>
+<p>В этой главе мы начнём с простых операторов, а потом сконцентрируемся на специфических для JavaScript аспектах, которые не проходят в школьном курсе арифметики.</p>
+<h2><a class="main__anchor" name="terminy-unarnyy-binarnyy-operand" href="#terminy-unarnyy-binarnyy-operand">Термины: «унарный», «бинарный», «операнд»</a></h2><p>Прежде, чем мы двинемся дальше, давайте разберёмся с терминологией.</p>
+<ul>
+<li>
+<p><em>Операнд</em> – то, к чему применяется оператор. Например, в умножении <code>5 * 2</code> есть два операнда: левый операнд равен <code>5</code>, а правый операнд равен <code>2</code>. Иногда их называют «аргументами» вместо «операндов».</p>
+</li>
+<li>
+<p><em>Унарным</em> называется оператор, который применяется к одному операнду. Например, оператор унарный минус <code>&quot;-&quot;</code> меняет знак числа на противоположный:</p>
+<div id="lnru7sgvhm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+x = -x;
+alert( x ); // -1, применили унарный минус</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><em>Бинарным</em> называется оператор, который применяется к двум операндам. Тот же минус существует и в бинарной форме:</p>
+<div id="ufkisdx9gi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1, y = 3;
+alert( y - x ); // 2, бинарный минус вычитает значения</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Формально, в последних примерах мы говорим о двух разных операторах, использующих один символ: оператор отрицания (унарный оператор, который обращает знак) и оператор вычитания (бинарный оператор, который вычитает одно число из другого).</p>
+</li>
+</ul>
+<h2><a class="main__anchor" name="matematika" href="#matematika">Математика</a></h2><p>Поддерживаются следующие математические операторы:</p>
+<ul>
+<li>Сложение <code>+</code>,</li>
+<li>Вычитание <code>-</code>,</li>
+<li>Умножение <code>*</code>,</li>
+<li>Деление <code>/</code>,</li>
+<li>Взятие остатка от деления <code>%</code>,</li>
+<li>Возведение в степень <code>**</code>.</li>
+</ul>
+<p>Первые четыре оператора очевидны, а про <code>%</code> и <code>**</code> стоит сказать несколько слов.</p>
+<h3><a class="main__anchor" name="vzyatie-ostatka" href="#vzyatie-ostatka">Взятие остатка %</a></h3><p>Оператор взятия остатка <code>%</code>, несмотря на обозначение, никакого отношения к процентам не имеет.</p>
+<p>Результат <code>a % b</code> – это <a href="https://ru.wikipedia.org/wiki/Деление_с_остатком">остаток</a> от целочисленного деления <code>a</code> на <code>b</code>.</p>
+<p>Например:</p>
+<div id="l7avwndqhj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 5 % 2 ); // 1, остаток от деления 5 на 2
+alert( 8 % 3 ); // 2, остаток от деления 8 на 3
+alert( 8 % 4 ); // 0, остаток от деления 8 на 4</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="vozvedenie-v-stepen" href="#vozvedenie-v-stepen">Возведение в степень **</a></h3><p>Оператор возведения в степень <code>a ** b</code> возводит <code>a</code> в степень <code>b</code>.</p>
+<p>В школьной математике мы записываем это как a<sup>b</sup>.</p>
+<p>Например:</p>
+<div id="bcv3o6nwkl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 2 ** 2 ); // 2² = 4
+alert( 2 ** 3 ); // 2³ = 8
+alert( 2 ** 4 ); // 2⁴ = 16</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Математически, оператор работает и для нецелых чисел. Например, квадратный корень является возведением в степень <code>1/2</code>:</p>
+<div id="g51uvpkzrq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 4 ** (1/2) ); // 2 (степень 1/2 эквивалентна взятию квадратного корня)
+alert( 8 ** (1/3) ); // 2 (степень 1/3 эквивалентна взятию кубического корня)</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="slozhenie-strok-pri-pomoschi-binarnogo" href="#slozhenie-strok-pri-pomoschi-binarnogo">Сложение строк при помощи бинарного +</a></h2><p>Давайте рассмотрим специальные возможности операторов JavaScript, которые выходят за рамки школьной арифметики.</p>
+<p>Обычно при помощи плюса <code>'+'</code> складывают числа.</p>
+<p>Но если бинарный оператор <code>'+'</code> применить к строкам, то он их объединяет в одну:</p>
+<div id="rtbi1dioup" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let s = &quot;моя&quot; + &quot;строка&quot;;
+alert(s); // моястрока</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание, если хотя бы один операнд является строкой, то второй будет также преобразован в строку.</p>
+<p>Например:</p>
+<div id="v5rfsm7wjj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '1' + 2 ); // &quot;12&quot;
+alert( 2 + '1' ); // &quot;21&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видите, не важно, первый или второй операнд является строкой.</p>
+<p>Вот пример посложнее:</p>
+<div id="gpyjzkvl1d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(2 + 2 + '1' ); // будет &quot;41&quot;, а не &quot;221&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь операторы работают один за другим. Первый <code>+</code> складывает два числа и возвращает <code>4</code>, затем следующий <code>+</code> объединяет результат со строкой, производя действие <code>4 + '1' = '41'</code>.</p>
+<p>Сложение и преобразование строк — это особенность бинарного плюса <code>+</code>. Другие арифметические операторы работают только с числами и всегда преобразуют операнды в числа.</p>
+<p>Например, вычитание и деление:</p>
+<div id="eo9v58qfly" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 6 - '2' ); // 4, '2' приводится к числу
+alert( '6' / '2' ); // 3, оба операнда приводятся к числам</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="privedenie-k-chislu-unarnyy" href="#privedenie-k-chislu-unarnyy">Приведение к числу, унарный +</a></h2><p>Плюс <code>+</code> существует в двух формах: бинарной, которую мы использовали выше, и унарной.</p>
+<p>Унарный, то есть применённый к одному значению, плюс <code>+</code> ничего не делает с числами. Но если операнд не число, унарный плюс преобразует его в число.</p>
+<p>Например:</p>
+<div id="g6yfeqn8so" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Не влияет на числа
+let x = 1;
+alert( +x ); // 1
+
+let y = -2;
+alert( +y ); // -2
+
+// Преобразует не числа в числа
+alert( +true ); // 1
+alert( +&quot;&quot; );   // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На самом деле это то же самое, что и <code>Number(...)</code>, только короче.</p>
+<p>Необходимость преобразовывать строки в числа возникает очень часто. Например, обычно значения полей HTML-формы — это строки. А что, если их нужно, к примеру, сложить?</p>
+<p>Бинарный плюс сложит их как строки:</p>
+<div id="va7z6mhiyw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let apples = &quot;2&quot;;
+let oranges = &quot;3&quot;;
+
+alert( apples + oranges ); // &quot;23&quot;, так как бинарный плюс объединяет строки</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Поэтому используем унарный плюс, чтобы преобразовать к числу:</p>
+<div id="uymvzejnwl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let apples = &quot;2&quot;;
+let oranges = &quot;3&quot;;
+
+// оба операнда предварительно преобразованы в числа
+alert( +apples + +oranges ); // 5
+
+// более длинный вариант
+// alert( Number(apples) + Number(oranges) ); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>С точки зрения математика, такое изобилие плюсов выглядит странным. Но с точки зрения программиста тут нет ничего особенного: сначала выполнятся унарные плюсы, которые приведут строки к числам, а затем бинарный <code>'+'</code> их сложит.</p>
+<p>Почему унарные плюсы выполнились до бинарного сложения? Как мы сейчас увидим, дело в их приоритете.</p>
+<h2><a class="main__anchor" name="prioritet-operatorov" href="#prioritet-operatorov">Приоритет операторов</a></h2><p>В том случае, если в выражении есть несколько операторов – порядок их выполнения определяется <em>приоритетом</em>, или, другими словами, существует определённый порядок выполнения операторов.</p>
+<p>Из школы мы знаем, что умножение в выражении <code>1 + 2 * 2</code> выполнится раньше сложения. Это как раз и есть «приоритет». Говорят, что умножение имеет более высокий приоритет, чем сложение.</p>
+<p>Скобки важнее, чем приоритет, так что, если мы не удовлетворены порядком по умолчанию, мы можем использовать их, чтобы изменить приоритет. Например, написать <code>(1 + 2) * 2</code>.</p>
+<p>В JavaScript много операторов. Каждый оператор имеет соответствующий номер приоритета. Тот, у кого это число больше, – выполнится раньше. Если приоритет одинаковый, то порядок выполнения – слева направо.</p>
+<p>Отрывок из <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">таблицы приоритетов</a> (нет необходимости всё запоминать, обратите внимание, что приоритет унарных операторов выше, чем соответствующих бинарных):</p>
+<table>
+<thead>
+<tr>
+<th>Приоритет</th>
+<th>Название</th>
+<th>Обозначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>15</td>
+<td>унарный плюс</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>унарный минус</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td>возведение в степень</td>
+<td><code>**</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>умножение</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>деление</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>сложение</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>вычитание</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>присваивание</td>
+<td><code>=</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>Так как «унарный плюс» имеет приоритет <code>15</code>, который выше, чем <code>12</code> у «сложения» (бинарный плюс), то в выражении <code>&quot;+apples + +oranges&quot;</code> сначала выполнятся унарные плюсы, а затем сложение.</p>
+<h2><a class="main__anchor" name="prisvaivanie" href="#prisvaivanie">Присваивание</a></h2><p>Давайте отметим, что в таблице приоритетов также есть оператор присваивания <code>=</code>. У него один из самых низких приоритетов: <code>2</code>.</p>
+<p>Именно поэтому, когда переменной что-либо присваивают, например, <code>x = 2 * 2 + 1</code>, то сначала выполнится арифметика, а уже затем произойдёт присваивание <code>=</code> с сохранением результата в <code>x</code>.</p>
+<div id="vybp1e1uxl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 2 * 2 + 1;
+
+alert( x ); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="prisvaivanie-vozvraschaet-znachenie" href="#prisvaivanie-vozvraschaet-znachenie">Присваивание = возвращает значение</a></h3><p>Тот факт, что <code>=</code> является оператором, а не «магической» конструкцией языка, имеет интересные последствия.</p>
+<p>Большинство операторов в JavaScript возвращают значение. Для некоторых это очевидно, например сложение <code>+</code> или умножение <code>*</code>. Но и оператор присваивания не является исключением.</p>
+<p>Вызов <code>x = value</code> записывает <code>value</code> в <code>x</code> <em>и возвращает его</em>.</p>
+<p>Благодаря этому присваивание можно использовать как часть более сложного выражения:</p>
+<div id="b5liwxle8f" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1;
+let b = 2;
+
+let c = 3 - (a = b + 1);
+
+alert( a ); // 3
+alert( c ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В примере выше результатом <code>(a = b + 1)</code> будет значение, которое присваивается переменной <code>a</code> (то есть <code>3</code>). Потом оно используется для дальнейших вычислений.</p>
+<p>Забавное применение присваивания, не так ли? Нам нужно понимать, как это работает, потому что иногда это можно увидеть в JavaScript-библиотеках.</p>
+<p>Однако писать самим в таком стиле не рекомендуется. Такие трюки не сделают ваш код более понятным или читабельным.</p>
+<h3><a class="main__anchor" name="prisvaivanie-po-tsepochke" href="#prisvaivanie-po-tsepochke">Присваивание по цепочке</a></h3><p>Рассмотрим ещё одну интересную возможность: цепочку присваиваний.</p>
+<div id="6uoob58plh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a, b, c;
+
+a = b = c = 2 + 2;
+
+alert( a ); // 4
+alert( b ); // 4
+alert( c ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такое присваивание работает справа налево. Сначала вычисляется самое правое выражение <code>2 + 2</code>, и затем результат присваивается переменным слева: <code>c</code>, <code>b</code> и <code>a</code>. В конце у всех переменных будет одно значение.</p>
+<p>Опять-таки, чтобы код читался легче, лучше разделять подобные конструкции на несколько строчек:</p>
+<div id="mtn5zqor0k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>c = 2 + 2;
+b = c;
+a = c;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Польза от такого стиля особенно ощущается при быстром просмотре кода.</p>
+<h2><a class="main__anchor" name="sokraschyonnaya-arifmetika-s-prisvaivaniem" href="#sokraschyonnaya-arifmetika-s-prisvaivaniem">Сокращённая арифметика с присваиванием</a></h2><p>Часто нужно применить оператор к переменной и сохранить результат в ней же.</p>
+<p>Например:</p>
+<div id="2do8qdttpy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+n = n + 5;
+n = n * 2;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эту запись можно укоротить при помощи совмещённых операторов <code>+=</code> и <code>*=</code>:</p>
+<div id="pbfo9xypzg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+n += 5; // теперь n = 7 (работает как n = n + 5)
+n *= 2; // теперь n = 14 (работает как n = n * 2)
+
+alert( n ); // 14</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Подобные краткие формы записи существуют для всех арифметических и побитовых операторов: <code>/=</code>, <code>-=</code> и так далее.</p>
+<p>Вызов с присваиванием имеет в точности такой же приоритет, как обычное присваивание, то есть выполнится после большинства других операций:</p>
+<div id="aqr8bbk5up" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+
+n *= 3 + 5;
+
+alert( n ); // 16  (сначала выполнится правая часть, выражение идентично n *= 8)</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="inkrement-dekrement" href="#inkrement-dekrement">Инкремент/декремент</a></h2><!-- Не получается использовать -- в заголовке, так как парсер превращает -- в длинное тире – -->
+<p>Одной из наиболее частых числовых операций является увеличение или уменьшение на единицу.</p>
+<p>Для этого существуют даже специальные операторы:</p>
+<ul>
+<li>
+<p><strong>Инкремент</strong> <code>++</code> увеличивает переменную на 1:</p>
+<div id="ryeexl6exi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 2;
+counter++;        // работает как counter = counter + 1, просто запись короче
+alert( counter ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><strong>Декремент</strong> <code>--</code> уменьшает переменную на 1:</p>
+<div id="0yenrj6gn1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 2;
+counter--;        // работает как counter = counter - 1, просто запись короче
+alert( counter ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Важно:</span></div>
+            <div class="important__content"><p>Инкремент/декремент можно применить только к переменной. Попытка использовать его на значении, типа 5++, приведёт к ошибке.</p>
+</div></div>
+<p>Операторы <code>++</code> и <code>--</code> могут быть расположены не только после, но и до переменной.</p>
+<ul>
+<li>Когда оператор идёт после переменной — это «постфиксная форма»: <code>counter++</code>.</li>
+<li>«Префиксная форма» — это когда оператор идёт перед переменной: <code>++counter</code>.</li>
+</ul>
+<p>Обе эти инструкции делают одно и то же: увеличивают <code>counter</code> на <code>1</code>.</p>
+<p>Есть ли разница между ними? Да, но увидеть её мы сможем, только если будем использовать значение, которое возвращают <code>++/--</code>.</p>
+<p>Давайте проясним этот момент. Как мы знаем, все операторы возвращают значение. Операторы инкремента/декремента не исключение. Префиксная форма возвращает новое значение, в то время как постфиксная форма возвращает старое (до увеличения/уменьшения числа).</p>
+<p>Чтобы увидеть разницу, вот небольшой пример:</p>
+<div id="m1pjp7ccsx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:14}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+let a = ++counter; // (*)
+
+alert(a); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В строке <code>(*)</code> <em>префиксная</em> форма <code>++counter</code> увеличивает <code>counter</code> и возвращает новое значение <code>2</code>. Так что <code>alert</code> покажет <code>2</code>.</p>
+<p>Теперь посмотрим на постфиксную форму:</p>
+<div id="rqei2gbfsz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:14}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+let a = counter++; // (*) меняем ++counter на counter++
+
+alert(a); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В строке <code>(*)</code> <em>постфиксная</em> форма <code>counter++</code> также увеличивает <code>counter</code>, но возвращает <em>старое</em> значение (которое было до увеличения). Так что <code>alert</code> покажет <code>1</code>.</p>
+<p>Подведём итоги:</p>
+<ul>
+<li>
+<p>Если результат оператора не используется, а нужно только увеличить/уменьшить переменную, тогда без разницы, какую форму использовать:</p>
+<div id="whew448ypn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+counter++;
+++counter;
+alert( counter ); // 2, обе строки сделали одно и то же</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Если хочется тут же использовать результат, то нужна префиксная форма:</p>
+<div id="6hcchtdevl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+alert( ++counter ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Если нужно увеличить и при этом получить значение переменной <em>до увеличения</em> – нужна постфиксная форма:</p>
+<div id="py545e7fv5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+alert( counter++ ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Инкремент/декремент можно использовать в любых выражениях</span></div>
+            <div class="important__content"><p>Операторы <code>++/--</code> могут также использоваться внутри выражений. Их приоритет выше, чем у большинства других арифметических операций.</p>
+<p>Например:</p>
+<div id="j4hk71qqbt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * ++counter ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Сравните с:</p>
+<div id="9875vtfnia" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * counter++ ); // 2, потому что counter++ возвращает &quot;старое&quot; значение</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Хотя технически здесь всё в порядке, такая запись обычно делает код менее читабельным. Одна строка выполняет множество действий – нехорошо.</p>
+<p>При беглом чтении кода можно с лёгкостью пропустить такой <code>counter++</code>, и будет неочевидно, что переменная увеличивается.</p>
+<p>Лучше использовать стиль «одна строка – одно действие»:</p>
+<div id="fohn2aovze" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * counter );
+counter++;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="pobitovye-operatory" href="#pobitovye-operatory">Побитовые операторы</a></h2><p>Побитовые операторы работают с 32-разрядными целыми числами (при необходимости приводят к ним), на уровне их внутреннего двоичного представления.</p>
+<p>Эти операторы не являются чем-то специфичным для JavaScript, они поддерживаются в большинстве языков программирования.</p>
+<p>Поддерживаются следующие побитовые операторы:</p>
+<ul>
+<li>AND(и) ( <code>&amp;</code> )</li>
+<li>OR(или) ( <code>|</code> )</li>
+<li>XOR(побитовое исключающее или) ( <code>^</code> )</li>
+<li>NOT(не) ( <code>~</code> )</li>
+<li>LEFT SHIFT(левый сдвиг) ( <code>&lt;&lt;</code> )</li>
+<li>RIGHT SHIFT(правый сдвиг) ( <code>&gt;&gt;</code> )</li>
+<li>ZERO-FILL RIGHT SHIFT(правый сдвиг с заполнением нулями) ( <code>&gt;&gt;&gt;</code> )</li>
+</ul>
+<p>Они используются редко, когда возникает необходимость оперировать с числами на очень низком (побитовом) уровне. В ближайшем времени они нам не понадобятся, так как веб-разработчики редко к ним прибегают, хотя в некоторых сферах (например, в криптографии) они полезны. Можете прочитать <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Expressions_and_Operators#%D0%91%D0%B8%D1%82%D0%BE%D0%B2%D1%8B%D0%B5_%D0%BF%D0%BE%D1%80%D0%B0%D0%B7%D1%80%D1%8F%D0%B4%D0%BD%D1%8B%D0%B5_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B">раздел о них</a> на MDN, когда возникнет реальная необходимость.</p>
+<h2><a class="main__anchor" name="operator-zapyataya" href="#operator-zapyataya">Оператор «запятая»</a></h2><p>Оператор «запятая» (<code>,</code>) редко применяется и является одним из самых необычных. Иногда он используется для написания более короткого кода, поэтому нам нужно знать его, чтобы понимать, что при этом происходит.</p>
+<p>Оператор «запятая» предоставляет нам возможность вычислять несколько выражений, разделяя их запятой <code>,</code>. Каждое выражение выполняется, но возвращается результат только последнего.</p>
+<p>Например:</p>
+<div id="irk5thq2ci" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = (1 + 2, 3 + 4);
+
+alert( a ); // 7 (результат вычисления 3 + 4)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Первое выражение <code>1 + 2</code> выполняется, а результат отбрасывается. Затем идёт <code>3 + 4</code>, выражение выполняется и возвращается результат.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Запятая имеет очень низкий приоритет</span></div>
+            <div class="important__content"><p>Пожалуйста, обратите внимание, что оператор <code>,</code> имеет очень низкий приоритет, ниже <code>=</code>, поэтому скобки важны в приведённом выше примере.</p>
+<p>Без них в <code>a = 1 + 2, 3 + 4</code> сначала выполнится <code>+</code>, суммируя числа в <code>a = 3, 7</code>, затем оператор присваивания <code>=</code> присвоит <code>a = 3</code>, а то, что идёт дальше, будет игнорировано. Всё так же, как в <code>(a = 1 + 2), 3 + 4</code>.</p>
+</div></div>
+<p>Зачем нам оператор, который отбрасывает всё, кроме последнего выражения?</p>
+<p>Иногда его используют в составе более сложных конструкций, чтобы сделать несколько действий в одной строке.</p>
+<p>Например:</p>
+<div id="338e6wqpkl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:5,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// три операции в одной строке
+for (a = 1, b = 3, c = a * b; a &lt; 10; a++) {
+ ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Такие трюки используются во многих JavaScript-фреймворках. Вот почему мы упоминаем их. Но обычно они не улучшают читабельность кода, поэтому стоит хорошо подумать, прежде чем их использовать.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#postfiksnaya-i-prefiksnaya-formy" name="postfiksnaya-i-prefiksnaya-formy">Постфиксная и префиксная формы</a></h3><a class="task__open-link" href="task/increment-order.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Чему будут равны переменные <code>a</code>, <code>b</code>, <code>c</code> и <code>d</code> в примере ниже?</p>
+<div id="cj2doyxzfo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1, b = 1;
+
+let c = ++a; // ?
+let d = b++; // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Ответ:</p>
+<ul>
+<li><code>a = 2</code></li>
+<li><code>b = 2</code></li>
+<li><code>c = 2</code></li>
+<li><code>d = 1</code></li>
+</ul>
+<div id="o1ab6yp6dz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1, b = 1;
+
+alert( ++a ); // 2, префиксная форма возвращает новое значение
+alert( b++ ); // 1, постфиксная форма возвращает старое значение
+
+alert( a ); // 2, значение увеличено один раз
+alert( b ); // 2, значение увеличено один раз</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#rezultat-prisvaivaniya" name="rezultat-prisvaivaniya">Результат присваивания</a></h3><a class="task__open-link" href="task/assignment-result.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 3</span></div><div class="task__content"><div class="task__formatted"><p>Чему будут равны переменные <code>a</code> и <code>x</code> после исполнения кода в примере ниже?</p>
+<div id="jy2wc51a8d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 2;
+
+let x = 1 + (a *= 2);</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Ответ:</p>
+<ul>
+<li><code>a = 4</code> (умножено на 2)</li>
+<li><code>x = 5</code> (вычислено как 1 + 4)</li>
+</ul>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#preobrazovanie-tipov" name="preobrazovanie-tipov">Преобразование типов</a></h3><a class="task__open-link" href="task/primitive-conversions-questions.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Какой результат будет у выражений ниже?</p>
+<div id="pv4fk8nt6m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;&quot; + 1 + 0
+&quot;&quot; - 1 + 0
+true + false
+6 / &quot;3&quot;
+&quot;2&quot; * &quot;3&quot;
+4 + 5 + &quot;px&quot;
+&quot;$&quot; + 4 + 5
+&quot;4&quot; - 2
+&quot;4px&quot; - 2
+&quot;  -9  &quot; + 5
+&quot;  -9  &quot; - 5
+null + 1
+undefined + 1
+&quot; \t \n&quot; - 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Подумайте как следует, запишите ответы и сверьтесь с решением.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="i52ejw354z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;&quot; + 1 + 0 = &quot;10&quot; // (1)
+&quot;&quot; - 1 + 0 = -1 // (2)
+true + false = 1
+6 / &quot;3&quot; = 2
+&quot;2&quot; * &quot;3&quot; = 6
+4 + 5 + &quot;px&quot; = &quot;9px&quot;
+&quot;$&quot; + 4 + 5 = &quot;$45&quot;
+&quot;4&quot; - 2 = 2
+&quot;4px&quot; - 2 = NaN
+&quot;  -9  &quot; + 5 = &quot;  -9  5&quot; // (3)
+&quot;  -9  &quot; - 5 = -14 // (4)
+null + 1 = 1 // (5)
+undefined + 1 = NaN // (6)
+&quot; \t \n&quot; - 2 = -2 // (7)</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>Сложение со строкой <code>&quot;&quot; + 1</code> преобразует <code>1</code> к строке: <code>&quot;&quot; + 1 = &quot;1&quot;</code>, и в следующем случае <code>&quot;1&quot; + 0</code> работает то же самое правило.</li>
+<li>Вычитание <code>-</code> (как и большинство математических операторов) работает только с числами, пустая строка <code>&quot;&quot;</code> приводится к <code>0</code>.</li>
+<li>Сложение со строкой превращает число <code>5</code> в строку и добавляет к строке.</li>
+<li>Вычитание всегда преобразует к числу, значит строка <code>&quot; -9 &quot;</code> становится числом <code>-9</code> (пробелы по краям обрезаются).</li>
+<li><code>null</code> становится <code>0</code> после численного преобразования.</li>
+<li><code>undefined</code> становится <code>NaN</code> после численного преобразования.</li>
+<li>Пробельные символы, такие как <code>\t</code> и <code>\n</code>, по краям строки игнорируются при преобразовании в число, так что строка <code>&quot; \t \n&quot;</code>, аналогично пустой строке, становится <code>0</code> после численного преобразования.</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ispravte-slozhenie" name="ispravte-slozhenie">Исправьте сложение</a></h3><a class="task__open-link" href="task/fix-prompt.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Ниже приведён код, который запрашивает у пользователя два числа и показывает их сумму.</p>
+<p>Он работает неправильно. Код в примере выводит <code>12</code> (для значения полей по умолчанию).</p>
+<p>В чём ошибка? Исправьте её. Результат должен быть <code>3</code>.</p>
+<div id="wbrho5x7n4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = prompt(&quot;Первое число?&quot;, 1);
+let b = prompt(&quot;Второе число?&quot;, 2);
+
+alert(a + b); // 12</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Причина в том, что окно запроса возвращает пользовательский ввод как строку.</p>
+<p>Поэтому переменные получают значения <code>&quot;1&quot;</code> и <code>&quot;2&quot;</code> соответственно.</p>
+<div id="vhqmkcz7rm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = &quot;1&quot;; // prompt(&quot;Первое число?&quot;, 1);
+let b = &quot;2&quot;; // prompt(&quot;Второе число?&quot;, 2);
+
+alert(a + b); // 12</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Нам нужно привести строки к числам перед применением оператора <code>+</code>. Например, с помощью <code>Number()</code> или вставки <code>+</code> перед ними.</p>
+<p>Вставить <code>+</code> можно прямо перед <code>prompt</code>:</p>
+<div id="zd92wempmr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = +prompt(&quot;Первое число?&quot;, 1);
+let b = +prompt(&quot;Второе число?&quot;, 2);
+
+alert(a + b); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или внутри <code>alert</code>:</p>
+<div id="t55ld3sel3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = prompt(&quot;Первое число?&quot;, 1);
+let b = prompt(&quot;Второе число?&quot;, 2);
+
+alert(+a + +b); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В последнем варианте унарный и бинарный <code>+</code> используются вместе. Выглядит забавно, правда?</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="type-conversions.html" data-tooltip="Преобразование типов"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="comparison.html" data-tooltip="Операторы сравнения"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/operators","identifier":"\/operators"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="first-steps.html">Основы JavaScript</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#terminy-unarnyy-binarnyy-operand">Термины: «унарный», «бинарный», «операнд»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#matematika">Математика</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#slozhenie-strok-pri-pomoschi-binarnogo">Сложение строк при помощи бинарного +</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#privedenie-k-chislu-unarnyy">Приведение к числу, унарный +</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#prioritet-operatorov">Приоритет операторов</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#prisvaivanie">Присваивание</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sokraschyonnaya-arifmetika-s-prisvaivaniem">Сокращённая арифметика с присваиванием</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#inkrement-dekrement">Инкремент/декремент</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#pobitovye-operatory">Побитовые операторы</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#operator-zapyataya">Оператор «запятая»</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Foperators" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/02-first-steps/08-operators" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/operators by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:30:44 GMT -->
+</html>

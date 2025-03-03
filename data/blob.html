@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/blob by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Blob</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="blob.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Blob"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Blob"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="text-decoder.html"><link rel="next" href="file.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Blob"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/blob"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/blob"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/blob"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/blob"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/blob"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/blob"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/blob"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/blob"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="blob.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/blob"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/blob"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/blob"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/blob">عربي</option><option value="https://javascript.info/blob">English</option><option value="https://es.javascript.info/blob">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/blob">Français</option><option value="https://id.javascript.info/blob">Indonesia</option><option value="https://it.javascript.info/blob">Italiano</option><option value="https://ja.javascript.info/blob">日本語</option><option value="https://ko.javascript.info/blob">한국어</option><option value="https://learn.javascript.ru/blob" selected>Русский</option><option value="https://tr.javascript.info/blob">Türkçe</option><option value="https://uk.javascript.info/blob">Українська</option><option value="https://zh.javascript.info/blob">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="4" data-tooltip="Урок 3 из 4"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="binary.html"><span>Бинарные данные и файлы</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Бинарные данные и файлы","item":"https://learn.javascript.ru/binary"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 14 декабря 2021 г."><div class="updated-at__content">14 декабря 2021 г.</div></div></div><h1 class="main__header-title">Blob</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Blob"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><code>ArrayBuffer</code> и бинарные массивы являются частью ECMA-стандарта и, соответственно, частью JavaScript.</p>
+<p>Кроме того, в браузере имеются дополнительные высокоуровневые объекты, описанные в <a href="https://www.w3.org/TR/FileAPI/">File API</a>.</p>
+<p>Объект <code>Blob</code> состоит из необязательной строки <code>type</code> (обычно MIME-тип) и <code>blobParts</code> – последовательности других объектов <code>Blob</code>, строк и <code>BufferSource</code>.</p>
+<figure><div class="image" style="width:659px">
+      <div class="image__ratio" style="padding-top:16.84370257966616%"></div>
+      <object type="image/svg+xml" data="article/blob/blob.svg" width="659" height="111" class="image__image" data-use-theme>
+        <img src="article/blob/blob.svg" alt="" width="659" height="111">
+      </object>
+      </div></figure><p>Благодаря <code>type</code> мы можем загружать и скачивать Blob-объекты, где <code>type</code> естественно становится <code>Content-Type</code> в сетевых запросах.</p>
+<p>Конструктор имеет следующий синтаксис:</p>
+<div id="gafm3qqq2e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Blob(blobParts, options);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>blobParts</code></strong> – массив значений <code>Blob</code>/<code>BufferSource</code>/<code>String</code>.</li>
+<li><strong><code>options</code></strong> – необязательный объект с дополнительными настройками:
+<ul>
+<li><strong><code>type</code></strong> – тип объекта, обычно MIME-тип, например. <code>image/png</code>,</li>
+<li><strong><code>endings</code></strong> – если указан, то окончания строк создаваемого <code>Blob</code> будут изменены в соответствии с текущей операционной системой (<code>\r\n</code> или <code>\n</code>). По умолчанию <code>&quot;transparent&quot;</code> (ничего не делать), но также может быть <code>&quot;native&quot;</code> (изменять).</li>
+</ul>
+</li>
+</ul>
+<p>Например:</p>
+<div id="rfcjrsw0ox" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// создадим Blob из строки
+let blob = new Blob([&quot;&lt;html&gt;…&lt;/html&gt;&quot;], {type: 'text/html'});
+// обратите внимание: первый аргумент должен быть массивом [...]</code></pre>
+        </div>
+      </div>
+      
+      </div><div id="jli93tkctv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// создадим Blob из типизированного массива и строк
+let hello = new Uint8Array([72, 101, 108, 108, 111]); // &quot;hello&quot; в бинарной форме
+
+let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем получить срез Blob, используя:</p>
+<div id="osfha87k2z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>blob.slice([byteStart], [byteEnd], [contentType]);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>byteStart</code></strong> – стартовая позиция байта, по умолчанию 0.</li>
+<li><strong><code>byteEnd</code></strong> – последний байт, по умолчанию до конца.</li>
+<li><strong><code>contentType</code></strong> – тип <code>type</code> создаваемого Blob-объекта, по умолчанию такой же, как и исходный.</li>
+</ul>
+<p>Аргументы – как в <code>array.slice</code>, отрицательные числа также разрешены.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Blob не изменяем (immutable)</span></div>
+            <div class="important__content"><p>Мы не можем изменять данные напрямую в Blob, но мы можем делать срезы и создавать новый Blob на их основе, объединять несколько объектов в новый и так далее.</p>
+<p>Это поведение аналогично JavaScript-строке: мы не можем изменить символы в строке, но мы можем создать новую исправленную строку на базе имеющейся.</p>
+</div></div>
+<h2><a class="main__anchor" name="blob-kak-url" href="#blob-kak-url">Blob как URL</a></h2><p>Blob может быть использован как URL для <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code> или других тегов, для показа содержимого.</p>
+<p>Давайте начнём с простого примера. При клике на ссылку мы загружаем динамически генерируемый Blob с <code>hello world</code> содержимым как файл:</p>
+<div id="h01dndhymc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- download атрибут указывает браузеру делать загрузку вместо навигации --&gt;
+&lt;a download=&quot;hello.txt&quot; href='#' id=&quot;link&quot;&gt;Загрузить&lt;/a&gt;
+
+&lt;script&gt;
+let blob = new Blob([&quot;Hello, world!&quot;], {type: 'text/plain'});
+
+link.href = URL.createObjectURL(blob);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы также можем создать ссылку динамически, используя только JavaScript, и эмулировать на ней клик, используя <code>link.click()</code>, тогда загрузка начнётся автоматически.</p>
+<p>Далее простой пример создания «на лету» и загрузки Blob-объекта, без использования HTML:</p>
+<div id="qbpsy1qddo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let link = document.createElement('a');
+link.download = 'hello.txt';
+
+let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+
+link.href = URL.createObjectURL(blob);
+
+link.click();
+
+URL.revokeObjectURL(link.href);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong><code>URL.createObjectURL</code> берёт Blob и создаёт уникальный URL для него в формате <code>blob:&lt;origin&gt;/&lt;uuid&gt;</code>.</strong></p>
+<p>Вот как выглядит сгенерированный URL:</p>
+<div id="qzbtbc3rgc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>blob:https://javascript.info/1e67e00e-860d-40a5-89ae-6ab0cbee6273</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Браузер для каждого URL, сгенерированного через <code>URL.createObjectURL</code>, сохраняет внутреннее соответствие URL → <code>Blob</code>. Таким образом, такие URL короткие, но дают доступ к большому объекту <code>Blob</code>.</p>
+<p>Сгенерированный url действителен, только пока текущий документ открыт. Это позволяет ссылаться на сгенерированный в нём Blob в <code>&lt;img&gt;</code>, <code>&lt;a&gt;</code> или в любом другом объекте, где ожидается url в качестве одного из параметров.</p>
+<p>В данном случае возможен побочный эффект. Пока в карте соответствия существует ссылка на Blob, он находится в памяти. Браузер не может освободить память, занятую Blob-объектом.</p>
+<p>Ссылка в карте соответствия автоматически удаляется при выгрузке документа, после этого также освобождается память. Но если приложение имеет длительный жизненный цикл, это может произойти не скоро. Таким образом, если мы создадим URL для Blob, он будет висеть в памяти, даже если в нём нет больше необходимости.</p>
+<p><strong><code>URL.revokeObjectURL(url)</code> удаляет внутреннюю ссылку на объект, что позволяет удалить его (если нет другой ссылки) сборщику мусора, и память будет освобождена.</strong></p>
+<p>В последнем примере мы использовали Blob только единожды, для мгновенной загрузки, после мы сразу же вызвали <code>URL.revokeObjectURL(link.href)</code>.</p>
+<p>В предыдущем примере с кликабельной HTML-ссылкой мы не вызывали <code>URL.revokeObjectURL(link.href)</code>, потому что это сделало бы ссылку недействительной. После удаления внутренней ссылки на <code>Blob</code>, URL больше не будет работать.</p>
+<h2><a class="main__anchor" name="blob-to-base64" href="#blob-to-base64">Blob to base64</a></h2><p>Альтернатива <code>URL.createObjectURL</code> – конвертация Blob-объекта в строку с кодировкой base64.</p>
+<p>Эта кодировка представляет двоичные данные в виде строки с безопасными для чтения символами в ASCII-кодах от 0 до 64. И что более важно – мы можем использовать эту кодировку для «data-urls».</p>
+<p><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">data url</a> имеет форму <code>data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</code>. Мы можем использовать такой url где угодно наряду с «обычным» url.</p>
+<p>Например, смайлик:</p>
+<div id="mtrdx5ydey" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;img src=&quot;data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Браузер декодирует строку и показывает смайлик: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7"></p>
+<p>Для трансформации Blob в base64 мы будем использовать встроенный в браузер объект типа <code>FileReader</code>. Он может читать данные из Blob в множестве форматов. В <a href="file.html">следующей главе</a> мы рассмотрим это более глубоко.</p>
+<p>Вот пример загрузки Blob при помощи base64:</p>
+<div id="sjozks64c2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let link = document.createElement('a');
+link.download = 'hello.txt';
+
+let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+
+let reader = new FileReader();
+reader.readAsDataURL(blob); // конвертирует Blob в base64 и вызывает onload
+
+reader.onload = function() {
+  link.href = reader.result; // url с данными
+  link.click();
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Оба варианта могут быть использованы для создания URL с Blob. Но обычно <code>URL.createObjectURL(blob)</code> является более быстрым и безопасным.</p>
+<div class="balance"><div class="balance__pluses">
+      <div class="balance__content">
+      <div class="balance__title">URL.createObjectURL(blob)</div><ul class="balance__list"><li>Нужно отзывать объект для освобождения памяти.</li>
+<li>Прямой доступ к Blob, без «кодирования/декодирования».</li>
+</ul></div></div><div class="balance__minuses">
+      <div class="balance__content">
+      <div class="balance__title">Blob to data url</div><ul class="balance__list"><li>Нет необходимости что-либо отзывать.</li>
+<li>Потеря производительности и памяти при декодировании больших Blob-объектов.</li>
+</ul></div></div></div><h2><a class="main__anchor" name="izobrazhenie-v-blob" href="#izobrazhenie-v-blob">Изображение в Blob</a></h2><p>Мы можем создать Blob для изображения, части изображения или даже создать скриншот страницы. Что удобно для последующей загрузки куда-либо.</p>
+<p>Операции с изображениями выполняются через элемент <code>&lt;canvas&gt;</code>:</p>
+<ol>
+<li>Для отрисовки изображения (или его части) на холсте (canvas) используется <a href="https://developer.mozilla.org/ru/docs/Web/API/CanvasRenderingContext2D/drawImage">canvas.drawImage</a>.</li>
+<li>Вызов canvas-метода <a href="https://developer.mozilla.org/ru/docs/Web/API/HTMLCanvasElement/toBlob">.toBlob(callback, format, quality)</a> создаёт Blob и вызывает функцию <code>callback</code> при завершении.</li>
+</ol>
+<p>В примере ниже изображение просто копируется, но мы можем взять его часть или трансформировать его на canvas перед созданием Blob:</p>
+<div id="t0do4oki8t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// берём любое изображение
+let img = document.querySelector('img');
+
+// создаём &lt;canvas&gt; того же размера
+let canvas = document.createElement('canvas');
+canvas.width = img.clientWidth;
+canvas.height = img.clientHeight;
+
+let context = canvas.getContext('2d');
+
+// копируем изображение в  canvas (метод позволяет вырезать часть изображения)
+context.drawImage(img, 0, 0);
+// мы можем вращать изображение при помощи context.rotate() и делать множество других преобразований
+
+// toBlob является асинхронной операцией, для которой callback-функция вызывается при завершении
+canvas.toBlob(function(blob) {
+  // после того, как Blob создан, загружаем его
+  let link = document.createElement('a');
+  link.download = 'example.png';
+
+  link.href = URL.createObjectURL(blob);
+  link.click();
+
+  // удаляем внутреннюю ссылку на Blob, что позволит браузеру очистить память
+  URL.revokeObjectURL(link.href);
+}, 'image/png');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или если вы предпочитаете <code>async/await</code> вместо колбэка:</p>
+<div id="h3wj6j7c3h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let blob = await new Promise(resolve =&gt; canvasElem.toBlob(resolve, 'image/png'));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Для создания скриншота страницы мы можем использовать такую библиотеку, как  <a href="https://github.com/niklasvh/html2canvas">https://github.com/niklasvh/html2canvas</a>. Всё, что она делает, это просто проходит страницу и отрисовывает её в <code>&lt;canvas&gt;</code>. После этого мы может получить Blob одним из вышеуказанных способов.</p>
+<h2><a class="main__anchor" name="iz-blob-v-arraybuffer" href="#iz-blob-v-arraybuffer">Из Blob в ArrayBuffer</a></h2><p>Конструктор <code>Blob</code> позволяет создать Blob-объект практически из чего угодно, включая <code>BufferSource</code>.</p>
+<p>Но если нам нужна производительная низкоуровневая обработка, мы можем использовать <code>ArrayBuffer</code> из <code>FileReader</code>:</p>
+<div id="ftysw4j2gz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// получаем arrayBuffer из Blob
+let fileReader = new FileReader();
+
+fileReader.readAsArrayBuffer(blob);
+
+fileReader.onload = function(event) {
+  let arrayBuffer = fileReader.result;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>В то время как <code>ArrayBuffer</code>, <code>Uint8Array</code> и другие <code>BufferSource</code> являются «бинарными данными», <a href="https://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</a> представляет собой «бинарные данные с типом».</p>
+<p>Это делает Blob удобным для операций загрузки/выгрузки данных, которые так часто используются в браузере.</p>
+<p>Методы, которые выполняют сетевые запросы, такие как <a href="xmlhttprequest.html">XMLHttpRequest</a>, <a href="fetch.html">fetch</a> и подобные, могут изначально работать с <code>Blob</code> так же, как и с другими объектами, представляющими двоичные данные.</p>
+<p>Мы можем легко конвертировать <code>Blob</code> в низкоуровневые бинарные типы данных и обратно:</p>
+<ul>
+<li>Мы можем создать Blob из типизированного массива, используя конструктор <code>new Blob(...)</code>.</li>
+<li>Мы можем обратно создать <code>ArrayBuffer</code> из Blob, используя <code>FileReader</code>, а затем создать его представление для низкоуровневых операций.</li>
+</ul>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="text-decoder.html" data-tooltip="TextDecoder и TextEncoder"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="file.html" data-tooltip="File и FileReader"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/blob","identifier":"\/blob"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="binary.html">Бинарные данные и файлы</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-kak-url">Blob как URL</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-to-base64">Blob to base64</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#izobrazhenie-v-blob">Изображение в Blob</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#iz-blob-v-arraybuffer">Из Blob в ArrayBuffer</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fblob" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/4-binary/03-blob" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/blob by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:21 GMT -->
+</html>

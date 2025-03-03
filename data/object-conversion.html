@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/object-conversion by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Преобразование объектов: toString и valueOf</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="object-conversion.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Преобразование объектов: toString и valueOf"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Преобразование объектов: toString и valueOf"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Преобразование объектов: toString и valueOf"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Преобразование объектов: toString и valueOf</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="object-toprimitive.html">https://learn.javascript.ru/object-toprimitive</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Преобразование объектов: toString и valueOf"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Ранее, в главе <a href="types-conversion.html">Преобразование типов для примитивов</a> мы рассматривали преобразование типов для примитивов. Теперь добавим в нашу картину мира объекты.</p>
+<p>Бывают операции, при которых объект должен быть преобразован в примитив.</p>
+<p>Например:</p>
+<ul>
+<li>Строковое преобразование – если объект выводится через <code>alert(obj)</code>.</li>
+<li>Численное преобразование – при арифметических операциях, сравнении с примитивом.</li>
+<li>Логическое преобразование – при <code>if(obj)</code> и других логических операциях.</li>
+</ul>
+<p>Рассмотрим эти преобразования по очереди.</p>
+<h2><a class="main__anchor" name="logicheskoe-preobrazovanie" href="#logicheskoe-preobrazovanie">Логическое преобразование</a></h2><p>Проще всего – с логическим преобразованием.</p>
+<p><strong>Любой объект в логическом контексте – <code>true</code>, даже если это пустой массив <code>[]</code> или объект <code>{}</code>.</strong></p>
+<div id="7w9hh1561s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if ({} &amp;&amp; []) {
+  alert( &quot;Все объекты - true!&quot; ); // alert сработает
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="strokovoe-preobrazovanie" href="#strokovoe-preobrazovanie">Строковое преобразование</a></h2><p>Строковое преобразование проще всего увидеть, если вывести объект при помощи <code>alert</code>:</p>
+<div id="06dztjnhls" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var user = {
+  firstName: 'Василий'
+};
+
+alert( user ); // [object Object]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, содержимое объекта не вывелось. Это потому, что стандартным строковым представлением пользовательского объекта является строка <code>&quot;[object Object]&quot;</code>.</p>
+<p>Такой вывод объекта не содержит интересной информации. Поэтому имеет смысл его поменять на что-то более полезное.</p>
+<p><strong>Если в объекте присутствует метод <code>toString</code>, который возвращает примитив, то он используется для преобразования.</strong></p>
+<div id="7jpxbr8olf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:11}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var user = {
+
+  firstName: 'Василий',
+
+  toString: function() {
+    return 'Пользователь ' + this.firstName;
+  }
+};
+
+alert( user );  // Пользователь Василий</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Результатом <code>toString</code> может быть любой примитив</span></div>
+            <div class="important__content"><p>Метод <code>toString</code> не обязан возвращать именно строку.</p>
+<p>Его результат может быть любого примитивного типа. Например, это может быть число, как в примере ниже:</p>
+<div id="2li9pog2oq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var obj = {
+  toString: function() {
+    return 123;
+  }
+};
+
+alert( obj ); // 123</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Поэтому мы и называем его здесь <em>«строковое преобразование»</em>, а не «преобразование к строке».</p>
+</div></div>
+<p>Все объекты, включая встроенные, имеют свои реализации метода <code>toString</code>, например:</p>
+<div id="xj1yxz5cqc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [1, 2] ); // toString для массивов выводит список элементов &quot;1,2&quot;
+alert( new Date ); // toString для дат выводит дату в виде строки
+alert( function() {} ); // toString для функции выводит её код</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="chislennoe-preobrazovanie" href="#chislennoe-preobrazovanie">Численное преобразование</a></h2><p>Для численного преобразования объекта используется метод <code>valueOf</code>, а если его нет – то <code>toString</code>:</p>
+<div id="co1fjam8bw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;cols&quot;:[{&quot;start&quot;:25,&quot;end&quot;:42}]},{&quot;start&quot;:9,&quot;cols&quot;:[{&quot;start&quot;:24,&quot;end&quot;:38}]},{&quot;start&quot;:7,&quot;cols&quot;:[{&quot;start&quot;:25,&quot;end&quot;:41}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var room = {
+  number: 777,
+
+  valueOf: function() { return this.number; },
+  toString: function() { return this.number; }
+};
+
+alert( +room );  // 777, вызвался valueOf
+
+delete room.valueOf; // valueOf удалён
+
+alert( +room );  // 777, вызвался toString</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Метод <code>valueOf</code> обязан возвращать примитивное значение, иначе его результат будет проигнорирован. При этом – не обязательно числовое.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">У большинства объектов нет <code>valueOf</code></span></div>
+            <div class="important__content"><p>У большинства встроенных объектов такого <code>valueOf</code> нет, поэтому численное и строковое преобразования для них работают одинаково.</p>
+<p>Исключением является объект <code>Date</code>, который поддерживает оба типа преобразований:</p>
+<div id="8ubo7mkkec" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( new Date() ); // toString: Дата в виде читаемой строки
+alert( +new Date() ); // valueOf: кол-во миллисекунд, прошедших с 01.01.1970</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Детали спецификации</span></div>
+            <div class="important__content"><p>Если посмотреть в стандарт, то в пункте <a href="https://es5.github.io/x15.2.html#x15.2.4.4">15.2.4.4</a> говорится о том, что <code>valueOf</code> есть у любых объектов. Но он ничего не делает, просто возвращает сам объект (непримитивное значение!), а потому игнорируется.</p>
+</div></div>
+<h2><a class="main__anchor" name="dve-stadii-preobrazovaniya" href="#dve-stadii-preobrazovaniya">Две стадии преобразования</a></h2><p>Итак, объект преобразован в примитив при помощи <code>toString</code> или <code>valueOf</code>.</p>
+<p>Но на этом преобразования не обязательно заканчиваются. Вполне возможно, что в процессе вычислений этот примитив будет преобразован во что-то другое.</p>
+<p>Например, рассмотрим применение к объекту операции <code>==</code>:</p>
+<div id="khxyv4jsz4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var obj = {
+  valueOf: function() {
+    return 1;
+  }
+};
+
+alert( obj == true ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Объект <code>obj</code> был сначала преобразован в примитив, используя численное преобразование, получилось <code>1 == true</code>.</p>
+<p>Далее, так как значения всё ещё разных типов, применяются правила преобразования примитивов, результат: <code>true</code>.</p>
+<p>То же самое – при сложении с объектом при помощи <code>+</code>:</p>
+<div id="69fqfi1stq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var obj = {
+  valueOf: function() {
+    return 1;
+  }
+};
+
+alert( obj + &quot;test&quot; ); // 1test</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или вот, для разности объектов:</p>
+<div id="pk2aafshnt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var a = {
+  valueOf: function() {
+    return &quot;1&quot;;
+  }
+};
+var b = {
+  valueOf: function() {
+    return &quot;2&quot;;
+  }
+};
+
+alert( a + b ); // &quot;12&quot;
+alert( a - b ); // &quot;1&quot; - &quot;2&quot; = -1</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Исключение: <code>Date</code></span></div>
+            <div class="important__content"><p>Объект <code>Date</code> по историческим причинам является исключением.</p>
+<p>Бинарный оператор плюс <code>+</code> обычно использует численное преобразование и метод <code>valueOf</code>. Как мы уже знаем, если  подходящего <code>valueOf</code> нет (а его нет у большинства объектов), то используется <code>toString</code>, так что в итоге преобразование происходит к строке. Но если есть <code>valueOf</code>, то используется <code>valueOf</code>. Выше в примере как раз <code>a + b</code> это демонстрируют.</p>
+<p>У объектов <code>Date</code> есть и <code>valueOf</code> – возвращает количество миллисекунд, и <code>toString</code> – возвращает строку с датой.</p>
+<p>…Но оператор <code>+</code> для <code>Date</code> использует именно <code>toString</code> (хотя должен бы <code>valueOf</code>).</p>
+<p>Это и есть исключение:</p>
+<div id="hor450avdu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// бинарный плюс для даты toString, для остальных объектов valueOf
+alert( new Date + &quot;&quot; ); // &quot;строка даты&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Других подобных исключений нет.</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Как испугать Java-разработчика</span></div>
+            <div class="important__content"><p>В языке Java (это не JavaScript, другой язык, здесь приведён для примера) логические значения можно создавать, используя синтаксис <code>new Boolean(true/false)</code>, например <code>new Boolean(true)</code>.</p>
+<p>В JavaScript тоже есть подобная возможность, которая возвращает «объектную обёртку» для логического значения.</p>
+<p>Эта возможность давно существует лишь для совместимости, она и не используется на практике, поскольку приводит к странным результатам. Некоторые из них могут сильно удивить человека, не привыкшего к JavaScript, например:</p>
+<div id="788u05g2l7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var value = new Boolean(false);
+if (value) {
+  alert( true ); // сработает!
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Почему запустился <code>alert</code>? Ведь в <code>if</code> находится <code>false</code>… Проверим:</p>
+<div id="n4fzl9g4j3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var value = new Boolean(false);
+
+alert( value ); // выводит false, все ок..
+
+if (value) {
+  alert( true ); // ..но тогда почему выполняется alert в if ?!?
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Дело в том, что <code>new Boolean</code> – это не примитивное значение, а объект. Поэтому в логическом контексте он преобразуется к <code>true</code>, в результате работает первый пример.</p>
+<p>А второй пример вызывает <code>alert</code>, который преобразует объект к строке, и он становится <code>&quot;false&quot;</code>.</p>
+<p><strong>В JavaScript вызовы <code>new Boolean/String/Number</code> не используются, а используются простые вызовы соответствующих функций, они преобразуют значение в примитив нужного типа, например <code>Boolean(val) === !!val</code>.</strong></p>
+</div></div>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>В логическом контексте объект – всегда <code>true</code>.</li>
+<li>При строковом преобразовании объекта используется его метод <code>toString</code>. Он должен возвращать примитивное значение, причём не обязательно именно строку.</li>
+<li>Для численного преобразования используется метод <code>valueOf</code>, который также может возвратить любое примитивное значение. У большинства объектов <code>valueOf</code> не работает (возвращает сам объект и потому игнорируется), при этом для численного преобразования используется <code>toString</code>.</li>
+</ul>
+<p>Полный алгоритм преобразований есть в спецификации ECMAScript, смотрите пункты <a href="https://es5.github.io/x11.html#x11.8.5">11.8.5</a>, <a href="https://es5.github.io/x11.html#x11.9.3">11.9.3</a>, а также <a href="https://es5.github.io/x9.html#x9.1">9.1</a> и <a href="https://es5.github.io/x9.html#x9.3">9.3</a>.</p>
+<p>Заметим, для полноты картины, что некоторые тесты знаний в интернет предлагают вопросы типа:</p>
+<div id="1tn9a0yqn3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{}[0]  // чему равно?
+{} + {} // а так?</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если вы запустите эти выражения в консоли, то результат может показаться странным. Подвох здесь в том, что если фигурные скобки <code>{...}</code> идут не в выражении, а в основном потоке кода, то JavaScript считает, что это не объект, а «блок кода» (как <code>if</code>, <code>for</code>, но без оператора просто группировка команд вместе используется редко).</p>
+<p>Вот блок кода с командой:</p>
+<div id="2jvz27mebw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{
+  alert(&quot;Блок&quot;)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>А если команду изъять, то будет пустой блок <code>{}</code>, который ничего не делает. Два примера выше как раз содержат пустой блок в начале, который ничего не делает. Иначе говоря:</p>
+<div id="mh6v48nlwe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{}[0]   // то же что и: [0]
+{} + {} // то же что и: + {}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, такие вопросы – не на преобразование типов, а на понимание, что если <code>{ ... }</code> находится вне выражений, то это не объект, а блок.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#x-x" name="x-x">['x'] == 'x'</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/array-equals-string" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Почему результат <code>true</code> ?</p>
+<div id="4d6lvhc3uh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( ['x'] == 'x' );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Если с одной стороны – объект, а с другой – нет, то сначала приводится объект.</p>
+<p>В данном случае сравнение означает численное приведение. У массивов нет <code>valueOf</code>, поэтому вызывается <code>toString</code>, который возвращает список элементов через запятую.</p>
+<p>В данном случае, элемент только один – он и возвращается. Так что <code>['x']</code> становится <code>'x'</code>. Получилось <code>'x' == 'x'</code>, верно.</p>
+<p>P.S.
+По той же причине верны равенства:</p>
+<div id="tbfsmlm3o2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( ['x', 'y'] == 'x,y' ); // true
+alert( [] == '' ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#preobrazovanie" name="preobrazovanie">Преобразование</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/tostring-valueof" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Объявлен объект с <code>toString</code> и <code>valueOf</code>.</p>
+<p>Какими будут результаты <code>alert</code>?</p>
+<div id="6um22whg4m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var foo = {
+  toString: function() {
+    return 'foo';
+  },
+  valueOf: function() {
+    return 2;
+  }
+};
+
+alert( foo );
+alert( foo + 1 );
+alert( foo + &quot;3&quot; );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Подумайте, прежде чем ответить.</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Первый alert(foo)</button><div class="task__answer-content"><h4 class="task__step-title">Первый alert(foo)</h4><div class="formatted"><p>Возвращает строковое представление объекта, используя <code>toString</code>, т.е. <code>&quot;foo&quot;</code>.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Второй alert(foo + 1)</button><div class="task__answer-content"><h4 class="task__step-title">Второй alert(foo + 1)</h4><div class="formatted"><p>Оператор <code>'+'</code> преобразует объект к примитиву, используя <code>valueOf</code>, так что результат: <code>3</code>.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Третий alert(foo + „3“)</button><div class="task__answer-content"><h4 class="task__step-title">Третий alert(foo + „3“)</h4><div class="formatted"><p>То же самое, что и предыдущий случай, объект превращается в примитив <code>2</code>. Затем происходит сложение <code>2 + '3'</code>. Оператор <code>'+'</code> при сложении чего-либо со строкой приводит и второй операнд к строке, а затем применяет конкатенацию, так что результат – строка <code>&quot;23&quot;</code>.</p>
+</div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#pochemu-neverno-a-verno" name="pochemu-neverno-a-verno">Почему [] == [] неверно, а [ ] == ![ ] верно?</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/compare-empty-arrays" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Почему первое равенство – неверно, а второе – верно?</p>
+<div id="jp3oee5j8c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [] == [] ); // false
+alert( [] == ![] ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Какие преобразования происходят при вычислении?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Ответ по первому равенству</button><div class="task__answer-content"><h4 class="task__step-title">Ответ по первому равенству</h4><div class="formatted"><p>Два объекта равны только тогда, когда это один и тот же объект.</p>
+<p>В первом равенстве создаются два массива, это разные объекты, так что они неравны.</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">Ответ по второму равенству</button><div class="task__answer-content"><h4 class="task__step-title">Ответ по второму равенству</h4><div class="formatted"><ol>
+<li>
+<p>Первым делом, обе части сравнения вычисляются. Справа находится <code>![]</code>. Логическое НЕ <code>'!'</code> преобразует аргумент к логическому типу. Массив является объектом, так что это <code>true</code>. Значит, правая часть становится <code>![] = !true = false</code>. Так что получили:</p>
+<div id="4x11hphwn5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [] == false );</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Проверка равенства между объектом и примитивом вызывает численное преобразование объекта.</p>
+<p>У массива нет <code>valueOf</code>, сработает <code>toString</code> и преобразует массив в список элементов, то есть – в пустую строку:</p>
+<div id="9fp2qa4cbd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '' == false );</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Сравнение различных типов вызывает численное преобразование слева и справа:</p>
+<div id="8zc83wac8l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 0 == 0 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь результат очевиден.</p>
+</li>
+</ol>
+</div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#voprosnik-po-preobrazovaniyam-dlya-obektov" name="voprosnik-po-preobrazovaniyam-dlya-obektov">Вопросник по преобразованиям, для объектов</a></h3><a class="task__open-link" href="https://learn.javascript.ru/task/object-types-conversion-questions" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Подумайте, какой результат будет у выражений ниже. Когда закончите – сверьтесь с решением.</p>
+<div id="tlyna7ng14" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Date(0) - 0
+new Array(1)[0] + &quot;&quot;
+({})[0]
+[1] + 1
+[1,2] + [3,4]
+[] + null + 1
+[[0]][0][0]
+({} + {})</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="00mwbcjcef" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Date(0) - 0 = 0 // (1)
+new Array(1)[0] + &quot;&quot; = &quot;undefined&quot; // (2)
+({})[0] = undefined // (3)
+[1] + 1 = &quot;11&quot; // (4)
+[1,2] + [3,4] = &quot;1,23,4&quot; // (5)
+[] + null + 1 = &quot;null1&quot; // (6)
+[[0]][0][0] = 0 // (7)
+({} + {}) = &quot;[object Object][object Object]&quot; // (8)</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p><code>new Date(0)</code> – дата, созданная по миллисекундам и соответствующая 0 мс от 1 января 1970 года 00:00:00 UTC. Оператор минус <code>-</code> преобразует дату обратно в число миллисекунд, то есть в <code>0</code>.</p>
+</li>
+<li>
+<p><code>new Array(num)</code> при вызове с единственным аргументом-числом создаёт массив данной длины, без элементов. Поэтому его нулевой элемент равен <code>undefined</code>, при сложении со строкой получается строка <code>&quot;undefined&quot;</code>.</p>
+</li>
+<li>
+<p>Фигурные скобки – это создание пустого объекта, у него нет свойства <code>'0'</code>. Так что значением будет <code>undefined</code>.
+Обратите внимание на внешние, круглые скобки. Если их убрать и запустить <code>{}[0]</code> в отладочной консоли браузера – будет <code>0</code>, т.к. скобки <code>{}</code> будут восприняты как пустой блок кода, после которого идёт массив.</p>
+</li>
+<li>
+<p>Массив преобразуется в строку <code>&quot;1&quot;</code>. Оператор <code>&quot;+&quot;</code> при сложении со строкой приводит второй аргумент к строке – значит будет <code>&quot;1&quot; + &quot;1&quot; = &quot;11&quot;</code>.</p>
+</li>
+<li>
+<p>Массивы приводятся к строке и складываются.</p>
+</li>
+<li>
+<p>Массив преобразуется в пустую строку <code>&quot;&quot; + null + 1</code>, оператор <code>&quot;+&quot;</code> видит, что слева строка и преобразует <code>null</code> к строке, получается <code>&quot;null&quot; + 1</code>, и в итоге <code>&quot;null1&quot;</code>.</p>
+</li>
+<li>
+<p><code>[[0]]</code> – это вложенный массив <code>[0]</code>  внутри внешнего <code>[ ]</code>. Затем мы берём от него нулевой элемент, и потом ещё раз.</p>
+<p>Если это непонятно, то посмотрите на такой пример:</p>
+<div id="w0yfjpkb7f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [1,[0],2][1] );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Квадратные скобки после массива/объекта обозначают не другой массив, а взятие элемента.</p>
+</li>
+<li>
+<p>Каждый объект преобразуется к примитиву. У встроенных объектов <code>Object</code> нет подходящего <code>valueOf</code>, поэтому используется <code>toString</code>, так что складываются в итоге строковые представления объектов.</p>
+</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fobject-conversion" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/object-conversion","identifier":"\/object-conversion"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/object-conversion by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:07 GMT -->
+</html>

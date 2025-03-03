@@ -1,0 +1,10 @@
+<svg width="51" height="48" viewBox="0 0 51 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Canvas" transform="translate(-4625 700)">
+        <g id="Vector">
+            <use xlink:href="#path0_fill" transform="translate(4625 -700)" fill="#404040"/>
+        </g>
+    </g>
+    <defs>
+        <path id="path0_fill" d="M 50.583 24L 44.9865 30.3498L 45.7399 38.852L 37.4529 40.6816L 33.148 48L 25.2915 44.6637L 17.435 48L 13.13 40.7892L 4.84305 38.852L 5.59641 30.3498L -2.12724e-08 24L 5.59641 17.5426L 4.84305 9.14798L 13.13 7.31839L 17.435 4.59193e-07L 25.2915 3.33632L 33.148 4.59193e-07L 37.4529 7.31839L 45.7399 9.14798L 44.9865 17.6502L 50.583 24Z"/>
+    </defs>
+</svg>

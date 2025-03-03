@@ -1,0 +1,648 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/drag-and-drop-plus by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Применяем ООП: Drag'n'Drop++</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="drag-and-drop-plus.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Применяем ООП: Drag'n'Drop++"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Применяем ООП: Drag'n'Drop++"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><script src="https://ru.js.cx/libs/getCoords.js"></script>
+<script>
+function getElementUnderClientXY(elem, clientX, clientY) {
+  var display = elem.style.display || '';
+  elem.style.display = 'none';
+
+  var target = document.elementFromPoint(clientX, clientY);
+
+  elem.style.display = display;
+
+  if (!target || target == document) {
+    target = document.body;
+  }
+
+  return target;
+}
+
+</script><meta property="og:title" content="Применяем ООП: Drag'n'Drop++"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Применяем ООП: Drag'n'Drop++</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Применяем ООП: Drag'n'Drop++"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Эта статья представляет собой продолжение главы <a href="drag-and-drop-objects.html">Мышь: Drag'n'Drop более глубоко</a>.
+Она посвящена более гибкой и расширяемой реализации переноса.</p>
+<p>Рекомендуется прочитать указанную главу перед тем, как двигаться дальше.</p>
+<p>В сложных приложениях Drag’n’Drop обладает рядом особенностей:</p>
+<ol>
+<li>
+<p>Перетаскиваются <em>элементы</em> из <em>зоны переноса <code>dragZone</code></em> в <em>зону-цель <code>dropTarget</code></em>. При этом сама зона не переносится.</p>
+<p>Например – два списка, нужен перенос элемента из одного в другой. В этом случае один список является зоной переноса, второй – зоной-целью.</p>
+<p>Возможно, что перенос осуществляется внутри одного и того же списка. При этом  <code>dragZone == dropTarget</code>.</p>
+</li>
+<li>
+<p>На странице может быть несколько разных зон переноса и зон-целей.</p>
+</li>
+<li>
+<p>Обработка завершения переноса может быть асинхронной, с уведомлением сервера.</p>
+</li>
+<li>
+<p>Должно быть легко добавить новый тип зоны переноса или зоны-цели, а также расширить поведение существующей.</p>
+</li>
+<li>
+<p>Фреймворк для переноса должен быть расширяемым с учётом сложных сценариев.</p>
+</li>
+</ol>
+<p>Всё это вполне реализуемо. Но для этого фреймворк, описанный в статье <a href="drag-and-drop-objects.html">Мышь: Drag'n'Drop более глубоко</a>, нужно отрефакторить, и разделить на сущности.</p>
+<h2><a class="main__anchor" name="osnovnye-suschnosti" href="#osnovnye-suschnosti">Основные сущности</a></h2><p>Всего будет 4 сущности:</p>
+<dl>
+<dt><code>DragZone</code></dt>
+<dd>Зона переноса. С неё начинается перенос. Она принимает нажатие мыши и генерирует аватар нужного типа.</dd>
+<dt><code>DragAvatar</code></dt>
+<dd>Переносимый объект. Предоставляет доступ к информации о том, что переносится. Умеет двигать себя по экрану. В зависимости от вида переноса, может что-то делать с собой в конце, например, самоуничтожаться.</dd>
+<dt><code>DropTarget</code></dt>
+<dd>Зона-цель, на которую можно положить. В процессе переноса аватара над ней умеет рисовать на себе предполагаемое «место приземления». Обрабатывает окончание переноса.</dd>
+<dt><code>dragManager</code></dt>
+<dd>Единый объект, который стоит над всеми ними, ставит обработчики <code>mousedown/mousemove/mouseup</code> и управляет процессом. В терминах ООП, это не класс, а <a href="https://ru.wikipedia.org/wiki/Одиночка_(шаблон_проектирования)">объект-синглтон</a>, поэтому он с маленькой буквы.</dd>
+</dl>
+<p>На макете страницы ниже возможен перенос студентов из левого списка – вправо, в одну из команд или в «корзину»:</p>
+<figure><div class="image" style="width:524px">
+      <div class="image__ratio" style="padding-top:99.42748091603053%"></div>
+      <img src="https://learn.javascript.ru/article/drag-and-drop-plus/dragzonetarget.png" alt="" width="524" height="521" class="image__image">
+      </div></figure><p>Здесь левый список является зоной переноса <code>ListDragZone</code>, а правые списки – это несколько зон-целей <code>ListDropTarget</code>. Кроме того, корзина также является зоной-целью отдельного типа <code>RemoveDropTarget</code>.</p>
+<h2><a class="main__anchor" name="primer" href="#primer">Пример</a></h2><p>В этой статье мы реализуем пример, когда узлы дерева можно переносить внутри него. То есть, дерево, которое является одновременно <code>TreeDragZone</code> и <code>TreeDropTarget</code>.</p>
+<p>Структура дерева будет состоять из вложенных списков с заголовком в <code>SPAN</code>:</p>
+<div id="izbfnazv5w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;Заголовок 1&lt;/span&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;Заголовок 1.1&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;Заголовок 1.2&lt;/span&gt;&lt;/li&gt;
+      ...
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При переносе:</p>
+<ul>
+<li>Для аватара нужно клонировать заголовок узла, на котором было нажатие.</li>
+<li>Узлы, на которые можно положить, при переносе подсвечиваются красным.</li>
+<li>Нельзя перенести узел сам в себя или в своего потомка.</li>
+<li>Дерево само поддерживает сортировку по алфавиту среди узлов.</li>
+<li>Обязательна расширяемость кода, поддержка большого количества узлов и т.п.</li>
+</ul>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:450px" src="https://ru.js.cx/article/drag-and-drop-plus/dragTree/"></iframe>
+  </div><h2><a class="main__anchor" name="dragmanager" href="#dragmanager">dragManager</a></h2><p>Обязанность <code>dragManager</code> – обработка событий мыши и координация всех остальных сущностей в процессе переноса.</p>
+<p><strong>Готовьтесь, дальше будет много кода с комментариями.</strong></p>
+<p>Следующий код должен быть очевиден по смыслу, если вы читали <a href="drag-and-drop-objects.html">предыдущую статью</a>. Объект взят оттуда, и из него изъята лишняя функциональность, которая перенесена в другие сущности.</p>
+<p>Если вызываемые в нём методы <code>onDrag*</code> непонятны – смотрите далее, в описание остальных объектов.</p>
+<div id="3xfswbuu9v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>var dragManager = new function() {
+
+  var dragZone, avatar, dropTarget;
+  var downX, downY;
+
+  var self = this;
+
+  function onMouseDown(e) {
+
+    if (e.which != 1) { // не левой кнопкой
+      return false;
+    }
+
+    dragZone = findDragZone(e);
+
+    if (!dragZone) {
+      return;
+    }
+
+    // запомним, что элемент нажат на текущих координатах pageX/pageY
+    downX = e.pageX;
+    downY = e.pageY;
+
+    return false;
+  }
+
+  function onMouseMove(e) {
+    if (!dragZone) return; // элемент не зажат
+
+    if (!avatar) { // элемент нажат, но пока не начали его двигать
+      if (Math.abs(e.pageX - downX) &lt; 3 &amp;&amp; Math.abs(e.pageY - downY) &lt; 3) {
+        return;
+      }
+      // попробовать захватить элемент
+      avatar = dragZone.onDragStart(downX, downY, e);
+
+      if (!avatar) { // не получилось, значит перенос продолжать нельзя
+        cleanUp(); // очистить приватные переменные, связанные с переносом
+        return;
+      }
+    }
+
+    // отобразить перенос объекта, перевычислить текущий элемент под курсором
+    avatar.onDragMove(e);
+
+    // найти новый dropTarget под курсором: newDropTarget
+    // текущий dropTarget остался от прошлого mousemove
+    // *оба значения: и newDropTarget и dropTarget могут быть null
+    var newDropTarget = findDropTarget(e);
+
+    if (newDropTarget != dropTarget) {
+      // уведомить старую и новую зоны-цели о том, что с них ушли/на них зашли
+      dropTarget &amp;&amp; dropTarget.onDragLeave(newDropTarget, avatar, e);
+      newDropTarget &amp;&amp; newDropTarget.onDragEnter(dropTarget, avatar, e);
+    }
+
+    dropTarget = newDropTarget;
+
+    dropTarget &amp;&amp; dropTarget.onDragMove(avatar, e);
+
+    return false;
+  }
+
+  function onMouseUp(e) {
+
+    if (e.which != 1) { // не левой кнопкой
+      return false;
+    }
+
+    if (avatar) { // если уже начали передвигать
+
+      if (dropTarget) {
+        // завершить перенос и избавиться от аватара, если это нужно
+        // эта функция обязана вызвать avatar.onDragEnd/onDragCancel
+        dropTarget.onDragEnd(avatar, e);
+      } else {
+        avatar.onDragCancel();
+      }
+
+    }
+
+    cleanUp();
+  }
+
+  function cleanUp() {
+    // очистить все промежуточные объекты
+    dragZone = avatar = dropTarget = null;
+  }
+
+  function findDragZone(event) {
+    var elem = event.target;
+    while (elem != document &amp;&amp; !elem.dragZone) {
+      elem = elem.parentNode;
+    }
+    return elem.dragZone;
+  }
+
+  function findDropTarget(event) {
+    // получить элемент под аватаром
+    var elem = avatar.getTargetElem();
+
+    while (elem != document &amp;&amp; !elem.dropTarget) {
+      elem = elem.parentNode;
+    }
+
+    if (!elem.dropTarget) {
+      return null;
+    }
+
+    return elem.dropTarget;
+  }
+
+  document.ondragstart = function() {
+    return false;
+  }
+
+  document.onmousemove = onMouseMove;
+  document.onmouseup = onMouseUp;
+  document.onmousedown = onMouseDown;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="dragzone" href="#dragzone">DragZone</a></h2><p>Основная задача <code>DragZone</code> – создать аватар и инициализировать его. В зависимости от места, где произошёл клик, аватар получит соответствующий подэлемент зоны.</p>
+<p>Метод для создания аватара <code>_makeAvatar</code> вынесен отдельно, чтобы его легко можно было переопределить и подставить собственный тип аватара.</p>
+<div id="y7qgqxx1t4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>/**
+ * Зона, из которой можно переносить объекты
+ * Умеет обрабатывать начало переноса на себе и создавать &quot;аватар&quot;
+ * @param elem DOM-элемент, к которому привязана зона
+ */
+function DragZone(elem) {
+  elem.dragZone = this;
+  this._elem = elem;
+}
+
+/**
+ * Создать аватар, соответствующий зоне.
+ * У разных зон могут быть разные типы аватаров
+ */
+DragZone.prototype._makeAvatar = function() {
+  /* override */
+};
+
+/**
+ * Обработать начало переноса.
+ *
+ * Получает координаты изначального нажатия мышки, событие.
+ *
+ * @param downX Координата изначального нажатия по X
+ * @param downY Координата изначального нажатия по Y
+ * @param event текущее событие мыши
+ *
+ * @return аватар или false, если захватить с данной точки ничего нельзя
+ */
+DragZone.prototype.onDragStart = function(downX, downY, event) {
+
+  var avatar = this._makeAvatar();
+
+  if (!avatar.initFromEvent(downX, downY, event)) {
+    return false;
+  }
+
+  return avatar;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="treedragzone" href="#treedragzone">TreeDragZone</a></h3><p>Объект зоны переноса для дерева, по существу, не вносит ничего нового, по сравнению с <code>DragZone</code>.</p>
+<p>Он только переопределяет <code>_makeAvatar</code> для создания <code>TreeDragAvatar</code>.</p>
+<div id="3aihfmx4qc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function TreeDragZone(elem) {
+  DragZone.apply(this, arguments);
+}
+
+extend(TreeDragZone, DragZone);
+
+TreeDragZone.prototype._makeAvatar = function() {
+  return new TreeDragAvatar(this, this._elem);
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="dragavatar" href="#dragavatar">DragAvatar</a></h2><p>Аватар создаётся только зоной переноса при начале Drag’n’Drop. Он содержит всю необходимую информацию об объекте, который переносится.</p>
+<p>В дальнейшем вся работа происходит <em>только с аватаром</em>, сама зона напрямую не вызывается.</p>
+<p>У аватара есть три основных свойства:</p>
+<dl>
+<dt><code>_dragZone</code></dt>
+<dd>
+<p>Зона переноса, которая его создала.</p>
+</dd>
+<dt><code>_dragZoneElem</code></dt>
+<dd>
+<p>Элемент, соответствующий аватару в зоне переноса. По умолчанию – DOM-элемент всей зоны. Это подходит в тех случаях, когда зона перетаскивается только целиком.
+При инициализации аватара значение этого свойства может быть уточнено, например изменено на подэлемент списка, который перетаскивается.</p>
+</dd>
+<dt><code>_elem</code></dt>
+<dd>
+<p>Основной элемент аватара, который будет двигаться по экрану. По умолчанию  равен <code>_dragZoneElem</code>, т.е мы переносим сам элемент.</p>
+<p>При инициализации мы можем также склонировать <code>_dragZoneElem</code>, или создать своё красивое представление переносимого элемента и поместить его в <code>_elem</code>.</p>
+</dd>
+</dl>
+<div id="r6diy5nb0s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>/**
+ * &quot;Аватар&quot; - элемент, который перетаскивается.
+ *
+ * В простейшем случае аватаром является сам переносимый элемент
+ * Также аватар может быть клонированным элементом
+ * Также аватар может быть иконкой и вообще чем угодно.
+ */
+function DragAvatar(dragZone, dragElem) {
+  /** &quot;родительская&quot; зона переноса */
+  this._dragZone = dragZone;
+
+  /**
+   * подэлемент родительской зоны, к которому относится аватар
+   * по умолчанию - элемент, соответствующий всей зоне
+   * может быть уточнен в initFromEvent
+   */
+  this._dragZoneElem = dragElem;
+
+  /**
+   * Сам элемент аватара, который будет носиться по экрану.
+   * Инициализуется в initFromEvent
+   */
+  this._elem = dragElem;
+}
+
+/**
+ * Инициализировать this._elem и позиционировать его
+ * При необходимости уточнить this._dragZoneElem
+ * @param downX Координата X нажатия мыши
+ * @param downY Координата Y нажатия мыши
+ * @param event Текущее событие мыши
+ */
+DragAvatar.prototype.initFromEvent = function(downX, downY, event) {
+  /* override */
+};
+
+/**
+ * Возвращает информацию о переносимом элементе для DropTarget
+ * @param event
+ */
+DragAvatar.prototype.getDragInfo = function(event) {
+  // тут может быть еще какая-то информация, необходимая для обработки конца или процесса переноса
+  return {
+    elem: this._elem,
+    dragZoneElem: this._dragZoneElem,
+    dragZone: this._dragZone
+  };
+};
+
+/**
+ * Возвращает текущий самый глубокий DOM-элемент под this._elem
+ * Приватное свойство _currentTargetElem обновляется при каждом передвижении
+ */
+DragAvatar.prototype.getTargetElem = function() {
+  return this._currentTargetElem;
+};
+
+/**
+ * При каждом движении мыши перемещает this._elem
+ * и записывает текущий элемент под this._elem в _currentTargetElem
+ * @param event
+ */
+DragAvatar.prototype.onDragMove = function(event) {
+  this._elem.style.left = event.pageX - this._shiftX + 'px';
+  this._elem.style.top = event.pageY - this._shiftY + 'px';
+
+  this._currentTargetElem = getElementUnderClientXY(this._elem, event.clientX, event.clientY);
+};
+
+/**
+ * Действия с аватаром, когда перенос не удался
+ * Например, можно вернуть элемент обратно или уничтожить
+ */
+DragAvatar.prototype.onDragCancel = function() {
+  /* override */
+};
+
+/**
+ * Действия с аватаром после успешного переноса
+ */
+DragAvatar.prototype.onDragEnd = function() {
+  /* override */
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="treedragavatar" href="#treedragavatar">TreeDragAvatar</a></h3><p>Основные изменения – в методе <code>initFromEvent</code>, который создаёт аватар из узла, на котором был клик.</p>
+<p>Обратите внимание, возможно что клик был не на заголовке <code>SPAN</code>, а просто где-то на дереве. В этом случае <code>initFromEvent</code> возвращает <code>false</code> и перенос не начинается.</p>
+<div id="t4tl41fwvv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function TreeDragAvatar(dragZone, dragElem) {
+  DragAvatar.apply(this, arguments);
+}
+
+extend(TreeDragAvatar, DragAvatar);
+
+TreeDragAvatar.prototype.initFromEvent = function(downX, downY, event) {
+  if (event.target.tagName != 'SPAN') return false;
+
+  this._dragZoneElem = event.target;
+  var elem = this._elem = this._dragZoneElem.cloneNode(true);
+  elem.className = 'avatar';
+
+  // создать вспомогательные свойства shiftX/shiftY
+  var coords = getCoords(this._dragZoneElem);
+  this._shiftX = downX - coords.left;
+  this._shiftY = downY - coords.top;
+
+  // инициировать начало переноса
+  document.body.appendChild(elem);
+  elem.style.zIndex = 9999;
+  elem.style.position = 'absolute';
+
+  return true;
+};
+
+/**
+ * Вспомогательный метод
+ */
+TreeDragAvatar.prototype._destroy = function() {
+  this._elem.parentNode.removeChild(this._elem);
+};
+
+/**
+ * При любом исходе переноса элемент-клон больше не нужен
+ */
+TreeDragAvatar.prototype.onDragCancel = function() {
+  this._destroy();
+};
+
+TreeDragAvatar.prototype.onDragEnd = function() {
+  this._destroy();
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="droptarget" href="#droptarget">DropTarget</a></h2><p>Именно на <code>DropTarget</code> ложится работа по отображению предполагаемой «точки приземления» аватара, а также, по завершению переноса, обработка результата.</p>
+<p>Как правило, <code>DropTarget</code> принимает переносимый узел в себя, а вот как конкретно организован процесс вставки – нужно описать в классе-наследнике. Разные типы зон делают разное при вставке: <code>TreeDropTarget</code> вставляет элемент в качестве потомка, а <code>RemoveDropTarget</code> – удаляет.</p>
+<div id="bfxc755818" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>/**
+ * Зона, в которую объекты можно класть
+ * Занимается индикацией передвижения по себе, добавлением в себя
+ */
+function DropTarget(elem) {
+  elem.dropTarget = this;
+  this._elem = elem;
+
+  /**
+   * Подэлемент, над которым в настоящий момент находится аватар
+   */
+  this._targetElem = null;
+}
+
+/**
+ * Возвращает DOM-подэлемент, над которым сейчас пролетает аватар
+ *
+ * @return DOM-элемент, на который можно положить или undefined
+ */
+DropTarget.prototype._getTargetElem = function(avatar, event) {
+  return this._elem;
+};
+
+/**
+ * Спрятать индикацию переноса
+ * Вызывается, когда аватар уходит с текущего this._targetElem
+ */
+DropTarget.prototype._hideHoverIndication = function(avatar) {
+  /* override */
+};
+
+/**
+ * Показать индикацию переноса
+ * Вызывается, когда аватар пришел на новый this._targetElem
+ */
+DropTarget.prototype._showHoverIndication = function(avatar) {
+  /* override */
+};
+
+/**
+ * Метод вызывается при каждом движении аватара
+ */
+DropTarget.prototype.onDragMove = function(avatar, event) {
+
+  var newTargetElem = this._getTargetElem(avatar, event);
+
+  if (this._targetElem != newTargetElem) {
+
+    this._hideHoverIndication(avatar);
+    this._targetElem = newTargetElem;
+    this._showHoverIndication(avatar);
+  }
+};
+
+/**
+ * Завершение переноса.
+ * Алгоритм обработки (переопределить функцию и написать в потомке):
+ * 1. Получить данные переноса из avatar.getDragInfo()
+ * 2. Определить, возможен ли перенос на _targetElem (если он есть)
+ * 3. Вызвать avatar.onDragEnd() или avatar.onDragCancel()
+ *  Если нужно подтвердить перенос запросом на сервер, то avatar.onDragEnd(),
+ *  а затем асинхронно, если сервер вернул ошибку, avatar.onDragCancel()
+ *  При этом аватар должен уметь &quot;откатываться&quot; после onDragEnd.
+ *
+ * При любом завершении этого метода нужно (делается ниже):
+ *  снять текущую индикацию переноса
+ *  обнулить this._targetElem
+ */
+DropTarget.prototype.onDragEnd = function(avatar, event) {
+  this._hideHoverIndication(avatar);
+  this._targetElem = null;
+};
+
+/**
+ * Вход аватара в DropTarget
+ */
+DropTarget.prototype.onDragEnter = function(fromDropTarget, avatar, event) {};
+
+/**
+ * Выход аватара из DropTarget
+ */
+DropTarget.prototype.onDragLeave = function(toDropTarget, avatar, event) {
+  this._hideHoverIndication();
+  this._targetElem = null;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, из кода выше, по умолчанию <code>DropTarget</code> занимается только отслеживанием и индикацией «точки приземления». По умолчанию, единственной возможной «точкой приземления» является сам элемент зоны. В более сложных ситуациях это может быть подэлемент.</p>
+<p>Для применения в реальности необходимо как минимум переопределить обработку результата переноса в <code>onDragEnd</code>.</p>
+<h3><a class="main__anchor" name="treedroptarget" href="#treedroptarget">TreeDropTarget</a></h3><p><code>TreeDropTarget</code> содержит код, специфичный для дерева:</p>
+<ul>
+<li>Индикацию переноса над элементом: методы <code>_showHoverIndication</code> и <code>_hideHoverIndication</code>.</li>
+<li>Получение текущей точки приземления <code>_targetElem</code> в методе <code>_getTargetElem</code>. Ей может быть только заголовок узла дерева, причём дополнительно проверяется, что это не потомок переносимого узла.</li>
+<li>Обработка успешного переноса в <code>onDragEnd</code>, вставка исходного узла <code>avatar.dragZoneElem</code> в узел, соответствующий <code>_targetElem</code>.</li>
+</ul>
+<div id="4ctij0va6b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function TreeDropTarget(elem) {
+  TreeDropTarget.parent.constructor.apply(this, arguments);
+}
+
+extend(TreeDropTarget, DropTarget);
+
+TreeDropTarget.prototype._showHoverIndication = function() {
+  this._targetElem &amp;&amp; this._targetElem.classList.add('hover');
+};
+
+TreeDropTarget.prototype._hideHoverIndication = function() {
+  this._targetElem &amp;&amp; this._targetElem.classList.remove('hover');
+};
+
+TreeDropTarget.prototype._getTargetElem = function(avatar, event) {
+  var target = avatar.getTargetElem();
+  if (target.tagName != 'SPAN') {
+    return;
+  }
+
+  // проверить, может быть перенос узла внутрь самого себя или в себя?
+  var elemToMove = avatar.getDragInfo(event).dragZoneElem.parentNode;
+
+  var elem = target;
+  while (elem) {
+    if (elem == elemToMove) return; // попытка перенести родителя в потомка
+    elem = elem.parentNode;
+  }
+
+  return target;
+};
+
+TreeDropTarget.prototype.onDragEnd = function(avatar, event) {
+
+  if (!this._targetElem) {
+    // перенос закончился вне подходящей точки приземления
+    avatar.onDragCancel();
+    return;
+  }
+
+  this._hideHoverIndication();
+
+  // получить информацию об объекте переноса
+  var avatarInfo = avatar.getDragInfo(event);
+
+  avatar.onDragEnd(); // аватар больше не нужен, перенос успешен
+
+  // вставить элемент в детей в отсортированном порядке
+  var elemToMove = avatarInfo.dragZoneElem.parentNode; // &lt;LI&gt;
+  var title = avatarInfo.dragZoneElem.innerHTML; // переносимый заголовок
+
+  // получить контейнер для узлов дерева, соответствующий точке приземления
+  var ul = this._targetElem.parentNode.getElementsByTagName('UL')[0];
+  if (!ul) { // нет детей, создадим контейнер
+    ul = document.createElement('UL');
+    this._targetElem.parentNode.appendChild(ul);
+  }
+
+  // вставить новый узел в нужное место среди потомков, в алфавитном порядке
+  var li = null;
+  for (var i = 0; i &lt; ul.children.length; i++) {
+    li = ul.children[i];
+    var childTitle = li.children[0].innerHTML;
+    if (childTitle &gt; title) {
+      break;
+    }
+    li = null;
+  }
+
+  ul.insertBefore(elemToMove, li);
+
+  this._targetElem = null;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Реализация Drag’n’Drop оказалась отличным способом применить ООП в JavaScript.</p>
+<p>Исходный код примера целиком находится <a href="https://plnkr.co/edit/wGYMUVs9O7hVUcTe?p=preview">в песочнице</a>.</p>
+<ul>
+<li>
+<p>Синглтон <code>dragManager</code> и классы <code>Drag*</code> задают общий фреймворк. От них наследуются конкретные объекты. Для создания новых зон достаточно унаследовать стандартные классы и переопределить их.</p>
+</li>
+<li>
+<p>Мини-фреймворк для Drag’n’Drop, который здесь представлен, является переписанным и обновлённым вариантом реальной библиотеки, на основе которой было создано много успешных скриптов переноса.</p>
+<p>В зависимости от ваших потребностей, вы можете расширить его, добавить перенос нескольких объектов одновременно, поддержку событий и другие возможности.</p>
+</li>
+<li>
+<p>На сегодняшний день в каждом серьёзном фреймворке есть библиотека для Drag’n’Drop. Она работает похожим образом, но сделать универсальный перенос – штука непростая. Зачастую он перегружен лишней функциональностью, либо наоборот – недостаточно расширяем в нужных местах.
+Понимание, как это все может быть устроено, на примере этой статьи, может помочь в адаптации существующего кода под ваши потребности.</p>
+</li>
+</ul>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fdrag-and-drop-plus" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/drag-and-drop-plus","identifier":"\/drag-and-drop-plus"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/drag-and-drop-plus by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:09 GMT -->
+</html>

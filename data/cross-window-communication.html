@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/cross-window-communication by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011867359644629349,"USD":0.012902150849186668,"AMD":5.012227561892037};</script><title itemprop="name">Общение между окнами</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="cross-window-communication.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Общение между окнами"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Общение между окнами"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="popup-windows.html"><link rel="next" href="clickjacking.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Общение между окнами"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/cross-window-communication"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/cross-window-communication"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/cross-window-communication"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/cross-window-communication"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/cross-window-communication"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="cross-window-communication.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/cross-window-communication"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/cross-window-communication"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/cross-window-communication"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/cross-window-communication">English</option><option value="https://es.javascript.info/cross-window-communication">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/cross-window-communication">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/cross-window-communication">Italiano</option><option value="https://ja.javascript.info/cross-window-communication">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/cross-window-communication" selected>Русский</option><option value="https://tr.javascript.info/cross-window-communication">Türkçe</option><option value="https://uk.javascript.info/cross-window-communication">Українська</option><option value="https://zh.javascript.info/cross-window-communication">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="3" data-tooltip="Урок 2 из 3"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="frames-and-windows.html"><span>Фреймы и окна</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Фреймы и окна","item":"https://learn.javascript.ru/frames-and-windows"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 15 октября 2020 г."><div class="updated-at__content">15 октября 2020 г.</div></div></div><h1 class="main__header-title">Общение между окнами</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Общение между окнами"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Политика «Одинакового источника» (Same Origin) ограничивает доступ окон и фреймов друг к другу.</p>
+<p>Идея заключается в том, что если у пользователя открыто две страницы: <code>john-smith.com</code> и <code>gmail.com</code>, то у скрипта со страницы <code>john-smith.com</code> не будет возможности прочитать письма из <code>gmail.com</code>. Таким образом, задача политики «Одинакового источника» – защитить данные пользователя от возможной кражи.</p>
+<h2><a class="main__anchor" name="same-origin" href="#same-origin">Политика &quot;Одинакового источника&quot;</a></h2><p>Два URL имеют «одинаковый источник» в том случае, если они имеют совпадающие протокол, домен и порт.</p>
+<p>Эти URL имеют одинаковый источник:</p>
+<ul>
+<li><code>http://site.com</code></li>
+<li><code>http://site.com/</code></li>
+<li><code>http://site.com/my/page.html</code></li>
+</ul>
+<p>А эти – разные источники:</p>
+<ul>
+<li><code>http://<b>www.</b>site.com</code> (другой домен: <code>www.</code> важен)</li>
+<li><code>http://<b>site.org</b></code> (другой домен: <code>.org</code> важен)</li>
+<li><code><b>https://</b>site.com</code> (другой протокол: <code>https</code>)</li>
+<li><code>http://site.com:<b>8080</b></code> (другой порт: <code>8080</code>)</li>
+</ul>
+<p>Политика «Одинакового источника» говорит, что:</p>
+<ul>
+<li>если у нас есть ссылка на другой объект <code>window</code>, например, на всплывающее окно, созданное с помощью <code>window.open</code> или на <code>window</code> из <code>&lt;iframe&gt;</code> и у этого окна тот же источник, то к нему будет полный доступ.</li>
+<li>в противном случае, если у него другой источник, мы не сможем обращаться к его переменным, объекту <code>document</code> и так далее. Единственное исключение – объект <code>location</code>: его можно изменять (таким образом перенаправляя пользователя). Но нельзя читать <code>location</code> (нельзя узнать, где находится пользователь, чтобы не было никаких утечек информации).</li>
+</ul>
+<h3><a class="main__anchor" name="dostup-k-soderzhimomu-ifreyma" href="#dostup-k-soderzhimomu-ifreyma">Доступ к содержимому ифрейма</a></h3><p>Внутри <code>&lt;iframe&gt;</code> находится по сути отдельное окно с собственными объектами <code>document</code> и <code>window</code>.</p>
+<p>Мы можем обращаться к ним, используя свойства:</p>
+<ul>
+<li><code>iframe.contentWindow</code> ссылка на объект <code>window</code> внутри <code>&lt;iframe&gt;</code>.</li>
+<li><code>iframe.contentDocument</code> – ссылка на объект <code>document</code> внутри <code>&lt;iframe&gt;</code>, короткая запись для <code>iframe.contentWindow.document</code>.</li>
+</ul>
+<p>Когда мы обращаемся к встроенному в ифрейм окну, браузер проверяет, имеет ли ифрейм тот же источник. Если это не так, тогда доступ будет запрещён (разрешена лишь запись в <code>location</code>, это исключение).</p>
+<p>Для примера давайте попробуем чтение и запись в ифрейм с другим источником:</p>
+<div id="3g9603apty" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:22,&quot;end&quot;:22},{&quot;start&quot;:16,&quot;end&quot;:16},{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;https://example.com&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  iframe.onload = function() {
+    // можно получить ссылку на внутренний window
+    let iframeWindow = iframe.contentWindow; // OK
+    try {
+      // ...но не на document внутри него
+      let doc = iframe.contentDocument; // ОШИБКА
+    } catch(e) {
+      alert(e); // Security Error
+    }
+
+    // также мы не можем прочитать URL страницы в ифрейме
+    try {
+      // Нельзя читать из объекта Location
+      let href = iframe.contentWindow.location.href; // ОШИБКА
+    } catch(e) {
+      alert(e); // Security Error
+    }
+
+    // ...но можно писать в него (и загрузить что-то другое в ифрейм)!
+    iframe.contentWindow.location = '/'; // OK
+
+    iframe.onload = null; // уберём обработчик, чтобы не срабатывал после изменения location
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Код выше выведет ошибку для любых операций, кроме:</p>
+<ul>
+<li>Получения ссылки на внутренний объект <code>window</code> из <code>iframe.contentWindow</code></li>
+<li>Изменения <code>location</code>.</li>
+</ul>
+<p>С другой стороны, если у ифрейма тот же источник, то с ним можно делать всё, что угодно:</p>
+<div id="rvuh5i4yr4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- ифрейм с того же сайта --&gt;
+&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  iframe.onload = function() {
+    // делаем с ним что угодно
+    iframe.contentDocument.body.prepend(&quot;Привет, мир!&quot;);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>iframe.onload</code> и <code>iframe.contentWindow.onload</code></span></div>
+            <div class="important__content"><p>Событие <code>iframe.onload</code> – по сути то же, что и <code>iframe.contentWindow.onload</code>. Оно сработает, когда встроенное окно полностью загрузится со всеми ресурсами.</p>
+<p>…Но <code>iframe.onload</code> всегда доступно извне ифрейма, в то время как доступ к <code>iframe.contentWindow.onload</code> разрешён только из окна с тем же источником.</p>
+</div></div>
+<h2><a class="main__anchor" name="okna-na-poddomenah-document-domain" href="#okna-na-poddomenah-document-domain">Окна на поддоменах: document.domain</a></h2><p>По определению, если у двух URL разный домен, то у них разный источник.</p>
+<p>Но если в окнах открыты страницы с поддоменов одного домена 2-го уровня, например <code>john.site.com</code>, <code>peter.site.com</code> и <code>site.com</code> (так что их общий домен <code>site.com</code>), то можно заставить браузер игнорировать это отличие. Так что браузер сможет считать их пришедшими с одного источника при проверке возможности доступа друг к другу.</p>
+<p>Для этого в каждом таком окне нужно запустить:</p>
+<div id="mzn4vxkdte" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.domain = 'site.com';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>После этого они смогут взаимодействовать без ограничений. Ещё раз заметим, что это доступно только для страниц с одинаковым доменом второго уровня.</p>
+<h3><a class="main__anchor" name="ifreym-podozhdite-dokument" href="#ifreym-podozhdite-dokument">Ифрейм: подождите документ</a></h3><p>Когда ифрейм – с того же источника, мы имеем доступ к документу в нём. Но есть подвох. Не связанный с кросс-доменными особенностями, но достаточно важный, чтобы о нём знать.</p>
+<p>Когда ифрейм создан, в нём сразу есть документ. Но этот документ – другой, не тот, который в него будет загружен!</p>
+<p>Так что если мы тут же сделаем что-то с этим документом, то наши изменения, скорее всего, пропадут.</p>
+<p>Вот, взгляните:</p>
+<div id="0ox4i3shp0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  let oldDoc = iframe.contentDocument;
+  iframe.onload = function() {
+    let newDoc = iframe.contentDocument;
+    // загруженный document - не тот, который был в iframe при создании изначально!
+    alert(oldDoc == newDoc); // false
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Нам не следует работать с документом ещё не загруженного ифрейма, так как это не тот документ. Если мы поставим на него обработчики событий – они будут проигнорированы.</p>
+<p>Как поймать момент, когда появится правильный документ?</p>
+<p>Можно проверять через <code>setInterval</code>:</p>
+<div id="lmjf28600b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  let oldDoc = iframe.contentDocument;
+
+  // каждый 100 мс проверяем, не изменился ли документ
+  let timer = setInterval(() =&gt; {
+    let newDoc = iframe.contentDocument;
+    if (newDoc == oldDoc) return;
+
+    alert(&quot;New document is here!&quot;);
+
+    clearInterval(timer); // отключим setInterval, он нам больше не нужен
+  }, 100);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="kollektsiya-window-frames" href="#kollektsiya-window-frames">Коллекция window.frames</a></h2><p>Другой способ получить объект <code>window</code> из <code>&lt;iframe&gt;</code> – забрать его из именованной коллекции <code>window.frames</code>:</p>
+<ul>
+<li>По номеру: <code>window.frames[0]</code> – объект <code>window</code> для первого фрейма в документе.</li>
+<li>По имени: <code>window.frames.iframeName</code> – объект <code>window</code> для фрейма со свойством <code>name=&quot;iframeName&quot;</code>.</li>
+</ul>
+<p>Например:</p>
+<div id="s0lfk9gssu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; style=&quot;height:80px&quot; name=&quot;win&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  alert(iframe.contentWindow == frames[0]); // true
+  alert(iframe.contentWindow == frames.win); // true
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ифрейм может иметь другие ифреймы внутри. Таким образом, объекты <code>window</code> создают иерархию.</p>
+<p>Навигация по ним выглядит так:</p>
+<ul>
+<li><code>window.frames</code> – коллекция «дочерних» <code>window</code> (для вложенных фреймов).</li>
+<li><code>window.parent</code> – ссылка на «родительский» (внешний) <code>window</code>.</li>
+<li><code>window.top</code> – ссылка на самого верхнего родителя.</li>
+</ul>
+<p>Например:</p>
+<div id="veivmcohti" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.frames[0].parent === window; // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Можно использовать свойство <code>top</code>, чтобы проверять, открыт ли текущий документ внутри ифрейма или нет:</p>
+<div id="kndawuwqig" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (window == top) { // текущий window == window.top?
+  alert('Скрипт находится в самом верхнем объекте window, не во фрейме');
+} else {
+  alert('Скрипт запущен во фрейме!');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="atribut-ifreyma-sandbox" href="#atribut-ifreyma-sandbox">Атрибут ифрейма sandbox</a></h2><p>Атрибут <code>sandbox</code> позволяет наложить ограничения на действия внутри <code>&lt;iframe&gt;</code>, чтобы предотвратить выполнение ненадёжного кода. Атрибут помещает ифрейм в «песочницу», отмечая его как имеющий другой источник и/или накладывая на него дополнительные ограничения.</p>
+<p>Существует список «по умолчанию» ограничений, которые накладываются на <code>&lt;iframe sandbox src=&quot;...&quot;&gt;</code>. Их можно уменьшить, если указать в атрибуте список исключений (специальными ключевыми словами), которые не нужно применять, например: <code>&lt;iframe sandbox=&quot;allow-forms allow-popups&quot;&gt;</code>.</p>
+<p>Другими словами, если у атрибута <code>&quot;sandbox&quot;</code> нет значения, то браузер применяет максимум ограничений, но через пробел можно указать те из них, которые мы не хотим применять.</p>
+<p>Вот список ограничений:</p>
+<dl>
+<dt><code>allow-same-origin</code></dt>
+<dd><code>&quot;sandbox&quot;</code> принудительно устанавливает «другой источник» для ифрейма. Другими словами, он заставляет браузер воспринимать <code>iframe</code>, как пришедший из другого источника, даже если <code>src</code> содержит тот же сайт. Со всеми сопутствующими ограничениями для скриптов. Эта опция отключает это ограничение.</dd>
+<dt><code>allow-top-navigation</code></dt>
+<dd>Позволяет ифрейму менять <code>parent.location</code>.</dd>
+<dt><code>allow-forms</code></dt>
+<dd>Позволяет отправлять формы из ифрейма.</dd>
+<dt><code>allow-scripts</code></dt>
+<dd>Позволяет запускать скрипты из ифрейма.</dd>
+<dt><code>allow-popups</code></dt>
+<dd>Позволяет открывать всплывающие окна из ифрейма с помощью <code>window.open</code>.</dd>
+</dl>
+<p>Больше опций можно найти <a href="https://developer.mozilla.org/ru/docs/Web/HTML/Element/iframe">в справочнике</a>.</p>
+<p>Пример ниже демонстрирует ифрейм, помещённый в песочницу со стандартным набором ограничений: <code>&lt;iframe sandbox src=&quot;...&quot;&gt;</code>. На странице содержится JavaScript и форма.</p>
+<p>Обратите внимание, что ничего не работает. Таким образом, набор ограничений по умолчанию очень строгий:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">index.html</div><div class="code-tabs__switch">sandboxed.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/cross-window-communication/sandbox/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/7bU4C7Cgd7gJ4Sv1?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:140px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/cross-window-communication/sandbox/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div&gt;Ифрейм ниже имеет атрибут &lt;code&gt;sandbox&lt;/code&gt;.&lt;/div&gt;
+
+  &lt;iframe sandbox src=&quot;sandboxed.html&quot; style=&quot;height:60px;width:90%&quot;&gt;&lt;/iframe&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;button onclick=&quot;alert(123)&quot;&gt;Нажмите для запуска скрипта (не сработает)&lt;/button&gt;
+
+  &lt;form action=&quot;http://google.com&quot;&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Отправить (не сработает)&quot;&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">На заметку:</span></div>
+            <div class="important__content"><p>Атрибут <code>&quot;sandbox&quot;</code> создан только для того, чтобы добавлять ограничения. Он не может удалять их. В частности, он не может ослабить ограничения, накладываемые браузером на ифрейм, приходящий с другого источника.</p>
+</div></div>
+<h2><a class="main__anchor" name="obmen-soobscheniyami-mezhdu-oknami" href="#obmen-soobscheniyami-mezhdu-oknami">Обмен сообщениями между окнами</a></h2><p>Интерфейс <code>postMessage</code> позволяет окнам общаться между собой независимо от их происхождения.</p>
+<p>Это способ обойти политику «Одинакового источника». Он позволяет обмениваться информацией, скажем <code>john-smith.com</code> и <code>gmail.com</code>, но только в том случае, если оба сайта согласны и вызывают соответствующие JavaScript-функции. Это делает общение безопасным для пользователя.</p>
+<p>Интерфейс имеет две части.</p>
+<h3><a class="main__anchor" name="postmessage" href="#postmessage">postMessage</a></h3><p>Окно, которое хочет отправить сообщение, должно вызвать метод <a href="https://developer.mozilla.org/ru/docs/Web/API/Window.postMessage">postMessage</a> окна получателя. Другими словами, если мы хотим отправить сообщение в окно <code>win</code>, тогда нам следует вызвать <code>win.postMessage(data, targetOrigin)</code>.</p>
+<p>Аргументы:</p>
+<dl>
+<dt><code>data</code></dt>
+<dd>Данные для отправки. Может быть любым объектом, данные клонируются с использованием «алгоритма структурированного клонирования». IE поддерживает только строки, поэтому мы должны использовать метод <code>JSON.stringify</code> на сложных объектах, чтобы поддержать этот браузер.</dd>
+<dt><code>targetOrigin</code></dt>
+<dd>Определяет источник для окна-получателя, только окно с данного источника имеет право получить сообщение.</dd>
+</dl>
+<p>Указание <code>targetOrigin</code> является мерой безопасности. Как мы помним, если окно (получатель) происходит из другого источника, мы из окна-отправителя не можем прочитать его <code>location</code>. Таким образом, мы не можем быть уверены, какой сайт открыт в заданном окне прямо сейчас: пользователь мог перейти куда-то, окно-отправитель не может это знать.</p>
+<p>Если указать <code>targetOrigin</code>, то мы можем быть уверены, что окно получит данные только в том случае, если в нём правильный сайт. Особенно это важно, если данные конфиденциальные.</p>
+<p>Например, здесь <code>win</code> получит сообщения только в том случае, если в нём открыт документ из источника <code>http://example.com</code>:</p>
+<div id="6o5bwpgsj2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;http://example.com&quot; name=&quot;example&quot;&gt;
+
+&lt;script&gt;
+  let win = window.frames.example;
+
+  win.postMessage(&quot;message&quot;, &quot;http://example.com&quot;);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если мы не хотим проверять, то в <code>targetOrigin</code> можно указать <code>*</code>.</p>
+<div id="0q0fytg7ay" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;http://example.com&quot; name=&quot;example&quot;&gt;
+
+&lt;script&gt;
+  let win = window.frames.example;
+
+  win.postMessage(&quot;message&quot;, &quot;*&quot;);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="sobytie-message" href="#sobytie-message">Событие message</a></h3><p>Чтобы получать сообщения, окно-получатель должно иметь обработчик события <code>message</code> (сообщение). Оно срабатывает, когда был вызван метод <code>postMessage</code> (и проверка <code>targetOrigin</code> пройдена успешно).</p>
+<p>Объект события имеет специфичные свойства:</p>
+<dl>
+<dt><code>data</code></dt>
+<dd>Данные из <code>postMessage</code>.</dd>
+<dt><code>origin</code></dt>
+<dd>Источник отправителя, например, <code>http://javascript.info</code>.</dd>
+<dt><code>source</code></dt>
+<dd>Ссылка на окно-отправитель. Можно сразу отправить что-то в ответ, вызвав <code>source.postMessage(...)</code>.</dd>
+</dl>
+<p>Чтобы добавить обработчик, следует использовать метод <code>addEventListener</code>, короткий синтаксис <code>window.onmessage</code> не работает.</p>
+<p>Вот пример:</p>
+<div id="1ogde7p4e9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.addEventListener(&quot;message&quot;, function(event) {
+  if (event.origin != 'http://javascript.info') {
+    // что-то пришло с неизвестного домена. Давайте проигнорируем это
+    return;
+  }
+
+  alert( &quot;received: &quot; + event.data );
+
+  // can message back using event.source.postMessage(...)
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">iframe.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/cross-window-communication/postmessage/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/SQzpuajTKQIcp6CN?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:120px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/cross-window-communication/postmessage/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Получение ифрейма.
+  &lt;script&gt;
+    window.addEventListener('message', function(event) {
+      alert(`Получено ${event.data} из ${event.origin}`);
+    });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;form id=&quot;form&quot;&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Введите сообщение&quot; name=&quot;message&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Нажмите для отправки&quot;&gt;
+  &lt;/form&gt;
+
+  &lt;iframe src=&quot;iframe.html&quot; id=&quot;iframe&quot; style=&quot;display:block;height:60px&quot;&gt;&lt;/iframe&gt;
+
+  &lt;script&gt;
+    form.onsubmit = function() {
+      iframe.contentWindow.postMessage(this.message.value, '*');
+      return false;
+    };
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Без задержек</span></div>
+            <div class="important__content"><p>Между <code>postMessage</code> и событием <code>message</code> не существует задержки. Событие происходит синхронно, быстрее, чем <code>setTimeout(...,0)</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Чтобы вызвать метод или получить содержимое из другого окна, нам, во-первых, необходимо иметь ссылку на него.</p>
+<p>Для всплывающих окон (попапов) доступны ссылки в обе стороны:</p>
+<ul>
+<li>При открытии окна: <code>window.open</code> открывает новое окно и возвращает ссылку на него,</li>
+<li>Изнутри открытого окна: <code>window.opener</code> – ссылка на открывающее окно.</li>
+</ul>
+<p>Для ифреймов мы можем иметь доступ к родителям/потомкам, используя:</p>
+<ul>
+<li><code>window.frames</code> – коллекция объектов <code>window</code> вложенных ифреймов,</li>
+<li><code>window.parent</code>, <code>window.top</code> – это ссылки на родительское окно и окно самого верхнего уровня,</li>
+<li><code>iframe.contentWindow</code> – это объект <code>window</code> внутри тега <code>&lt;iframe&gt;</code>.</li>
+</ul>
+<p>Если окна имеют одинаковый источник (протокол, домен, порт), то они могут делать друг с другом всё, что угодно.</p>
+<p>В противном случае возможны только следующие действия:</p>
+<ul>
+<li>Изменение свойства location другого окна (доступ только на запись).</li>
+<li>Отправить туда сообщение.</li>
+</ul>
+<p>Исключения:</p>
+<ul>
+<li>Окна, которые имеют общий домен второго уровня: <code>a.site.com</code> и <code>b.site.com</code>. Установка свойства <code>document.domain='site.com'</code> в обоих окнах переведёт их в состояние «Одинакового источника».</li>
+<li>Если у ифрейма установлен атрибут <code>sandbox</code>, это принудительно переведёт окна в состояние «разных источников», если не установить в атрибут значение <code>allow-same-origin</code>. Это можно использовать для запуска ненадёжного кода в ифрейме с того же сайта.</li>
+</ul>
+<p>Метод <code>postMessage</code> позволяет общаться двум окнам с любыми источниками:</p>
+<ol>
+<li>
+<p>Отправитель вызывает <code>targetWin.postMessage(data, targetOrigin)</code>.</p>
+</li>
+<li>
+<p>Если <code>targetOrigin</code> не <code>'*'</code>, тогда браузер проверяет имеет ли <code>targetWin</code> источник <code>targetOrigin</code>.</p>
+</li>
+<li>
+<p>Если это так, тогда <code>targetWin</code> вызывает событие <code>message</code> со специальными свойствами:</p>
+<ul>
+<li><code>origin</code> – источник окна отправителя (например, <code>http://my.site.com</code>)</li>
+<li><code>source</code> – ссылка на окно отправитель.</li>
+<li><code>data</code> – данные, может быть объектом везде, кроме IE (в IE только строки).</li>
+</ul>
+<p>В окне-получателе следует добавить обработчик для этого события с помощью метода <code>addEventListener</code>.</p>
+</li>
+</ol>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="popup-windows.html" data-tooltip="Открытие окон и методы window"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="clickjacking.html" data-tooltip="Атака типа clickjacking"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/cross-window-communication","identifier":"\/cross-window-communication"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="frames-and-windows.html">Фреймы и окна</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#same-origin">Политика &quot;Одинакового источника&quot;</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#okna-na-poddomenah-document-domain">Окна на поддоменах: document.domain</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#kollektsiya-window-frames">Коллекция window.frames</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#atribut-ifreyma-sandbox">Атрибут ифрейма sandbox</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#obmen-soobscheniyami-mezhdu-oknami">Обмен сообщениями между окнами</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fcross-window-communication" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/3-frames-and-windows/03-cross-window-communication" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/cross-window-communication by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:19 GMT -->
+</html>

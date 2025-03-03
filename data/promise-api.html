@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/promise-api by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:31:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Promise API</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="promise-api.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Promise API"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Promise API"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="promise-error-handling.html"><link rel="next" href="promisify.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><script>
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error("Script load error: " + src));
+
+    document.head.append(script);
+  });
+}
+</script>
+<meta property="og:title" content="Promise API"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/promise-api"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/promise-api"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/promise-api"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/promise-api"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/promise-api"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/promise-api"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/promise-api"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/promise-api"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="promise-api.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/promise-api"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/promise-api"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/promise-api"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/promise-api">عربي</option><option value="https://javascript.info/promise-api">English</option><option value="https://es.javascript.info/promise-api">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/promise-api">Français</option><option value="https://id.javascript.info/promise-api">Indonesia</option><option value="https://it.javascript.info/promise-api">Italiano</option><option value="https://ja.javascript.info/promise-api">日本語</option><option value="https://ko.javascript.info/promise-api">한국어</option><option value="https://learn.javascript.ru/promise-api" selected>Русский</option><option value="https://tr.javascript.info/promise-api">Türkçe</option><option value="https://uk.javascript.info/promise-api">Українська</option><option value="https://zh.javascript.info/promise-api">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="79" max="95" data-tooltip="Урок 79 из 95"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="js.html"><span>Язык JavaScript</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="async.html"><span>Промисы, async/await</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Язык JavaScript","item":"https://learn.javascript.ru/js"},{"@type":"ListItem","position":3,"name":"Промисы, async/await","item":"https://learn.javascript.ru/async"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 26 декабря 2022 г."><div class="updated-at__content">26 декабря 2022 г.</div></div></div><h1 class="main__header-title">Promise API</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Promise API"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В классе <code>Promise</code> есть 6 статических методов. Давайте познакомимся с ними.</p>
+<h2><a class="main__anchor" name="promise-all" href="#promise-all">Promise.all</a></h2><p>Допустим, нам нужно запустить множество промисов параллельно и дождаться, пока все они выполнятся.</p>
+<p>Например, параллельно загрузить несколько файлов и обработать результат, когда он готов.</p>
+<p>Для этого как раз и пригодится <code>Promise.all</code>.</p>
+<p>Синтаксис:</p>
+<div id="lf89mslpnp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.all(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Метод <code>Promise.all</code> принимает массив промисов (может принимать любой перебираемый объект, но обычно используется массив) и возвращает новый промис.</p>
+<p>Новый промис завершится, когда завершится весь переданный список промисов, и его результатом будет массив их результатов.</p>
+<p>Например, <code>Promise.all</code>, представленный ниже, выполнится спустя 3 секунды, его результатом будет массив <code>[1, 2, 3]</code>:</p>
+<div id="f58iawx5zg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(1), 3000)), // 1
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(2), 2000)), // 2
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(3), 1000))  // 3
+]).then(alert); // когда все промисы выполнятся, результат будет 1,2,3
+// каждый промис даёт элемент массива</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание, что порядок элементов массива в точности соответствует порядку исходных промисов. Даже если первый промис будет выполняться дольше всех, его результат всё равно будет первым в массиве.</p>
+<p>Часто применяемый трюк – пропустить массив данных через map-функцию, которая для каждого элемента создаст задачу-промис, и затем обернуть получившийся массив в <code>Promise.all</code>.</p>
+<p>Например, если у нас есть массив ссылок, то мы можем загрузить их вот так:</p>
+<div id="0b009nlh0f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://api.github.com/users/jeresig'
+];
+
+// Преобразуем каждый URL в промис, возвращённый fetch
+let requests = urls.map(url =&gt; fetch(url));
+
+// Promise.all будет ожидать выполнения всех промисов
+Promise.all(requests)
+  .then(responses =&gt; responses.forEach(
+    response =&gt; alert(`${response.url}: ${response.status}`)
+  ));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>А вот пример побольше, с получением информации о пользователях GitHub по их логинам из массива (мы могли бы получать массив товаров по их идентификаторам, логика та же):</p>
+<div id="3azrmuo0e1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let names = ['iliakan', 'remy', 'jeresig'];
+
+let requests = names.map(name =&gt; fetch(`https://api.github.com/users/${name}`));
+
+Promise.all(requests)
+  .then(responses =&gt; {
+    // все промисы успешно завершены
+    for(let response of responses) {
+      alert(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
+    }
+
+    return responses;
+  })
+  // преобразовать массив ответов response в response.json(),
+  // чтобы прочитать содержимое каждого
+  .then(responses =&gt; Promise.all(responses.map(r =&gt; r.json())))
+  // все JSON-ответы обработаны, users - массив с результатами
+  .then(users =&gt; users.forEach(user =&gt; alert(user.name)));</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>Если любой из промисов завершится с ошибкой, то промис, возвращённый <code>Promise.all</code>, немедленно завершается с этой ошибкой.</strong></p>
+<p>Например:</p>
+<div id="21tvc90knf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ошибка!&quot;)), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).catch(alert); // Error: Ошибка!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь второй промис завершится с ошибкой через 2 секунды. Это приведёт к немедленной ошибке в <code>Promise.all</code>, так что выполнится <code>.catch</code>: ошибка этого промиса становится ошибкой всего <code>Promise.all</code>.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">В случае ошибки, остальные результаты игнорируются</span></div>
+            <div class="important__content"><p>Если один промис завершается с ошибкой, то весь <code>Promise.all</code> завершается с ней, полностью забывая про остальные промисы в списке. Их результаты игнорируются.</p>
+<p>Например, если сделано несколько вызовов <code>fetch</code>, как в примере выше, и один не прошёл, то остальные будут всё ещё выполняться, но <code>Promise.all</code> за ними уже не смотрит. Скорее всего, они так или иначе завершатся, но их результаты будут проигнорированы.</p>
+<p><code>Promise.all</code> ничего не делает для их отмены, так как в промисах вообще нет концепции «отмены». В главе <a href="fetch-abort.html">Fetch: прерывание запроса</a> мы рассмотрим <code>AbortController</code>, который помогает с этим, но он не является частью Promise API.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Promise.all(iterable)</code> разрешает передавать не-промисы в <code>iterable</code> (перебираемом объекте)</span></div>
+            <div class="important__content"><p>Обычно, <code>Promise.all(...)</code> принимает перебираемый объект промисов (чаще всего массив). Но если любой из этих объектов не является промисом, он передаётся в итоговый массив «как есть».</p>
+<p>Например, здесь результат: <code>[1, 2, 3]</code></p>
+<div id="ebufx98vjc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(1), 1000)
+  }),
+  2,
+  3
+]).then(alert); // 1, 2, 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Таким образом, мы можем передавать уже готовые значения, которые не являются промисами, в <code>Promise.all</code>, иногда это бывает удобно.</p>
+</div></div>
+<h2><a class="main__anchor" name="promise-allsettled" href="#promise-allsettled">Promise.allSettled</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Новая возможность</span></div>
+            <div class="important__content">
+            Эта возможность была добавлена в язык недавно.
+            В старых браузерах может понадобиться <a href="polyfills.html">полифил</a>.
+            </div></div>
+<p>Синтаксис:</p>
+<div id="19aka8mh0h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.allSettled(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Promise.all</code> завершается с ошибкой, если она возникает в любом из переданных промисов. Это подходит для ситуаций «всё или ничего», когда нам нужны <em>все</em> результаты для продолжения:</p>
+<div id="4cktd5livx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  fetch('/template.html'),
+  fetch('/style.css'),
+  fetch('/data.json')
+]).then(render); // методу render нужны результаты всех fetch</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Метод <code>Promise.allSettled</code> всегда ждёт завершения всех промисов. В массиве результатов будет</p>
+<ul>
+<li><code>{status:&quot;fulfilled&quot;, value:результат}</code> для успешных завершений,</li>
+<li><code>{status:&quot;rejected&quot;, reason:ошибка}</code> для ошибок.</li>
+</ul>
+<p>Например, мы хотели бы загрузить информацию о множестве пользователей. Даже если в каком-то запросе ошибка, нас всё равно интересуют остальные.</p>
+<p>Используем для этого <code>Promise.allSettled</code>:</p>
+<div id="4uk7sw3i59" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url =&gt; fetch(url)))
+  .then(results =&gt; { // (*)
+    results.forEach((result, num) =&gt; {
+      if (result.status == &quot;fulfilled&quot;) {
+        alert(`${urls[num]}: ${result.value.status}`);
+      }
+      if (result.status == &quot;rejected&quot;) {
+        alert(`${urls[num]}: ${result.reason}`);
+      }
+    });
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Массив <code>results</code> в строке <code>(*)</code> будет таким:</p>
+<div id="6orz5yqnuv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>[
+  {status: 'fulfilled', value: ...объект ответа...},
+  {status: 'fulfilled', value: ...объект ответа...},
+  {status: 'rejected', reason: ...объект ошибки...}
+]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, для каждого промиса у нас есть его статус и значение/ошибка.</p>
+<h3><a class="main__anchor" name="polifil" href="#polifil">Полифил</a></h3><p>Если браузер не поддерживает <code>Promise.allSettled</code>, для него легко сделать полифил:</p>
+<div id="xb9r6mt95u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if(!Promise.allSettled) {
+  Promise.allSettled = function(promises) {
+    return Promise.all(promises.map(p =&gt; Promise.resolve(p).then(value =&gt; ({
+      status: 'fulfilled',
+      value: value
+    }), error =&gt; ({
+      status: 'rejected',
+      reason: error
+    }))));
+  };
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В этом коде <code>promises.map</code> берёт аргументы, превращает их в промисы (на всякий случай) и добавляет каждому обработчик <code>.then</code>.</p>
+<p>Этот обработчик превращает успешный результат <code>value</code> в <code>{state:'fulfilled', value: value}</code>, а ошибку <code>error</code> в <code>{state:'rejected', reason: error}</code>. Это как раз и есть формат результатов <code>Promise.allSettled</code>.</p>
+<p>Затем мы можем использовать <code>Promise.allSettled</code>, чтобы получить результаты <em>всех</em> промисов, даже если при выполнении какого-то возникнет ошибка.</p>
+<h2><a class="main__anchor" name="promise-race" href="#promise-race">Promise.race</a></h2><p>Метод очень похож на <code>Promise.all</code>, но ждёт только первый <em>выполненный</em> промис, из которого берёт результат (или ошибку).</p>
+<p>Синтаксис:</p>
+<div id="p5xb3sl58e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.race(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Например, тут результат будет <code>1</code>:</p>
+<div id="qgbm7ozedf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.race([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ошибка!&quot;)), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).then(alert); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Быстрее всех выполнился первый промис, он и дал результат. После этого остальные промисы игнорируются.</p>
+<h2><a class="main__anchor" name="promise-any" href="#promise-any">Promise.any</a></h2><p>Метод очень похож на <code>Promise.race</code>, но ждёт только первый <em>успешно выполненный</em> промис, из которого берёт результат.</p>
+<p>Если ни один из переданных промисов не завершится успешно, тогда возвращённый объект Promise будет отклонён с помощью <code>AggregateError</code> – специального объекта ошибок, который хранит все ошибки промисов в своём свойстве <code>errors</code>.</p>
+<p>Синтаксис:</p>
+<div id="5opbnfkkze" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.any(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Например, здесь, результатом будет <code>1</code>:</p>
+<div id="5sqggmafow" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.any([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ошибка!&quot;)), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).then(alert); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Первый промис в этом примере был самым быстрым, но он был отклонён, поэтому результатом стал второй. После того, как первый успешно выполненный промис «выиграет гонку», все дальнейшие результаты будут проигнорированы.</p>
+<p>Вот пример, в котором все промисы отклоняются:</p>
+<div id="v6x76gsm2f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.any([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ошибка!&quot;)), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ещё одна ошибка!&quot;)), 2000))
+]).catch(error =&gt; {
+  console.log(error.constructor.name); // AggregateError
+  console.log(error.errors[0]); // Error: Ошибка!
+  console.log(error.errors[1]); // Error: Ещё одна ошибка!
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как вы можете видеть, объекты ошибок для отклонённых промисов доступны в свойстве <code>errors</code> объекта <code>AggregateError</code>.</p>
+<h2><a class="main__anchor" name="promise-resolve-reject" href="#promise-resolve-reject">Promise.resolve/reject</a></h2><p>Методы <code>Promise.resolve</code> и <code>Promise.reject</code> редко используются в современном коде, так как синтаксис <code>async/await</code> (мы рассмотрим его <a href="async-await.html">чуть позже</a>) делает их, в общем-то, не нужными.</p>
+<p>Мы рассмотрим их здесь для полноты картины, а также для тех, кто по каким-то причинам не может использовать <code>async/await</code>.</p>
+<h3><a class="main__anchor" name="promise-resolve" href="#promise-resolve">Promise.resolve</a></h3><ul>
+<li><code>Promise.resolve(value)</code> создаёт успешно выполненный промис с результатом <code>value</code>.</li>
+</ul>
+<p>То же самое, что:</p>
+<div id="1optcn375a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(resolve =&gt; resolve(value));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Этот метод используют для совместимости: когда ожидается, что функция возвратит именно промис.</p>
+<p>Например, функция <code>loadCached</code> ниже загружает URL и запоминает (кеширует) его содержимое. При будущих вызовах с тем же URL он тут же читает предыдущее содержимое из кеша, но использует <code>Promise.resolve</code>, чтобы сделать из него промис, для того, чтобы возвращаемое значение всегда было промисом:</p>
+<div id="6cw6rz6mls" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let cache = new Map();
+
+function loadCached(url) {
+  if (cache.has(url)) {
+    return Promise.resolve(cache.get(url)); // (*)
+  }
+
+  return fetch(url)
+    .then(response =&gt; response.text())
+    .then(text =&gt; {
+      cache.set(url,text);
+      return text;
+    });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем писать <code>loadCached(url).then(…)</code>, потому что функция <code>loadCached</code> всегда возвращает промис. Мы всегда можем использовать <code>.then</code> после <code>loadCached</code>. Это и есть цель использования <code>Promise.resolve</code> в строке <code>(*)</code>.</p>
+<h3><a class="main__anchor" name="promise-reject" href="#promise-reject">Promise.reject</a></h3><ul>
+<li><code>Promise.reject(error)</code> создаёт промис, завершённый с ошибкой <code>error</code>.</li>
+</ul>
+<p>То же самое, что:</p>
+<div id="ibnwdltcvb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise((resolve, reject) =&gt; reject(error));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На практике этот метод почти никогда не используется.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Мы ознакомились с шестью статическими методами класса <code>Promise</code>:</p>
+<ol>
+<li><code>Promise.all(promises)</code> – ожидает выполнения всех промисов и возвращает массив с результатами. Если любой из указанных промисов вернёт ошибку, то результатом работы <code>Promise.all</code> будет эта ошибка, результаты остальных промисов будут игнорироваться.</li>
+<li><code>Promise.allSettled(promises)</code> (добавлен недавно) – ждёт, пока все промисы завершатся и возвращает их результаты в виде массива с объектами, у каждого объекта два свойства:
+<ul>
+<li><code>status</code>: <code>&quot;fulfilled&quot;</code>, если выполнен успешно или <code>&quot;rejected&quot;</code>, если ошибка,</li>
+<li><code>value</code> – результат, если успешно или <code>reason</code> – ошибка, если нет.</li>
+</ul>
+</li>
+<li><code>Promise.race(promises)</code> – ожидает первый <em>выполненный</em> промис, который становится его результатом, остальные игнорируются.</li>
+<li><code>Promise.any(promises)</code> (добавлен недавно) – ожидает первый <em>успешно выполненный</em> промис, который становится его результатом, остальные игнорируются. Если все переданные промисы отклонены, <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/AggregateError"><code>AggregateError</code></a> становится ошибкой <code>Promise.any</code>.</li>
+<li><code>Promise.resolve(value)</code> – возвращает успешно выполнившийся промис с результатом <code>value</code>.</li>
+<li><code>Promise.reject(error)</code> – возвращает промис с ошибкой <code>error</code>.</li>
+</ol>
+<p>Из всех перечисленных методов, самый часто используемый – это, пожалуй, <code>Promise.all</code>.</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="promise-error-handling.html" data-tooltip="Промисы: обработка ошибок"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="promisify.html" data-tooltip="Промисификация"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/promise-api","identifier":"\/promise-api"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="async.html">Промисы, async/await</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promise-all">Promise.all</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promise-allsettled">Promise.allSettled</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promise-race">Promise.race</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promise-any">Promise.any</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promise-resolve-reject">Promise.resolve/reject</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fpromise-api" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/1-js/11-async/05-promise-api" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/promise-api by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:31:14 GMT -->
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/ajax-iframe by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">IFRAME для AJAX и COMET</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="ajax-iframe.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="IFRAME для AJAX и COMET"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="IFRAME для AJAX и COMET"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="IFRAME для AJAX и COMET"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 18 февраля 2020 г."><div class="updated-at__content">18 февраля 2020 г.</div></div></div><h1 class="main__header-title">IFRAME для AJAX и COMET</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="IFRAME для AJAX и COMET"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Эта глава посвящена <code>IFRAME</code> – самому древнему и кросс-браузерному способу AJAX-запросов.</p>
+<p>Сейчас он используется, разве что, для поддержки кросс-доменных запросов в IE7- и, что чуть более актуально, для реализации COMET в IE9-.</p>
+<p>Для общения с сервером создаётся невидимый <code>IFRAME</code>. В него отправляются данные, и в него же сервер пишет ответ.</p>
+<h2><a class="main__anchor" name="vvedenie" href="#vvedenie">Введение</a></h2><p>Сначала – немного вспомогательных функций и особенности работы с <code>IFRAME</code>.</p>
+<h3><a class="main__anchor" name="dvulichnost-iframe-okno-dokument" href="#dvulichnost-iframe-okno-dokument">Двуличность IFRAME: окно+документ</a></h3><p>Что такое IFRAME? На этот вопрос у браузера два ответа</p>
+<ol>
+<li>
+<p>IFRAME – это HTML-тег: <code>&lt;iframe&gt;</code> со стандартным набором свойств.</p>
+<ul>
+<li>Тег можно создавать в JavaScript</li>
+<li>У тега есть стили, можно менять.</li>
+<li>К тегу можно обратиться через <code>document.getElementById</code> и другие методы.</li>
+</ul>
+</li>
+<li>
+<p>IFRAME – это окно браузера, вложенное в основное</p>
+<ul>
+<li>IFRAME – такое же по функциональности окно браузера, как и основное, с адресом и т.п.
+<ul>
+<li>Если документ в <code>IFRAME</code> и внешнее окно находятся на разных доменах, то прямой вызов методов друг друга невозможен.</li>
+</ul>
+</li>
+<li>Ссылку на это окно можно получить через <code>window.frames['имя фрейма']</code>.</li>
+</ul>
+</li>
+</ol>
+<p>Для достижения цели мы будем работать как с тегом, так и с окном. Они, конечно же, взаимосвязаны.</p>
+<p><strong>В теге <code>&lt;iframe&gt;</code> свойство <code>contentWindow</code> хранит ссылку на окно.</strong></p>
+<p>Окна также содержатся в коллекции <code>window.frames</code>.</p>
+<p>Например:</p>
+<div id="h84c2274wp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Окно из ифрейма
+var iframeWin = iframe.contentWindow;
+
+// Можно получить и через frames, если мы знаем имя ифрейма (и оно у него есть)
+var iframeWin = window.frames[iframe.name];
+iframeWin.parent == window; // parent из iframe указывает на родительское окно
+
+// Документ не будет доступен, если iframe с другого домена
+var iframeDoc = iframe.contentWindow.document;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Больше информации об ифреймах вы можете получить в главе <a href="iframes.html">Общение между окнами и фреймами</a>.</p>
+<h3><a class="main__anchor" name="iframe-i-istoriya-posescheniy" href="#iframe-i-istoriya-posescheniy">IFRAME и история посещений</a></h3><p><code>IFRAME</code> – полноценное окно, поэтому навигация в нём попадает в историю посещений.</p>
+<p>Это означает, что при нажатии кнопки «Назад» браузер вернёт посетителя назад не в основном окне, а в ифрейме. В лучшем случае – браузер возьмёт предыдущее состояние ифрейма из кэша и посетитель просто подумает, что кнопка не сработала. В худшем – в ифрейм будет сделан предыдущий запрос, а это уже точно ни к чему.</p>
+<p><strong>Наши запросы в ифрейм – служебные и для истории не предназначены. К счастью, есть ряд техник, которые позволяют обойти проблему.</strong></p>
+<ul>
+<li>
+<p>Ифрейм нужно создавать динамически, через JavaScript.</p>
+</li>
+<li>
+<p>Когда ифрейм уже создан, то единственный способ поменять его <code>src</code> без попадания запроса в историю посещений:</p>
+<div id="41xoha3j2p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// newSrc - новый адрес
+iframeDoc.location.replace(newSrc);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вы можете возразить: «но ведь <code>iframeDoc</code> не всегда доступен! <code>iframe</code> может быть с другого домена – как быть тогда?». Ответ: вместо смены <code>src</code> этого ифрейма – создать новый, с новым <code>src</code>.</p>
+</li>
+<li>
+<p>POST-запросы в <code>iframe</code> всегда попадают в историю посещений.</p>
+</li>
+<li>
+<p>… Но если <code>iframe</code> удалить, то лишняя история тоже исчезнет :). Сделать это можно по окончании запроса.</p>
+</li>
+</ul>
+<p><strong>Таким образом, общий принцип использования <code>IFRAME</code>: динамически создать, сделать запрос, удалить.</strong></p>
+<p>Бывает так, что удалить по каким-то причинам нельзя, тогда возможны проблемы с историей, описанные выше.</p>
+<h3><a class="main__anchor" name="funktsiya-createiframe" href="#funktsiya-createiframe">Функция createIframe</a></h3><p>Приведённая ниже функция <code>createIframe(name, src, debug)</code> кросс-браузерно создаёт ифрейм с данным именем и <code>src</code>.</p>
+<p>Аргументы:</p>
+<dl>
+<dt><code>name</code></dt>
+<dd>Имя и <code>id</code> ифрейма</dd>
+<dt><code>src</code></dt>
+<dd>Исходный адрес ифрейма. Необязательный параметр.</dd>
+<dt><code>debug</code></dt>
+<dd>Если параметр задан, то ифрейм после создания не прячется.</dd>
+</dl>
+<div id="t8ecuq4310" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function createIframe(name, src, debug) {
+  src = src || 'javascript:false'; // пустой src
+
+  var tmpElem = document.createElement('div');
+
+  // в старых IE нельзя присвоить name после создания iframe
+  // поэтому создаём через innerHTML
+  tmpElem.innerHTML = '&lt;iframe name=&quot;' + name + '&quot; id=&quot;' + name + '&quot; src=&quot;' + src + '&quot;&gt;';
+  var iframe = tmpElem.firstChild;
+
+  if (!debug) {
+    iframe.style.display = 'none';
+  }
+
+  document.body.appendChild(iframe);
+
+  return iframe;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Ифрейм здесь добавляется к <code>document.body</code>. Конечно, вы можете исправить этот код и добавлять его в любое другое место документа.</p>
+<p>Кстати, при вставке, если не указан <code>src</code>, тут же произойдёт событие <code>iframe.onload</code>. Пока обработчиков нет, поэтому оно будет проигнорировано.</p>
+<h3><a class="main__anchor" name="funktsiya-posttoiframe" href="#funktsiya-posttoiframe">Функция postToIframe</a></h3><p>Функция <code>postToIframe(url, data, target)</code> отправляет POST-запрос в ифрейм с именем <code>target</code>, на адрес <code>url</code> с данными <code>data</code>.</p>
+<p>Аргументы:</p>
+<dl>
+<dt><code>url</code></dt>
+<dd>URL, на который отправлять запрос.</dd>
+<dt><code>data</code></dt>
+<dd>Объект содержит пары <code>ключ:значение</code> для полей формы. Значение будет приведено к строке.</dd>
+<dt><code>target</code></dt>
+<dd>Имя ифрейма, в который отправлять данные.</dd>
+</dl>
+<div id="nbds1j5xzf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Например: postToIframe('/vote', {mark:5}, 'frame1')
+
+function postToIframe(url, data, target) {
+  var phonyForm = document.getElementById('phonyForm');
+  if (!phonyForm) {
+    // временную форму создаём, если нет
+    phonyForm = document.createElement(&quot;form&quot;);
+    phonyForm.id = 'phonyForm';
+    phonyForm.style.display = &quot;none&quot;;
+    phonyForm.method = &quot;POST&quot;;
+    document.body.appendChild(phonyForm);
+  }
+
+  phonyForm.action = url;
+  phonyForm.target = target;
+
+  // заполнить форму данными из объекта
+  var html = [];
+  for (var key in data) {
+    var value = String(data[key]).replace(/&quot;/g, &quot;&amp;quot;&quot;);
+    // в старых IE нельзя указать name после создания input
+    // поэтому используем innerHTML вместо DOM-методов
+    html.push(&quot;&lt;input type='hidden' name=\&quot;&quot; + key + &quot;\&quot; value=\&quot;&quot; + value + &quot;\&quot;&gt;&quot;);
+  }
+  phonyForm.innerHTML = html.join('');
+
+  phonyForm.submit();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Эта функция формирует форму динамически, но, конечно, это лишь один из возможных сценариев использования.</p>
+<p>В <code>IFRAME</code> можно отправлять и существующую форму, включающую файловые и другие поля.</p>
+<h2><a class="main__anchor" name="zaprosy-get-i-post" href="#zaprosy-get-i-post">Запросы GET и POST</a></h2><p>Общий алгоритм обращения к серверу через ифрейм:</p>
+<ol>
+<li>
+<p>Создаём <code>iframe</code> со случайным именем <code>iframeName</code>.</p>
+</li>
+<li>
+<p>Создаём в основном окне объект <code>CallbackRegistry</code>, в котором в <code>CallbackRegistry[iframeName]</code> сохраняем функцию, которая будет обрабатывать результат.</p>
+</li>
+<li>
+<p>Отправляем GET или POST-запрос в него.</p>
+</li>
+<li>
+<p>Сервер отвечает как-то так:</p>
+<div id="0y5k0bw41i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  parent.CallbackRegistry[window.name]({данные});
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…То есть, вызывает из основного окна функцию обработки (<code>window.name</code> в ифрейме – его имя).</p>
+</li>
+<li>
+<p>Дополнительно нужен обработчик <code>iframe.onload</code> – он сработает и проверит, выполнилась ли функция <code>CallbackRegistry[window.name]</code>. Если нет, значит какая-то ошибка. Сервер при нормальном потоке выполнения всегда отвечает её вызовом.</p>
+</li>
+</ol>
+<p>Подробнее можно понять процесс, взглянув на код.</p>
+<p>Мы будем использовать в нём две функции – одну для GET, другую – для POST:</p>
+<ul>
+<li><code>iframeGet(url, onSuccess, onError)</code> – для GET-запросов на <code>url</code>. При успешном запросе вызывается <code>onSuccess(result)</code>, при неуспешном: <code>onError()</code>.</li>
+<li><code>iframePost(url, data, onSuccess, onError)</code> – для POST-запросов на <code>url</code>. Значением <code>data</code> должен быть объект <code>ключ:значение</code> для пересылаемых данных, он конвертируется в поля формы.</li>
+</ul>
+<p>Пример в действии, возвращающий дату сервера при GET и разницу между датами клиента и сервера при POST:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">iframe.js</div><div class="code-tabs__switch">server.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/ajax-iframe/date/"></a><a class="code-tabs__button code-tabs__button_download" target="_blank" href="https://learn.javascript.ru/tutorial/zipview/date.zip?plunkId=s0dBtygMCPPbrkv6"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/ajax-iframe/date/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function createIframe(name, src, debug) {
+  src = src || 'javascript:false'; // пустой src
+
+  var tmpElem = document.createElement('div');
+
+  // в старых IE нельзя присвоить name после создания iframe, поэтому создаём через innerHTML
+  tmpElem.innerHTML = '&lt;iframe name=&quot;' + name + '&quot; id=&quot;' + name + '&quot; src=&quot;' + src + '&quot;&gt;';
+  var iframe = tmpElem.firstChild;
+
+  if (!debug) {
+    iframe.style.display = 'none';
+  }
+
+  document.body.appendChild(iframe);
+
+  return iframe;
+}
+
+// функция постит объект-хэш content в виде формы с нужным url , target
+// напр. postToIframe('/count.php', {a:5,b:6}, 'frame1')
+
+function postToIframe(url, data, target) {
+  var phonyForm = document.getElementById('phonyForm');
+  if (!phonyForm) {
+    // временную форму создаем, если нет
+    phonyForm = document.createElement(&quot;form&quot;);
+    phonyForm.id = 'phonyForm';
+    phonyForm.style.display = &quot;none&quot;;
+    phonyForm.method = &quot;POST&quot;;
+    phonyForm.enctype = &quot;multipart/form-data&quot;;
+    document.body.appendChild(phonyForm);
+  }
+
+  phonyForm.action = url;
+  phonyForm.target = target;
+
+  // заполнить форму данными из объекта
+  var html = [];
+  for (var key in data) {
+    var value = String(data[key]).replace(/&quot;/g, &quot;&amp;quot;&quot;);
+    html.push(&quot;&lt;input type='hidden' name=\&quot;&quot; + key + &quot;\&quot; value=\&quot;&quot; + value + &quot;\&quot;&gt;&quot;);
+  }
+  phonyForm.innerHTML = html.join('');
+
+  phonyForm.submit();
+}
+
+
+var CallbackRegistry = {}; // реестр
+
+function iframeGet(url, onSuccess, onError) {
+
+  var iframeOk = false; // флаг успешного ответа сервера
+
+  var iframeName = Math.random(); // случайное имя для ифрейма
+  var iframe = createIframe(iframeName, url);
+
+  CallbackRegistry[iframeName] = function(data) {
+    iframeOk = true; // сервер ответил успешно
+    onSuccess(data);
+  }
+
+  iframe.onload = function() {
+    iframe.parentNode.removeChild(iframe); // очистка
+    delete CallbackRegistry[iframeName];
+    if (!iframeOk) onError(); // если сервер не ответил как надо - что-то не так
+  }
+
+}
+
+// аналогично iframeGet, но в postToIframe передаются данные data
+function iframePost(url, data, onSuccess, onError) {
+
+  var iframeOk = false;
+
+  var iframeName = Math.random();
+  var iframe = createIframe(iframeName);
+
+  CallbackRegistry[iframeName] = function(data) {
+    iframeOk = true;
+    onSuccess(data);
+  }
+
+  iframe.onload = function() {
+    iframe.parentNode.removeChild(iframe); // очистка
+    delete CallbackRegistry[iframeName];
+
+    if (!iframeOk) onError(); // если коллбэк не вызвался - что-то не так
+  }
+
+  postToIframe(url, data, iframeName);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var http = require('http');
+var url = require('url');
+var static = require('node-static');
+var file = new static.Server('.', {
+  cache: 0
+});
+var multiparty = require('multiparty');
+
+function accept(req, res) {
+
+  var urlParsed = url.parse(req.url, true);
+  res.setHeader('Cache-Control', 'no-cache');
+
+  if (urlParsed.pathname == '/server') {
+    res.end(wrap(new Date()));
+    return;
+  } else if (urlParsed.pathname == '/diff') {
+
+    var form = new multiparty.Form();
+    form.parse(req, function(err, fields, files) {
+      var diff = new Date() - fields.clientDate[0];
+      res.end(wrap(diff));
+    });
+
+  } else {
+    file.serve(req, res);
+  }
+
+}
+
+function wrap(data) {
+  return '&lt;script&gt;parent.CallbackRegistry[window.name](' + JSON.stringify(data) + ')&lt;/script&gt;';
+}
+
+
+// ------ запустить сервер -------
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+} else {
+  exports.accept = accept;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+
+  &lt;script src=&quot;iframe.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    function ok(result) {
+      alert('result: ' + result);
+    }
+
+    function fail() {
+      alert('fail');
+    }
+  &lt;/script&gt;
+
+  &lt;button onclick=&quot;iframeGet('server', ok, fail)&quot;&gt;iframeGet server&lt;/button&gt;
+
+  &lt;button onclick=&quot;iframePost('diff', {clientDate: +new Date}, ok, fail)&quot;&gt;iframePost diff&lt;/button&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Прямой вызов функции внешнего окна из ифрейма отлично работает, потому что они с одного домена. Если с разных, то нужны дополнительные действия, например:</p>
+<ul>
+<li>
+<p>В IE8+ есть интерфейс <a href="https://developer.mozilla.org/en-US/docs/DOM/window.postMessage">postMessage</a> для общения между окнами с разных доменов.</p>
+</li>
+<li>
+<p>В любых, даже самых старых IE, можно обмениваться данными через <code>window.name</code>. Эта переменная хранит «имя» окна или фрейма, которое не меняется при перезагрузке страницы.</p>
+<p>Поэтому если мы сделали <code>POST</code> в <code>&lt;iframe&gt;</code> на другой домен и он поставил <code>window.name = &quot;Вася&quot;</code>, а затем сделал редирект на основной домен, то эти данные станут доступны внешней странице.</p>
+</li>
+<li>
+<p>Также в совсем старых IE можно обмениваться данными через хеш, то есть фрагмент URL после <code>#</code>. Его изменение доступно между ифреймами с разных доменов и не приводит к перезагрузке страницы. Таким образом они могут передавать данные друг другу. Есть готовые библиотеки, которые реализуют этот подход, например <a href="http://ternarylabs.github.io/porthole/">Porthole</a>.</p>
+</li>
+</ul>
+<h2><a class="main__anchor" name="iframe-dlya-comet" href="#iframe-dlya-comet">IFRAME для COMET</a></h2><p>Бесконечный IFRAME – самый старый способ организации COMET. Когда-то он был основой AJAX-приложений, а сейчас – используется лишь в случаях, когда браузер не поддерживает современный стандарт WebSocket, то есть для IE9-.</p>
+<p>Этот способ основан на том, что браузер читает страницу последовательно и обрабатывает все новые теги по мере того, как сервер их присылает.</p>
+<p>Классическая реализация – это когда клиент создаёт невидимый IFRAME, ведущий на служебный URL. Сервер, получив соединение на этот URL, не закрывает его, а
+время от времени присылает блоки сообщений <code>&lt;script&gt;…javascript…&lt;/script&gt;</code>. Появившийся в IFRAME’е javascript тут же выполняется браузером, передавая информацию на основную страницу.</p>
+<p>Таким образом, для передачи данных используется «бесконечный» ифрейм, через который сервер присылает все новые данные.</p>
+<p>Схема работы:</p>
+<ol>
+<li>Создаётся <code>&lt;iframe src=&quot;COMET_URL&quot;&gt;</code>, по адресу <code>COMET_URL</code> расположен сервер.</li>
+<li>Сервер выдаёт начало («шапку») документа и останавливается, оставляя соединение активным.</li>
+<li>Когда сервер хочет что-то отправить – он пишет в соединение <code>&lt;script&gt;parent.onMessage(сообщение)&lt;/script&gt;</code> Браузер тут же выполняет этот скрипт – так сообщение приходит на клиент.</li>
+<li>Ифрейм, в теории, грузится бесконечно. Его завершение означает обрыв канала связи. Его можно поймать по <code>iframe.onload</code> и заново открыть соединение (создать новый <code>iframe</code>).</li>
+</ol>
+<p>Также ифрейм можно пересоздавать время от времени, для очистки памяти от старых сообщений.</p>
+<figure><div class="image" style="width:492px">
+      <div class="image__ratio" style="padding-top:46.34146341463415%"></div>
+      <img src="https://learn.javascript.ru/article/ajax-iframe/comet.png" alt="" width="492" height="228" class="image__image">
+      </div></figure><p>Ифрейм при этом работает только на получение данных с сервера, как альтернатива <a href="server-sent-events.html">Server Sent Events</a>. Для запросов используется обычный <code>XMLHttpRequest</code>.</p>
+<h2><a class="main__anchor" name="obhod-problem-s-ie" href="#obhod-problem-s-ie">Обход проблем с IE</a></h2><p>Такое использование ифреймов является хаком. Поэтому есть ряд проблем:</p>
+<ol>
+<li>Показывается индикатор загрузки, «курсор-часики».</li>
+<li>При POST в <code>&lt;iframe&gt;</code> раздаётся звук «клика».</li>
+<li>Браузер буферизует начало страницы.</li>
+</ol>
+<p>Мы должны эти проблемы решить, прежде всего, в IE, поскольку в других браузерах есть <a href="websockets.html">WebSocket</a> и <a href="server-sent-events.html">Server Sent Events</a> .</p>
+<p>Проще всего решить последнюю – IE не начинает обработку страницы, пока она не загрузится до определённого размера.</p>
+<p>Поэтому в таком <code>IFRAME</code> первые несколько сообщений задержатся:</p>
+<div id="rxpfqzazmv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+  &lt;body&gt;
+  &lt;script&gt;parent.onMessage(&quot;привет&quot;);&lt;/script&gt;
+  &lt;script&gt;parent.onMessage(&quot;от сервера&quot;);&lt;/script&gt;
+  ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Решение – забить начало ифрейма чем-нибудь, поставить, например, килобайт пробелов в начале:</p>
+<div id="r44subty2i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+  ******* 1 килобайт пробелов, а потом уже сообщения ******
+  &lt;script&gt;
+    parent.onMessage(&quot;привет&quot;);
+  &lt;/script&gt;
+  &lt;script&gt;
+    parent.onMessage(&quot;от сервера&quot;);
+  &lt;/script&gt;
+  ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Для решения проблемы с индикацией загрузки и клика мы можем использовать безопасный ActiveX-объект <code>htmlfile</code>. IE не требует разрешений на его создание. Фактически, это независимый HTML-документ.</p>
+<p>Оказывается, если <code>iframe</code> создать в нём, то никакой анимации и звуков не будет.</p>
+<p>Итак, схема:</p>
+<ol>
+<li>Основное окно <code>main</code> создаёт вспомогательный объект: <code>new ActiveXObject(&quot;htmlfile&quot;)</code>. Это HTML-документ со своим <code>window</code>, похоже на встроенный <code>iframe</code>.</li>
+<li>В <code>htmlfile</code> записывается <code>iframe</code>.</li>
+<li>Цепочка общения: основное окно – <code>htmlfile</code> – ифрейм.</li>
+</ol>
+<h3><a class="main__anchor" name="iframeactivexget" href="#iframeactivexget">iframeActiveXGet</a></h3><p>На самом деле всё ещё проще, если посмотреть на код:</p>
+<p>Метод <code>iframeActiveXGet</code> по существу идентичен обычному <code>iframeGet</code>, которое мы рассмотрели. Единственное отличие – вместо <code>createIframe</code> используется особый метод <code>createActiveXFrame</code>:</p>
+<div id="rl1ux8z1da" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function iframeActiveXGet(url, onSuccess, onError) {
+
+  var iframeOk = false;
+
+  var iframeName = Math.random();
+  var iframe = createActiveXFrame(iframeName, url);
+
+  CallbackRegistry[iframeName] = function(data) {
+    iframeOk = true;
+    onSuccess(data);
+  }
+
+  iframe.onload = function() {
+    iframe.parentNode.removeChild(iframe); // очистка
+    delete CallbackRegistry[iframeName];
+    if (!iframeOk) onError(); // если колбэк не вызвался - что-то не так
+  }
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="createactivexframe" href="#createactivexframe">createActiveXFrame</a></h3><p>В этой функции творится вся IE-магия:</p>
+<div id="begx29a8nj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function createActiveXFrame(name, src) {
+  // (1)
+  var htmlfile = window.htmlfile;
+  if (!htmlfile) {
+    htmlfile = window.htmlfile = new ActiveXObject(&quot;htmlfile&quot;);
+    htmlfile.open();
+    // (2)
+    htmlfile.write(&quot;&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+    htmlfile.close();
+    // (3)
+    htmlfile.parentWindow.CallbackRegistry = CallbackRegistry;
+  }
+
+  // (4)
+  src = src || 'javascript:false';
+  htmlfile.body.insertAdjacentHTML('beforeEnd',
+    &quot;&lt;iframe name='&quot; + name + &quot;' src='&quot; + src + &quot;'&gt;&lt;/iframe&gt;&quot;);
+  return htmlfile.body.lastChild;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>Вспомогательный объект <code>htmlfile</code> будет один и он будет глобальным. Можно и спрятать переменную в замыкании. Смысл в том, что в один <code>htmlfile</code> можно записать много ифреймов, так что не будем множить сущности и занимать ими лишнюю память.</p>
+</li>
+<li>
+<p>В <code>htmlfile</code> можно записать любой текст и, при необходимости, через  <code>document.write('&lt;script&gt;...&lt;\/script&gt;)</code>. Здесь мы делаем пустой документ.</p>
+</li>
+<li>
+<p>Когда загрузится <code>iframe</code>, он сделает вызов:</p>
+<div id="vg09y24h65" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  parent.CallbackRegistry[window.name](объект с данными);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь <code>parent'ом</code> для <code>iframe'а</code> будет <code>htmlfile</code>, т.е. <code>CallbackRegistry</code> будет искаться среди переменных соответствующего ему окна, а вовсе не верхнего <code>window</code>.</p>
+<p>Окно для <code>htmlfile</code> доступно как <code>htmlfile.parentWindow</code>, копируем в него ссылку на реестр колбэков <code>CallbackRegistry</code>. Теперь ифрейм его найдёт.</p>
+</li>
+<li>
+<p>Далее вставляем ифрейм в документ. В старых <code>IE</code> нельзя поменять <code>name</code> ифрейму через DOM, поэтому вставляем строкой через <code>insertAdjacentHTML</code>.</p>
+</li>
+</ol>
+<p>Пример в действии (только IE):</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">activex.js</div><div class="code-tabs__switch">server.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/ajax-iframe/date-activex/"></a><a class="code-tabs__button code-tabs__button_download" target="_blank" href="https://learn.javascript.ru/tutorial/zipview/date-activex.zip?plunkId=q5jKxtpRq1YDsRji"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/ajax-iframe/date-activex/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var CallbackRegistry = {}; // реестр
+
+function iframeActiveXGet(url, onSuccess, onError) {
+
+  var iframeOk = false;
+
+  var iframeName = Math.random();
+  var iframe = createActiveXFrame(iframeName, url);
+
+  CallbackRegistry[iframeName] = function(data) {
+    iframeOk = true;
+    onSuccess(data);
+  }
+
+  iframe.onload = function() {
+    iframe.parentNode.removeChild(iframe); // очистка
+    delete CallbackRegistry[iframeName];
+    if (!iframeOk) onError(); // если коллбэк не вызвался - что-то не так
+  }
+
+}
+
+
+function createActiveXFrame(name, src) {
+  var htmlfile = window.htmlfile;
+  if (!htmlfile) {
+    htmlfile = window.htmlfile = new ActiveXObject(&quot;htmlfile&quot;);
+    htmlfile.open();
+    htmlfile.write(&quot;&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+    htmlfile.close();
+    htmlfile.parentWindow.CallbackRegistry = CallbackRegistry;
+  }
+
+  src = src || 'javascript:false'; // пустой src
+  htmlfile.body.insertAdjacentHTML('beforeEnd', &quot;&lt;iframe name='&quot; + name + &quot;' src='&quot; + src + &quot;'&gt;&lt;/iframe&gt;&quot;);
+  return htmlfile.body.lastChild; // window in .document.parentWindow
+}</code></pre></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var http = require('http');
+var url = require('url');
+var static = require('node-static');
+var file = new static.Server('.', {
+  cache: 0
+});
+var multiparty = require('multiparty');
+
+function accept(req, res) {
+
+  var urlParsed = url.parse(req.url, true);
+  res.setHeader('Cache-Control', 'no-cache');
+
+  if (urlParsed.pathname == '/server') {
+    res.end(wrap(new Date()));
+    return;
+  } else if (urlParsed.pathname == '/diff') {
+
+    var form = new multiparty.Form();
+    form.parse(req, function(err, fields, files) {
+      var diff = new Date() - fields.clientDate[0];
+      res.end(wrap(diff));
+    });
+
+  } else {
+    file.serve(req, res);
+  }
+
+}
+
+function wrap(data) {
+  return '&lt;script&gt;parent.CallbackRegistry[window.name](' + JSON.stringify(data) + ')&lt;/script&gt;';
+}
+
+
+// ------ запустить сервер -------
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+} else {
+  exports.accept = accept;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+
+  &lt;script src=&quot;activex.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    function ok(result) {
+      alert('result: ' + result);
+    }
+
+    function fail() {
+      alert('fail');
+    }
+
+    function go() {
+      if (!(&quot;ActiveXObject&quot; in window)) {
+        alert(&quot;Только Internet Explorer&quot;);
+        return;
+      }
+      iframeActiveXGet(&quot;server&quot;, ok, fail);
+    }
+  &lt;/script&gt;
+
+
+  &lt;button onclick=&quot;go()&quot;&gt;iframeActiveXGet server date&lt;/button&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Запрос, который происходит, полностью незаметен.</p>
+<p>Метод POST делается аналогично, только форму нужно добавлять не в основное окно, а в <code>htmlfile</code>, через вызов <code>htmlfile.appendChild</code>. В остальном – всё так же, как и при обычной отправке через ифрейм.</p>
+<p>Впрочем, для COMET нужен именно GET.</p>
+<p>Можно и сочетать эти способы: если есть ActiveX: <code>if (&quot;ActiveXObject&quot; in window)</code> – используем методы для IE, описанные выше, а иначе – обычные методы.</p>
+<p>Вот мини-приложение с сервером на Node.JS, непрерывно получающее текущее время с сервера через <code>&lt;iframe&gt;</code>, сочетающее эти подходы:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">iframeComet.js</div><div class="code-tabs__switch">server.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="https://learn.javascript.ru/article/ajax-iframe/date-comet/"></a><a class="code-tabs__button code-tabs__button_download" target="_blank" href="https://learn.javascript.ru/tutorial/zipview/date-comet.zip?plunkId=5956HNH7nu2cBgmu"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="https://learn.javascript.ru/article/ajax-iframe/date-comet/"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var IframeComet = new function() {
+  var self = this;
+
+  var connectTries = 0,
+    reconnectTimer;
+  var htmlfile; // for ie only
+  var iframe;
+
+  this.onConnected = function() {
+    connectTries = 0;
+    clearTimeout(reconnectTimer);
+  };
+
+  this.onMessage = function(message) { /* ... */ };
+
+  this.onError = function(err) { /* ... */ };
+
+  this.open = function(url) {
+    connectTries++;
+
+    if (connectTries &gt; 3) {
+      self.onError(&quot;Unable to connect&quot;);
+    }
+
+    if (&quot;ActiveXObject&quot; in window) { // IE
+      createActiveXFrame(url);
+    } else {
+      createIframe(url);
+    }
+
+    reconnectTimer = setTimeout(function() {
+      if (!self.isConnected()) {
+        self.open(url);
+      }
+    }, connectTries * 2000);
+
+    // в Chrome не срабатывает при обрыве соединения,
+    // так что используем там другой =) транспорт
+    iframe.onload = function() {
+      self.open(url);
+    };
+
+  };
+
+  this.isConnected = function() {
+    return connectTries == 0; // onConnect обнуляет connectTries
+  }
+
+  function cleanIframe() {
+    if (iframe) {
+      iframe.src = &quot;javascript:false&quot;;
+      iframe.parentNode.removeChild(iframe); // очистка
+    }
+  }
+
+  function createIframe(src) {
+    cleanIframe();
+
+    iframe = document.createElement('iframe');
+    iframe.src = src || 'javascript:false';
+    iframe.style.display = 'none';
+
+    document.body.appendChild(iframe);
+  }
+
+
+  function createActiveXFrame(src) {
+    cleanIframe();
+
+    if (!htmlfile) {
+      htmlfile = new ActiveXObject(&quot;htmlfile&quot;);
+      htmlfile.open();
+      htmlfile.write(&quot;&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+      htmlfile.close();
+      htmlfile.parentWindow.IframeComet = self;
+    }
+
+    src = src || 'javascript:false'; // пустой src
+    htmlfile.body.insertAdjacentHTML('beforeEnd', &quot;&lt;iframe src='&quot; + src + &quot;'&gt;&lt;/iframe&gt;&quot;);
+    iframe = htmlfile.body.lastChild; // window in .document.parentWindow
+  }
+
+}</code></pre></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>var http = require('http');
+var url = require('url');
+var static = require('node-static');
+var file = new static.Server('.', {
+  cache: 0
+});
+
+
+function accept(req, res) {
+
+  if (req.url == '/comet') {
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8'
+    });
+
+    res.write('&lt;!DOCTYPE HTML&gt;&lt;html&gt; \
+			&lt;head&gt;&lt;meta junk=&quot;' + new Array(2000).join('*') + '&quot;/&gt; \
+			&lt;script&gt; \
+			  var i = parent.IframeComet; \
+			  i.onConnected()&lt;/script&gt; \
+			&lt;/head&gt;&lt;body&gt;');
+
+    setInterval(function() {
+      var now = new Date();
+      var timeStr = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+      res.write('&lt;script&gt;i.onMessage(&quot;' + timeStr + '&quot;)&lt;/script&gt;');
+    }, 1000);
+
+    return;
+  } else {
+    file.serve(req, res);
+  }
+
+}
+
+
+// ------ запустить сервер -------
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+} else {
+  exports.accept = accept;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;body&gt;
+
+  &lt;script src=&quot;iframeComet.js&quot;&gt;&lt;/script&gt;
+
+  &lt;button onclick=&quot;go()&quot;&gt;IframeComet.open(&quot;comet&quot;);&lt;/button&gt;
+
+
+  &lt;div id=&quot;showElem&quot;&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    IframeComet.onMessage = IframeComet.onError = show;
+
+    function show(msg) {
+      showElem.innerHTML = msg;
+    }
+
+    function go() {
+      IframeComet.open(&quot;comet&quot;);
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>Ещё раз заметим, что обычно такое сочетание не нужно, так как если не IE9-, то можно использовать более современные средства для COMET.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>Iframe позволяет делать «AJAX»-запросы и хитро обходить кросс-доменные ограничения в IE7-. Обычно для этого используют либо <code>window.name</code> с редиректом, либо хеш с библиотекой типа <a href="https://github.com/ternarylabs/porthole">Porthole</a>.</li>
+<li>В IE9- iframe можно использовать для COMET. В IE10 уже есть WebSocket.</li>
+</ul>
+<p>Существует ряд уже готовых клиент-серверных библиотек, которые реализуют AJAX/COMET, в том числе и через iframe, мы рассмотрим их позже. Поэтому совсем не обязательно делать «с нуля». Хотя, как можно видеть из главы, это совсем несложно.</p>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fajax-iframe" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/ajax-iframe","identifier":"\/ajax-iframe"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/ajax-iframe by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:08 GMT -->
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/arraybuffer-binary-arrays by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">ArrayBuffer, бинарные массивы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="arraybuffer-binary-arrays.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="ArrayBuffer, бинарные массивы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ArrayBuffer, бинарные массивы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="binary.html"><link rel="next" href="text-decoder.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="ArrayBuffer, бинарные массивы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="arraybuffer-binary-arrays.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/arraybuffer-binary-arrays">English</option><option value="https://es.javascript.info/arraybuffer-binary-arrays">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/arraybuffer-binary-arrays">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/arraybuffer-binary-arrays">Italiano</option><option value="https://ja.javascript.info/arraybuffer-binary-arrays">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/arraybuffer-binary-arrays" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/arraybuffer-binary-arrays">Українська</option><option value="https://zh.javascript.info/arraybuffer-binary-arrays">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="1" max="4" data-tooltip="Урок 1 из 4"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="binary.html"><span>Бинарные данные и файлы</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Бинарные данные и файлы","item":"https://learn.javascript.ru/binary"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 5 мая 2022 г."><div class="updated-at__content">5 мая 2022 г.</div></div></div><h1 class="main__header-title">ArrayBuffer, бинарные массивы</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="ArrayBuffer, бинарные массивы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В сфере веб-разработки мы встречаемся с бинарными данными чаще всего тогда, когда требуется выполнить какие-то действия над файлами (создать, загрузить или скачать). Другим типичным примером такой встречи является обработка изображений.</p>
+<p>Всё это возможно осуществить на JavaScript. Более того, операции над бинарными данными являются высокопроизводительными.</p>
+<p>Обилие классов для работы с бинарными данными может немного запутать. Вот некоторые из них:</p>
+<ul>
+<li><code>ArrayBuffer</code>, <code>Uint8Array</code>, <code>DataView</code>, <code>Blob</code>, <code>File</code> и т.д.</li>
+</ul>
+<p>Работа с бинарными данными в JavaScript реализована нестандартно по сравнению с другими языками программирования. Но когда мы в этом разберёмся, то всё окажется весьма просто.</p>
+<p><strong>Базовый объект для работы с бинарными данными имеет тип <code>ArrayBuffer</code> и представляет собой ссылку на непрерывную область памяти фиксированной длины.</strong></p>
+<p>Вот так мы можем создать его экземпляр:</p>
+<div id="35ktror6ku" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let buffer = new ArrayBuffer(16); // создаётся буфер длиной 16 байт
+alert(buffer.byteLength); // 16</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Инструкция выше выделяет непрерывную область памяти размером 16 байт и заполняет её нулями.</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>ArrayBuffer</code> – это не массив!</span></div>
+            <div class="important__content"><p>Давайте внесём ясность, чтобы не запутаться. <code>ArrayBuffer</code> не имеет ничего общего с <code>Array</code>:</p>
+<ul>
+<li>его длина фиксирована, мы не можем увеличивать или уменьшать её.</li>
+<li><code>ArrayBuffer</code> занимает ровно столько места в памяти, сколько указывается при создании.</li>
+<li>Для доступа к отдельным байтам нужен вспомогательный объект-представление, <code>buffer[index]</code> не сработает.</li>
+</ul>
+</div></div>
+<p><code>ArrayBuffer</code> – это область памяти. Что там хранится? Этой информации нет. Просто необработанный («сырой») массив байтов.</p>
+<p><strong>Для работы с <code>ArrayBuffer</code> нам нужен специальный объект, реализующий «представление» данных.</strong></p>
+<p>Такие объекты не хранят какое-то собственное содержимое. Они интерпретируют бинарные данные, хранящиеся в <code>ArrayBuffer</code>.</p>
+<p>Например:</p>
+<ul>
+<li><strong><code>Uint8Array</code></strong> – представляет каждый байт в <code>ArrayBuffer</code> как отдельное число; возможные значения находятся в промежутке от 0 до 255 (в байте 8 бит, отсюда такой набор). Такое значение называется «8-битное целое без знака».</li>
+<li><strong><code>Uint16Array</code></strong> – представляет каждые 2 байта в <code>ArrayBuffer</code> как целое число; возможные значения находятся в промежутке от 0 до 65535. Такое значение называется «16-битное целое без знака».</li>
+<li><strong><code>Uint32Array</code></strong> – представляет каждые 4 байта в <code>ArrayBuffer</code> как целое число; возможные значения находятся в промежутке от 0 до 4294967295. Такое значение называется «32-битное целое без знака».</li>
+<li><strong><code>Float64Array</code></strong> – представляет каждые 8 байт в <code>ArrayBuffer</code> как число с плавающей точкой; возможные значения находятся в промежутке между <code>5.0x10<sup>-324</sup></code> и <code>1.8x10<sup>308</sup></code>.</li>
+</ul>
+<p>Таким образом, бинарные данные из <code>ArrayBuffer</code> размером 16 байт могут быть представлены как 16 чисел маленькой разрядности или как 8 чисел большей разрядности (по 2 байта каждое), или как 4 числа ещё большей разрядности (по 4 байта каждое), или как 2 числа с плавающей точкой высокой точности (по 8 байт каждое).</p>
+<figure><div class="image" style="width:603px">
+      <div class="image__ratio" style="padding-top:47.42951907131012%"></div>
+      <object type="image/svg+xml" data="article/arraybuffer-binary-arrays/arraybuffer-views.svg" width="603" height="286" class="image__image" data-use-theme>
+        <img src="article/arraybuffer-binary-arrays/arraybuffer-views.svg" alt="" width="603" height="286">
+      </object>
+      </div></figure><p><code>ArrayBuffer</code> – это корневой объект, основа всего, необработанные бинарные данные.</p>
+<p>Но если мы собираемся что-то записать в него или пройтись по его содержимому, да и вообще для любых действий мы должны использовать какой-то объект-представление («view»), например:</p>
+<div id="ymih1brqir" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let buffer = new ArrayBuffer(16); // создаётся буфер длиной 16 байт
+
+let view = new Uint32Array(buffer); // интерпретируем содержимое как последовательность 32-битных целых чисел без знака
+
+alert(Uint32Array.BYTES_PER_ELEMENT); // 4 байта на каждое целое число
+
+alert(view.length); // 4, именно столько чисел сейчас хранится в буфере
+alert(view.byteLength); // 16, размер содержимого в байтах
+
+// давайте запишем какое-нибудь значение
+view[0] = 123456;
+
+// теперь пройдёмся по всем значениям
+for(let num of view) {
+  alert(num); // 123456, потом 0, 0, 0 (всего 4 значения)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="typedarray" href="#typedarray">TypedArray</a></h2><p>Общий термин для всех таких представлений (<code>Uint8Array</code>, <code>Uint32Array</code> и т.д.) – это <a href="https://tc39.github.io/ecma262/#sec-typedarray-objects">TypedArray</a>, типизированный массив. У них имеется набор одинаковых свойств и методов.</p>
+<p>Они уже намного больше напоминают обычные массивы: элементы проиндексированы, и возможно осуществить обход содержимого.</p>
+<p>Конструкторы типизированных массивов (будь то <code>Int8Array</code> или <code>Float64Array</code>, без разницы) ведут себя по-разному в зависимости от типа передаваемого им аргумента.</p>
+<p>Есть 5 вариантов создания типизированных массивов:</p>
+<div id="ndz6lhix6b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new TypedArray(buffer, [byteOffset], [length]);
+new TypedArray(object);
+new TypedArray(typedArray);
+new TypedArray(length);
+new TypedArray();</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>Если передан аргумент типа <code>ArrayBuffer</code>, то создаётся объект-представление для него. Мы уже использовали этот синтаксис ранее.</p>
+<p>Дополнительно можно указать аргументы <code>byteOffset</code> (0 по умолчанию) и <code>length</code> (до конца буфера по умолчанию), тогда представление будет покрывать только часть данных в <code>buffer</code>.</p>
+</li>
+<li>
+<p>Если в качестве аргумента передан <code>Array</code> или какой-нибудь псевдомассив, то будет создан типизированный массив такой же длины и с тем же содержимым.</p>
+<p>Мы можем использовать эту возможность, чтобы заполнить типизированный массив начальными данными:</p>
+<div id="b1el4e1wjo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Uint8Array([0, 1, 2, 3]);
+alert( arr.length ); // 4, создан бинарный массив той же длины
+alert( arr[1] ); // 1, заполнен 4-мя байтами с указанными значениями</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Если в конструктор передан другой объект типа <code>TypedArray</code>, то делается то же самое: создаётся типизированный массив с такой же длиной и в него копируется содержимое. При необходимости значения будут приведены к новому типу.</p>
+<div id="noexndenel" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr16 = new Uint16Array([1, 1000]);
+let arr8 = new Uint8Array(arr16);
+alert( arr8[0] ); // 1
+alert( arr8[1] ); // 232, потому что 1000 не помещается в 8 бит (разъяснения будут ниже)</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Если передано число <code>length</code> – будет создан типизированный массив, содержащий именно столько элементов. Размер нового массива в байтах будет равен числу элементов <code>length</code>, умноженному на размер одного элемента <code>TypedArray.BYTES_PER_ELEMENT</code>:</p>
+<div id="tt4o9lc21e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Uint16Array(4); // создаём типизированный массив для 4 целых 16-битных чисел без знака
+alert( Uint16Array.BYTES_PER_ELEMENT ); // 2 байта на число
+alert( arr.byteLength ); // 8 (размер массива в байтах)</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>При вызове без аргументов будет создан пустой типизированный массив.</p>
+</li>
+</ol>
+<p>Как видим, можно создавать типизированные массивы <code>TypedArray</code> напрямую, не передавая в конструктор объект типа <code>ArrayBuffer</code>. Но представления не могут существовать сами по себе без двоичных данных, так что на самом деле объект <code>ArrayBuffer</code> создаётся автоматически во всех случаях, кроме первого, когда он явно передан в конструктор представления.</p>
+<p>Для доступа к <code>ArrayBuffer</code> в <code>TypedArray</code> есть следующие свойства:</p>
+<ul>
+<li><code>buffer</code> – ссылка на объект <code>ArrayBuffer</code>.</li>
+<li><code>byteLength</code> – размер содержимого <code>ArrayBuffer</code> в байтах.</li>
+</ul>
+<p>Таким образом, мы всегда можем перейти от одного представления к другому:</p>
+<div id="p2fcuywgi9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr8 = new Uint8Array([0, 1, 2, 3]);
+
+// другое представление на тех же данных
+let arr16 = new Uint16Array(arr8.buffer);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Список типизированных массивов:</p>
+<ul>
+<li><code>Uint8Array</code>, <code>Uint16Array</code>, <code>Uint32Array</code> – целые беззнаковые числа по 8, 16 и 32 бита соответственно.
+<ul>
+<li><code>Uint8ClampedArray</code> – 8-битные беззнаковые целые, обрезаются по верхней и нижней границе при присвоении (об этом ниже).</li>
+</ul>
+</li>
+<li><code>Int8Array</code>, <code>Int16Array</code>, <code>Int32Array</code> – целые числа со знаком (могут быть отрицательными).</li>
+<li><code>Float32Array</code>, <code>Float64Array</code> – 32- и 64-битные числа со знаком и плавающей точкой.</li>
+</ul>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Не существует примитивных типов данных <code>int8</code> и т.д.</span></div>
+            <div class="important__content"><p>Обратите внимание: несмотря на названия вроде <code>Int8Array</code>, в JavaScript нет примитивных типов данных <code>int</code> или <code>int8</code>.</p>
+<p>Это логично, потому что <code>Int8Array</code> – это не массив отдельных значений, а представление, основанное на бинарных данных из объекта типа <code>ArrayBuffer</code>.</p>
+</div></div>
+<h3><a class="main__anchor" name="chto-budet-esli-vyyti-za-predely-dopustimyh-znacheniy" href="#chto-budet-esli-vyyti-za-predely-dopustimyh-znacheniy">Что будет, если выйти за пределы допустимых значений?</a></h3><p>Что если мы попытаемся записать в типизированный массив значение, которое превышает допустимое для данного массива? Ошибки не будет. Лишние биты просто будут отброшены.</p>
+<p>Например, давайте попытаемся записать число 256 в объект типа <code>Uint8Array</code>. В двоичном формате 256 представляется как <code>100000000</code> (9 бит), но <code>Uint8Array</code> предоставляет только 8 бит для значений. Это определяет диапазон допустимых значений от 0 до 255.</p>
+<p>Если наше число больше, то только 8 младших битов (самые правые) будут записаны, а лишние отбросятся:</p>
+<figure><div class="image" style="width:195px">
+      <div class="image__ratio" style="padding-top:74.35897435897436%"></div>
+      <object type="image/svg+xml" data="article/arraybuffer-binary-arrays/8bit-integer-256.svg" width="195" height="145" class="image__image" data-use-theme>
+        <img src="article/arraybuffer-binary-arrays/8bit-integer-256.svg" alt="" width="195" height="145">
+      </object>
+      </div></figure><p>Таким образом, вместо 256 запишется 0.</p>
+<p>Число 257 в двоичном формате выглядит как <code>100000001</code> (9 бит), но принимаются во внимание только 8 самых правых битов, так что в объект будет записана единичка:</p>
+<figure><div class="image" style="width:195px">
+      <div class="image__ratio" style="padding-top:74.35897435897436%"></div>
+      <object type="image/svg+xml" data="article/arraybuffer-binary-arrays/8bit-integer-257.svg" width="195" height="145" class="image__image" data-use-theme>
+        <img src="article/arraybuffer-binary-arrays/8bit-integer-257.svg" alt="" width="195" height="145">
+      </object>
+      </div></figure><p>Другими словами, записываются только значения по модулю 2<sup>8</sup>.</p>
+<p>Вот демо:</p>
+<div id="cgky5dtdkz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let uint8array = new Uint8Array(16);
+
+let num = 256;
+alert(num.toString(2)); // 100000000 (в двоичном формате)
+
+uint8array[0] = 256;
+uint8array[1] = 257;
+
+alert(uint8array[0]); // 0
+alert(uint8array[1]); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Uint8ClampedArray</code>, упомянутый ранее, ведёт себя по-другому в данных обстоятельствах. В него записываются значения 255 для чисел, которые больше 255, и 0 для отрицательных чисел. Такое поведение полезно в некоторых ситуациях, например при обработке изображений.</p>
+<h2><a class="main__anchor" name="metody-typedarray" href="#metody-typedarray">Методы TypedArray</a></h2><p>Типизированные массивы <code>TypedArray</code>, за некоторыми заметными исключениями, имеют те же методы, что и массивы <code>Array</code>.</p>
+<p>Мы можем обходить их, вызывать <code>map</code>, <code>slice</code>, <code>find</code>, <code>reduce</code> и т.д.</p>
+<p>Однако, есть некоторые вещи, которые нельзя осуществить:</p>
+<ul>
+<li>Нет метода <code>splice</code> – мы не можем удалять значения, потому что типизированные массивы – это всего лишь представления данных из буфера, а буфер – это непрерывная область памяти фиксированной длины. Мы можем только записать 0 вместо значения.</li>
+<li>Нет метода <code>concat</code>.</li>
+</ul>
+<p>Но зато есть два дополнительных метода:</p>
+<ul>
+<li><code>arr.set(fromArr, [offset])</code> копирует все элементы из <code>fromArr</code> в <code>arr</code>, начиная с позиции <code>offset</code> (0 по умолчанию).</li>
+<li><code>arr.subarray([begin, end])</code> создаёт новое представление того же типа для данных, начиная с позиции <code>begin</code> до <code>end</code> (не включая). Это похоже на метод <code>slice</code> (который также поддерживается), но при этом ничего не копируется – просто создаётся новое представление, чтобы совершать какие-то операции над указанными данными.</li>
+</ul>
+<p>Эти методы позволяют нам копировать типизированные массивы, смешивать их, создавать новые на основе существующих и т.д.</p>
+<h2><a class="main__anchor" name="dataview" href="#dataview">DataView</a></h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</a> – это специальное супергибкое нетипизированное представление данных из <code>ArrayBuffer</code>. Оно позволяет обращаться к данным на любой позиции и в любом формате.</p>
+<ul>
+<li>В случае типизированных массивов конструктор строго задаёт формат данных. Весь массив состоит из однотипных значений. Доступ к i-ому элементу можно получить как <code>arr[i]</code>.</li>
+<li>В случае <code>DataView</code> доступ к данным осуществляется посредством методов типа <code>.getUint8(i)</code> или <code>.getUint16(i)</code>. Мы выбираем формат данных в момент обращения к ним, а не в момент их создания.</li>
+</ul>
+<p>Синтаксис:</p>
+<div id="i1egj5mcsf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new DataView(buffer, [byteOffset], [byteLength])</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>buffer</code></strong> – ссылка на бинарные данные <code>ArrayBuffer</code>. В отличие от типизированных массивов, <code>DataView</code> не создаёт буфер автоматически. Нам нужно заранее подготовить его самим.</li>
+<li><strong><code>byteOffset</code></strong> – начальная позиция данных для представления (по умолчанию 0).</li>
+<li><strong><code>byteLength</code></strong> – длина данных (в байтах), используемых в представлении (по умолчанию – до конца <code>buffer</code>).</li>
+</ul>
+<p>Например, извлечём числа в разных форматах из одного и того же буфера двоичных данных:</p>
+<div id="0hm4ip3ha5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// бинарный массив из 4х байт, каждый имеет максимальное значение 255
+let buffer = new Uint8Array([255, 255, 255, 255]).buffer;
+
+let dataView = new DataView(buffer);
+
+// получим 8-битное число на позиции 0
+alert( dataView.getUint8(0) ); // 255
+
+// а сейчас мы получим 16-битное число на той же позиции 0, оно состоит из 2-х байт, вместе составляющих число 65535
+alert( dataView.getUint16(0) ); // 65535 (максимальное 16-битное беззнаковое целое)
+
+// получим 32-битное число на позиции 0
+alert( dataView.getUint32(0) ); // 4294967295 (максимальное 32-битное беззнаковое целое)
+
+dataView.setUint32(0, 0); // при установке 4-байтового числа в 0, во все его 4 байта будут записаны нули</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Представление <code>DataView</code> отлично подходит, когда мы храним данные разного формата в одном буфере. Например, мы храним последовательность пар, первое значение пары 16-битное целое, а второе – 32-битное с плавающей точкой. <code>DataView</code> позволяет легко получить доступ к обоим.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p><code>ArrayBuffer</code> – это корневой объект, ссылка на непрерывную область памяти фиксированной длины.</p>
+<p>Чтобы работать с объектами типа <code>ArrayBuffer</code>, нам нужно представление («view»).</p>
+<ul>
+<li>Это может быть типизированный массив<code>TypedArray</code>:
+<ul>
+<li><code>Uint8Array</code>, <code>Uint16Array</code>, <code>Uint32Array</code> – для беззнаковых целых по 8, 16 и 32 бита соответственно.</li>
+<li><code>Uint8ClampedArray</code> – для 8-битных беззнаковых целых, которые обрезаются по верхней и нижней границе при присвоении.</li>
+<li><code>Int8Array</code>, <code>Int16Array</code>, <code>Int32Array</code> – для знаковых целых чисел (могут быть отрицательными).</li>
+<li><code>Float32Array</code>, <code>Float64Array</code> – для 32- и 64-битных знаковых чисел с плавающей точкой.</li>
+</ul>
+</li>
+<li>Или <code>DataView</code> – представление, использующее отдельные методы, чтобы уточнить формат данных при обращении, например, <code>getUint8(offset)</code>.</li>
+</ul>
+<p>Обычно мы создаём и работаем с типизированными массивами, оставляя <code>ArrayBuffer</code> «под капотом». Но мы можем в любой момент получить к нему доступ с помощью <code>.buffer</code> и при необходимости создать другое представление.</p>
+<p>Существуют ещё 2 дополнительных термина, которые используются в описаниях методов, работающих с бинарными данными:</p>
+<ul>
+<li><code>ArrayBufferView</code> – это общее название для представлений всех типов.</li>
+<li><code>BufferSource</code> – это общее название для <code>ArrayBuffer</code> или <code>ArrayBufferView</code>.</li>
+</ul>
+<p>Мы встретимся с ними в следующих главах. <code>BufferSource</code> встречается очень часто и означает «бинарные данные в любом виде» – <code>ArrayBuffer</code> или его представление.</p>
+<p>Вот шпаргалка:</p>
+<figure><div class="image" style="width:707px">
+      <div class="image__ratio" style="padding-top:65.48797736916548%"></div>
+      <object type="image/svg+xml" data="article/arraybuffer-binary-arrays/arraybuffer-view-buffersource.svg" width="707" height="463" class="image__image" data-use-theme>
+        <img src="article/arraybuffer-binary-arrays/arraybuffer-view-buffersource.svg" alt="" width="707" height="463">
+      </object>
+      </div></figure></div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#soedinite-tipizirovannye-massivy" name="soedinite-tipizirovannye-massivy">Соедините типизированные массивы</a></h3><a class="task__open-link" href="task/concat.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Дан массив из типизированных массивов <code>Uint8Array</code>. Напишите функцию <code>concat(arrays)</code>, которая объединяет эти массивы в один типизированный массив и возвращает его.</p>
+<p><a href="https://plnkr.co/edit/yYhnT6YIpGpZ1XmY?p=preview" target="_blank" data-plunk-id="yYhnT6YIpGpZ1XmY">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="cnzbhn9nis" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function concat(arrays) {
+  // находим общую длину переданных массивов
+  let totalLength = arrays.reduce((acc, value) =&gt; acc + value.length, 0);
+
+  let result = new Uint8Array(totalLength);
+
+  if (!arrays.length) return result;
+
+  // копируем каждый из массивов в result
+  // следующий массив копируется сразу после предыдущего
+  let offset = 0;
+  for(let array of arrays) {
+    result.set(array, offset);
+    offset += array.length;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/BKtf9uzBWDgzgGQP?p=preview" target="_blank" data-plunk-id="BKtf9uzBWDgzgGQP">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="binary.html" data-tooltip="Бинарные данные и файлы"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="text-decoder.html" data-tooltip="TextDecoder и TextEncoder"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/arraybuffer-binary-arrays","identifier":"\/arraybuffer-binary-arrays"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="binary.html">Бинарные данные и файлы</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#typedarray">TypedArray</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#metody-typedarray">Методы TypedArray</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dataview">DataView</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Farraybuffer-binary-arrays" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/4-binary/01-arraybuffer-binary-arrays" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/arraybuffer-binary-arrays by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:21 GMT -->
+</html>

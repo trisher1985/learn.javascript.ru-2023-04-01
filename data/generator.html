@@ -1,0 +1,982 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/generator by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "ru";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Генераторы</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="generator.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Генераторы"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Генераторы"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><style>
+.promise-avatar-example {
+  border-radius: 50%;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/co/4.1.0/index.min.js"></script><meta property="og:title" content="Генераторы"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/">English</option><option value="https://es.javascript.info/">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/" selected>Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/">简体中文</option></select></div></div></div></div><div class="page page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><div class="updated-at" data-tooltip="Последнее обновление: 7 июня 2022 г."><div class="updated-at__content">7 июня 2022 г.</div></div></div><h1 class="main__header-title">Генераторы</h1></div></header><div class="content"><div class="notification notification_message notification_warning"><div class="notification__content"><p>Материал на этой странице устарел, поэтому скрыт из оглавления сайта.</p><p>Более новая информация по этой теме находится на странице <a href="generators.html">https://learn.javascript.ru/generators</a>.</p></div></div><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Генераторы"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Генераторы – новый вид функций в современном JavaScript. Они отличаются от обычных тем, что могут приостанавливать своё выполнение, возвращать промежуточный результат и далее возобновлять его позже, в произвольный момент времени.</p>
+<h2><a class="main__anchor" name="sozdanie-generatora" href="#sozdanie-generatora">Создание генератора</a></h2><p>Для объявления генератора используется новая синтаксическая конструкция: <code>function*</code> (функция со звёздочкой).</p>
+<p>Её называют «функция-генератор» (generator function).</p>
+<p>Выглядит это так:</p>
+<div id="d5wj0jfqot" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При запуске <code>generateSequence()</code> код такой функции не выполняется. Вместо этого она возвращает специальный объект, который как раз и называют «генератором».</p>
+<div id="qp18xr6bfe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// generator function создаёт generator
+let generator = generateSequence();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Правильнее всего будет воспринимать генератор как «замороженный вызов функции»:</p>
+<figure><div class="image" style="width:353px">
+      <div class="image__ratio" style="padding-top:42.492917847025495%"></div>
+      <img src="https://learn.javascript.ru/article/generator/generateSequence-1.png" alt="" width="353" height="150" class="image__image">
+      </div></figure><p>При создании генератора код находится в начале своего выполнения.</p>
+<p>Основным методом генератора является <code>next()</code>. При вызове он возобновляет выполнение кода до ближайшего ключевого слова <code>yield</code>. По достижении <code>yield</code> выполнение приостанавливается, а значение – возвращается во внешний код:</p>
+<div id="dzizq13vm2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+
+let one = generator.next();
+
+alert(JSON.stringify(one)); // {value: 1, done: false}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <img src="https://learn.javascript.ru/article/generator/generateSequence-2.png" alt="" width="519" height="150" class="image__image">
+      </div></figure><p>Повторный вызов <code>generator.next()</code> возобновит выполнение и вернёт результат следующего <code>yield</code>:</p>
+<div id="vslzyhin1a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let two = generator.next();
+
+alert(JSON.stringify(two)); // {value: 2, done: false}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <img src="https://learn.javascript.ru/article/generator/generateSequence-3.png" alt="" width="519" height="150" class="image__image">
+      </div></figure><p>И, наконец, последний вызов завершит выполнение функции и вернёт результат <code>return</code>:</p>
+<div id="r6ox8dcn5k" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:44,&quot;end&quot;:54}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let three = generator.next();
+
+alert(JSON.stringify(three)); // {value: 3, done: true}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <img src="https://learn.javascript.ru/article/generator/generateSequence-4.png" alt="" width="519" height="150" class="image__image">
+      </div></figure><p>Функция завершена. Внешний код должен увидеть это из свойства <code>done:true</code> и обработать <code>value:3</code>, как окончательный результат.</p>
+<p>Новые вызовы <code>generator.next()</code> больше не имеют смысла. Впрочем, если они и будут, то не вызовут ошибки, но будут возвращать один и тот же объект: <code>{done: true}</code>.</p>
+<p>«Открутить назад» завершившийся генератор нельзя, но можно создать новый ещё одним вызовом <code>generateSequence()</code> и выполнить его.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>function* (…)</code> или <code>function *(…)</code>?</span></div>
+            <div class="important__content"><p>Можно ставить звёздочку как сразу после <code>function</code>, так и позже, перед названием. В интернете можно найти обе эти формы записи, они верны:</p>
+<div id="t8za5lvuwz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* f() {
+  // звёздочка после function
+}
+
+function *f() {
+  // звёздочка перед названием
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Технически, нет разницы, но писать то так то эдак – довольно странно, надо остановиться на чём-то одном.</p>
+<p>Автор этого текста полагает, что правильнее использовать первый вариант <code>function*</code>, так как звёздочка относится к типу объявляемой сущности (<code>function*</code> – «функция-генератор»), а не к её названию. Конечно, это всего лишь рекомендация-мнение, не обязательное к выполнению, работать будет в любом случае.</p>
+</div></div>
+<h2><a class="main__anchor" name="generator-iterator" href="#generator-iterator">Генератор – итератор</a></h2><p>Как вы, наверно, уже догадались по наличию метода <code>next()</code>, генератор связан с <a href="iterator.html">итераторами</a>. В частности, он является итерируемым объектом.</p>
+<p>Его можно перебирать и через <code>for..of</code>:</p>
+<div id="qch5r9mrw6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+  alert(value); // 1, затем 2
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, однако, существенную особенность такого перебора!</p>
+<p>При запуске примера выше будет выведено значение <code>1</code>, затем <code>2</code>. Значение <code>3</code> выведено не будет. Это потому что стандартный перебор итератора игнорирует <code>value</code> на последнем значении, при <code>done: true</code>. Так что результат <code>return</code> в цикле <code>for..of</code> не выводится.</p>
+<p>Соответственно, если мы хотим, чтобы все значения возвращались при переборе через <code>for..of</code>, то надо возвращать их через <code>yield</code>:</p>
+<div id="pjd1lxatne" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+  alert(value); // 1, затем 2, затем 3
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…А зачем вообще <code>return</code> при таком раскладе, если его результат игнорируется? Он тоже нужен, но в других ситуациях. Перебор через <code>for..of</code> – в некотором смысле «исключение». Как мы увидим дальше, в других контекстах <code>return</code> очень даже востребован.</p>
+<h2><a class="main__anchor" name="kompozitsiya-generatorov" href="#kompozitsiya-generatorov">Композиция генераторов</a></h2><p>Один генератор может включать в себя другие. Это называется композицией.</p>
+<p>Разберём композицию на примере.</p>
+<p>Пусть у нас есть функция <code>generateSequence</code>, которая генерирует последовательность чисел:</p>
+<div id="trcoecvh36" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+
+  for (let i = start; i &lt;= end; i++) {
+    yield i;
+  }
+
+}
+
+// Используем оператор … для преобразования итерируемого объекта в массив
+let sequence = [...generateSequence(2,5)];
+
+alert(sequence); // 2, 3, 4, 5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы хотим на её основе сделать другую функцию <code>generateAlphaNum()</code>, которая будет генерировать коды для буквенно-цифровых символов латинского алфавита:</p>
+<ul>
+<li><code>48..57</code> – для <code>0..9</code></li>
+<li><code>65..90</code> – для <code>A..Z</code></li>
+<li><code>97..122</code> – для <code>a..z</code></li>
+</ul>
+<p>Далее этот набор кодов можно превратить в строку и использовать, к примеру, для выбора из него случайного пароля. Только символы пунктуации ещё хорошо бы добавить для надёжности, но в этом примере мы будем без них.</p>
+<p>Естественно, раз в нашем распоряжении есть готовый генератор <code>generateSequence</code>, то хорошо бы его использовать.</p>
+<p>Конечно, можно внутри <code>generateAlphaNum</code> запустить несколько раз <code>generateSequence</code>, объединить результаты и вернуть. Так мы бы сделали с обычными функциями. Но композиция – это кое-что получше.</p>
+<p>Она выглядит так:</p>
+<div id="35jbg3weyk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+  for (let i = start; i &lt;= end; i++) yield i;
+}
+
+function* generateAlphaNum() {
+
+  // 0..9
+  yield* generateSequence(48, 57);
+
+  // A..Z
+  yield* generateSequence(65, 90);
+
+  // a..z
+  yield* generateSequence(97, 122);
+
+}
+
+let str = '';
+
+for(let code of generateAlphaNum()) {
+  str += String.fromCharCode(code);
+}
+
+alert(str); // 0..9A..Za..z</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Здесь использована специальная форма <code>yield*</code>. Она применима только к другому генератору и <em>делегирует</em> ему выполнение.</p>
+<p>То есть, при <code>yield*</code> интерпретатор переходит внутрь генератора-аргумента, к примеру, <code>generateSequence(48, 57)</code>, выполняет его, и все <code>yield</code>, которые он делает, выходят из внешнего генератора.</p>
+<p>Получается – как будто мы вставили код внутреннего генератора во внешний напрямую, вот так:</p>
+<div id="69nltvb7p0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+  for (let i = start; i &lt;= end; i++) yield i;
+}
+
+function* generateAlphaNum() {
+
+  // yield* generateSequence(48, 57);
+  for (let i = 48; i &lt;= 57; i++) yield i;
+
+  // yield* generateSequence(65, 90);
+  for (let i = 65; i &lt;= 90; i++) yield i;
+
+  // yield* generateSequence(97, 122);
+  for (let i = 97; i &lt;= 122; i++) yield i;
+
+}
+
+let str = '';
+
+for(let code of generateAlphaNum()) {
+  str += String.fromCharCode(code);
+}
+
+alert(str); // 0..9A..Za..z</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Код выше по поведению полностью идентичен варианту с <code>yield*</code>. При этом, конечно, переменные вложенного генератора не попадают во внешний, «делегирование» только выводит результаты <code>yield</code> во внешний поток.</p>
+<p>Композиция – это естественное встраивание одного генератора в поток другого. При композиции значения из вложенного генератора выдаются «по мере готовности». Поэтому она будет работать даже если поток данных из вложенного генератора оказался бесконечным или ожидает какого-либо условия для завершения.</p>
+<h2><a class="main__anchor" name="yield-doroga-v-obe-storony" href="#yield-doroga-v-obe-storony">yield – дорога в обе стороны</a></h2><p>До этого генераторы наиболее напоминали «итераторы на стероидах». Но, как мы сейчас увидим, это не так, есть фундаментальное различие, генераторы гораздо мощнее и гибче.</p>
+<p>Всё дело в том, что <code>yield</code> – дорога в обе стороны: он не только возвращает результат наружу, но и может передавать значение извне в генератор.</p>
+<p>Вызов <code>let result = yield value</code> делает следующее:</p>
+<ul>
+<li>Возвращает <code>value</code> во внешний код, приостанавливая выполнение генератора.</li>
+<li>Внешний код может обработать значение, и затем вызвать <code>next</code> с аргументом: <code>generator.next(arg)</code>.</li>
+<li>Генератор продолжит выполнение, аргумент <code>next</code> будет возвращён как результат <code>yield</code> (и записан в <code>result</code>).</li>
+</ul>
+<p>Продемонстрируем это на примере:</p>
+<div id="yf39kphbyp" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  // Передать вопрос во внешний код и подождать ответа
+  let result = yield &quot;2 + 2?&quot;;
+
+  alert(result);
+}
+
+let generator = gen();
+
+let question = generator.next().value;
+// &quot;2 + 2?&quot;
+
+setTimeout(() =&gt; generator.next(4), 2000);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На рисунке ниже прямоугольником изображён генератор, а вокруг него – «внешний код», который с ним взаимодействует:</p>
+<figure><div class="image" style="width:723px">
+      <div class="image__ratio" style="padding-top:20.74688796680498%"></div>
+      <img src="https://learn.javascript.ru/article/generator/genYield2.png" alt="" width="723" height="150" class="image__image">
+      </div></figure><p>На этой иллюстрации показано то, что происходит в генераторе:</p>
+<ol>
+<li>Первый вызов <code>generator.next()</code> – всегда без аргумента, он начинает выполнение и возвращает результат первого <code>yield</code> («2+2?»). На этой точке генератор приостанавливает выполнение.</li>
+<li>Результат <code>yield</code> переходит во внешний код (в <code>question</code>). Внешний код может выполнять любые асинхронные задачи, генератор стоит «на паузе».</li>
+<li>Когда асинхронные задачи готовы, внешний код вызывает <code>generator.next(4)</code> с аргументом. Выполнение генератора возобновляется, а <code>4</code> выходит из присваивания как результат <code>let result = yield ...</code>.</li>
+</ol>
+<p>В примере выше – только два <code>next</code>.</p>
+<p>Увеличим их количество, чтобы стал более понятен общий поток выполнения:</p>
+<div id="4np5iw6tc3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  let ask1 = yield &quot;2 + 2?&quot;;
+
+  alert(ask1); // 4
+
+  let ask2 = yield &quot;3 * 3?&quot;
+
+  alert(ask2); // 9
+}
+
+let generator = gen();
+
+alert( generator.next().value ); // &quot;2 + 2?&quot;
+
+alert( generator.next(4).value ); // &quot;3 * 3?&quot;
+
+alert( generator.next(9).done ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Взаимодействие с внешним кодом:</p>
+<figure><div class="image" style="width:641px">
+      <div class="image__ratio" style="padding-top:38.84555382215289%"></div>
+      <img src="https://learn.javascript.ru/article/generator/genYield2-2.png" alt="" width="641" height="249" class="image__image">
+      </div></figure><ol>
+<li>Первый <code>.next()</code> начинает выполнение… Оно доходит до первого <code>yield</code>.</li>
+<li>Результат возвращается во внешний код.</li>
+<li>Второй <code>.next(4)</code> передаёт <code>4</code> обратно в генератор как результат первого <code>yield</code> и возобновляет выполнение.</li>
+<li>…Оно доходит до второго <code>yield</code>, который станет результатом <code>.next(4)</code>.</li>
+<li>Третий <code>next(9)</code> передаёт <code>9</code> в генератор как результат второго <code>yield</code> и возобновляет выполнение, которое завершается окончанием функции, так что <code>done: true</code>.</li>
+</ol>
+<p>Получается «пинг-понг»: каждый <code>next(value)</code> передаёт в генератор значение, которое становится результатом текущего <code>yield</code>, возобновляет выполнение и получает выражение из следующего <code>yield</code>. Исключением является первый вызов <code>next</code>, который не может передать значение в генератор, т.к. ещё не было ни одного <code>yield</code>.</p>
+<h2><a class="main__anchor" name="generator-throw" href="#generator-throw">generator.throw</a></h2><p>Как мы видели в примерах выше, внешний код может вернуть генератору в качестве результата <code>yield</code> любое значение.</p>
+<p>…Но «вернуть» можно не только результат, но и ошибку!</p>
+<p>Для того, чтобы передать в <code>yield</code> ошибку, используется вызов <code>generator.throw(err)</code>. При этом на строке с <code>yield</code> возникает исключение.</p>
+<p>Например, в коде ниже обращение к внешнему коду <code>yield &quot;Сколько будет 2 + 2&quot;</code> завершится с ошибкой:</p>
+<div id="wc98gpvaqa" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  try {
+    // в этой строке возникнет ошибка
+    let result = yield &quot;Сколько будет 2 + 2?&quot;; // (**)
+
+    alert(&quot;выше будет исключение ^^^&quot;);
+  } catch(e) {
+    alert(e); // выведет ошибку
+  }
+}
+
+let generator = gen();
+
+let question = generator.next().value;
+
+generator.throw(new Error(&quot;ответ не найден в моей базе данных&quot;)); // (*)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>«Вброшенная» в строке <code>(*)</code> ошибка возникает в строке с <code>yield</code> <code>(**)</code>. Далее она обрабатывается как обычно. В примере выше она перехватывается <code>try..catch</code> и выводится.</p>
+<p>Если ошибку не перехватить, то она «выпадет» из генератора. По стеку ближайший вызов, который инициировал выполнение – это строка с <code>.throw</code>. Можно перехватить её там, как и продемонстрировано в примере ниже:</p>
+<div id="hxi63k7qcw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  // В этой строке возникнет ошибка
+  let result = yield &quot;Сколько будет 2 + 2?&quot;;
+}
+
+let generator = gen();
+
+let question = generator.next().value;
+
+try {
+  generator.throw(new Error(&quot;ответ не найден в моей базе данных&quot;));
+} catch(e) {
+  alert(e); // выведет ошибку
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если же ошибка и там не перехвачена, то дальше – как обычно, либо <code>try..catch</code> снаружи, либо она «повалит» скрипт.</p>
+<h2><a class="main__anchor" name="ploskiy-asinhronnyy-kod" href="#ploskiy-asinhronnyy-kod">Плоский асинхронный код</a></h2><p>Одна из основных областей применения генераторов – написание «плоского» асинхронного кода.</p>
+<p>Общий принцип такой:</p>
+<ul>
+<li>Генератор <code>yield'ит</code> не просто значения, а промисы.</li>
+<li>Есть специальная «функция-чернорабочий» <code>execute(generator)</code> которая запускает генератор, последовательными вызовами <code>next</code> получает из него промисы – один за другим, и, когда очередной промис выполнится, возвращает его результат в генератор следующим <code>next</code>.</li>
+<li>Последнее значение генератора (<code>done:true</code>) <code>execute</code> уже обрабатывает как окончательный результат – например, возвращает через промис куда-то ещё, во внешний код или просто использует, как в примере ниже.</li>
+</ul>
+<p>Напишем такой код для получения аватара пользователя с github и его вывода, аналогичный рассмотренному в статье про <a href="promise.html">промисы</a>.</p>
+<p>Для AJAX-запросов будем использовать метод <a href="fetch.html">fetch</a>, он как раз возвращает промисы.</p>
+<div id="4q8ple70cj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:41,&quot;end&quot;:41}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// генератор для получения и показа аватара
+// он yield'ит промисы
+function* showUserAvatar() {
+
+  let userFetch = yield fetch('/article/generator/user.json');
+  let userInfo = yield userFetch.json();
+
+  let githubFetch = yield fetch(`https://api.github.com/users/${userInfo.name}`);
+  let githubUserInfo = yield githubFetch.json();
+
+  let img = new Image();
+  img.src = githubUserInfo.avatar_url;
+  img.className = &quot;promise-avatar-example&quot;;
+  document.body.appendChild(img);
+
+  yield new Promise(resolve =&gt; setTimeout(resolve, 3000));
+
+  img.remove();
+
+  return img.src;
+}
+
+// вспомогательная функция-чернорабочий
+// для выполнения промисов из generator
+function execute(generator, yieldValue) {
+
+  let next = generator.next(yieldValue);
+
+  if (!next.done) {
+    next.value.then(
+      result =&gt; execute(generator, result),
+      err =&gt; generator.throw(err)
+    );
+  } else {
+    // обработаем результат return из генератора
+    // обычно здесь вызов callback или что-то в этом духе
+    alert(next.value);
+  }
+
+}
+
+execute( showUserAvatar() );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Функция <code>execute</code> в примере выше – универсальная, она может работать с любым генератором, который <code>yield'ит</code> промисы.</p>
+<p>Вместе с тем, это – всего лишь набросок, чтобы было понятно, как такая функция в принципе работает. Есть уже готовые реализации, обладающие большим количеством возможностей.</p>
+<p>Одна из самых известных – это библиотека <a href="https://github.com/tj/co">co</a>, которую мы рассмотрим далее.</p>
+<h2><a class="main__anchor" name="biblioteka-co" href="#biblioteka-co">Библиотека «co»</a></h2><p>Библиотека <code>co</code>, как и <code>execute</code> в примере выше, получает генератор и выполняет его.</p>
+<p>Начнём сразу с примера, а потом – детали и полезные возможности:</p>
+<div id="dv3ke7jx8m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+
+  let result = yield new Promise(
+    resolve =&gt; setTimeout(resolve, 1000, 1)
+  );
+
+  alert(result); // 1
+
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Предполагается, что библиотека <code>co</code> подключена к странице , например, отсюда: <a href="https://cdnjs.com/libraries/co/">https://cdnjs.com/libraries/co/</a>. В примере выше <code>function*()</code> делает <code>yield</code> промиса с <code>setTimeout</code>,  который через секунду возвращает <code>1</code>.</p>
+<p>Вызов <code>co(…)</code> возвращает промис с результатом генератора. Если в примере выше <code>function*()</code> что-то возвратит, то это можно будет получить через <code>.then</code> в результате <code>co</code>:</p>
+<div id="yd9qao1lvf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+
+  let result = yield new Promise(
+    resolve =&gt; setTimeout(resolve, 1000, 1)
+  );
+
+  return result; // return 1
+
+}).then(alert); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Обязательно нужен <code>catch</code></span></div>
+            <div class="important__content"><p>Частая ошибка начинающих – вообще забывать про обработку результата <code>co</code>. Даже если результата нет, ошибки нужно обработать через <code>catch</code>, иначе они «подвиснут» в промисе.</p>
+<p>Такой код ничего не выведет:</p>
+<div id="72wuca6olo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+  throw new Error(&quot;Sorry that happened&quot;);
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Программист даже не узнает об ошибке. Особенно обидно, когда это опечатка или другая программная ошибка, которую обязательно нужно поправить.</p>
+<p>Правильный вариант:</p>
+<div id="lrq5gua64y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+  throw new Error(&quot;Sorry that happened&quot;);
+}).catch(alert); // обработать ошибку как-либо</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Большинство примеров этого <code>catch</code> не содержат, но это лишь потому, что в примерах ошибок нет. А в реальном коде обязательно нужен <code>catch</code>.</p>
+</div></div>
+<p>Библиотека <code>co</code> умеет выполнять не только промисы. Есть несколько видов значений, которые можно <code>yield</code>ить, и их обработает <code>co</code>:</p>
+<ul>
+<li>Промис.</li>
+<li>Объект-генератор.</li>
+<li>Функция-генератор <code>function*()</code> – <code>co</code> её выполнит, затем выполнит полученный генератор.</li>
+<li>Функция с единственным аргументом вида <code>function(callback)</code> – библиотека <code>co</code> её запустит со своей функцией-<code>callback</code> и будет ожидать, что при ошибке она вызовет <code>callback(err)</code>, а при успешном выполнении – <code>callback(null, result)</code>. То есть, в первом аргументе – будет ошибка (если есть), а втором – результат (если нет ошибки). После чего результат будет передан в генератор.</li>
+<li>Массив или объект из вышеперечисленного. При этом все задачи будут выполнены параллельно, и результат, в той же структуре, будет выдан наружу.</li>
+</ul>
+<p>В примере ниже происходит <code>yield</code> всех этих видов значений. Библиотека <code>co</code> обеспечивает их выполнение и возврат результата в генератор:</p>
+<div id="tsm05urdam" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Object.defineProperty(window, 'result', {
+  // присвоение result=… будет выводить значение
+  set: value =&gt; alert(JSON.stringify(value))
+});
+
+co(function*() {
+  result = yield function*() { // генератор
+    return 1;
+  }();
+
+  result = yield function*() { // функция-генератор
+    return 2;
+  };
+
+  result = yield Promise.resolve(3); // промис
+
+  result = yield function(callback) { // function(callback)
+    setTimeout(() =&gt; callback(null, 4), 1000);
+  };
+
+  result = yield { // две задачи выполнит параллельно, как Promise.all
+    one: Promise.resolve(1),
+    two: function*() { return 2; }
+  };
+
+  result = yield [ // две задачи выполнит параллельно, как Promise.all
+    Promise.resolve(1),
+    function*() { return 2 }
+  ];
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Устаревший <code>yield function(callback)</code></span></div>
+            <div class="important__content"><p>Отдельно заметим вариант с <code>yield function(callback)</code>. Такие функции, с единственным-аргументом callback’ом, в англоязычной литературе называют «thunk».</p>
+<p>Функция обязана выполниться и вызвать (асинхронно) либо <code>callback(err)</code> с ошибкой, либо <code>callback(null, result)</code> с результатом.</p>
+<p>Использование таких функций в <code>yield</code> является устаревшим подходом, так как там, где можно использовать <code>yield function(callback)</code>, можно использовать и промисы. При этом промисы мощнее. Но в старом коде его ещё можно встретить.</p>
+</div></div>
+<p>Посмотрим пример посложнее, с композицией генераторов:</p>
+<div id="2pmfda112b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+  let result = yield* gen();
+  alert(result); // hello
+});
+
+function* gen() {
+  return yield* gen2();
+}
+
+function* gen2() {
+  let result = yield new Promise( // (1)
+    resolve =&gt; setTimeout(resolve, 1000, 'hello')
+  );
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это – отличный вариант для библиотеки <code>co</code>. Композиция <code>yield* gen()</code> вызывает <code>gen()</code> в потоке внешнего генератора. Аналогично делает и <code>yield* gen2()</code>.</p>
+<p>Поэтому <code>yield new Promise</code> из строки <code>(1)</code> в <code>gen2()</code> попадает напрямую в библиотеку <code>co</code>, как если бы он был сделан так:</p>
+<div id="kg6tz1rbqs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+  // gen() и затем gen2() встраиваются во внешний генератор
+  let result = yield new Promise(
+    resolve =&gt; setTimeout(resolve, 1000, 'hello')
+  );
+  alert(result); // hello
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Пример <code>showUserAvatar()</code> можно переписать с использованием <code>co</code> вот так:</p>
+<div id="3vnxo75u7q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Загрузить данные пользователя с нашего сервера
+function* fetchUser(url) {
+  let userFetch = yield fetch(url);
+  let user = yield userFetch.json();
+
+  return user;
+}
+
+// Загрузить профиль пользователя с github
+function* fetchGithubUser(user) {
+  let githubFetch = yield fetch(`https://api.github.com/users/${user.name}`);
+  let githubUser = yield githubFetch.json();
+
+  return githubUser;
+}
+
+// Подождать ms миллисекунд
+function sleep(ms) {
+  return new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+
+// Использовать функции выше для получения аватара пользователя
+function* fetchAvatar(url) {
+  let user = yield* fetchUser(url);
+  let githubUser = yield* fetchGithubUser(user);
+
+  return githubUser.avatar_url;
+}
+
+// Использовать функции выше для получения и показа аватара
+function* showUserAvatar() {
+  let avatarUrl;
+
+  try {
+    avatarUrl = yield* fetchAvatar('/article/generator/user.json');
+  } catch(e) {
+    avatarUrl = '/article/generator/anon.png';
+  }
+
+  let img = new Image();
+  img.src = avatarUrl;
+  img.className = &quot;promise-avatar-example&quot;;
+  document.body.appendChild(img);
+
+  yield sleep(2000);
+
+  img.remove();
+
+  return img.src;
+}
+
+co(showUserAvatar);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Заметим, что для перехвата ошибок при получении аватара используется <code>try..catch</code> вокруг <code>yield* fetchAvatar</code>:</p>
+<div id="abh9crwvos" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  avatarUrl = yield* fetchAvatar('/article/generator/user.json');
+} catch(e) {
+  avatarUrl = '/article/generator/anon.png';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это – одно из главных удобств использования генераторов. Несмотря на то, что операции <code>fetch</code> – асинхронные, мы можем использовать обычный <code>try..catch</code> для обработки ошибок в них.</p>
+<h2><a class="main__anchor" name="dlya-generatorov-tolko-yield" href="#dlya-generatorov-tolko-yield">Для генераторов – только yield*</a></h2><p>Библиотека <code>co</code> технически позволяет писать код так:</p>
+<div id="damjfiqk03" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = yield fetchUser(url);
+// вместо
+// let user = yield* fetchUser(url);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, можно сделать <code>yield</code> генератора, <code>co()</code> его выполнит и передаст значение обратно. Как мы видели выше, библиотека <code>co</code> – довольно всеядна. Однако, рекомендуется использовать для вызова функций-генераторов именно <code>yield*</code>.</p>
+<p>Причин для этого несколько:</p>
+<ol>
+<li>Делегирование генераторов <code>yield*</code> – это встроенный механизм JavaScript. Вместо возвращения значения обратно в <code>co</code>, выполнения кода библиотеки… Мы просто используем возможности языка. Это правильнее.</li>
+<li>Поскольку не происходит лишних вызовов, это быстрее по производительности.</li>
+<li>И, наконец, пожалуй, самое приятное – делегирование генераторов сохраняет стек.</li>
+</ol>
+<p>Проиллюстрируем последнее на примере:</p>
+<div id="6j8i3gymem" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+
+  // при запуске в стеке не будет видно этой строки
+  yield g(); // (*)
+
+}).catch(function(err) {
+  alert(err.stack);
+});
+
+function* g() {
+  throw new Error(&quot;my error&quot;);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>При запуске этого кода стек может выглядеть примерно так:</p>
+<div id="73npr79xd6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>at g (eval at runJS …, &lt;anonymous&gt;:13:9)
+  at GeneratorFunctionPrototype.next (native)
+  at onFulfilled (…/co/…/index.min.js:1:1136)
+  at …/co/…/index.min.js:1:1076
+  at co (…/co/…/index.min.js:1:1039)
+  at toPromise (…/co/…/index.min.js:1:1740)
+  at next (…/co/…/index.min.js:1:1351)
+  at onFulfilled (…/co/…/index.min.js:1:1172)
+  at …/co/…/index.min.js:1:1076
+  at co (…/co/…/index.min.js:1:1039)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Детали здесь не имеют значения, самое важное – почти весь стек находится внутри библиотеки <code>co</code>.</p>
+<p>Из оригинального скрипта там только одна строка (первая):</p>
+<div id="0wucttw8vu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>at g (eval at runJS …, &lt;anonymous&gt;:13:9)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>То есть, стек говорит, что ошибка возникла в строке <code>13</code>:</p>
+<div id="j2xx9h3m2u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// строка 13 из кода выше
+throw new Error(&quot;my error&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Что ж, спасибо. Но как мы оказались на этой строке? Об этом в стеке нет ни слова!</p>
+<p>Заменим в строке <code>(*)</code> вызов <code>yield</code> на <code>yield*</code>:</p>
+<div id="wc9bib3bbk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>co(function*() {
+
+  // заменили yield на yield*
+  yield* g(); // (*)
+
+}).catch(function(err) {
+  alert(err.stack);
+});
+
+function* g() {
+  throw new Error(&quot;my error&quot;);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Пример стека теперь:</p>
+<div id="1z4n97ptnx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7},{&quot;start&quot;:2,&quot;end&quot;:2},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>at g (eval at runJS …, &lt;anonymous&gt;:13:9)
+  at GeneratorFunctionPrototype.next (native)
+  at eval (eval at runJS …, &lt;anonymous&gt;:6:10)
+  at GeneratorFunctionPrototype.next (native)
+  at onFulfilled (…/co/…/index.min.js:1:1136)
+  at …/co/…/index.min.js:1:1076
+  at co (…/co/…/index.min.js:1:1039)
+  at eval (eval at runJS …, &lt;anonymous&gt;:3:1)
+  at eval (native)
+  at runJS (…)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если очистить от вспомогательных вызовов, то эти строки – как раз то, что нам надо:</p>
+<div id="bd3u7s36s4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>at g (eval at runJS …, &lt;anonymous&gt;:13:9)
+  at eval (eval at runJS …, &lt;anonymous&gt;:6:10)
+  at eval (eval at runJS …, &lt;anonymous&gt;:3:1)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Теперь видно, что (читаем снизу) исходный вызов был в строке <code>3</code>, далее – вложенный в строке <code>6</code>, и затем произошла ошибка в строке <code>13</code>.</p>
+<p>Почему вариант с простым <code>yield</code> не работает – достаточно очевидно, если внимательно посмотреть на код и воспроизвести в уме, как он функционирует. Оставляем это упражнение вдумчивому читателю.</p>
+<p>Итого, рекомендация уже достаточно обоснована – при запуске вложенных генераторов используем <code>yield*</code>.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><ul>
+<li>Генераторы создаются при помощи функций-генераторов <code>function*(…) {…}</code>.</li>
+<li>Внутри генераторов и только внутри них разрешён оператор <code>yield</code>. Это иногда создаёт неудобства, поскольку в колбэках <code>.map/.forEach</code> сделать <code>yield</code> нельзя. Впрочем, можно сделать <code>yield</code> массива (при использовании <code>co</code>).</li>
+<li>Внешний код и генератор обмениваются промежуточными результатами посредством вызовов <code>next/yield</code>.</li>
+<li>Генераторы позволяют писать плоский асинхронный код, при помощи библиотеки <code>co</code>.</li>
+</ul>
+<p>Что касается кросс-браузерной поддержки – она стремительно приближается. Пока же можно использовать генераторы вместе с <a href="https://babeljs.io/">Babel</a>.</p>
+</div></article></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fgenerator" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/generator","identifier":"\/generator"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/generator by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:34:06 GMT -->
+</html>

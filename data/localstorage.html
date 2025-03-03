@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/localstorage by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">LocalStorage, sessionStorage</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="localstorage.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="LocalStorage, sessionStorage"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="LocalStorage, sessionStorage"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="cookie.html"><link rel="next" href="indexeddb.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="LocalStorage, sessionStorage"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/localstorage"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/localstorage"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/localstorage"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/localstorage"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/localstorage"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/localstorage"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/localstorage"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="localstorage.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/localstorage"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/localstorage"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/localstorage"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/localstorage">English</option><option value="https://es.javascript.info/localstorage">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/localstorage">Français</option><option value="https://id.javascript.info/localstorage">Indonesia</option><option value="https://it.javascript.info/localstorage">Italiano</option><option value="https://ja.javascript.info/localstorage">日本語</option><option value="https://ko.javascript.info/localstorage">한국어</option><option value="https://learn.javascript.ru/localstorage" selected>Русский</option><option value="https://tr.javascript.info/localstorage">Türkçe</option><option value="https://uk.javascript.info/localstorage">Українська</option><option value="https://zh.javascript.info/localstorage">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="3" data-tooltip="Урок 2 из 3"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="data-storage.html"><span>Хранение данных в браузере</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Хранение данных в браузере","item":"https://learn.javascript.ru/data-storage"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 27 июля 2022 г."><div class="updated-at__content">27 июля 2022 г.</div></div></div><h1 class="main__header-title">LocalStorage, sessionStorage</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="LocalStorage, sessionStorage"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Объекты веб-хранилища <code>localStorage</code> и <code>sessionStorage</code> позволяют хранить пары ключ/значение в браузере.</p>
+<p>Что в них важно – данные, которые в них записаны, сохраняются после обновления страницы (в случае <code>sessionStorage</code>) и даже после перезапуска браузера (при использовании <code>localStorage</code>). Скоро мы это увидим.</p>
+<p>Но ведь у нас уже есть куки. Зачем тогда эти объекты?</p>
+<ul>
+<li>В отличие от куки, объекты веб-хранилища не отправляются на сервер при каждом запросе. Именно поэтому мы можем хранить гораздо больше данных. Большинство современных браузеров могут выделить как минимум 5 мегабайтов данных (или больше), и этот размер можно поменять в настройках.</li>
+<li>Ещё одно отличие от куки – сервер не может манипулировать объектами хранилища через HTTP-заголовки. Всё делается при помощи JavaScript.</li>
+<li>Хранилище привязано к источнику (домен/протокол/порт). Это значит, что разные протоколы или поддомены определяют разные объекты хранилища, и они не могут получить доступ к данным друг друга.</li>
+</ul>
+<p>Объекты хранилища <code>localStorage</code> и <code>sessionStorage</code> предоставляют одинаковые методы и свойства:</p>
+<ul>
+<li><code>setItem(key, value)</code> – сохранить пару ключ/значение.</li>
+<li><code>getItem(key)</code> – получить данные по ключу <code>key</code>.</li>
+<li><code>removeItem(key)</code> – удалить данные с ключом <code>key</code>.</li>
+<li><code>clear()</code> – удалить всё.</li>
+<li><code>key(index)</code> – получить ключ на заданной позиции.</li>
+<li><code>length</code> – количество элементов в хранилище.</li>
+</ul>
+<p>Как видим, интерфейс похож на <code>Map</code> (<code>setItem/getItem/removeItem</code>), но также позволяет получить доступ к элементу по индексу – <code>key(index)</code>.</p>
+<p>Давайте посмотрим, как это работает.</p>
+<h2><a class="main__anchor" name="demo-localstorage" href="#demo-localstorage">Демо localStorage</a></h2><p>Основные особенности <code>localStorage</code>:</p>
+<ul>
+<li>Этот объект один на все вкладки и окна в рамках источника (один и тот же домен/протокол/порт).</li>
+<li>Данные не имеют срока давности, по которому истекают и удаляются. Сохраняются после перезапуска браузера и даже ОС.</li>
+</ul>
+<p>Например, если запустить этот код…</p>
+<div id="5kr30hfrqp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>localStorage.setItem('test', 1);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…И закрыть/открыть браузер или открыть ту же страницу в другом окне, то можно получить данные следующим образом:</p>
+<div id="33vem2aj7e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( localStorage.getItem('test') ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Нам достаточно находиться на том же источнике (домен/протокол/порт), при этом URL-путь может быть разным.</p>
+<p>Объект <code>localStorage</code> доступен всем окнам из одного источника, поэтому, если мы устанавливаем данные в одном окне, изменения становятся видимыми в другом.</p>
+<h2><a class="main__anchor" name="dostup-kak-k-obychnomu-obektu" href="#dostup-kak-k-obychnomu-obektu">Доступ как к обычному объекту</a></h2><p>Также можно получать/записывать данные, как в обычный объект:</p>
+<div id="dj6bdqwuca" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// установить значение для ключа
+localStorage.test = 2;
+
+// получить значение по ключу
+alert( localStorage.test ); // 2
+
+// удалить ключ
+delete localStorage.test;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Это возможно по историческим причинам и, как правило, работает, но обычно не рекомендуется, потому что:</p>
+<ol>
+<li>
+<p>Если ключ генерируется пользователем, то он может быть каким угодно, включая <code>length</code> или <code>toString</code> или другой встроенный метод <code>localStorage</code>. В этом случае <code>getItem/setItem</code> сработают нормально, а вот чтение/запись как свойства объекта не пройдут:</p>
+<div id="i8m8l8wq56" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let key = 'length';
+localStorage[key] = 5; // Ошибка, невозможно установить length</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>Когда мы модифицируем данные, то срабатывает событие <code>storage</code>. Но это событие не происходит при записи без <code>setItem</code>, как свойства объекта. Мы увидим это позже в этой главе.</p>
+</li>
+</ol>
+<h2><a class="main__anchor" name="perebor-klyuchey" href="#perebor-klyuchey">Перебор ключей</a></h2><p>Методы, которые мы видим, позволяют читать/писать/удалять данные. А как получить все значения или ключи?</p>
+<p>К сожалению, объекты веб-хранилища нельзя перебрать в цикле, они не итерируемы.</p>
+<p>Но можно пройти по ним, как по обычным массивам:</p>
+<div id="iyilj8x48v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for(let i=0; i&lt;localStorage.length; i++) {
+  let key = localStorage.key(i);
+  alert(`${key}: ${localStorage.getItem(key)}`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другой способ – использовать цикл, как по обычному объекту <code>for key in localStorage</code>.</p>
+<p>Здесь перебираются ключи, но вместе с этим выводятся несколько встроенных полей, которые нам не нужны:</p>
+<div id="dnbso19kft" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// bad try
+for(let key in localStorage) {
+  alert(key); // покажет getItem, setItem и другие встроенные свойства
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Поэтому нам нужно либо отфильтровать поля из прототипа проверкой <code>hasOwnProperty</code>:</p>
+<div id="m8ojvhv5mz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for(let key in localStorage) {
+  if (!localStorage.hasOwnProperty(key)) {
+    continue; // пропустит такие ключи, как &quot;setItem&quot;, &quot;getItem&quot; и так далее
+  }
+  alert(`${key}: ${localStorage.getItem(key)}`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Либо просто получить «собственные» ключи с помощью Object.keys, а затем при необходимости вывести их при помощи цикла:</p>
+<div id="icydtf3t8k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let keys = Object.keys(localStorage);
+for(let key of keys) {
+  alert(`${key}: ${localStorage.getItem(key)}`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Последнее работает, потому что <code>Object.keys</code> возвращает только ключи, принадлежащие объекту, игнорируя прототип.</p>
+<h2><a class="main__anchor" name="tolko-stroki" href="#tolko-stroki">Только строки</a></h2><p>Обратите внимание, что ключ и значение должны быть строками.</p>
+<p>Если мы используем любой другой тип, например число или объект, то он автоматически преобразуется в строку:</p>
+<div id="3somwgt1s0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>localStorage.user = {name: &quot;John&quot;};
+alert(localStorage.user); // [object Object]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем использовать <code>JSON</code> для хранения объектов:</p>
+<div id="gzioum9m9g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>localStorage.user = JSON.stringify({name: &quot;John&quot;});
+
+// немного позже
+let user = JSON.parse( localStorage.user );
+alert( user.name ); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Также возможно привести к строке весь объект хранилища, например для отладки:</p>
+<div id="bonq4lgbxa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// для JSON.stringify добавлены параметры форматирования, чтобы объект выглядел лучше
+alert( JSON.stringify(localStorage, null, 2) );</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="sessionstorage" href="#sessionstorage">sessionStorage</a></h2><p>Объект <code>sessionStorage</code> используется гораздо реже, чем <code>localStorage</code>.</p>
+<p>Свойства и методы такие же, но есть существенные ограничения:</p>
+<ul>
+<li><code>sessionStorage</code> существует только в рамках текущей вкладки браузера.
+<ul>
+<li>Другая вкладка с той же страницей будет иметь другое хранилище.</li>
+<li>Но оно разделяется между ифреймами на той же вкладке (при условии, что они из одного и того же источника).</li>
+</ul>
+</li>
+<li>Данные продолжают существовать после перезагрузки страницы, но не после закрытия/открытия вкладки.</li>
+</ul>
+<p>Давайте посмотрим на это в действии.</p>
+<p>Запустите этот код…</p>
+<div id="h5rrh71nel" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>sessionStorage.setItem('test', 1);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…И обновите страницу. Вы всё ещё можете получить данные:</p>
+<div id="1ihvhj9z3k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( sessionStorage.getItem('test') ); // после обновления: 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Но если вы откроете ту же страницу в другой вкладке и попробуете получить данные снова, то код выше вернёт <code>null</code>, что значит «ничего не найдено».</p>
+<p>Так получилось, потому что <code>sessionStorage</code> привязан не только к источнику, но и к вкладке браузера. Поэтому <code>sessionStorage</code> используется нечасто.</p>
+<h2><a class="main__anchor" name="sobytie-storage" href="#sobytie-storage">Событие storage</a></h2><p>Когда обновляются данные в <code>localStorage</code> или <code>sessionStorage</code>, генерируется событие <a href="https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface">storage</a> со следующими свойствами:</p>
+<ul>
+<li><code>key</code> – ключ, который обновился (<code>null</code>, если вызван <code>.clear()</code>).</li>
+<li><code>oldValue</code> – старое значение (<code>null</code>, если ключ добавлен впервые).</li>
+<li><code>newValue</code> – новое значение (<code>null</code>, если ключ был удалён).</li>
+<li><code>url</code> – url документа, где произошло обновление.</li>
+<li><code>storageArea</code> – объект <code>localStorage</code> или <code>sessionStorage</code>, где произошло обновление.</li>
+</ul>
+<p>Важно: событие срабатывает на всех остальных объектах <code>window</code>, где доступно хранилище, кроме того окна, которое его вызвало.</p>
+<p>Давайте уточним.</p>
+<p>Представьте, что у вас есть два окна с одним и тем же сайтом. Хранилище <code>localStorage</code> разделяется между ними.</p>
+<p>Вы можете открыть эту страницу в двух окнах браузера, чтобы проверить приведённый ниже код.</p>
+<p>Теперь, если оба окна слушают <code>window.onstorage</code>, то каждое из них будет реагировать на обновления, произошедшие в другом окне.</p>
+<div id="qqg4lkibsq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// срабатывает при обновлениях, сделанных в том же хранилище из других документов
+window.onstorage = event =&gt; { // можно также использовать window.addEventListener('storage', event =&gt; {
+  if (event.key != 'now') return;
+  alert(event.key + ':' + event.newValue + &quot; at &quot; + event.url);
+};
+
+localStorage.setItem('now', Date.now());</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Обратите внимание, что событие также содержит: <code>event.url</code> – url-адрес документа, в котором данные обновились.</p>
+<p>Также <code>event.storageArea</code> содержит объект хранилища – событие одно и то же для <code>sessionStorage</code> и <code>localStorage</code>, поэтому <code>event.storageArea</code> ссылается на то хранилище, которое было изменено. Мы можем захотеть что-то записать в ответ на изменения.</p>
+<p><strong>Это позволяет разным окнам одного источника обмениваться сообщениями.</strong></p>
+<p>Современные браузеры также поддерживают <a href="https://developer.mozilla.org/ru/docs/Web/API/Broadcast_Channel_API">Broadcast channel API</a> специальный API для связи между окнами одного источника, он более полнофункциональный, но менее поддерживаемый. Существуют библиотеки (полифилы), которые эмулируют это API на основе <code>localStorage</code> и делают его доступным везде.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Объекты веб-хранилища <code>localStorage</code> и <code>sessionStorage</code> позволяют хранить пары ключ/значение в браузере.</p>
+<ul>
+<li><code>key</code> и <code>value</code> должны быть строками.</li>
+<li>Лимит 5 Мб+, зависит от браузера.</li>
+<li>Данные не имеют «времени истечения».</li>
+<li>Данные привязаны к источнику (домен/протокол/порт).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><code>localStorage</code></th>
+<th><code>sessionStorage</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Совместно используется между всеми вкладками и окнами с одинаковым источником</td>
+<td>Разделяется в рамках вкладки браузера, среди ифреймов из того же источника</td>
+</tr>
+<tr>
+<td>«Переживает» перезапуск браузера</td>
+<td>«Переживает» перезагрузку страницы (но не закрытие вкладки)</td>
+</tr>
+</tbody>
+</table>
+<p>API:</p>
+<ul>
+<li><code>setItem(key, value)</code> – сохранить пару ключ/значение.</li>
+<li><code>getItem(key)</code> – получить данные по ключу <code>key</code>.</li>
+<li><code>removeItem(key)</code> – удалить значение по ключу <code>key</code>.</li>
+<li><code>clear()</code> – удалить всё.</li>
+<li><code>key(index)</code> – получить ключ на заданной позиции.</li>
+<li><code>length</code> – количество элементов в хранилище.</li>
+<li>Используйте <code>Object.keys</code> для получения всех ключей.</li>
+<li>Можно обращаться к ключам как к обычным свойствам объекта, в этом случае событие<code>storage</code> не срабатывает.</li>
+</ul>
+<p>Событие storage:</p>
+<ul>
+<li>Срабатывает при вызове <code>setItem</code>, <code>removeItem</code>, <code>clear</code>.</li>
+<li>Содержит все данные об произошедшем обновлении (<code>key/oldValue/newValue</code>), <code>url</code> документа и объект хранилища <code>storageArea</code>.</li>
+<li>Срабатывает на всех объектах <code>window</code>, которые имеют доступ к хранилищу, кроме того, где оно было сгенерировано (внутри вкладки для <code>sessionStorage</code>, глобально для <code>localStorage</code>).</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#avtosohranenie-polya-formy" name="avtosohranenie-polya-formy">Автосохранение поля формы</a></h3><a class="task__open-link" href="task/form-autosave.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>Создайте поле <code>textarea</code>, значение которого будет автоматически сохраняться при каждом его изменении.</p>
+<p>Когда пользователь закроет страницу и потом откроет её заново он должен увидеть последнее введённое значение.</p>
+<p>Вот пример:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:120px" src="https://ru.js.cx/task/form-autosave/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/hAcVgmJjyJPRpT1y?p=preview" target="_blank" data-plunk-id="hAcVgmJjyJPRpT1y">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/9TyCvvdTjYKSkAkk?p=preview" target="_blank" data-plunk-id="9TyCvvdTjYKSkAkk">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="cookie.html" data-tooltip="Куки, document.cookie"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="indexeddb.html" data-tooltip="IndexedDB"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/localstorage","identifier":"\/localstorage"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="data-storage.html">Хранение данных в браузере</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#demo-localstorage">Демо localStorage</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dostup-kak-k-obychnomu-obektu">Доступ как к обычному объекту</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#perebor-klyuchey">Перебор ключей</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tolko-stroki">Только строки</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sessionstorage">sessionStorage</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sobytie-storage">Событие storage</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Flocalstorage" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/6-data-storage/02-localstorage" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/localstorage by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:26 GMT -->
+</html>

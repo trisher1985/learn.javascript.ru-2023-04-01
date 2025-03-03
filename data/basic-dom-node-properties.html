@@ -1,0 +1,826 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/basic-dom-node-properties by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.011869243407273298,"USD":0.012898897934929007,"AMD":5.010963869761221};</script><title itemprop="name">Свойства узлов: тип, тег и содержимое</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="basic-dom-node-properties.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Свойства узлов: тип, тег и содержимое"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Свойства узлов: тип, тег и содержимое"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="searching-elements-dom.html"><link rel="next" href="dom-attributes-and-properties.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Свойства узлов: тип, тег и содержимое"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="basic-dom-node-properties.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/basic-dom-node-properties"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/basic-dom-node-properties">عربي</option><option value="https://javascript.info/basic-dom-node-properties">English</option><option value="https://es.javascript.info/basic-dom-node-properties">Español</option><option value="https://fa.javascript.info/">فارسی</option><option value="https://fr.javascript.info/basic-dom-node-properties">Français</option><option value="https://id.javascript.info/basic-dom-node-properties">Indonesia</option><option value="https://it.javascript.info/basic-dom-node-properties">Italiano</option><option value="https://ja.javascript.info/basic-dom-node-properties">日本語</option><option value="https://ko.javascript.info/basic-dom-node-properties">한국어</option><option value="https://learn.javascript.ru/basic-dom-node-properties" selected>Русский</option><option value="https://tr.javascript.info/basic-dom-node-properties">Türkçe</option><option value="https://uk.javascript.info/basic-dom-node-properties">Українська</option><option value="https://zh.javascript.info/basic-dom-node-properties">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="5" max="32" data-tooltip="Урок 5 из 32"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="ui.html"><span>Браузер: документ, события, интерфейсы</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="document.html"><span>Документ</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Браузер: документ, события, интерфейсы","item":"https://learn.javascript.ru/ui"},{"@type":"ListItem","position":3,"name":"Документ","item":"https://learn.javascript.ru/document"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 19 февраля 2023 г."><div class="updated-at__content">19 февраля 2023 г.</div></div></div><h1 class="main__header-title">Свойства узлов: тип, тег и содержимое</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Свойства узлов: тип, тег и содержимое"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Теперь давайте более внимательно взглянем на DOM-узлы.</p>
+<p>В этой главе мы подробнее разберём, что они собой представляют и изучим их основные свойства.</p>
+<h2><a class="main__anchor" name="klassy-dom-uzlov" href="#klassy-dom-uzlov">Классы DOM-узлов</a></h2><p>У разных DOM-узлов могут быть разные свойства. Например, у узла, соответствующего тегу <code>&lt;a&gt;</code>, есть свойства, связанные со ссылками, а у соответствующего тегу <code>&lt;input&gt;</code> – свойства, связанные с полем ввода и т.д. Текстовые узлы отличаются от узлов-элементов. Но у них есть общие свойства и методы, потому что все классы DOM-узлов образуют единую иерархию.</p>
+<p>Каждый DOM-узел принадлежит соответствующему встроенному классу.</p>
+<p>Корнем иерархии является <a href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a>, от него наследует <a href="https://dom.spec.whatwg.org/#interface-node">Node</a> и остальные DOM-узлы.</p>
+<p>На рисунке ниже изображены основные классы:</p>
+<figure><div class="image" style="width:552px">
+      <div class="image__ratio" style="padding-top:73.0072463768116%"></div>
+      <object type="image/svg+xml" data="article/basic-dom-node-properties/_dom-class-hierarchy.svg" width="552" height="403" class="image__image" data-use-theme>
+        <img src="article/basic-dom-node-properties/_dom-class-hierarchy.svg" alt="" width="552" height="403">
+      </object>
+      </div></figure><p>Существуют следующие классы:</p>
+<ul>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> – это корневой «абстрактный» класс для всего.</p>
+<p>Объекты этого класса никогда не создаются. Он служит основой, благодаря которой все DOM-узлы поддерживают так называемые «события», о которых мы поговорим позже.</p>
+</li>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#interface-node">Node</a> – также является «абстрактным» классом, и служит основой для DOM-узлов.</p>
+<p>Он обеспечивает базовую функциональность: <code>parentNode</code>, <code>nextSibling</code>, <code>childNodes</code> и т.д. (это геттеры). Объекты класса <code>Node</code> никогда не создаются. Но есть определённые классы узлов, которые наследуются от него (и следовательно наследуют функционал <code>Node</code>).</p>
+</li>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#interface-document">Document</a>, по историческим причинам часто наследуется <code>HTMLDocument</code> (хотя последняя спецификация этого не навязывает) – это документ в целом.</p>
+<p>Глобальный объект <code>document</code> принадлежит именно к этому классу. Он служит точкой входа в DOM.</p>
+</li>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#interface-characterdata">CharacterData</a> – «абстрактный» класс. Вот, кем он наследуется:</p>
+<ul>
+<li><a href="https://dom.spec.whatwg.org/#interface-text">Text</a> – класс, соответствующий тексту внутри элементов. Например, <code>Hello</code> в <code>&lt;p&gt;Hello&lt;/p&gt;</code>.</li>
+<li><a href="https://dom.spec.whatwg.org/#interface-comment">Comment</a> – класс для комментариев. Они не отображаются, но каждый комментарий становится членом DOM.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#interface-element">Element</a> – это базовый класс для DOM-элементов.</p>
+<p>Он обеспечивает навигацию на уровне элементов: <code>nextElementSibling</code>, <code>children</code>.
+А также и методы поиска элементов: <code>getElementsByTagName</code>, <code>querySelector</code>.</p>
+<p>Браузер поддерживает не только HTML, но также XML и SVG. Таким образом, класс <code>Element</code> служит основой для более специфичных классов: <code>SVGElement</code>, <code>XmlElement</code> (они нам здесь не нужны) и <code>HTMLElement</code>.</p>
+</li>
+<li>
+<p>И наконец, <a href="https://html.spec.whatwg.org/multipage/dom.html#htmlelement">HTMLElement</a> является базовым классом для всех остальных HTML-элементов. Мы будем работать с ним большую часть времени.</p>
+<p>От него наследуются конкретные элементы:</p>
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement">HTMLInputElement</a> – класс для тега <code>&lt;input&gt;</code>,</li>
+<li><a href="https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement">HTMLBodyElement</a> – класс для тега <code>&lt;body&gt;</code>,</li>
+<li><a href="https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement">HTMLAnchorElement</a> – класс для тега <code>&lt;a&gt;</code>,</li>
+<li>…и т.д.</li>
+</ul>
+</li>
+</ul>
+<p>Также существует множество других тегов со своими собственными классами, которые могут иметь определенные свойства и методы, в то время как некоторые элементы, такие как <code>&lt;span&gt;</code>, <code>&lt;section&gt;</code> и <code>&lt;article&gt;</code>, не имеют каких-либо определенных свойств, поэтому они являются экземплярами класса <code>HTMLElement</code>.</p>
+<p>Таким образом, полный набор свойств и методов данного узла является результатом цепочки наследования.</p>
+<p>Рассмотрим DOM-объект для тега <code>&lt;input&gt;</code>. Он принадлежит классу <a href="https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement">HTMLInputElement</a>.</p>
+<p>Он получает свойства и методы из (в порядке наследования):</p>
+<ul>
+<li><code>HTMLInputElement</code> – этот класс предоставляет специфичные для элементов формы свойства,</li>
+<li><code>HTMLElement</code> – предоставляет общие для HTML-элементов методы (и геттеры/сеттеры),</li>
+<li><code>Element</code> – предоставляет типовые методы элемента,</li>
+<li><code>Node</code> – предоставляет общие свойства DOM-узлов,</li>
+<li><code>EventTarget</code> – обеспечивает поддержку событий (поговорим о них дальше),</li>
+<li>…и, наконец, он наследует от <code>Object</code>, поэтому доступны также методы «обычного объекта», такие как <code>hasOwnProperty</code>.</li>
+</ul>
+<p>Для того, чтобы узнать имя класса DOM-узла, вспомним, что обычно у объекта есть свойство <code>constructor</code>. Оно ссылается на конструктор класса, и в свойстве <code>constructor.name</code> содержится его имя:</p>
+<div id="c4lj05lrug" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.body.constructor.name ); // HTMLBodyElement</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Или мы можем просто привести его к <code>строке</code>:</p>
+<div id="vjoyngmmbb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.body ); // [object HTMLBodyElement]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Проверить наследование можно также при помощи <code>instanceof</code>:</p>
+<div id="x8calhi5gq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.body instanceof HTMLBodyElement ); // true
+alert( document.body instanceof HTMLElement ); // true
+alert( document.body instanceof Element ); // true
+alert( document.body instanceof Node ); // true
+alert( document.body instanceof EventTarget ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как видно, DOM-узлы – это обычные JavaScript объекты. Для наследования они используют классы, основанные на прототипах.</p>
+<p>В этом легко убедиться, если вывести в консоли браузера любой элемент через <code>console.dir(elem)</code>. Или даже напрямую обратиться к методам, которые хранятся в <code>HTMLElement.prototype</code>, <code>Element.prototype</code> и т.д.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>console.dir(elem)</code> и <code>console.log(elem)</code></span></div>
+            <div class="important__content"><p>Большинство браузеров поддерживают в инструментах разработчика две команды: <code>console.log</code> и <code>console.dir</code>. Они выводят свои аргументы в консоль. Для JavaScript-объектов эти команды обычно выводят одно и то же.</p>
+<p>Но для DOM-элементов они работают по-разному:</p>
+<ul>
+<li><code>console.log(elem)</code> выводит элемент в виде DOM-дерева.</li>
+<li><code>console.dir(elem)</code> выводит элемент в виде DOM-объекта, что удобно для анализа его свойств.</li>
+</ul>
+<p>Попробуйте сами на <code>document.body</code>.</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Спецификация IDL</span></div>
+            <div class="important__content"><p>В спецификации для описания классов DOM используется не JavaScript, а специальный язык <a href="https://ru.wikipedia.org/wiki/Язык_описания_интерфейсов">Interface description language</a> (IDL), с которым достаточно легко разобраться.</p>
+<p>В IDL все свойства представлены с указанием их типов. Например, <code>DOMString</code>, <code>boolean</code> и т.д.</p>
+<p>Небольшой отрывок IDL с комментариями:</p>
+<div id="zja8r5xzyn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:11,&quot;end&quot;:12},{&quot;start&quot;:5,&quot;end&quot;:5},{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Объявление HTMLInputElement
+// Двоеточие &quot;:&quot; после HTMLInputElement означает, что он наследует от HTMLElement
+interface HTMLInputElement: HTMLElement {
+  // далее идут свойства и методы элемента &lt;input&gt;
+
+  // &quot;DOMString&quot; означает, что значение свойства - строка
+  attribute DOMString accept;
+  attribute DOMString alt;
+  attribute DOMString autocomplete;
+  attribute DOMString value;
+
+  // boolean - значит, что autofocus хранит логический тип данных (true/false)
+  attribute boolean autofocus;
+  ...
+  // &quot;void&quot; перед методом означает, что данный метод не возвращает значение
+  void select();
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="svoystvo-nodetype" href="#svoystvo-nodetype">Свойство «nodeType»</a></h2><p>Свойство <code>nodeType</code> предоставляет ещё один, «старомодный» способ узнать «тип» DOM-узла.</p>
+<p>Его значением является цифра:</p>
+<ul>
+<li><code>elem.nodeType == 1</code> для узлов-элементов,</li>
+<li><code>elem.nodeType == 3</code> для текстовых узлов,</li>
+<li><code>elem.nodeType == 9</code> для объектов документа,</li>
+<li><a href="https://dom.spec.whatwg.org/#node">В спецификации</a> можно посмотреть остальные значения.</li>
+</ul>
+<p>Например:</p>
+<div id="33pl8fqayz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;script&gt;
+  let elem = document.body;
+
+  // давайте разберёмся: какой тип узла находится в elem?
+  alert(elem.nodeType); // 1 =&gt; элемент
+
+  // и его первый потомок...
+  alert(elem.firstChild.nodeType); // 3 =&gt; текст
+
+  // для объекта document значение типа -- 9
+  alert( document.nodeType ); // 9
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В современных скриптах, чтобы узнать тип узла, мы можем использовать метод <code>instanceof</code> и другие способы проверить класс, но иногда <code>nodeType</code> проще использовать. Мы не можем изменить значение <code>nodeType</code>, только прочитать его.</p>
+<h2><a class="main__anchor" name="teg-nodename-i-tagname" href="#teg-nodename-i-tagname">Тег: nodeName и tagName</a></h2><p>Получив DOM-узел, мы можем узнать имя его тега из свойств <code>nodeName</code> и <code>tagName</code>:</p>
+<p>Например:</p>
+<div id="avor7b3c7z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( document.body.nodeName ); // BODY
+alert( document.body.tagName ); // BODY</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Есть ли какая-то разница между <code>tagName</code> и <code>nodeName</code>?</p>
+<p>Да, она отражена в названиях свойств, но не очевидна.</p>
+<ul>
+<li>Свойство <code>tagName</code> есть только у элементов <code>Element</code>.</li>
+<li>Свойство <code>nodeName</code> определено для любых узлов <code>Node</code>:
+<ul>
+<li>для элементов оно равно <code>tagName</code>.</li>
+<li>для остальных типов узлов (текст, комментарий и т.д.) оно содержит строку с типом узла.</li>
+</ul>
+</li>
+</ul>
+<p>Другими словами, свойство <code>tagName</code> есть только у узлов-элементов (поскольку они происходят от класса <code>Element</code>), а <code>nodeName</code> может что-то сказать о других типах узлов.</p>
+<p>Например, сравним <code>tagName</code> и <code>nodeName</code> на примере объекта <code>document</code> и узла-комментария:</p>
+<div id="z8li2k5dxf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;&lt;!-- комментарий --&gt;
+
+  &lt;script&gt;
+    // для комментария
+    alert( document.body.firstChild.tagName ); // undefined (не элемент)
+    alert( document.body.firstChild.nodeName ); // #comment
+
+    // for document
+    alert( document.tagName ); // undefined (не элемент)
+    alert( document.nodeName ); // #document
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если мы имеем дело только с элементами, то можно использовать <code>tagName</code> или <code>nodeName</code>, нет разницы.</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Имена тегов (кроме XHTML) всегда пишутся в верхнем регистре</span></div>
+            <div class="important__content"><p>В браузере существуют два режима обработки документа: HTML и XML. HTML-режим обычно используется для веб-страниц. XML-режим включается, если браузер получает XML-документ с заголовком: <code>Content-Type: application/xml+xhtml</code>.</p>
+<p>В HTML-режиме значения <code>tagName/nodeName</code> всегда записаны в верхнем регистре. Будет выведено <code>BODY</code> вне зависимости от того, как записан тег в HTML <code>&lt;body&gt;</code> или <code>&lt;BoDy&gt;</code>.</p>
+<p>В XML-режиме регистр сохраняется «как есть». В настоящее время XML-режим применяется редко.</p>
+</div></div>
+<h2><a class="main__anchor" name="innerhtml-soderzhimoe-elementa" href="#innerhtml-soderzhimoe-elementa">innerHTML: содержимое элемента</a></h2><p>Свойство <a href="https://w3c.github.io/DOM-Parsing/#widl-Element-innerHTML">innerHTML</a> позволяет получить  HTML-содержимое элемента в виде строки.</p>
+<p>Мы также можем изменять его. Это один из самых мощных способов менять содержимое на странице.</p>
+<p>Пример ниже показывает содержимое <code>document.body</code>, а затем полностью заменяет его:</p>
+<div id="aezjbsnmr6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;p&gt;Параграф&lt;/p&gt;
+  &lt;div&gt;DIV&lt;/div&gt;
+
+  &lt;script&gt;
+    alert( document.body.innerHTML ); // читаем текущее содержимое
+    document.body.innerHTML = 'Новый BODY!'; // заменяем содержимое
+  &lt;/script&gt;
+
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем попробовать вставить некорректный HTML, браузер исправит наши ошибки:</p>
+<div id="bscwoa7i0p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+
+  &lt;script&gt;
+    document.body.innerHTML = '&lt;b&gt;тест'; // забыли закрыть тег
+    alert( document.body.innerHTML ); // &lt;b&gt;тест&lt;/b&gt; (исправлено)
+  &lt;/script&gt;
+
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Скрипты не выполнятся</span></div>
+            <div class="important__content"><p>Если <code>innerHTML</code> вставляет в документ тег <code>&lt;script&gt;</code> – он становится частью HTML, но не запускается.</p>
+</div></div>
+<h3><a class="main__anchor" name="budte-vnimatelny-innerhtml-osuschestvlyaet-perezapis" href="#budte-vnimatelny-innerhtml-osuschestvlyaet-perezapis">Будьте внимательны: «innerHTML+=» осуществляет перезапись</a></h3><p>Мы можем добавить HTML к элементу, используя <code>elem.innerHTML+=&quot;ещё html&quot;</code>.</p>
+<p>Вот так:</p>
+<div id="mey6g23t81" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>chatDiv.innerHTML += &quot;&lt;div&gt;Привет&lt;img src='smile.gif'/&gt; !&lt;/div&gt;&quot;;
+chatDiv.innerHTML += &quot;Как дела?&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>На практике этим следует пользоваться с большой осторожностью, так как фактически происходит <em>не</em> добавление, а перезапись.</p>
+<p>Технически эти две строки делают одно и то же:</p>
+<div id="ruicekymih" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>elem.innerHTML += &quot;...&quot;;
+// это более короткая запись для:
+elem.innerHTML = elem.innerHTML + &quot;...&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Другими словами, <code>innerHTML+=</code> делает следующее:</p>
+<ol>
+<li>Старое содержимое удаляется.</li>
+<li>На его место становится новое значение <code>innerHTML</code> (с добавленной строкой).</li>
+</ol>
+<p><strong>Так как содержимое «обнуляется» и переписывается заново, все изображения и другие ресурсы будут перезагружены</strong>.</p>
+<p>В примере <code>chatDiv</code> выше строка <code>chatDiv.innerHTML+=&quot;Как дела?&quot;</code> заново создаёт содержимое HTML и перезагружает <code>smile.gif</code> (надеемся, картинка закеширована). Если в <code>chatDiv</code> много текста и изображений, то эта перезагрузка будет очень заметна.</p>
+<p>Есть и другие побочные эффекты. Например, если существующий текст выделен мышкой, то при переписывании <code>innerHTML</code> большинство браузеров снимут выделение. А если это поле ввода <code>&lt;input&gt;</code> с текстом, введённым пользователем, то текст будет удалён. И т.д.</p>
+<p>К счастью, есть и другие способы добавить содержимое, не использующие <code>innerHTML</code>, которые мы изучим позже.</p>
+<h2><a class="main__anchor" name="outerhtml-html-elementa-tselikom" href="#outerhtml-html-elementa-tselikom">outerHTML: HTML элемента целиком</a></h2><p>Свойство <code>outerHTML</code> содержит HTML элемента целиком. Это как <code>innerHTML</code> плюс сам элемент.</p>
+<p>Посмотрим на пример:</p>
+<div id="s3pjyvuzjj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem&quot;&gt;Привет &lt;b&gt;Мир&lt;/b&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  alert(elem.outerHTML); // &lt;div id=&quot;elem&quot;&gt;Привет &lt;b&gt;Мир&lt;/b&gt;&lt;/div&gt;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>Будьте осторожны: в отличие от <code>innerHTML</code>, запись в <code>outerHTML</code> не изменяет элемент. Вместо этого элемент заменяется целиком во внешнем контексте.</strong></p>
+<p>Да, звучит странно, и это действительно необычно, поэтому здесь мы и отмечаем это особо.</p>
+<p>Рассмотрим пример:</p>
+<div id="lqx34wxj98" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;Привет, мир!&lt;/div&gt;
+
+&lt;script&gt;
+  let div = document.querySelector('div');
+
+  // заменяем div.outerHTML на &lt;p&gt;...&lt;/p&gt;
+  div.outerHTML = '&lt;p&gt;Новый элемент&lt;/p&gt;'; // (*)
+
+  // Содержимое div осталось тем же!
+  alert(div.outerHTML); // &lt;div&gt;Привет, мир!&lt;/div&gt; (**)
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Какая-то магия, да?</p>
+<p>В строке <code>(*)</code> мы заменили <code>div</code> на <code>&lt;p&gt;Новый элемент&lt;/p&gt;</code>. Во внешнем документе мы видим новое содержимое вместо <code>&lt;div&gt;</code>. Но, как видно в строке (<code>**</code>), старая переменная <code>div</code> осталась прежней!</p>
+<p>Это потому, что использование <code>outerHTML</code> не изменяет DOM-элемент, а удаляет его из внешнего контекста и вставляет вместо него новый HTML-код.</p>
+<p>То есть, при <code>div.outerHTML=...</code> произошло следующее:</p>
+<ul>
+<li><code>div</code> был удалён из документа.</li>
+<li>Вместо него был вставлен другой HTML <code>&lt;p&gt;Новый элемент&lt;/p&gt;</code>.</li>
+<li>В <code>div</code> осталось старое значение. Новый HTML не сохранён ни в какой переменной.</li>
+</ul>
+<p>Здесь легко сделать ошибку: заменить <code>div.outerHTML</code>, а потом продолжить работать с <code>div</code>, как будто там новое содержимое. Но это не так. Подобное верно для <code>innerHTML</code>, но не для <code>outerHTML</code>.</p>
+<p>Мы можем писать в <code>elem.outerHTML</code>, но надо иметь в виду, что это не меняет элемент, в который мы пишем. Вместо этого создаётся новый HTML на его месте. Мы можем получить ссылки на новые элементы, обратившись к DOM.</p>
+<h2><a class="main__anchor" name="nodevalue-data-soderzhimoe-tekstovogo-uzla" href="#nodevalue-data-soderzhimoe-tekstovogo-uzla">nodeValue/data: содержимое текстового узла</a></h2><p>Свойство <code>innerHTML</code> есть только у узлов-элементов.</p>
+<p>У других типов узлов, в частности, у текстовых, есть свои аналоги: свойства <code>nodeValue</code> и <code>data</code>. Эти свойства очень похожи при использовании, есть лишь небольшие различия в спецификации. Мы будем использовать <code>data</code>, потому что оно короче.</p>
+<p>Прочитаем содержимое текстового узла и комментария:</p>
+<div id="ctrqdyj75o" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  Привет
+  &lt;!-- Комментарий --&gt;
+  &lt;script&gt;
+    let text = document.body.firstChild;
+    alert(text.data); // Привет
+
+    let comment = text.nextSibling;
+    alert(comment.data); // Комментарий
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Мы можем представить, для чего нам может понадобиться читать или изменять текстовый узел, но комментарии?</p>
+<p>Иногда их используют для вставки информации и инструкций шаблонизатора в HTML, как в примере ниже:</p>
+<div id="o191uh497t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- if isAdmin --&gt;
+  &lt;div&gt;Добро пожаловать, Admin!&lt;/div&gt;
+&lt;!-- /if --&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…Затем JavaScript может прочитать это из свойства <code>data</code> и обработать инструкции.</p>
+<h2><a class="main__anchor" name="textcontent-prosto-tekst" href="#textcontent-prosto-tekst">textContent: просто текст</a></h2><p>Свойство <code>textContent</code> предоставляет доступ к <em>тексту</em> внутри элемента за вычетом всех <code>&lt;тегов&gt;</code>.</p>
+<p>Например:</p>
+<div id="x1lx3tqi3m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;news&quot;&gt;
+  &lt;h1&gt;Срочно в номер!&lt;/h1&gt;
+  &lt;p&gt;Марсиане атаковали человечество!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // Срочно в номер! Марсиане атаковали человечество!
+  alert(news.textContent);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Как мы видим, возвращается только текст, как если бы все <code>&lt;теги&gt;</code> были вырезаны, но текст в них остался.</p>
+<p>На практике редко появляется необходимость читать текст таким образом.</p>
+<p><strong>Намного полезнее возможность записывать текст в <code>textContent</code>, т.к. позволяет писать текст «безопасным способом».</strong></p>
+<p>Представим, что у нас есть произвольная строка, введённая пользователем, и мы хотим показать её.</p>
+<ul>
+<li>С <code>innerHTML</code> вставка происходит «как HTML», со всеми HTML-тегами.</li>
+<li>С <code>textContent</code> вставка получается «как текст», все символы трактуются буквально.</li>
+</ul>
+<p>Сравним два тега div:</p>
+<div id="ur4t8zf4pa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem1&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;elem2&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  let name = prompt(&quot;Введите ваше имя?&quot;, &quot;&lt;b&gt;Винни-пух!&lt;/b&gt;&quot;);
+
+  elem1.innerHTML = name;
+  elem2.textContent = name;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>В первый <code>&lt;div&gt;</code> имя приходит «как HTML»: все теги стали именно тегами, поэтому мы видим имя, выделенное жирным шрифтом.</li>
+<li>Во второй <code>&lt;div&gt;</code> имя приходит «как текст», поэтому мы видим <code>&lt;b&gt;Винни-пух!&lt;/b&gt;</code>.</li>
+</ol>
+<p>В большинстве случаев мы рассчитываем получить от пользователя текст и хотим, чтобы он интерпретировался как текст. Мы не хотим, чтобы на сайте появлялся произвольный HTML-код. Присваивание через <code>textContent</code> – один из способов от этого защититься.</p>
+<h2><a class="main__anchor" name="svoystvo-hidden" href="#svoystvo-hidden">Свойство «hidden»</a></h2><p>Атрибут и DOM-свойство «hidden» указывает на то, видим ли мы элемент или нет.</p>
+<p>Мы можем использовать его в HTML или назначать при помощи JavaScript, как в примере ниже:</p>
+<div id="xozifjcxdb" data-trusted="1" class="code-example" data-demo-height="80">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;Оба тега DIV внизу невидимы&lt;/div&gt;
+
+&lt;div hidden&gt;С атрибутом &quot;hidden&quot;&lt;/div&gt;
+
+&lt;div id=&quot;elem&quot;&gt;С назначенным JavaScript свойством &quot;hidden&quot;&lt;/div&gt;
+
+&lt;script&gt;
+  elem.hidden = true;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Технически, <code>hidden</code> работает так же, как <code>style=&quot;display:none&quot;</code>. Но его применение проще.</p>
+<p>Мигающий элемент:</p>
+<div id="swf078lfkl" data-trusted="1" class="code-example" data-demo-height="50">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem&quot;&gt;Мигающий элемент&lt;/div&gt;
+
+&lt;script&gt;
+  setInterval(() =&gt; elem.hidden = !elem.hidden, 1000);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="drugie-svoystva" href="#drugie-svoystva">Другие свойства</a></h2><p>У DOM-элементов есть дополнительные свойства, в частности, зависящие от класса:</p>
+<ul>
+<li><code>value</code> – значение для <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> и <code>&lt;textarea&gt;</code> (<code>HTMLInputElement</code>, <code>HTMLSelectElement</code>…).</li>
+<li><code>href</code> – адрес ссылки «href» для <code>&lt;a href=&quot;...&quot;&gt;</code> (<code>HTMLAnchorElement</code>).</li>
+<li><code>id</code> – значение атрибута «id» для всех элементов (<code>HTMLElement</code>).</li>
+<li>…и многие другие…</li>
+</ul>
+<p>Например:</p>
+<div id="2jtn9b9wn5" data-trusted="1" class="code-example" data-demo-height="80">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input type=&quot;text&quot; id=&quot;elem&quot; value=&quot;значение&quot;&gt;
+
+&lt;script&gt;
+  alert(elem.type); // &quot;text&quot;
+  alert(elem.id); // &quot;elem&quot;
+  alert(elem.value); // значение
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Большинство стандартных HTML-атрибутов имеют соответствующее DOM-свойство, и мы можем получить к нему доступ.</p>
+<p>Если мы хотим узнать полный список поддерживаемых свойств для данного класса, можно найти их в спецификации. Например, класс <code>HTMLInputElement</code> описывается здесь: <a href="https://html.spec.whatwg.org/#htmlinputelement">https://html.spec.whatwg.org/#htmlinputelement</a>.</p>
+<p>Если же нам нужно быстро что-либо узнать или нас интересует специфика определённого браузера – мы всегда можем вывести элемент в консоль, используя <code>console.dir(elem)</code>, и прочитать все свойства. Или исследовать «свойства DOM» во вкладке Elements браузерных инструментов разработчика.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Каждый DOM-узел принадлежит определённому классу. Классы формируют иерархию. Весь набор свойств и методов является результатом наследования.</p>
+<p>Главные свойства DOM-узла:</p>
+<dl>
+<dt><code>nodeType</code></dt>
+<dd>Свойство <code>nodeType</code> позволяет узнать тип DOM-узла. Его значение – числовое: <code>1</code> для элементов,<code>3</code> для текстовых узлов, и т.д. Только для чтения.</dd>
+<dt><code>nodeName/tagName</code></dt>
+<dd>Для элементов это свойство возвращает название тега (записывается в верхнем регистре, за исключением XML-режима). Для узлов-неэлементов <code>nodeName</code> описывает, что это за узел. Только для чтения.</dd>
+<dt><code>innerHTML</code></dt>
+<dd>Внутреннее HTML-содержимое узла-элемента. Можно изменять.</dd>
+<dt><code>outerHTML</code></dt>
+<dd>Полный HTML узла-элемента. Запись в <code>elem.outerHTML</code> не меняет <code>elem</code>. Вместо этого она заменяет его во внешнем контексте.</dd>
+<dt><code>nodeValue/data</code></dt>
+<dd>Содержимое узла-неэлемента (текст, комментарий). Эти свойства практически одинаковые, обычно мы используем <code>data</code>. Можно изменять.</dd>
+<dt><code>textContent</code></dt>
+<dd>Текст внутри элемента: HTML за вычетом всех <code>&lt;тегов&gt;</code>. Запись в него помещает текст в элемент, при этом все специальные символы и теги интерпретируются как текст. Можно использовать для защиты от вставки произвольного HTML кода.</dd>
+<dt><code>hidden</code></dt>
+<dd>Когда значение установлено в <code>true</code>, делает то же самое, что и CSS <code>display:none</code>.</dd>
+</dl>
+<p>В зависимости от своего класса DOM-узлы имеют и другие свойства. Например у элементов <code>&lt;input&gt;</code> (<code>HTMLInputElement</code>) есть свойства <code>value</code>, <code>type</code>, у элементов <code>&lt;a&gt;</code> (<code>HTMLAnchorElement</code>) есть <code>href</code> и т.д. Большинство стандартных HTML-атрибутов имеют соответствующие свойства DOM.</p>
+<p>Впрочем, HTML-атрибуты и свойства DOM не всегда одинаковы, мы увидим это в следующей главе.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#schitaem-potomkov" name="schitaem-potomkov">Считаем потомков</a></h3><a class="task__open-link" href="task/tree-info.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>У нас есть дерево, структурированное как вложенные списки <code>ul/li</code>.</p>
+<p>Напишите код, который выведет каждый элемент списка <code>&lt;li&gt;</code>:</p>
+<ol>
+<li>Какой в нём текст (без поддерева) ?</li>
+<li>Какое число потомков – всех вложенных <code>&lt;li&gt;</code> (включая глубоко вложенные) ?</li>
+</ol>
+<p><a href="https://ru.js.cx/task/tree-info/solution/" target="blank">Демо в новом окне</a></p><p><a href="https://plnkr.co/edit/Ed8z1JJE5kslokxu?p=preview" target="_blank" data-plunk-id="Ed8z1JJE5kslokxu">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Пройдём циклом по всем элементам <code>&lt;li&gt;</code>:</p>
+<div id="0mcamn4xla" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let li of document.querySelectorAll('li')) {
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>В цикле нам нужно получить текст в каждом элементе <code>li</code>. Мы можем прочитать текстовое содержимое элемента списка из первого дочернего узла <code>li</code>, который будет текстовым узлом:</p>
+<div id="bpjqfxzrvi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let li of document.querySelectorAll('li')) {
+  let title = li.firstChild.data;
+
+  // переменная title содержит текст элемента &lt;li&gt;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Так мы сможем получить количество потомков как <code>li.getElementsByTagName('li').length</code>.</p>
+<p><a href="https://plnkr.co/edit/J0klLFp4c0SvpfZr?p=preview" target="_blank" data-plunk-id="J0klLFp4c0SvpfZr">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#chto-soderzhit-svoystvo-nodetype" name="chto-soderzhit-svoystvo-nodetype">Что содержит свойство nodeType?</a></h3><a class="task__open-link" href="task/lastchild-nodetype-inline.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Что выведет этот код?</p>
+<div id="uxze8zhxsz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;html&gt;
+
+&lt;body&gt;
+  &lt;script&gt;
+    alert(document.body.lastChild.nodeType);
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Здесь есть подвох.</p>
+<p>Во время выполнения <code>&lt;script&gt;</code> последним DOM-узлом является <code>&lt;script&gt;</code>, потому что браузер ещё не обработал остальную часть страницы.</p>
+<p>Поэтому результатом будет <code>1</code> (узел-элемент).</p>
+<div id="aza3jkrzyd" data-trusted="1" class="code-example" data-demo-height="60">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;html&gt;
+
+&lt;body&gt;
+  &lt;script&gt;
+    alert(document.body.lastChild.nodeType);
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#teg-v-kommentarii" name="teg-v-kommentarii">Тег в комментарии</a></h3><a class="task__open-link" href="task/tag-in-comment.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 3</span></div><div class="task__content"><div class="task__formatted"><p>Что выведет этот код?</p>
+<div id="9cmgtd959i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  let body = document.body;
+
+  body.innerHTML = &quot;&lt;!--&quot; + body.tagName + &quot;--&gt;&quot;;
+
+  alert( body.firstChild.data ); // что выведет?
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Ответ: <strong><code>BODY</code></strong>.</p>
+<div id="u4vtkqljwg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="показать" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  let body = document.body;
+
+  body.innerHTML = &quot;&lt;!--&quot; + body.tagName + &quot;--&gt;&quot;;
+
+  alert( body.firstChild.data ); // BODY
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Происходящее по шагам:</p>
+<ol>
+<li>Заменяем содержимое <code>&lt;body&gt;</code> на комментарий. Он будет иметь вид <code>&lt;!--BODY--&gt;</code>, т.к. <code>body.tagName == &quot;BODY&quot;</code>. Как мы помним, свойство <code>tagName</code> в HTML всегда находится в верхнем регистре.</li>
+<li>Этот комментарий теперь является первым и единственным потомком <code>body.firstChild</code>.</li>
+<li>Значение свойства <code>data</code> для элемента-комментария – это его содержимое (внутри <code>&lt;!--...--&gt;</code>): <code>&quot;BODY&quot;</code>.</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#gde-v-dom-ierarhii-document" name="gde-v-dom-ierarhii-document">Где в DOM-иерархии &quot;document&quot;?</a></h3><a class="task__open-link" href="task/where-document-in-hierarchy.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 4</span></div><div class="task__content"><div class="task__formatted"><p>Объектом какого класса является <code>document</code>?</p>
+<p>Какое место он занимает в DOM-иерархии?</p>
+<p>Наследует ли он от <code>Node</code> или от <code>Element</code>, или может от <code>HTMLElement</code>?</p>
+</div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Объектом какого класса является <code>document</code>, можно выяснить так:</p>
+<div id="lg5tat7e2w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(document); // [object HTMLDocument]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Или так:</p>
+<div id="d97y6hhe0e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(document.constructor.name); // HTMLDocument</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Итак, <code>document</code> – объект класса <code>HTMLDocument</code>.</p>
+<p>Какое место HTMLDocument занимает в иерархии?</p>
+<p>Можно поискать в документации. Но попробуем выяснить это самостоятельно.</p>
+<p>Пройдём по цепочке прототипов по ссылке<code>__proto__</code>.</p>
+<p>Как мы знаем, методы класса находятся в  <code>prototype</code> конструктора. Например, в <code>HTMLDocument.prototype</code> находятся методы для объектов типа document.</p>
+<p>Также внутри <code>prototype</code> есть ссылка на функцию-конструктор:</p>
+<div id="5ki5nq1fy1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(HTMLDocument.prototype.constructor === HTMLDocument); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Чтобы получить имя класса в строковой форме, используем <code>constructor.name</code>. Сделаем это для всей цепочки прототипов <code>document</code> вверх до класса <code>Node</code>:</p>
+<div id="8oxr2zflrd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="выполнить" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="открыть в песочнице" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(HTMLDocument.prototype.constructor.name); // HTMLDocument
+alert(HTMLDocument.prototype.__proto__.constructor.name); // Document
+alert(HTMLDocument.prototype.__proto__.__proto__.constructor.name); // Node</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вот и иерархия.</p>
+<p>Мы также можем исследовать объект с помощью <code>console.dir(document)</code> и увидеть имена функций-конструкторов, открыв <code>__proto__</code>. Браузерная консоль берёт их как раз из свойства <code>constructor</code>.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="searching-elements-dom.html" data-tooltip="Поиск: getElement*, querySelector*"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="dom-attributes-and-properties.html" data-tooltip="Атрибуты и свойства"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/basic-dom-node-properties","identifier":"\/basic-dom-node-properties"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="document.html">Документ</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#klassy-dom-uzlov">Классы DOM-узлов</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#svoystvo-nodetype">Свойство «nodeType»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#teg-nodename-i-tagname">Тег: nodeName и tagName</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#innerhtml-soderzhimoe-elementa">innerHTML: содержимое элемента</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#outerhtml-html-elementa-tselikom">outerHTML: HTML элемента целиком</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nodevalue-data-soderzhimoe-tekstovogo-uzla">nodeValue/data: содержимое текстового узла</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#textcontent-prosto-tekst">textContent: просто текст</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#svoystvo-hidden">Свойство «hidden»</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#drugie-svoystva">Другие свойства</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fbasic-dom-node-properties" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/2-ui/1-document/05-basic-dom-node-properties" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/basic-dom-node-properties by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:01 GMT -->
+</html>

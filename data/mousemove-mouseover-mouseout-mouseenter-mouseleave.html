@@ -1,0 +1,1021 @@
+<!DOCTYPE html><html lang="ru" data-theme-enabled="1">
+<!-- Mirrored from learn.javascript.ru/mousemove-mouseover-mouseout-mouseenter-mouseleave by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script>window.currentUser = null;</script><script>window.shopCurrency = "RUB";</script><script>window.localCurrency = "RUB";</script><script>window.countryCode = "us";</script><script>window.rateShopTo = {"RUB":1,"EUR":0.01190754245962824,"USD":0.012960082608603353,"AMD":5.0511763335620445};</script><title itemprop="name">Движение мыши: mouseover/out, mouseenter/leave</title><link href="pack/styles.d76a6ae6433f1b0d6d11.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="http://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="mousemove-mouseover-mouseout-mouseenter-mouseleave.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="img/favicon/favicon.png"><meta itemprop="image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><meta property="og:title" content="Движение мыши: mouseover/out, mouseenter/leave"><meta property="og:image" content="https://learn.javascript.ru/img/site_preview_ru_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Движение мыши: mouseover/out, mouseenter/leave"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://learn.javascript.ru/img/site_preview_ru_512x512.png"><link rel="prev" href="mouse-events-basics.html"><link rel="next" href="mouse-drag-and-drop.html"><script>window.GA_ID = "UA-2056213-16";</script><script>window.GTM_ID = 'GTM-WD2DZPG'</script><script>window.YANDEX_METRIKA_ID = 17649010;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="../www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="../mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="pack/init.0a89b5228a4598490ad5.js"></script><script src="pack/head.ccd1a02912f51802640c.js" defer></script><meta property="og:title" content="Движение мыши: mouseover/out, mouseenter/leave"><meta property="og:type" content="article"><script src="pack/tutorial.f78de0b8b0137f8052dd.js" defer></script><script src="pack/footer.0940b4b40eb12f87e263.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">Извините, Internet Explorer не поддерживается, пожалуйста используйте более новый браузер.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"ky","name":"Kyrgyz"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"ms","name":"Malay"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"ug","name":"Uyghur"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ru";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>RU</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fa.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">FA</span><span class="supported-langs__title">فارسی</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="mousemove-mouseover-mouseout-mouseenter-mouseleave.html"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li></ul><ul class="supported-langs__list" style="height:20px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">Мы хотим сделать этот проект с открытым исходным кодом доступным для людей во всем мире. Пожалуйста, <a href="https://javascript.info/translate#help" rel="noopener noreferrer" target="_blank">помогите нам перевести</a> это руководство на свой язык</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="img/sitetoolbar__logo_ru.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="img/sitetoolbar__logo_ru-white.svg" width="171" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small" src="img/sitetoolbar__logo_small_ru.svg" width="80" alt="" role="presentation"/><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="img/sitetoolbar__logo_small_ru-white.svg" width="80" alt="" role="presentation"/><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"><li class="sitetoolbar__section sitetoolbar__section_current"><a class="sitetoolbar__link" href="index.html">Учебник</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="courses.html">Курсы</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="https://javascript.ru/forum/">Форум</a></li><li class="sitetoolbar__section"><a class="sitetoolbar__link" href="quiz.html">Тесты знаний</a></li><li class="sitetoolbar__section sitetoolbar__section_dropdown"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>Скринкасты</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><ul class="sitetoolbar__dropdown-items"><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/nodejs.html">Node.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/webpack.html">Webpack</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/gulp.html">Gulp</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/react.html">React.js</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="screencast/angular.html">Angular</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/W4hoc24K93E?list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb">Git: курс</a></li><li class="sitetoolbar__dropdown-item"><a class="sitetoolbar__secondary-link sitetoolbar__dropdown-link" href="https://youtu.be/lHacJuru1bc?list=PLDyvV36pndZEB7kWWocU4QSn-G78LoaEE">Git: разное</a></li></ul></div></div></li></ul></nav><div class="sitetoolbar__right-button-wrap"><a class="sitetoolbar-right-button sitetoolbar-right-button_courses" href="ebook.html"><span class="sitetoolbar-right-button__extra-text">Купить</span><span class="sitetoolbar-right-button__text">EPUB/PDF</span></a></div><div class="sitetoolbar__login-wrap"><button class="sitetoolbar__login sitetoolbar__login_unready" data-action-login></button></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://learn.javascript.ru/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="Искать на Javascript.ru" required="required" type="text"/></div><button class="sitetoolbar__find" type="submit">Найти</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="/" selected>Учебник</option><option value="/courses">Курсы</option><option value="https://javascript.ru/forum/">Форум</option><option value="/quiz">Тесты знаний</option></select></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://learn.javascript.ru/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="Поиск в учебнике" required="required"/><button class="tablet-menu-search__button" type="submit" name="type" value="articles">Поиск</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Сменить тему оформления"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"/><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Светлая тема</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Тёмная тема</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">English</option><option value="https://es.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">Español</option><option value="https://fa.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">فارسی</option><option value="https://fr.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">Italiano</option><option value="https://ja.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/mousemove-mouseover-mouseout-mouseenter-mouseleave" selected>Русский</option><option value="https://tr.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="18" max="32" data-tooltip="Урок 18 из 32"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="index.html"><span class="breadcrumbs__hidden-text">Учебник</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="ui.html"><span>Браузер: документ, события, интерфейсы</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="event-details.html"><span>Интерфейсные события</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Учебник","item":"https://learn.javascript.ru/"},{"@type":"ListItem","position":2,"name":"Браузер: документ, события, интерфейсы","item":"https://learn.javascript.ru/ui"},{"@type":"ListItem","position":3,"name":"Интерфейсные события","item":"https://learn.javascript.ru/event-details"}]}</script></ol><div class="updated-at" data-tooltip="Последнее обновление: 22 января 2022 г."><div class="updated-at__content">22 января 2022 г.</div></div></div><h1 class="main__header-title">Движение мыши: mouseover/out, mouseenter/leave</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Движение мыши: mouseover/out, mouseenter/leave"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>В этой главе мы более подробно рассмотрим события, возникающие при движении указателя мыши над элементами страницы.</p>
+<h2><a class="main__anchor" name="sobytiya-mouseover-mouseout-relatedtarget" href="#sobytiya-mouseover-mouseout-relatedtarget">События mouseover/mouseout, relatedTarget</a></h2><p>Событие <code>mouseover</code> происходит в момент, когда курсор оказывается над элементом, а событие <code>mouseout</code> – в момент, когда курсор уходит с элемента.</p>
+<figure><div class="image" style="width:278px">
+      <div class="image__ratio" style="padding-top:33.093525179856115%"></div>
+      <object type="image/svg+xml" data="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout.svg" width="278" height="92" class="image__image" data-use-theme>
+        <img src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout.svg" alt="" width="278" height="92">
+      </object>
+      </div></figure><p>Эти события являются особенными, потому что у них имеется свойство <code>relatedTarget</code>. Оно «дополняет» <code>target</code>. Когда мышь переходит с одного элемента на другой, то один из них будет <code>target</code>, а другой <code>relatedTarget</code>.</p>
+<p>Для события <code>mouseover</code>:</p>
+<ul>
+<li><code>event.target</code> – это элемент, <em>на который</em> курсор перешёл.</li>
+<li><code>event.relatedTarget</code> – это элемент, <em>с которого</em> курсор ушёл (<code>relatedTarget</code> → <code>target</code>).</li>
+</ul>
+<p>Для события <code>mouseout</code> наоборот:</p>
+<ul>
+<li><code>event.target</code> – это элемент, <em>с которого</em> курсор ушёл.</li>
+<li><code>event.relatedTarget</code> – это элемент, <em>на который</em> курсор перешёл (<code>target</code> → <code>relatedTarget</code>).</li>
+</ul>
+<p>В примере ниже каждое лицо и его черты – отдельные элементы. При движении указателя по этим элементам в текстовом поле отображаются происходящие события.</p>
+<p>Каждое из них содержит информацию о <code>target</code> и <code>relatedTarget</code>:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/xIaKnUru2lKr2TCw?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:280px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>container.onmouseover = container.onmouseout = handler;
+
+function handler(event) {
+
+  function str(el) {
+    if (!el) return &quot;null&quot;
+    return el.className || el.tagName;
+  }
+
+  log.value += event.type + ':  ' +
+    'target=' + str(event.target) +
+    ',  relatedTarget=' + str(event.relatedTarget) + &quot;\n&quot;;
+  log.scrollTop = log.scrollHeight;
+
+  if (event.type == 'mouseover') {
+    event.target.style.background = 'pink'
+  }
+  if (event.type == 'mouseout') {
+    event.target.style.background = ''
+  }
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  border: 1px solid brown;
+  padding: 10px;
+  width: 330px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+#log {
+  height: 120px;
+  width: 350px;
+  display: block;
+  box-sizing: border-box;
+}
+
+[class^=&quot;smiley-&quot;] {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.smiley-green {
+  background: #a9db7a;
+  border: 5px solid #92c563;
+  position: relative;
+}
+
+.smiley-green .left-eye {
+  width: 18%;
+  height: 18%;
+  background: #84b458;
+  position: relative;
+  top: 29%;
+  left: 22%;
+  border-radius: 50%;
+  float: left;
+}
+
+.smiley-green .right-eye {
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  position: relative;
+  background: #84b458;
+  top: 29%;
+  right: 22%;
+  float: right;
+}
+
+.smiley-green .smile {
+  position: absolute;
+  top: 67%;
+  left: 16.5%;
+  width: 70%;
+  height: 20%;
+  overflow: hidden;
+}
+
+.smiley-green .smile:after,
+.smiley-green .smile:before {
+  content: &quot;&quot;;
+  position: absolute;
+  top: -50%;
+  left: 0%;
+  border-radius: 50%;
+  background: #84b458;
+  height: 100%;
+  width: 97%;
+}
+
+.smiley-green .smile:after {
+  background: #84b458;
+  height: 80%;
+  top: -40%;
+  left: 0%;
+}
+
+.smiley-yellow {
+  background: #eed16a;
+  border: 5px solid #dbae51;
+  position: relative;
+}
+
+.smiley-yellow .left-eye {
+  width: 18%;
+  height: 18%;
+  background: #dba652;
+  position: relative;
+  top: 29%;
+  left: 22%;
+  border-radius: 50%;
+  float: left;
+}
+
+.smiley-yellow .right-eye {
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  position: relative;
+  background: #dba652;
+  top: 29%;
+  right: 22%;
+  float: right;
+}
+
+.smiley-yellow .smile {
+  position: absolute;
+  top: 67%;
+  left: 19%;
+  width: 65%;
+  height: 14%;
+  background: #dba652;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.smiley-red {
+  background: #ee9295;
+  border: 5px solid #e27378;
+  position: relative;
+}
+
+.smiley-red .left-eye {
+  width: 18%;
+  height: 18%;
+  background: #d96065;
+  position: relative;
+  top: 29%;
+  left: 22%;
+  border-radius: 50%;
+  float: left;
+}
+
+.smiley-red .right-eye {
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  position: relative;
+  background: #d96065;
+  top: 29%;
+  right: 22%;
+  float: right;
+}
+
+.smiley-red .smile {
+  position: absolute;
+  top: 57%;
+  left: 16.5%;
+  width: 70%;
+  height: 20%;
+  overflow: hidden;
+}
+
+.smiley-red .smile:after,
+.smiley-red .smile:before {
+  content: &quot;&quot;;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  border-radius: 50%;
+  background: #d96065;
+  height: 100%;
+  width: 97%;
+}
+
+.smiley-red .smile:after {
+  background: #d96065;
+  height: 80%;
+  top: 60%;
+  left: 0%;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;container&quot;&gt;
+    &lt;div class=&quot;smiley-green&quot;&gt;
+      &lt;div class=&quot;left-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;right-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;smile&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;smiley-yellow&quot;&gt;
+      &lt;div class=&quot;left-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;right-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;smile&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;smiley-red&quot;&gt;
+      &lt;div class=&quot;left-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;right-eye&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;smile&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;textarea id=&quot;log&quot;&gt;События будут показываться здесь!
+&lt;/textarea&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">Свойство <code>relatedTarget</code> может быть <code>null</code></span></div>
+            <div class="important__content"><p>Свойство <code>relatedTarget</code> может быть <code>null</code>.</p>
+<p>Это нормально и означает, что указатель мыши перешёл не с другого элемента, а из-за пределов окна браузера. Или же, наоборот, ушёл за пределы окна.</p>
+<p>Следует держать в уме такую возможность при использовании <code>event.relatedTarget</code> в своём коде. Если, например, написать <code>event.relatedTarget.tagName</code>, то при отсутствии <code>event.relatedTarget</code> будет ошибка.</p>
+</div></div>
+<h2><a class="main__anchor" name="propusk-elementov" href="#propusk-elementov">Пропуск элементов</a></h2><p>Событие <code>mousemove</code> происходит при движении мыши. Однако, это не означает, что указанное событие генерируется при прохождении каждого пикселя.</p>
+<p>Браузер периодически проверяет позицию курсора и, заметив изменения, генерирует события <code>mousemove</code>.</p>
+<p>Это означает, что если пользователь двигает мышкой очень быстро, то некоторые DOM-элементы могут быть пропущены:</p>
+<figure><div class="image" style="width:508px">
+      <div class="image__ratio" style="padding-top:18.11023622047244%"></div>
+      <object type="image/svg+xml" data="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout-over-elems.svg" width="508" height="92" class="image__image" data-use-theme>
+        <img src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout-over-elems.svg" alt="" width="508" height="92">
+      </object>
+      </div></figure><p>Если курсор мыши передвинуть очень быстро с элемента <code>#FROM</code> на элемент <code>#TO</code>, как это показано выше, то лежащие между ними элементы <code>&lt;div&gt;</code> (или некоторые из них) могут быть пропущены. Событие <code>mouseout</code> может запуститься на элементе <code>#FROM</code> и затем сразу же сгенерируется <code>mouseover</code> на элементе <code>#TO</code>.</p>
+<p>Это хорошо с точки зрения производительности, потому что если промежуточных элементов много, вряд ли мы действительно хотим обрабатывать вход и выход для каждого.</p>
+<p>С другой стороны, мы должны иметь в виду, что указатель мыши не «посещает» все элементы на своём пути. Он может и «прыгать».</p>
+<p>В частности, возможно, что указатель запрыгнет в середину страницы из-за пределов окна браузера. В этом случае значение <code>relatedTarget</code> будет <code>null</code>, так как курсор пришёл «из ниоткуда»:</p>
+<figure><div class="image" style="width:440px">
+      <div class="image__ratio" style="padding-top:41.590909090909086%"></div>
+      <object type="image/svg+xml" data="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout-from-outside.svg" width="440" height="183" class="image__image" data-use-theme>
+        <img src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-mouseout-from-outside.svg" alt="" width="440" height="183">
+      </object>
+      </div></figure><p>Вы можете проверить это «вживую» на тестовом стенде ниже.</p>
+<p>В его HTML есть два элемента, <code>&lt;div id=&quot;child&quot;&gt;</code> вложен в <code>&lt;div id=&quot;parent&quot;&gt;</code>. Если быстро провести мышью над ними, то событие может возникнуть только на внутреннем элементе или только на внешнем, а может вообще не сгенерироваться никаких событий.</p>
+<p>Также попробуйте поставить курсор на внутренний элемент, а затем очень быстро сделайте движение мышкой вниз через внешний элемент. Если у вас получится достаточно быстро, то на родительском элементе не будет сгенерировано никаких событий. То есть, мышь пройдёт через внешний элемент, не замечая его.</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout-fast/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/tLD6PNBTCB1I8mo4?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:360px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout-fast/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>let parent = document.getElementById('parent');
+parent.onmouseover = parent.onmouseout = parent.onmousemove = handler;
+
+function handler(event) {
+  let type = event.type;
+  while (type.length &lt; 11) type += ' ';
+
+  log(type + &quot; target=&quot; + event.target.id)
+  return false;
+}
+
+
+function clearText() {
+  text.value = &quot;&quot;;
+  lastMessage = &quot;&quot;;
+}
+
+let lastMessageTime = 0;
+let lastMessage = &quot;&quot;;
+let repeatCounter = 1;
+
+function log(message) {
+  if (lastMessageTime == 0) lastMessageTime = new Date();
+
+  let time = new Date();
+
+  if (time - lastMessageTime &gt; 500) {
+    message = '------------------------------\n' + message;
+  }
+
+  if (message === lastMessage) {
+    repeatCounter++;
+    if (repeatCounter == 2) {
+      text.value = text.value.trim() + ' x 2\n';
+    } else {
+      text.value = text.value.slice(0, text.value.lastIndexOf('x') + 1) + repeatCounter + &quot;\n&quot;;
+    }
+
+  } else {
+    repeatCounter = 1;
+    text.value += message + &quot;\n&quot;;
+  }
+
+  text.scrollTop = text.scrollHeight;
+
+  lastMessageTime = time;
+  lastMessage = message;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#parent {
+  background: #99C0C3;
+  width: 160px;
+  height: 120px;
+  position: relative;
+}
+
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+textarea {
+  height: 140px;
+  width: 300px;
+  display: block;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;parent&quot;&gt;parent
+    &lt;div id=&quot;child&quot;&gt;child&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;textarea id=&quot;text&quot;&gt;&lt;/textarea&gt;
+  &lt;input onclick=&quot;clearText()&quot; value=&quot;Очистить&quot; type=&quot;button&quot;&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Если был <code>mouseover</code>, то будет и <code>mouseout</code></span></div>
+            <div class="important__content"><p>Несмотря на то, что при быстрых переходах промежуточные элементы могут игнорироваться, в одном мы можем быть уверены: элемент может быть пропущен только целиком.</p>
+<p>Если указатель «официально» зашёл на элемент, то есть было событие <code>mouseover</code>, то при выходе с него обязательно будет <code>mouseout</code>.</p>
+</div></div>
+<h2><a class="main__anchor" name="sobytie-mouseout-pri-perehode-na-potomka" href="#sobytie-mouseout-pri-perehode-na-potomka">Событие mouseout при переходе на потомка</a></h2><p>Важная особенность события <code>mouseout</code> – оно генерируется в том числе, когда указатель переходит с элемента на его потомка.</p>
+<p>То есть, визуально указатель всё ещё на элементе, но мы получим <code>mouseout</code>!</p>
+<figure><div class="image" style="width:274px">
+      <div class="image__ratio" style="padding-top:52.18978102189781%"></div>
+      <object type="image/svg+xml" data="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-to-child.svg" width="274" height="143" class="image__image" data-use-theme>
+        <img src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-to-child.svg" alt="" width="274" height="143">
+      </object>
+      </div></figure><p>Это выглядит странно, но легко объясняется.</p>
+<p><strong>По логике браузера, курсор мыши может быть только над одним элементом в любой момент времени – над самым глубоко вложенным и верхним по z-index.</strong></p>
+<p>Таким образом, если курсор переходит на другой элемент (пусть даже дочерний), то он покидает предыдущий.</p>
+<p>Обратите внимание на важную деталь.</p>
+<p>Событие <code>mouseover</code>, происходящее на потомке, всплывает. Поэтому если на родительском элементе есть такой обработчик, то оно его вызовет.</p>
+<figure><div class="image" style="width:258px">
+      <div class="image__ratio" style="padding-top:55.42635658914728%"></div>
+      <object type="image/svg+xml" data="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-bubble-nested.svg" width="258" height="143" class="image__image" data-use-theme>
+        <img src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseover-bubble-nested.svg" alt="" width="258" height="143">
+      </object>
+      </div></figure><p>Вы можете наглядно увидеть это в примере ниже: <code>&lt;div id=&quot;child&quot;&gt;</code> находится внутри <code>&lt;div id=&quot;parent&quot;&gt;</code>. На родителе определены обработчики событий <code>mouseover/out</code>, которые выводят информацию о них в текстовое поле.</p>
+<p>При переходе мышью с внешнего элемента на внутренний, вы увидите сразу два события: <code>mouseout [target: parent]</code> (ушли с родителя) и <code>mouseover [target: child]</code> (перешли на потомка, событие всплыло).</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout-child/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/ivfixXPyJy2lnzCb?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:360px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseoverout-child/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function mouselog(event) {
+  let d = new Date();
+  text.value += `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} | ${event.type} [target: ${event.target.id}]\n`.replace(/(:|^)(\d\D)/, '$10$2');
+  text.scrollTop = text.scrollHeight;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#parent {
+  background: #99C0C3;
+  width: 160px;
+  height: 120px;
+  position: relative;
+}
+
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+textarea {
+  height: 140px;
+  width: 300px;
+  display: block;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;parent&quot; onmouseover=&quot;mouselog(event)&quot; onmouseout=&quot;mouselog(event)&quot;&gt;parent
+    &lt;div id=&quot;child&quot;&gt;child&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;textarea id=&quot;text&quot;&gt;&lt;/textarea&gt;
+  &lt;input type=&quot;button&quot; onclick=&quot;text.value=''&quot; value=&quot;Очистить&quot;&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>При переходе с родителя элемента на потомка – на родителе сработают два обработчика: и <code>mouseout</code> и <code>mouseover</code>:</p>
+<div id="cwqflknq7g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>parent.onmouseout = function(event) {
+  /* event.target: внешний элемент */
+};
+parent.onmouseover = function(event) {
+  /* event.target: внутренний элемент (всплыло) */
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Если код внутри обработчиков не смотрит на <code>target</code>, то он подумает, что мышь ушла с элемента <code>parent</code> и вернулась на него обратно. Но это не так! Мышь никуда не уходила, она просто перешла на потомка.</p>
+<p>Если при уходе с элемента что-то происходит, например, запускается анимация, то такая интерпретация происходящего может давать нежелательные побочные эффекты.</p>
+<p>Чтобы этого избежать, можно смотреть на <code>relatedTarget</code> и, если мышь всё ещё внутри элемента, то игнорировать такие события.</p>
+<p>Или же можно использовать другие события: <code>mouseenter</code> и <code>mouseleave</code>, которые мы сейчас изучим, с ними такая проблема не возникает.</p>
+<h2><a class="main__anchor" name="sobytiya-mouseenter-i-mouseleave" href="#sobytiya-mouseenter-i-mouseleave">События mouseenter и mouseleave</a></h2><p>События <code>mouseenter/mouseleave</code> похожи на <code>mouseover/mouseout</code>. Они тоже генерируются, когда курсор мыши переходит на элемент или покидает его.</p>
+<p>Но есть и пара важных отличий:</p>
+<ol>
+<li>Переходы внутри элемента, на его потомки и с них, не считаются.</li>
+<li>События <code>mouseenter/mouseleave</code> не всплывают.</li>
+</ol>
+<p>События <code>mouseenter/mouseleave</code> предельно просты и понятны.</p>
+<p>Когда указатель появляется над элементом – генерируется <code>mouseenter</code>, причём не имеет значения, где именно указатель: на самом элементе или на его потомке.</p>
+<p>Событие <code>mouseleave</code> происходит, когда курсор покидает элемент.</p>
+<p>Вот тот же пример, что и выше, но на этот раз на верхнем элементе стоят обработчики <code>mouseenter/mouseleave</code> вместо <code>mouseover/mouseout</code>.</p>
+<p>Как вы сами можете увидеть, генерируются только события, связанные с движением курсора относительно верхнего <code>&lt;div&gt;</code>. Ничего не произойдёт при переходе на внутренний <code>&lt;div&gt;</code> и обратно. Переходы на потомки игнорируются.</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseleave/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/VQzVjMwqHvkfjFqn?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:340px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseleave/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function mouselog(event) {
+  let d = new Date();
+  text.value += `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} | ${event.type} [target: ${event.target.id}]\n`.replace(/(:|^)(\d\D)/, '$10$2');
+  text.scrollTop = text.scrollHeight;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#parent {
+  background: #99C0C3;
+  width: 160px;
+  height: 120px;
+  position: relative;
+}
+
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+textarea {
+  height: 140px;
+  width: 300px;
+  display: block;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div id=&quot;parent&quot; onmouseenter=&quot;mouselog(event)&quot; onmouseleave=&quot;mouselog(event)&quot;&gt;parent
+    &lt;div id=&quot;child&quot;&gt;child&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;textarea id=&quot;text&quot;&gt;&lt;/textarea&gt;
+  &lt;input type=&quot;button&quot; onclick=&quot;text.value=''&quot; value=&quot;Очистить&quot;&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="delegirovanie-sobytiy" href="#delegirovanie-sobytiy">Делегирование событий</a></h2><p>События <code>mouseenter/leave</code> просты и легки в использовании. Но они не всплывают. Таким образом, мы не можем их делегировать.</p>
+<p>Представьте ситуацию, когда мы хотим обрабатывать события, сгенерированные при движении курсора по ячейкам таблицы. И в таблице сотни ячеек.</p>
+<p>Очевидное решение – определить обработчик на родительском элементе <code>&lt;table&gt;</code> и там обрабатывать возникающие события. Но, так как <code>mouseenter/leave</code> не всплывают, то если событие происходит на ячейке <code>&lt;td&gt;</code>, то только обработчик на <code>&lt;td&gt;</code> может поймать его.</p>
+<p>Обработчики событий <code>mouseenter/leave</code> на <code>&lt;table&gt;</code> срабатывают, если курсор оказывается над таблицей в целом или же уходит с неё. Невозможно получить какую-либо информацию о переходах между ячейками внутри таблицы.</p>
+<p>Что ж, не проблема – будем использовать <code>mouseover/mouseout</code>.</p>
+<p>Начнём с простых обработчиков, которые выделяют текущий элемент под указателем мыши:</p>
+<div id="qotqwohs0s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// выделим элемент под мышью
+table.onmouseover = function(event) {
+  let target = event.target;
+  target.style.background = 'pink';
+};
+
+table.onmouseout = function(event) {
+  let target = event.target;
+  target.style.background = '';
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Вот они в действии. При переходе между элементами этой таблицы, текущий будет подсвечен:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseenter-mouseleave-delegation/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/9DHeezc4Wet5JTym?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:480px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseenter-mouseleave-delegation/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>table.onmouseover = function(event) {
+  let target = event.target;
+  target.style.background = 'pink';
+  text.value += &quot;mouseover &quot; + target.tagName + &quot;\n&quot;;
+  text.scrollTop = text.scrollHeight;
+};
+
+table.onmouseout = function(event) {
+  let target = event.target;
+  target.style.background = '';
+  text.value += &quot;mouseout &quot; + target.tagName + &quot;\n&quot;;
+  text.scrollTop = text.scrollHeight;
+};</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#text {
+  display: block;
+  height: 100px;
+  width: 456px;
+}
+
+#table th {
+  text-align: center;
+  font-weight: bold;
+}
+
+#table td {
+  width: 150px;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+#table .nw {
+  background: #999;
+}
+
+#table .n {
+  background: #03f;
+  color: #fff;
+}
+
+#table .ne {
+  background: #ff6;
+}
+
+#table .w {
+  background: #ff0;
+}
+
+#table .c {
+  background: #60c;
+  color: #fff;
+}
+
+#table .e {
+  background: #09f;
+  color: #fff;
+}
+
+#table .sw {
+  background: #963;
+  color: #fff;
+}
+
+#table .s {
+  background: #f60;
+  color: #fff;
+}
+
+#table .se {
+  background: #0c3;
+  color: #fff;
+}
+
+#table .highlight {
+  background: red;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;table id=&quot;table&quot;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;3&quot;&gt;Квадрат &lt;em&gt;Bagua&lt;/em&gt;: Направление, Элемент, Цвет, Значение&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;nw&quot;&gt;&lt;strong&gt;Северо-Запад&lt;/strong&gt;
+        &lt;br&gt;Металл
+        &lt;br&gt;Серебро
+        &lt;br&gt;Старейшины
+      &lt;/td&gt;
+      &lt;td class=&quot;n&quot;&gt;&lt;strong&gt;Север&lt;/strong&gt;
+        &lt;br&gt;Вода
+        &lt;br&gt;Синий
+        &lt;br&gt;Перемены
+      &lt;/td&gt;
+      &lt;td class=&quot;ne&quot;&gt;&lt;strong&gt;Северо-Восток&lt;/strong&gt;
+        &lt;br&gt;Земля
+        &lt;br&gt;Жёлтый
+        &lt;br&gt;Направление
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;w&quot;&gt;&lt;strong&gt;Запад&lt;/strong&gt;
+        &lt;br&gt;Металл
+        &lt;br&gt;Золото
+        &lt;br&gt;Молодость
+      &lt;/td&gt;
+      &lt;td class=&quot;c&quot;&gt;&lt;strong&gt;Центр&lt;/strong&gt;
+        &lt;br&gt;Всё
+        &lt;br&gt;Пурпурный
+        &lt;br&gt;Гармония
+      &lt;/td&gt;
+      &lt;td class=&quot;e&quot;&gt;&lt;strong&gt;Восток&lt;/strong&gt;
+        &lt;br&gt;Дерево
+        &lt;br&gt;Синий
+        &lt;br&gt;Будущее
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;sw&quot;&gt;&lt;strong&gt;Юго-Запад&lt;/strong&gt;
+        &lt;br&gt;Земля
+        &lt;br&gt;Коричневый
+        &lt;br&gt;Спокойствие
+      &lt;/td&gt;
+      &lt;td class=&quot;s&quot;&gt;&lt;strong&gt;Юг&lt;/strong&gt;
+        &lt;br&gt;Огонь
+        &lt;br&gt;Оранжевый
+        &lt;br&gt;Слава
+      &lt;/td&gt;
+      &lt;td class=&quot;se&quot;&gt;&lt;strong&gt;Юго-Восток&lt;/strong&gt;
+        &lt;br&gt;Дерево
+        &lt;br&gt;Зеленый
+        &lt;br&gt;Роман
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+  &lt;/table&gt;
+
+  &lt;textarea id=&quot;text&quot;&gt;&lt;/textarea&gt;
+
+  &lt;input type=&quot;button&quot; onclick=&quot;text.value=''&quot; value=&quot;Очистить&quot;&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>В нашем случае мы хотим обрабатывать переходы именно между ячейками <code>&lt;td&gt;</code>: вход на ячейку и выход с неё. Прочие переходы, в частности, внутри ячейки <code>&lt;td&gt;</code> или вообще вне любых ячеек, нас не интересуют, хорошо бы их отфильтровать.</p>
+<p>Можно достичь этого так:</p>
+<ul>
+<li>Запоминать текущую ячейку <code>&lt;td&gt;</code> в переменную, которую назовём <code>currentElem</code>.</li>
+<li>На <code>mouseover</code> – игнорировать событие, если мы всё ещё внутри той же самой ячейки <code>&lt;td&gt;</code>.</li>
+<li>На <code>mouseout</code> – игнорировать событие, если это не уход с текущей ячейки <code>&lt;td&gt;</code>.</li>
+</ul>
+<p>Вот пример кода, учитывающего все ситуации:</p>
+<div id="8qhl2cywfh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// ячейка &lt;td&gt; под курсором в данный момент (если есть)
+let currentElem = null;
+
+table.onmouseover = function(event) {
+  // перед тем, как войти на следующий элемент, курсор всегда покидает предыдущий
+  // если currentElem есть, то мы ещё не ушли с предыдущего &lt;td&gt;,
+  // это переход внутри - игнорируем такое событие
+  if (currentElem) return;
+
+  let target = event.target.closest('td');
+
+  // переход не на &lt;td&gt; - игнорировать
+  if (!target) return;
+
+  // переход на &lt;td&gt;, но вне нашей таблицы (возможно при вложенных таблицах)
+  // игнорировать
+  if (!table.contains(target)) return;
+
+  // ура, мы зашли на новый &lt;td&gt;
+  currentElem = target;
+  target.style.background = 'pink';
+};
+
+
+table.onmouseout = function(event) {
+  // если мы вне &lt;td&gt;, то игнорируем уход мыши
+  // это какой-то переход внутри таблицы, но вне &lt;td&gt;,
+  // например с &lt;tr&gt; на другой &lt;tr&gt;
+  if (!currentElem) return;
+
+  // мы покидаем элемент – но куда? Возможно, на потомка?
+  let relatedTarget = event.relatedTarget;
+
+  while (relatedTarget) {
+    // поднимаемся по дереву элементов и проверяем – внутри ли мы currentElem или нет
+    // если да, то это переход внутри элемента – игнорируем
+    if (relatedTarget == currentElem) return;
+
+    relatedTarget = relatedTarget.parentNode;
+  }
+
+  // мы действительно покинули элемент
+  currentElem.style.background = '';
+  currentElem = null;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Полный пример со всеми деталями:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Результат</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="открыть в отдельном окне" href="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseenter-mouseleave-delegation-2/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="редактировать в песочнице" href="https://plnkr.co/edit/GIBOdmkkZHVtexHW?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:380px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="article/mousemove-mouseover-mouseout-mouseenter-mouseleave/mouseenter-mouseleave-delegation-2/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>// ячейка &lt;td&gt; под курсором в данный момент (если есть)
+let currentElem = null;
+
+table.onmouseover = function(event) {
+  // перед тем, как войти на следующий элемент, курсор всегда покидает предыдущий
+  // если currentElem есть, то мы ещё не ушли с предыдущего &lt;td&gt;,
+  // это переход внутри - игнорируем такое событие
+  if (currentElem) return;
+
+  let target = event.target.closest('td');
+
+  // переход не на &lt;td&gt; - игнорировать
+  if (!target) return;
+
+  // переход на &lt;td&gt;, но вне нашей таблицы (возможно при вложенных таблицах)
+  // игнорировать
+  if (!table.contains(target)) return;
+
+  // ура, мы зашли на новый &lt;td&gt;
+  currentElem = target;
+  target.style.background = 'pink';
+};
+
+
+table.onmouseout = function(event) {
+  // если мы вне &lt;td&gt;, то игнорируем уход мыши
+  // это какой-то переход внутри таблицы, но вне &lt;td&gt;,
+  // например с &lt;tr&gt; на другой &lt;tr&gt;
+  if (!currentElem) return;
+
+  // мы покидаем элемент – но куда? Возможно, на потомка?
+  let relatedTarget = event.relatedTarget;
+
+  while (relatedTarget) {
+    // поднимаемся по дереву элементов и проверяем – внутри ли мы currentElem или нет
+    // если да, то это переход внутри элемента – игнорируем
+    if (relatedTarget == currentElem) return;
+
+    relatedTarget = relatedTarget.parentNode;
+  }
+
+  // мы действительно покинули элемент
+  currentElem.style.background = '';
+  currentElem = null;
+};</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#text {
+  display: block;
+  height: 100px;
+  width: 456px;
+}
+
+#table th {
+  text-align: center;
+  font-weight: bold;
+}
+
+#table td {
+  width: 150px;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+#table .nw {
+  background: #999;
+}
+
+#table .n {
+  background: #03f;
+  color: #fff;
+}
+
+#table .ne {
+  background: #ff6;
+}
+
+#table .w {
+  background: #ff0;
+}
+
+#table .c {
+  background: #60c;
+  color: #fff;
+}
+
+#table .e {
+  background: #09f;
+  color: #fff;
+}
+
+#table .sw {
+  background: #963;
+  color: #fff;
+}
+
+#table .s {
+  background: #f60;
+  color: #fff;
+}
+
+#table .se {
+  background: #0c3;
+  color: #fff;
+}
+
+#table .highlight {
+  background: red;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;table id=&quot;table&quot;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;3&quot;&gt;Квадрат &lt;em&gt;Bagua&lt;/em&gt;: Направление, Элемент, Цвет, Значение&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;nw&quot;&gt;&lt;strong&gt;Северо-Запад&lt;/strong&gt;
+        &lt;br&gt;Металл
+        &lt;br&gt;Серебро
+        &lt;br&gt;Старейшины
+      &lt;/td&gt;
+      &lt;td class=&quot;n&quot;&gt;&lt;strong&gt;Север&lt;/strong&gt;
+        &lt;br&gt;Вода
+        &lt;br&gt;Синий
+        &lt;br&gt;Перемены
+      &lt;/td&gt;
+      &lt;td class=&quot;ne&quot;&gt;&lt;strong&gt;Северо-Восток&lt;/strong&gt;
+        &lt;br&gt;Земля
+        &lt;br&gt;Жёлтый
+        &lt;br&gt;Направление
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;w&quot;&gt;&lt;strong&gt;Запад&lt;/strong&gt;
+        &lt;br&gt;Металл
+        &lt;br&gt;Золото
+        &lt;br&gt;Молодость
+      &lt;/td&gt;
+      &lt;td class=&quot;c&quot;&gt;&lt;strong&gt;Центр&lt;/strong&gt;
+        &lt;br&gt;Всё
+        &lt;br&gt;Пурпурный
+        &lt;br&gt;Гармония
+      &lt;/td&gt;
+      &lt;td class=&quot;e&quot;&gt;&lt;strong&gt;Восток&lt;/strong&gt;
+        &lt;br&gt;Дерево
+        &lt;br&gt;Синий
+        &lt;br&gt;Будущее
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;sw&quot;&gt;&lt;strong&gt;Юго-Запад&lt;/strong&gt;
+        &lt;br&gt;Земля
+        &lt;br&gt;Коричневый
+        &lt;br&gt;Спокойствие
+      &lt;/td&gt;
+      &lt;td class=&quot;s&quot;&gt;&lt;strong&gt;Юг&lt;/strong&gt;
+        &lt;br&gt;Огонь
+        &lt;br&gt;Оранжевый
+        &lt;br&gt;Слава
+      &lt;/td&gt;
+      &lt;td class=&quot;se&quot;&gt;&lt;strong&gt;Юго-Восток&lt;/strong&gt;
+        &lt;br&gt;Дерево
+        &lt;br&gt;Зеленый
+        &lt;br&gt;Роман
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+  &lt;/table&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>Попробуйте подвигать курсор между ячейками и внутри них. Быстро или медленно – без разницы. В отличие от предыдущего примера выделяется только сама ячейка <code>&lt;td&gt;</code>.</p>
+<h2><a class="main__anchor" name="itogo" href="#itogo">Итого</a></h2><p>Мы рассмотрели события <code>mouseover</code>, <code>mouseout</code>, <code>mousemove</code>, <code>mouseenter</code> и <code>mouseleave</code>.</p>
+<p>Особенности, на которые стоит обратить внимание:</p>
+<ul>
+<li>При быстром движении мыши события не будут возникать на промежуточных элементах.</li>
+<li>События <code>mouseover/out</code> и <code>mouseenter/leave</code> имеют дополнительное свойство: <code>relatedTarget</code>. Оно дополняет свойство <code>target</code> и содержит ссылку на элемент, с/на который мы переходим.</li>
+</ul>
+<p>События <code>mouseover/out</code> возникают, даже когда происходит переход с родительского элемента на потомка. С точки зрения браузера, курсор мыши может быть только над одним элементом в любой момент времени – над самым глубоко вложенным.</p>
+<p>События <code>mouseenter/leave</code> в этом отличаются. Они генерируются, когда курсор переходит на элемент в целом или уходит с него. Также они не всплывают.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">Задачи</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#uluchshennaya-podskazka" name="uluchshennaya-podskazka">Улучшенная подсказка</a></h3><a class="task__open-link" href="task/behavior-nested-tooltip.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите JavaScript код, который показывает подсказку над элементом с атрибутом <code>data-tooltip</code>. Значение атрибута должно становиться текстом подсказки.</p>
+<p>Это похоже на задачу <a href="task/behavior-tooltip.html">Поведение &quot;подсказка&quot;</a>, но здесь элементы с подсказками могут быть вложены друг в друга. Показываться должна подсказка на самом глубоко вложенном элементе.</p>
+<p>Только одна подсказка может быть показана в любой момент времени.</p>
+<p>Например:</p>
+<div id="9xluh7y7ft" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div data-tooltip=&quot;Здесь - домашний интерьер&quot; id=&quot;house&quot;&gt;
+  &lt;div data-tooltip=&quot;Здесь - крыша&quot; id=&quot;roof&quot;&gt;&lt;/div&gt;
+  ...
+  &lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B8_%D0%BF%D0%BE%D1%80%D0%BE%D1%81%D1%91%D0%BD%D0%BA%D0%B0&quot; data-tooltip=&quot;Читать далее…&quot;&gt;Наведи курсор на меня&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Результат в iframe:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://ru.js.cx/task/behavior-nested-tooltip/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/0RmXv4jNRZQWsZGi?p=preview" target="_blank" data-plunk-id="0RmXv4jNRZQWsZGi">Открыть песочницу для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/RhuBlH9BYcFweeug?p=preview" target="_blank" data-plunk-id="RhuBlH9BYcFweeug">Открыть решение в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#umnaya-podskazka" name="umnaya-podskazka">&quot;Умная&quot; подсказка</a></h3><a class="task__open-link" href="task/hoverintent.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="Насколько эта задача важна для освоения материала, от 1 до 5">важность: 5</span></div><div class="task__content"><div class="task__formatted"><p>Напишите функцию, которая показывает подсказку над элементом только в случае, когда пользователь передвигает мышь <em>на него</em>, но не <em>через него</em>.</p>
+<p>Другими словами, если пользователь подвинул курсор на элементе и остановился – показывать подсказку. А если он просто быстро провёл курсором по элементу, то не надо ничего показывать. Кому понравится лишнее мелькание?</p>
+<p>Технически, мы можем измерять скорость прохода курсора мыши над элементом, и если она низкая, то можно посчитать, что пользователь остановил курсор над элементом, и показать ему подсказку. А если скорость высокая, то тогда не показывать.</p>
+<p>Создайте для этого универсальный объект <code>new HoverIntent(options)</code>.</p>
+<p>Его настройки <code>options</code>:</p>
+<ul>
+<li><code>elem</code> – отслеживаемый элемент.</li>
+<li><code>over</code> – функция, вызываемая, при заходе на элемент, считаем что заход – это когда курсор медленно двигается или остановился над элементом.</li>
+<li><code>out</code> – функция, вызываемая при уходе курсора с элемента (если был заход).</li>
+</ul>
+<p>Пример использования такого объекта для показа подсказки:</p>
+<div id="zd7es86akg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// пример подсказки
+let tooltip = document.createElement('div');
+tooltip.className = &quot;tooltip&quot;;
+tooltip.innerHTML = &quot;Tooltip&quot;;
+
+// объект будет отслеживать движение мыши и вызывать функции over/out
+new HoverIntent({
+  elem,
+  over() {
+    tooltip.style.left = elem.getBoundingClientRect().left + 'px';
+    tooltip.style.top = elem.getBoundingClientRect().bottom + 5 + 'px';
+    document.body.append(tooltip);
+  },
+  out() {
+    tooltip.remove();
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Демо:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:140px" src="https://ru.js.cx/task/hoverintent/solution/"></iframe>
+  </div><p>Если двигать курсор над «часами» быстро, то ничего не произойдёт, а если вы замедлите движение курсора над элементом или остановите его, то будет показана подсказка.</p>
+<p>Обратите внимание: подсказка не должна пропадать (мигать), когда курсор переходит между дочерними элементами часов.</p>
+<p><a href="https://plnkr.co/edit/zU4pfqNIIKBlubYZ?p=preview" target="_blank" data-plunk-id="zU4pfqNIIKBlubYZ">Открыть песочницу с тестами для задачи.</a></p></div><button class="task__solution" type="button">решение</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>Алгоритм выглядит просто:</p>
+<ol>
+<li>Назначаем обработчики <code>onmouseover/out</code> на элементе. Также можно было бы использовать <code>onmouseenter/leave</code>, но они менее универсальны и не сработают с делегированием.</li>
+<li>Когда курсор переходит на элемент, начинаем измерять скорость его движения, используя <code>mousemove</code>.</li>
+<li>Если скорость низкая, то вызываем <code>over</code>.</li>
+<li>Когда мы выходим из элемента, если запускали <code>over</code>, вызываем <code>out</code>.</li>
+</ol>
+<p>Но как измерить скорость?</p>
+<p>Первая идея может быть такой: запускать нашу функцию каждые <code>100ms</code> и находить разницу между прежними и текущими координатами курсора. Если она мала, то значит и скорость низкая.</p>
+<p>К сожалению, в JavaScript нет возможности получать текущие координаты мыши. Не существует функции типа <code>получитьТекущиеКоординатыМыши()</code>.</p>
+<p>Единственный путь – это слушать события мыши, например <code>mousemove</code>, и координаты брать из объекта события.</p>
+<p>Так что поставим обработчик на <code>mousemove</code>, чтобы отслеживать координаты и запоминать их. И будем сравнивать результаты каждые <code>100ms</code>.</p>
+<p>P.S. Обратите внимание: тесты для решения этой задачи используют <code>dispatchEvent</code>, чтобы проверить, что подсказка работает корректно.</p>
+<p><a href="https://plnkr.co/edit/wHMgRi0DMLVtp3UU?p=preview" target="_blank" data-plunk-id="wHMgRi0DMLVtp3UU">Открыть решение с тестами в песочнице.</a></p></div></div><button class="close-button task__answer-close" type="button" title="закрыть"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="mouse-events-basics.html" data-tooltip="Основы событий мыши"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Предыдущий урок</span></a><a class="page__nav page__nav_next" href="mouse-drag-and-drop.html" data-tooltip="Drag'n'Drop с событиями мыши"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">Следующий урок</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Поделиться</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a><a class="share share_vk" href="https://vkontakte.ru/share.php?url=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="tutorial/map.html" data-action="tutorial-map"><span class="map__text">Карта учебника</span></a></div></div></div><div class="banner-bottom"><div class="banner-bottom__text">Проводим <a href="courses.html">курсы по JavaScript и фреймворкам</a>.</div><button class="banner-bottom__close" data-banner-close="Courses" data-banner-close-message="Эта информация больше не будет выводиться." title="не показывать"></button></div><script>!!1&&"hideBannerCourses"in localStorage||(document.querySelector(".banner-bottom").style.display="flex");</script><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Комментарии</a></h2><div class="comments__read-before"><span class="comments__read-before-link">перед тем как писать…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>Если вам кажется, что в статье что-то не так - вместо комментария напишите <a href="https://github.com/javascript-tutorial/ru.javascript.info/issues/new">на GitHub</a>.</li><li>Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='https://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com/'>JSBin</a>, <a href='http://codepen.io/'>codepen</a>…)</li><li>Если что-то непонятно в статье&nbsp;&mdash; пишите, что именно и с какого места.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/learn.javascript.ru\/mousemove-mouseover-mouseout-mouseenter-mouseleave","identifier":"\/mousemove-mouseover-mouseout-mouseenter-mouseleave"}); };</script><script>var disqus_shortname = "learnjavascriptru";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="tutorial/map.html" data-action="tutorial-map" data-tooltip="Карта учебника"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Раздел</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="event-details.html">Интерфейсные события</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Навигация по уроку</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sobytiya-mouseover-mouseout-relatedtarget">События mouseover/mouseout, relatedTarget</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#propusk-elementov">Пропуск элементов</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sobytie-mouseout-pri-perehode-na-potomka">Событие mouseout при переходе на потомка</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sobytiya-mouseenter-i-mouseleave">События mouseenter и mouseleave</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#delegirovanie-sobytiy">Делегирование событий</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#itogo">Итого</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">Задачи (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">Комментарии</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Поделиться</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Flearn.javascript.ru%2Fmousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ru.javascript.info/blob/master/2-ui/3-event-details/3-mousemove-mouseover-mouseout-mouseenter-mouseleave" rel="nofollow">Редактировать на GitHub</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2023&nbsp; Илья Кантор</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="about.html">о проекте</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="about.html#contact-us">связаться с нами</a></li><li class="page-footer__item page-footer__item_terms"><a class="page-footer__link" href="terms.html">пользовательское соглашение</a></li><li class="page-footer__item page-footer__item_privacy"><a class="page-footer__link" href="privacy.html">политика конфиденциальности</a></li></ul></div></body>
+<!-- Mirrored from learn.javascript.ru/mousemove-mouseover-mouseout-mouseenter-mouseleave by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 11:32:09 GMT -->
+</html>
